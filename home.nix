@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "justalternate";
@@ -93,7 +94,6 @@
     pkgs.git
     pkgs.gcc
     pkgs.cmake
-    pkgs.python3
     pkgs.go
 
     # App launchers
@@ -190,6 +190,8 @@
       theme = "agnoster";
     };
   };
+
+  imports = [ ./pywalfox.nix ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
