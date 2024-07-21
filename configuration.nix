@@ -105,6 +105,7 @@
     busybox
 
     pipewire
+    wireplumber
     git
 
     vim
