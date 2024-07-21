@@ -31,8 +31,7 @@
     pkgs.pywal
 
     # Sound
-    pkgs.pulseaudio
-    pkgs.pavucontrol
+    pkgs.pwvucontrol
 
     # Networking
     pkgs.networkmanagerapplet

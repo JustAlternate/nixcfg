@@ -104,7 +104,7 @@
 
     busybox
 
-    pulseaudio
+    pipewire
     git
 
     vim
@@ -128,18 +128,18 @@
   ];
 
   # sound using piewire:
-  #sound.enable = true;
-  #security.rtkit.enable = true;
-  #services.pipewire = {
-  #  enable = true;
-  #  alsa.enable = true;
-  #  alsa.support32Bit = true;
-  #  pulse.enable = true;
-  #};
+  sound.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # sound using pulseaudio:
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
+  #hardware.pulseaudio.enable = true;
+  #hardware.pulseaudio.support32Bit = true;
 
   # bluetooth:
   hardware.bluetooth.enable = true;
