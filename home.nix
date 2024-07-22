@@ -24,7 +24,7 @@
     # # "Hello, world!" when run.
     # Desktop
     pkgs.swww
-    pkgs.waybar
+    pkgs.eww
     pkgs.dunst
     pkgs.libnotify
     pkgs.brightnessctl
@@ -59,6 +59,7 @@
 
     # Video
     pkgs.vlc
+    pkgs.obs-studio
 
     # Image
     pkgs.mupdf
@@ -70,6 +71,7 @@
     pkgs.vesktop
 
     # Cli tools
+    pkgs.playerctl
     pkgs.unzip
     pkgs.zsh
     pkgs.wget
@@ -78,6 +80,8 @@
     pkgs.cliphist
     pkgs.busybox
     pkgs.fastfetch
+    pkgs.owofetch
+    pkgs.bunnyfetch
     pkgs.ani-cli
     pkgs.cmatrix
     pkgs.eza
@@ -86,7 +90,15 @@
     pkgs.lshw
     pkgs.powertop
     pkgs.ripgrep
+    pkgs.acpi
     pkgs.thefuck
+    pkgs.pamixer
+    pkgs.zoxide
+    pkgs.fzf
+    pkgs.socat
+    pkgs.jq
+    pkgs.bluez
+    pkgs.blueman
 
     # Developpment
     pkgs.openssh
@@ -179,6 +191,7 @@
       rebuildhome = "home-manager switch --flake ~/.config/dotfiles";
       ls = "eza --color=auto --icons=always";
       suspend = "systemctl suspend";
+      cd = "z";
     };
     history = {
       size = 10000;
@@ -189,6 +202,14 @@
       plugins = [ "git" "thefuck" ];
       theme = "agnoster";
     };
+    initExtra = ''
+      fastfetch -c examples/8 
+      eval "$(zoxide init zsh)"
+    '';
+    initExtraFirst = ''
+      cat /home/justalternate/.cache/wal/sequences
+    '';
+
   };
 
   imports = [ ./pywalfox.nix ];
