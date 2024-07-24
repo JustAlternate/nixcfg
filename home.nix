@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 
@@ -30,7 +30,8 @@
     pkgs.brightnessctl
     pkgs.grimblast
     pkgs.pywal
-
+    pkgs.pywalfox-native
+    pkgs.conky
     # Sound
     pkgs.pwvucontrol
 
@@ -50,8 +51,8 @@
     pkgs.dolphin
 
     # Browser
-    pkgs.firefox
     pkgs.chromium
+    pkgs.firefox-wayland
 
     # Music
     pkgs.mpv
@@ -86,6 +87,7 @@
     pkgs.cmatrix
     pkgs.eza
     pkgs.nvtopPackages.full
+    pkgs.htop
     pkgs.cava
     pkgs.lshw
     pkgs.powertop
@@ -99,6 +101,7 @@
     pkgs.jq
     pkgs.bluez
     pkgs.blueman
+    inputs.lobster.packages.x86_64-linux.lobster
 
     # Developpment
     pkgs.openssh
@@ -110,7 +113,6 @@
 
     # App launchers
     pkgs.rofi-wayland
-    pkgs.wofi
 
     # Games
     pkgs.meson
@@ -212,7 +214,6 @@
 
   };
 
-  imports = [ ./pywalfox.nix ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

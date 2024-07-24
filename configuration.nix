@@ -101,6 +101,7 @@
     wayland-protocols
     wayland-utils
     wlroots
+    stalonetray
 
     busybox
 
@@ -211,6 +212,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
