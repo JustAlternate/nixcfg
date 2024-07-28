@@ -6,6 +6,11 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     lobster.url = "github:justchokingaround/lobster";
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+        url = "github:hyprwm/hyprland-plugins";
+        inputs.hyprland.follows = "hyprland"; # IMPORTANT
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
