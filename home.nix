@@ -176,14 +176,6 @@
     EDITOR = "nvim";
   };
 
-  programs.neovim = {
-    enable = true;
-    extraConfig = ''
-      set number relativenumber
-      set clipboard=unnamedplus
-    '';
-  };
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -218,6 +210,7 @@
 
   };
 
+  programs.neovim.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
