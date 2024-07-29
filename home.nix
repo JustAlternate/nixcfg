@@ -1,6 +1,12 @@
 { config, pkgs, inputs, ... }:
 
 {
+
+  imports = [
+    ./rice/pywalfox.nix
+    ./rice/hyprland.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "justalternate";
@@ -168,22 +174,6 @@
   #
   home.sessionVariables = {
     EDITOR = "nvim";
-  };
-
-  wayland.windowManager.hyprland = {
-    # Whether to enable Hyprland wayland compositor
-    enable = true;
-    # The hyprland package to use
-    package = pkgs.hyprland;
-    # Whether to enable XWayland
-    xwayland.enable = true;
-
-    # Optional
-    # Whether to enable hyprland-session.target on hyprland startup
-    systemd.enable = true;
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
-    ];
   };
 
   programs.neovim = {
