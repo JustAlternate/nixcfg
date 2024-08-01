@@ -1,14 +1,13 @@
 { config, pkgs, inputs, ... }:
 
 {
-
   imports = [
     ./rice/pywalfox.nix
     ./rice/hyprland.nix
+    #inputs.nixvim.homeManagerModules.nixvim
+    #./rice/nvim.nix
+    ./rice/lazynvim.nix
   ];
-
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "justalternate";
   home.homeDirectory = "/home/justalternate";
 
@@ -22,123 +21,116 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   nixpkgs.config.allowUnfree = true;
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
+  home.packages = with pkgs; [
     # Desktop
-    pkgs.swww
-    pkgs.eww
-    pkgs.dunst
-    pkgs.libnotify
-    pkgs.brightnessctl
-    pkgs.grimblast
-    pkgs.pywal
-    pkgs.conky
+    swww
+    eww
+    dunst
+    libnotify
+    brightnessctl
+    grimblast
+    pywal
+    conky
+    pyprland
     # Sound
-    pkgs.pwvucontrol
+    pwvucontrol
 
     # Networking
-    pkgs.networkmanagerapplet
-    pkgs.networkmanager
+    networkmanagerapplet
+    networkmanager
 
     # Text editors
-    pkgs.vim
+    vim
 
     # Terminals
-    pkgs.kitty
+    kitty
 
     # File managers
-    pkgs.xfce.thunar
-    pkgs.xfce.thunar-volman
-    pkgs.dolphin
+    xfce.thunar
+    xfce.thunar-volman
+    dolphin
 
     # Browser
-    pkgs.chromium
-    pkgs.firefox-wayland
+    chromium
+    firefox-wayland
 
     # Music
-    pkgs.mpv
-    pkgs.youtube-music
+    mpv
+    youtube-music
 
     # Video
-    pkgs.vlc
-    pkgs.obs-studio
+    vlc
+    obs-studio
 
     # Image
-    pkgs.mupdf
-    pkgs.feh
-    pkgs.gimp
-    pkgs.cinnamon.pix
+    mupdf
+    feh
+    gimp
+    cinnamon.pix
 
     # Social media
-    pkgs.vesktop
+    vesktop
 
     # Cli tools
-    pkgs.playerctl
-    pkgs.unzip
-    pkgs.zsh
-    pkgs.wget
-    pkgs.wl-clipboard
-    pkgs.wl-clipboard-x11
-    pkgs.cliphist
-    pkgs.busybox
-    pkgs.fastfetch
-    pkgs.owofetch
-    pkgs.bunnyfetch
-    pkgs.ani-cli
-    pkgs.cmatrix
-    pkgs.eza
-    pkgs.nvtopPackages.full
-    pkgs.htop
-    pkgs.cava
-    pkgs.lshw
-    pkgs.powertop
-    pkgs.ripgrep
-    pkgs.acpi
-    pkgs.thefuck
-    pkgs.pamixer
-    pkgs.zoxide
-    pkgs.fzf
-    pkgs.socat
-    pkgs.jq
-    pkgs.bluez
-    pkgs.blueman
+
+    ## Utility
+    playerctl
+    unzip
+    zsh
+    wget
+    wl-clipboard
+    wl-clipboard-x11
+    cliphist
+    busybox
+    eza
+    ripgrep
+    thefuck
+    pamixer
+    zoxide
+    fzf
+    socat
+    jq
     inputs.lobster.packages.x86_64-linux.lobster
+    ani-cli
+
+    ## Show-off
+    fastfetch
+    cmatrix
+    cava
+    cbonsai
+
+    ## Monitoring
+    nvtopPackages.full
+    htop
+    powertop
+    lshw
+    acpi
+
+    # Bluetooth
+    bluez
+    blueman
 
     # Developpment
-    pkgs.openssh
-    pkgs.scdoc
-    pkgs.git
-    pkgs.gcc
-    pkgs.cmake
-    pkgs.go
+    openssh
+    scdoc
+    git
+    gcc
+    cmake
 
-    # App launchers
-    pkgs.rofi-wayland
+    # Launchers
+    rofi-wayland
 
     # Games
-    pkgs.meson
-    pkgs.hmcl
-    pkgs.jdk17
-    pkgs.steam
-    pkgs.wine
-    pkgs.winetricks
-    pkgs.wine-wayland
+    osu-lazer-bin
+    hmcl
+    steam
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    ## Drivers/Requirements
+    meson
+    jdk17
+    wine
+    winetricks
+    wine-wayland
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -156,26 +148,12 @@
     # '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/justalternate/etc/profile.d/hm-session-vars.sh
-  #
+  # For env var
   home.sessionVariables = {
     EDITOR = "nvim";
   };
 
+  # Programs configuration
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -197,7 +175,7 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "thefuck" ];
+      plugins = [ "git" "dotenv" "vi-mode" ];
       theme = "agnoster";
     };
     initExtra = ''
@@ -209,8 +187,6 @@
     '';
 
   };
-
-  programs.neovim.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

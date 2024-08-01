@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
     ];
 
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -110,8 +111,9 @@
     git
 
     vim
-    neovim
     eza
+
+    lua
 
   ];
 
@@ -190,10 +192,6 @@
     driSupport = true;
     driSupport32Bit = true;
   };
-
-  #programs.steam.enable = true;
-  #programs.steam.gamescopeSession.enable = true;
-  #programs.gamemode.enable = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
