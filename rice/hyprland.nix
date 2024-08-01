@@ -113,7 +113,7 @@
       bind = $mainMod, T, exec, kitty
       bind = $mainMod, W, exec, firefox
       bind = $mainMod, E, exec, thunar
-      bind = $mainMod, D, exec, discord
+      bind = $mainMod, D, exec, vesktop
       bind = $mainMod, P, exec, ~/./scripts/change_wallpaper
       bind = $mainMod, C, exec, hyprctl keyword animation "fadeOut,0,0,default"; grimblast --freeze --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"
 
@@ -165,6 +165,15 @@
       bind = $mainMod, mouse_down, workspace, e+1
       bind = $mainMod, mouse_up, workspace, e-1
 
+      # Scratchpads
+      bind = $mainMod, I, exec, pypr toggle term && hyprctl dispatch bringactivetotop
+      $scratchpadsize = size 80% 70%
+      $scratchpad = class:^(scratchpad)$
+      windowrulev2 = float, $scratchpad
+      windowrulev2 = $scratchpadsize, $scratchpad
+      #windowrulev2 = center, $scratchpad
+      windowrulev2 = workspace special silent, $scratchpad
+
       # Move/resize windows
       bindm = $mainMod, mouse:272, movewindow
       bindm = $mainMod, mouse:273, resizewindow
@@ -178,6 +187,7 @@
       submap = reset
 
       # To make screensharing work
+      exec-once=pypr
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once=~/.config/hypr/scripts/startup
     '';

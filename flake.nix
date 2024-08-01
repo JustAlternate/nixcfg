@@ -11,6 +11,10 @@
         url = "github:hyprwm/hyprland-plugins";
         inputs.hyprland.follows = "hyprland"; # IMPORTANT
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
