@@ -1,4 +1,7 @@
 { config, pkgs, inputs, ... }:
+let 
+  unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+in
 {
   imports = [
     ./rice/pywalfox.nix
@@ -124,7 +127,7 @@
     # Games
     hmcl
     steam
-    osu-lazer-bin
+    unstable.osu-lazer-bin
 
     ## Drivers/Requirements
     meson
