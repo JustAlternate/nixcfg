@@ -1,5 +1,4 @@
 { config, pkgs, inputs, ... }:
-
 {
   imports = [
     ./rice/pywalfox.nix
@@ -22,7 +21,7 @@
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
-    # Desktop
+    # desktop
     swww
     eww
     dunst
@@ -41,6 +40,7 @@
 
     # Text editors
     vim
+    neovim
 
     # Terminals
     kitty
@@ -92,6 +92,7 @@
     jq
     inputs.lobster.packages.x86_64-linux.lobster
     ani-cli
+    sshfs
 
     ## Show-off
     fastfetch
@@ -121,9 +122,9 @@
     rofi-wayland
 
     # Games
-    osu-lazer-bin
     hmcl
     steam
+    osu-lazer-bin
 
     ## Drivers/Requirements
     meson
