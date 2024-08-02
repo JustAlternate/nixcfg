@@ -7,8 +7,8 @@ in
     ./rice/pywalfox.nix
     ./rice/hyprland.nix
     #inputs.nixvim.homeManagerModules.nixvim
-    #./rice/nvim.nix
-    ./rice/lazynvim.nix
+    #./rice/nvim/nvim.nix
+    ./rice/nvim/lazynvim.nix
   ];
   home.username = "justalternate";
   home.homeDirectory = "/home/justalternate";
@@ -93,7 +93,6 @@ in
     fzf
     socat
     jq
-    inputs.lobster.packages.x86_64-linux.lobster
     ani-cli
     sshfs
 
