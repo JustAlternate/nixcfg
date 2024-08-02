@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 {
   programs.neovim = {
     extraPackages = with pkgs; [
