@@ -17,6 +17,7 @@
 
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
+      telescope-fzf-native-nvim
     ];
 
     extraLuaConfig =
@@ -54,7 +55,6 @@
           nvim-web-devicons
           persistence-nvim
           plenary-nvim
-          telescope-fzf-native-nvim
           telescope-nvim
           todo-comments-nvim
           tokyonight-nvim

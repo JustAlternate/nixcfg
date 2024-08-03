@@ -3,10 +3,16 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-    ];
-
+    ];  
+  
   # Add the possibility to install unstable packages
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -48,8 +54,12 @@
   # Configure console keymap
   console.keyMap = "fr";
 
+  
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.justalternate = {
+    home = "/home/justalternate";
     isNormalUser = true;
     description = "justalternate";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -77,8 +87,10 @@
     wireplumber
     git
     vim
+    neovim
     eza
     lua
+    home-manager
   ];
 
   # fonts:
@@ -91,6 +103,7 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    audio.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
