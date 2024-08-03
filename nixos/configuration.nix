@@ -123,10 +123,13 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-  };
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    extraPackages = with pkgs; [
+      amdvlk
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
   };
 
   services.dbus.enable = true;
@@ -157,6 +160,16 @@
     });
   '';
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    GBM_BACKEND = "nvidia_drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    __NV_PRIME_RENDER_OFFLOAD = "1";
+  };
+
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
@@ -169,7 +182,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -182,7 +195,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
@@ -192,9 +205,10 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
-          # Make sure to use the correct Bus ID values for your system!
-          nvidiaBusId = "PCI:5:0:0";
-          amdgpuBusId = "PCI:1:0:0";
+      offload.enable = true;
+      # Make sure to use the correct Bus ID values for your system!
+      nvidiaBusId = "PCI:5:0:0";
+      amdgpuBusId = "PCI:1:0:0";
      };
   };
 }
