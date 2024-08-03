@@ -1,12 +1,18 @@
 { config, lib, pkgs, ... }:
 {
   programs.neovim = {
+    enable = true;
     extraPackages = with pkgs; [
       # LazyVim
-      lua-language-server
       stylua
+      lazygit
+      fd
       # Telescope
       ripgrep
+
+      # LSP stuff
+      lua-language-server
+      python312Packages.python-lsp-server
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -31,7 +37,6 @@
           gitsigns-nvim
           indent-blankline-nvim
           lualine-nvim
-          neo-tree-nvim
           neoconf-nvim
           neodev-nvim
           noice-nvim
@@ -117,4 +122,5 @@
 
   # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
   xdg.configFile."nvim/lua".source = ./lua;
+  xdg.configFile."nvim/init.lua".source = ./lua/init.lua;
 }
