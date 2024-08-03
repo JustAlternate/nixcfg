@@ -151,6 +151,7 @@ in
   # For env var
   home.sessionVariables = {
     EDITOR = "nvim";
+    NIX_AUTO_RUN = 1;
   };
 
   # Programs configuration

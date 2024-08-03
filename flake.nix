@@ -30,6 +30,7 @@
         inherit system;
         modules = [ 
           ./nixos/configuration.nix
+	  home-manager.nixosModules.home-manager
         ];
       };
     };
