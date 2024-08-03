@@ -43,7 +43,6 @@ in
 
     # Text editors
     vim
-    neovim
 
     # Terminals
     kitty
