@@ -1,13 +1,11 @@
 { config, pkgs, inputs, ... }:
-let 
-  unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+let
+  master = import inputs.master { system = "x86_64-linux"; config.allowUnfree = true; };
 in
 {
   imports = [
     ./rice/pywalfox.nix
     ./rice/hyprland.nix
-    #inputs.nixvim.homeManagerModules.nixvim
-    #./rice/nvim/nvim.nix
     ./rice/nvim/lazynvim.nix
   ];
   home.username = "justalternate";
@@ -125,7 +123,7 @@ in
     # Games
     hmcl
     steam
-    unstable.osu-lazer-bin
+    master.osu-lazer-bin
 
     ## Drivers/Requirements
     meson

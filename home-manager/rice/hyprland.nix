@@ -1,31 +1,22 @@
 {pkgs, ...}:
 {
   wayland.windowManager.hyprland = {
-    # Whether to enable Hyprland wayland compositor
     enable = true;
-    # The hyprland package to use
     package = pkgs.hyprland;
-    # Whether to enable XWayland
     xwayland.enable = true;
 
     # Optional
     # Whether to enable hyprland-session.target on hyprland startup
     systemd.enable = true;
     extraConfig = ''
-      # NVIDIA env
-      env = LIBVA_DRIVER_NAME,nvidia
-      env = XDG_SESSION_TYPE,wayland
-      env = GBM_BACKEND,nvidia_drm
-      env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-      env = WLR_NO_HARDWARE_CURSORS,1
-
       # Electron env for wayland
       env = ELECTRON_OZONE_PLATFORM_HINT,auto
 
       # env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
 
       # Monitor settings
-      monitor=eDP-1, 1920x1080, 0x0, 1
+      monitor=eDP-1, 1920x1080, 0x1080, 1
+      monitor=HDMI-A-1, 1920x1080, 0x0, 1
 
       # Default env vars
       env = XCURSOR_SIZE,10
