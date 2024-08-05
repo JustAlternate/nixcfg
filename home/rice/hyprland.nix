@@ -5,9 +5,6 @@
     package = pkgs.hyprland;
     xwayland.enable = true;
 
-    # Optional
-    # Whether to enable hyprland-session.target on hyprland startup
-    systemd.enable = true;
     extraConfig = ''
       # Electron env for wayland
       env = ELECTRON_OZONE_PLATFORM_HINT,auto

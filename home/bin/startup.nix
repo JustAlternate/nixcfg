@@ -5,7 +5,7 @@ pkgs.writeShellScriptBin "startup"
     dunst &
     # Change wallpaper and use wall to change the theme
     swww-daemon &
-    change_wallpaper &
+    change-wallpaper &
     eww daemon &
     eww open hbar &
 
