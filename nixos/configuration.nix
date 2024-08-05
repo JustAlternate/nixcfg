@@ -6,6 +6,7 @@
 
   # Add the possibility to install unstable packages
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
@@ -26,7 +27,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   #time.timeZone = "Europe/Paris";
   time.timeZone = "America/New_York";
 
@@ -54,16 +54,12 @@
   # Configure console keymap
   console.keyMap = "fr";
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.justalternate = {
     home = "/home/justalternate";
     isNormalUser = true;
     description = "justalternate";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
   };
 
   # Enable automatic login for the user.
@@ -73,13 +69,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    hyprland
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
-    xwayland
-    wayland-protocols
-    wayland-utils
-    wlroots
     stalonetray
     busybox
     pipewire
@@ -145,14 +134,21 @@
   };
 
   services.dbus.enable = true;
+
+  programs.hyprland.enable = true;
+
   xdg.portal = {
     config.common.default = "*";
     enable = true;
     wlr.enable = true;
     extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
 
   # Polkit.
   security.polkit.enable = true;
@@ -175,12 +171,12 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    GBM_BACKEND = "nvidia_drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    #GBM_BACKEND = "nvidia_drm";
+    #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
     WLR_NO_HARDWARE_CURSORS = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
+    #LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
-    __NV_PRIME_RENDER_OFFLOAD = "1";
+    #__NV_PRIME_RENDER_OFFLOAD = "1";
   };
 
   # Load nvidia driver for Xorg and Wayland

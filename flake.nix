@@ -34,7 +34,7 @@
       justalternate = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./home-manager/home.nix
+          ./home
         ];
         extraSpecialArgs = {
           inherit inputs;

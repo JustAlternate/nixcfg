@@ -183,13 +183,18 @@ in
     };
 
     initExtra = ''
-      fastfetch -c examples/8 
+      fastfetch -c examples/8
       eval "$(zoxide init zsh)"
     '';
 
     initExtraFirst = ''
       cat /home/justalternate/.cache/wal/sequences
     '';
+  };
+
+  programs.eww = {
+    enable = true;
+    configDir = ./rice/eww;
   };
 
   # Let Home Manager install and manage itself.
