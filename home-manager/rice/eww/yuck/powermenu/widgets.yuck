@@ -1,0 +1,22 @@
+(defwidget buttons []
+  (box
+    :class "powerbuttons"
+    :orientation "h"
+    :valign "center"
+    (button
+      :class "powerbutton logout"
+      :onclick "echo"
+      "󰍃") 
+    (button
+      :class "powerbutton lock"
+      :onclick "echo"
+      "") 
+    (button
+      :class "powerbutton reboot"
+      :onclick "echo"
+      "") 
+    (button
+      :class "powerbutton shutdown"
+      :onclick "echo"
+      "") 
+    ))

@@ -1,10 +1,9 @@
 { config, pkgs, inputs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-    ];  
-  
+  ];
+
   # Add the possibility to install unstable packages
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.optimise.automatic = true;
@@ -28,7 +27,8 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Paris";
+  #time.timeZone = "Europe/Paris";
+  time.timeZone = "America/New_York";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -54,7 +54,6 @@
   # Configure console keymap
   console.keyMap = "fr";
 
-  
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -147,6 +146,7 @@
 
   services.dbus.enable = true;
   xdg.portal = {
+    config.common.default = "*";
     enable = true;
     wlr.enable = true;
     extraPortals = [
@@ -184,7 +184,7 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" "amdvlk" ];
 
   hardware.nvidia = {
 
@@ -199,12 +199,12 @@
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
     # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
+    # supported GPUs is at:
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
@@ -223,5 +223,25 @@
       nvidiaBusId = "PCI:5:0:0";
       amdgpuBusId = "PCI:1:0:0";
      };
+  };
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
+
+      #Optional helps save long term battery health
+      START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
+      STOP_CHARGE_THRESH_BAT0 = 90; # 80 and above it stops charging
+
+    };
   };
 }

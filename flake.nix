@@ -12,11 +12,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # other urls
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-        url = "github:hyprwm/hyprland-plugins";
-        inputs.hyprland.follows = "hyprland"; # IMPORTANT
-    };
+    lobster.url = "github:justchokingaround/lobster";
   };
 
   outputs = { self, nixpkgs, master, home-manager, ... } @ inputs:
@@ -28,9 +24,9 @@
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [ 
+        modules = [
           ./nixos/configuration.nix
-	  home-manager.nixosModules.home-manager
+          home-manager.nixosModules.home-manager
         ];
       };
     };
