@@ -1,0 +1,270 @@
+@use "./include.scss" as *;
+
+$font: Hack Nerd Font;
+
+$discord: #7289da;
+$reddit: #FF5700;
+
+$rosewater: 	#f5e0dc;
+$flamingo: 	    #f2cdcd;
+$pink:      	#f5c2e7;
+$mauve: 		#cba6f7;
+$red: 		 	#f38ba8;
+$maroon:		#eba0ac;
+$peach: 		#fab387;
+$yellow: 		#f9e2af;
+$green: 		#a6e3a1;
+$teal: 			#94e2d5;
+$sky: 			#89dceb;
+$sapphire: 		#74c7ec;
+$blue: 			#89b4fa;
+$lavender: 		#b4befe;
+$text: 			#cdd6f4;
+$subtext1: 		#bac2de;
+$subtext0: 		#a6adc8;
+$overlay2: 		#9399b2;
+$overlay1: 		#7f849c;
+$overlay0: 		#6c7086;
+$surface2: 		#585b70;
+$surface1: 		#45475a;
+$surface0: 		#313244;
+$base: 			#1e1e2e;
+$mantle: 		#181825;
+$crust: 		#11111b;
+
+.profile-widget {
+	background-color: rgba($base, 1);
+	padding: 20px 20px 20px 20px;
+	border-radius: 15px 15px 0px 0px;
+	border-bottom: 5 solid $surface0;
+}
+
+.buttons {
+	margin-left: 2em;
+}
+
+.avatar {
+	background-image: url("./assets/profile_picture_64px.png");
+	min-height: 64px;
+	min-width: 64px;
+	border-radius: 100%;
+	margin: 0em 0em 0em 1em;
+}
+
+.user-hostname {
+	font-family: $font;
+	font-size: 19px;
+	font-weight: bold;
+	color: $text;
+	margin: .6em 0em 0em .8em;
+}
+
+.uptime {
+	font-family: $font;
+	font-size: 15px;
+	font-weight: bold;
+	color: $subtext0;
+	margin: .25em 0em 0em 1em;
+}
+
+
+.button {
+	color: $text;
+	background-color: $surface0;
+	border-radius: 10px;
+	font-size: 20px;
+	margin: .6em .5em;
+
+	&.lock {
+		padding: 0em 1.05em 0em 1em;
+
+	}
+
+	&.poweroff {
+		padding: 0em 1.2em 0em 1em;
+		color: $red;
+	}
+
+	&:hover {
+		background-color: $surface1;
+	}
+
+}
+
+.second-row {
+	background-color: rgba($base, 1);
+	padding: 20px 20px 0px 20px;
+
+}
+
+.date-control {
+	background-color: $surface0;
+	color: $text;
+	font-family: $font;
+	border-radius: 10px;
+
+	padding: 20px 20px 20px 20px;
+	margin: .5em .5em;
+}
+
+.date-text-month {
+	font-size: 15px;
+	color: $subtext0;
+}
+
+.date-text-day {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.weather {
+	background-color: $surface0;
+	color: $text;
+	font-family: $font;
+	border-radius: 10px;
+
+	padding: 20px 20px 20px 20px;
+	margin: .5em .5em;
+	
+	&:hover {
+		background-color: $surface1;
+	}
+}
+
+.weather-desc {
+	font-size: 24px;
+	color: $subtext0;
+}
+
+.weather-temp {
+	font-size: 24px;
+	font-weight: bold;
+
+}
+
+.weather-icon {
+	font-size: 50px;
+	margin-right: .6em;
+	margin-top: .5em;
+}
+
+.battery-prog {
+	trough {
+		background-color: $surface0;
+		border-radius: 10px;
+		margin: .5em .5em;
+		padding: 40px 0 40px 0;
+
+		progress {
+			background-color: $surface1;
+			border-radius: 10px;
+			padding: 40px 0 40px 0;
+		}
+	}
+}
+
+.battery-text {
+	color: $subtext0;
+
+	font-family: $font;
+}
+
+.battery-title {
+	font-size: 15px;
+	margin-left: 1.8em;
+}
+
+.battery-percentage {
+	color: $text;
+ 	font-weight: bold;
+	font-size: 20px;
+	margin-left: 1.4em;
+}
+
+.battery-icon {
+	font-size: 35px;
+	padding-right: 1em;
+	padding-bottom: .1em;
+}
+
+.apps {
+	background-color: rgba($base, 1);
+	padding: 0 20px 0 20px;
+}
+
+.appbutton {
+	color: $text;
+	background-color: $surface0;
+	border-radius: 10px;
+	font-size: 40px;
+	padding: 20px;
+	margin: 7.5px;
+	
+	&.nvim {
+		padding-right: 25px;
+		padding-top: 22px;
+		// color: $green
+	}
+
+	&.reddit {
+		padding-right: 35px;
+		padding-bottom: 25px;
+		// color: $flamingo;
+	}
+
+	&.github {
+		padding-right: 26px;
+		color: $text;
+	}
+
+	&.discord {
+		padding-right: 25px;
+		// color: $lavender;
+	}
+
+	&:hover {
+		background-color: $surface1;
+	}
+}
+
+.stats {
+	background-color: rgba($base, 1);
+	padding: 0 20px 0 20px;
+
+	.progress {
+		color: $text;
+		background-color: $surface0;
+		border-radius: 10px;
+		padding: 20px;
+		margin: 7.5px;
+
+		circular-progress {
+			background-color: $surface1;
+			color: $blue;
+
+			&.cpu {
+				label {
+					margin-right: 14px;
+				}
+			}
+
+			&.ram {
+				label {
+					margin-right: 4px;
+				}
+			}
+
+		}
+	}
+
+	.icon {
+		font-size: 40px;
+		padding: 1.75em;
+	}
+}
+
+.bottom {
+	background-color: rgba($base, 1);
+	padding-top: 20px;
+	border-radius: 0 0 15px 15px;
+}

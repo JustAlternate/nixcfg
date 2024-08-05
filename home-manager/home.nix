@@ -61,6 +61,7 @@ in
     # Video
     vlc
     obs-studio
+    inputs.lobster.packages.x86_64-linux.lobster
 
     # Image
     mupdf
@@ -105,6 +106,7 @@ in
     powertop
     lshw
     acpi
+    mission-center
 
     # Bluetooth
     bluez
@@ -131,7 +133,7 @@ in
     wine
     winetricks
     wine-wayland
-  ];
+  ] ++ (import ./bin { inherit pkgs ; });
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -160,33 +162,34 @@ in
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-  
+
     shellAliases = {
       ll = "ls -l";
-      nixcfg = "nvim ~/.config/dotfiles";
-      rebuildsys = "sudo nixos-rebuild switch --flake ~/.config/dotfiles";
-      rebuildhome = "home-manager switch --flake ~/.config/dotfiles";
+      nixcfg = "cd ~/.config/dotfiles";
       ls = "eza --color=auto --icons=always";
-      suspend = "systemctl suspend";
       cd = "z";
+      neofetch = "fastfetch -c examples/8";
     };
+
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "dotenv" "vi-mode" ];
       theme = "agnoster";
     };
+
     initExtra = ''
       fastfetch -c examples/8 
       eval "$(zoxide init zsh)"
     '';
+
     initExtraFirst = ''
       cat /home/justalternate/.cache/wal/sequences
     '';
-
   };
 
   # Let Home Manager install and manage itself.

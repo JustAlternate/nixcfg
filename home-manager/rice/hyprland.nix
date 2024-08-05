@@ -11,8 +11,7 @@
     extraConfig = ''
       # Electron env for wayland
       env = ELECTRON_OZONE_PLATFORM_HINT,auto
-
-      # env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+      #env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
 
       # Monitor settings
       monitor=eDP-1, 1920x1080, 0x1080, 1
@@ -89,13 +88,6 @@
         workspace_swipe = off
       }
 
-      windowrule = noblur, kando 
-      windowrule = size 100% 100%, kando
-      windowrule = noborder, kando
-      windowrule = noanim, kando
-      windowrule = float, kando
-      windowrule = pin, kando
-
       $mainMod = ALT_R
 
       # Application bindings
@@ -105,7 +97,7 @@
       bind = $mainMod, W, exec, firefox
       bind = $mainMod, E, exec, thunar
       bind = $mainMod, D, exec, vesktop
-      bind = $mainMod, P, exec, ~/./scripts/change_wallpaper
+      bind = $mainMod, P, exec, change-wallpaper
       bind = $mainMod, C, exec, hyprctl keyword animation "fadeOut,0,0,default"; grimblast --freeze --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"
 
       # Window management bindings
@@ -122,7 +114,7 @@
       bind = $mainMod, F8, exec, brightnessctl s 10+
       bind = $mainMod, F7, exec, brightnessctl s 10-
       bind = $mainMod, F11, exec, systemctl suspend
-      bind = $mainMod, F12, exec, poweroff
+      bind = $mainMod, F12, exec, systemctl poweroff
 
       # Focus and workspace bindings
       bind = $mainMod, h, movefocus, l
@@ -180,7 +172,7 @@
       # To make screensharing work
       exec-once=pypr
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      exec-once=~/.config/hypr/scripts/startup
+      exec-once=startup
     '';
   };
 }

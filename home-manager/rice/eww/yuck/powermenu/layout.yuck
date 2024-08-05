@@ -1,0 +1,8 @@
+(include "./yuck/powermenu/widgets.yuck")
+
+(defwidget powermenu_layout []
+  (box
+    :space-evenly false
+    :halign "center"
+    :class "powermenu"
+    (buttons)))

@@ -1,0 +1,38 @@
+(include "./yuck/controlcenter/widgets.yuck")
+
+(defwidget first-row []
+  (box
+    (profile-widget)))
+
+(defwidget second-row []
+  (box
+    :orientation "h"
+    :class "second-row"
+    (box
+      :orientation "v"
+      :space-evenly false
+      (date-widget)
+      (battery-widget))
+    (weather-widget)))
+
+(defwidget third-row []
+  (revealer
+    :transition "slidedown"
+    :reveal true ;;reveal_apps
+    (box
+      :orientation "v"
+      :space-evenly false
+      (apps)
+      (stats)
+      (bottom))))
+
+(defwidget controlcenter_layout []
+  (revealer
+    :transition "slidedown"
+    :reveal reveal_control
+    (box
+      :orientation "v"
+      :space-evenly false
+      (first-row)
+      (second-row)
+      (third-row))))

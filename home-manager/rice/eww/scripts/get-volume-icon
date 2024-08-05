@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+MUTED=$(pamixer --get-mute)
+
+if [[ $MUTED == true ]]; then
+	echo "󰖁"
+else
+	echo "󰕾"
+fi
