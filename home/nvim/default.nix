@@ -17,7 +17,6 @@
 
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
-      telescope-fzf-native-nvim
     ];
 
     extraLuaConfig =
@@ -59,11 +58,11 @@
           todo-comments-nvim
           tokyonight-nvim
           trouble-nvim
+          telescope-fzf-native-nvim
           vim-illuminate
           vim-startuptime
           which-key-nvim
           { name = "LuaSnip"; path = luasnip; }
-          { name = "catppuccin"; path = catppuccin-nvim; }
           { name = "mini.ai"; path = mini-nvim; }
           { name = "mini.bufremove"; path = mini-nvim; }
           { name = "mini.comment"; path = mini-nvim; }
