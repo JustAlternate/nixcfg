@@ -76,7 +76,6 @@
     git
     vim
     neovim
-    eza
     lua
     home-manager
   ];
