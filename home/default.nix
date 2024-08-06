@@ -7,6 +7,7 @@ in
     ./rice
     ./nvim
     ./zsh.nix
+    ./ssh
   ];
   home.username = "justalternate";
   home.homeDirectory = "/home/justalternate";
@@ -88,6 +89,7 @@ in
     jq
     ani-cli
     sshfs
+    neovim-remote
 
     ## Show-off
     fastfetch
