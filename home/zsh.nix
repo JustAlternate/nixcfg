@@ -1,10 +1,10 @@
-{ pkgs, config, ... }
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs; [
     zsh
     zoxide
     eza
-  ]
+  ];
   # Programs configuration
   programs.zsh = {
     enable = true;

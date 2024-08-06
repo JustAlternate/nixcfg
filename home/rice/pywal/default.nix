@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 let
   pywalfox = pkgs.python39.pkgs.buildPythonPackage rec {
     pname = "pywalfox";

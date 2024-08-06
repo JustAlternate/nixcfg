@@ -1,9 +1,8 @@
 { config, lib, pkgs, ... }:
 {
-  import = [
-    ./nvim
+  imports = [
     ./pywal
     ./hyprland
     ./eww
-  ]
+  ];
 }
