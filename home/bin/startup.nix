@@ -7,7 +7,7 @@ pkgs.writeShellScriptBin "startup"
     swww-daemon &
     change-wallpaper &
     eww daemon &
-    eww open hbar &
+    eww open --screen $(( $(hyprctl monitors | grep -c "Monitor") - 1 )) hbar &
 
     # Unlock brightness control
     sudo chmod a+rw /sys/class/backlight/amdgpu_bl1/brightness &
