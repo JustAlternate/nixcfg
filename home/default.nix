@@ -6,7 +6,7 @@ in
   imports = [
     ./rice/pywalfox.nix
     ./rice/hyprland
-    ./rice/nvim/lazynvim.nix
+    ./rice/nvim
   ];
   home.username = "justalternate";
   home.homeDirectory = "/home/justalternate";
