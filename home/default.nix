@@ -4,9 +4,8 @@ let
 in
 {
   imports = [
-    ./rice/pywalfox.nix
-    ./rice/hyprland
-    ./rice/nvim
+    ./rice
+    ./zsh.nix
   ];
   home.username = "justalternate";
   home.homeDirectory = "/home/justalternate";
@@ -29,7 +28,6 @@ in
     libnotify
     brightnessctl
     grimblast
-    pywal
     conky
     # Sound
     pwvucontrol
@@ -75,17 +73,14 @@ in
     ## Utility
     playerctl
     unzip
-    zsh
     wget
     wl-clipboard
     wl-clipboard-x11
     cliphist
     busybox
-    eza
     ripgrep
     thefuck
     pamixer
-    zoxide
     fzf
     socat
     jq
@@ -152,47 +147,6 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     NIX_AUTO_RUN = 1;
-  };
-
-  # Programs configuration
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-
-    shellAliases = {
-      ll = "ls -l";
-      nixcfg = "cd ~/.config/dotfiles";
-      ls = "eza --color=auto --icons=always";
-      cd = "z";
-      neofetch = "fastfetch -c examples/8";
-    };
-
-    history = {
-      size = 10000;
-      path = "${config.xdg.dataHome}/zsh/history";
-    };
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "dotenv" "vi-mode" ];
-      theme = "agnoster";
-    };
-
-    initExtra = ''
-      fastfetch -c examples/8
-      eval "$(zoxide init zsh)"
-    '';
-
-    initExtraFirst = ''
-      cat /home/justalternate/.cache/wal/sequences
-    '';
-  };
-
-  programs.eww = {
-    enable = true;
-    configDir = ./rice/eww;
   };
 
   # Let Home Manager install and manage itself.

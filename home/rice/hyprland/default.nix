@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   home.packages = [ pkgs.pyprland ];
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
