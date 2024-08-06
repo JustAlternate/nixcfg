@@ -1,5 +1,8 @@
 {pkgs, ...}:
 {
+  home.packages = [ pkgs.pyprland ];
+  xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
@@ -105,11 +108,11 @@
       bind = $mainMod, S, togglesplit, 
 
       # Computer control bindings 
-      bind = $mainMod, F2, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-      bind = $mainMod, F3, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      binde = $mainMod, F2, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      binde = $mainMod, F3, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bind = $mainMod, F4, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-      bind = $mainMod, F8, exec, brightnessctl s 10+
-      bind = $mainMod, F7, exec, brightnessctl s 10-
+      binde = $mainMod, F8, exec, brightnessctl s 10+
+      binde = $mainMod, F7, exec, brightnessctl s 10-
       bind = $mainMod, F11, exec, systemctl suspend
       bind = $mainMod, F12, exec, systemctl poweroff
 
@@ -141,10 +144,6 @@
       bind = $mainMod SHIFT, ccedilla, movetoworkspace, 9
       bind = $mainMod SHIFT, Agrave, movetoworkspace, 10
 
-      # Scroll through existing workspaces
-      bind = $mainMod, mouse_down, workspace, e+1
-      bind = $mainMod, mouse_up, workspace, e-1
-
       # Scratchpads
       bind = $mainMod, I, exec, pypr toggle term && hyprctl dispatch bringactivetotop
       $scratchpadsize = size 80% 70%
@@ -167,8 +166,9 @@
       submap = reset
 
       # To make screensharing work
-      exec-once=pypr
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+      exec-once=pypr
       exec-once=startup
     '';
   };

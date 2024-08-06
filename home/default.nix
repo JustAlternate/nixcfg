@@ -5,7 +5,7 @@ in
 {
   imports = [
     ./rice/pywalfox.nix
-    ./rice/hyprland.nix
+    ./rice/hyprland
     ./rice/nvim/lazynvim.nix
   ];
   home.username = "justalternate";
@@ -22,7 +22,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
-    # desktop
+    # Desktop
     swww
     eww
     dunst
@@ -31,7 +31,6 @@ in
     grimblast
     pywal
     conky
-    pyprland
     # Sound
     pwvucontrol
 
@@ -48,7 +47,6 @@ in
     # File managers
     xfce.thunar
     xfce.thunar-volman
-    dolphin
 
     # Browser
     chromium
