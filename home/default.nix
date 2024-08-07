@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, config, lib, inputs, ... }:
 let
   master = import inputs.master { system = "x86_64-linux"; config.allowUnfree = true; };
 in
@@ -110,6 +110,7 @@ in
     blueman
 
     # Developpment
+    nodePackages.node2nix
     openssh
     scdoc
     git
