@@ -10,6 +10,11 @@
       # Telescope
       ripgrep
 
+      # nixd
+      statix # Lints and suggestions for the nix programming language
+      deadnix # Find and remove unused code in .nix source files
+      alejandra # Nix Code Formatter
+
       # LSP stuff
       lua-language-server
       python312Packages.python-lsp-server
@@ -17,6 +22,7 @@
 
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
+      markdown-preview-nvim
     ];
 
     extraLuaConfig =
@@ -35,6 +41,7 @@
           flash-nvim
           friendly-snippets
           gitsigns-nvim
+          markdown-preview-nvim
           indent-blankline-nvim
           lualine-nvim
           neoconf-nvim
@@ -101,6 +108,15 @@
             { import = "plugins" },
             -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
             { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
+          },
+        })
+        require("config.lazy")
+        local pywal16 = require("pywal16")
+        pywal16.setup()
+        local lualine = require("lualine")
+        lualine.setup({
+          options = {
+            theme = "pywal16-nvim",
           },
         })
       '';
