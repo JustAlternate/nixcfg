@@ -22,10 +22,10 @@
     in {
 
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      LaptopNixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./nixos/configuration.nix
+          ./laptop_nix/configuration.nix
           home-manager.nixosModules.home-manager
         ];
       };

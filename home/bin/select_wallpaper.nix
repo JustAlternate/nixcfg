@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-pkgs.writeShellScriptBin "select-wallpaper"
+pkgs.writeShellScriptBin "select_wallpaper"
   ''
 #!/usr/bin/env bash
 # Set some variables
