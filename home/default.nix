@@ -129,6 +129,7 @@ in
     master.osu-lazer-bin
 
     ## Drivers/Requirements
+    ckb-next
     meson
     jdk17
     wine

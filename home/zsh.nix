@@ -17,7 +17,7 @@
       nixcfg = "cd ~/.config/dotfiles";
       ls = "eza --color=auto --icons=always";
       cd = "z";
-      neofetch = "fastfetch -c examples/8";
+      neofetch = "fastfetch";
     };
 
     history = {
@@ -32,7 +32,7 @@
     };
 
     initExtra = ''
-      fastfetch -c examples/8
+      fastfetch
       eval "$(zoxide init zsh)"
     '';
 
