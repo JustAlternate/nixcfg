@@ -7,6 +7,7 @@
       stylua
       lazygit
       fd
+
       # Telescope
       ripgrep
 
@@ -22,7 +23,6 @@
 
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
-      markdown-preview-nvim
     ];
 
     extraLuaConfig =
@@ -108,15 +108,6 @@
             { import = "plugins" },
             -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
             { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
-          },
-        })
-        require("config.lazy")
-        local pywal16 = require("pywal16")
-        pywal16.setup()
-        local lualine = require("lualine")
-        lualine.setup({
-          options = {
-            theme = "pywal16-nvim",
           },
         })
       '';

@@ -48,6 +48,7 @@ in
     # File managers
     xfce.thunar
     xfce.thunar-volman
+    master.yazi
 
     # Browser
     chromium
@@ -67,6 +68,7 @@ in
     feh
     gimp
     cinnamon.pix
+    satty
 
     # Social media
     vesktop
