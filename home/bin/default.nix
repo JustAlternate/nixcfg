@@ -6,9 +6,11 @@ let
   # change wallpaper
   change-wallpaper = import ./change-wallpaper.nix pkgs;
   startup = import ./startup.nix pkgs;
+  select-wallpaper = import ./select-wallpaper.nix pkgs;
 in
 [
   nvidia-offload
   change-wallpaper
   startup
+  select-wallpaper
 ]
