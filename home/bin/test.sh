@@ -1,7 +1,3 @@
-{ pkgs, ... }:
-
-pkgs.writeShellScriptBin "select-wallpaper"
-  ''
 #!/usr/bin/env bash
 # Set some variables
 wall_dir="$HOME/wallpaper/"
@@ -50,4 +46,3 @@ cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
 [[ $(pidof cava) != "" ]] && pkill -USR1 cava &
 
 exit 0
-  ''

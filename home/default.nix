@@ -72,6 +72,7 @@ in
 
     # Social media
     vesktop
+    bemoji
 
     # Cli tools
 
