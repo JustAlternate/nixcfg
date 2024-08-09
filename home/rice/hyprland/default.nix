@@ -91,14 +91,14 @@
       $mainMod = ALT_R
 
       # Application bindings
-      bind = $mainMod, R, exec, rofi -config ~/.config/rofi/config1.rasi -show drun || killall rofi
-      bind = $mainMod, N, exec, cliphist list | rofi -config ~/.config/rofi/config1.rasi -dmenu -display-columns 2 | cliphist decode | wl-copy || killall rofi
+      bind = $mainMod, R, exec, rofi -config ~/.config/rofi/bottom_large.rasi -show drun || killall rofi
+      bind = $mainMod, N, exec, cliphist list | rofi -config ~/.config/rofi/bottom_large.rasi-dmenu -display-columns 2 | cliphist decode | wl-copy || killall rofi
       bind = $mainMod, T, exec, kitty
       bind = $mainMod, W, exec, firefox
-      bind = $mainMod, E, exec, thunar
+      bind = $mainMod, E, exec, kitty yazi
       bind = $mainMod, D, exec, vesktop
       bind = $mainMod, P, exec, change-wallpaper
-      bind = $mainMod, C, exec, hyprctl keyword animation "fadeOut,0,0,default"; grimblast --freeze --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"
+      bind = $mainMod, C, exec, hyprctl keyword animation "fadeOut,0,0,default"; grimblast --freeze save area - | satty --filename - --fullscreen --output-filename ~/screenshots/$(date '+%Y%m%d-%H:%M:%S').png; hyprctl keyword animation "fadeOut,1,4,default"
 
       # Window management bindings
       bind = $mainMod, M, exit, 

@@ -4,5 +4,6 @@
     ./pywal
     ./hyprland
     ./eww
+    ./rofi
   ];
 }
