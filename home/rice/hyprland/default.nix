@@ -97,7 +97,7 @@
       bind = $mainMod, W, exec, firefox
       bind = $mainMod, E, exec, kitty yazi
       bind = $mainMod, D, exec, vesktop
-      bind = $mainMod, P, exec, select-wallpaper
+      bind = $mainMod, P, exec, select_wallpaper
       bind = $mainMod, C, exec, hyprctl keyword animation "fadeOut,0,0,default"; grimblast --freeze save area - | satty --filename - --fullscreen --output-filename ~/screenshots/$(date '+%Y%m%d-%H:%M:%S').png; hyprctl keyword animation "fadeOut,1,4,default"
       bind = $mainMod, B, exec, BEMOJI_PICKER_CMD="rofi -dmenu -theme ~/.config/rofi/bemoji.rasi" bemoji
 

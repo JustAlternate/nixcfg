@@ -1,16 +1,16 @@
 { pkgs, ... }:
 let
   # nvidia offload
-  nvidia-offload = import ./nvidia-offload.nix pkgs;
+  nvidia_offload = import ./nvidia-offload.nix pkgs;
 
   # change wallpaper
-  change-wallpaper = import ./change-wallpaper.nix pkgs;
+  change_wallpaper = import ./change-wallpaper.nix pkgs;
   startup = import ./startup.nix pkgs;
-  select-wallpaper = import ./select-wallpaper.nix pkgs;
+  select_wallpaper = import ./select-wallpaper.nix pkgs;
 in
 [
-  nvidia-offload
-  change-wallpaper
+  nvidia_offload
+  change_wallpaper
   startup
-  select-wallpaper
+  select_wallpaper
 ]
