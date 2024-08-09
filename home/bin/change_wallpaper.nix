@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-pkgs.writeShellScriptBin "change-wallpaper"
+pkgs.writeShellScriptBin "change_wallpaper"
   ''
     file=$(ls ~/wallpaper/ | shuf -n 1)
     swww img ~/wallpaper/$file --transition-step 10 --transition-fps 30 --transition-type center &
