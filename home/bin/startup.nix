@@ -15,4 +15,5 @@ pkgs.writeShellScriptBin "startup"
     wl-paste --type text --watch cliphist store &
     wl-paste --type image --watch cliphist store &
     nm-applet --indicator &
+    conky &
   ''

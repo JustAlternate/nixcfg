@@ -41,12 +41,12 @@ wall_selection=$(find "$wall_dir" -maxdepth 1 -type f \( -iname "*.jpg" -o -inam
 [[ -n "$wall_selection" ]] || exit 1
 swww img $wall_dir/$wall_selection --transition-step 10 --transition-fps 30 --transition-type center &
 wal -i $wall_dir/$wall_selection &
-sleep 0.2
+sleep 0.4
 eww reload &
 pywalfox update &
+~/./.config/conky/update_conky.sh &
 cp ~/.cache/wal/discord-pywal.css ~/.config/vesktop/themes/pywal.css &
 cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
 [[ $(pidof cava) != "" ]] && pkill -USR1 cava &
-
 exit 0
   ''
