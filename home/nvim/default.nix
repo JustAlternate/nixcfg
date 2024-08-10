@@ -78,7 +78,6 @@
           { name = "mini.pairs"; path = mini-nvim; }
           { name = "mini.surround"; path = mini-nvim; }
           nvim-colorizer-lua
-          pywal16.nvim
         ];
         mkEntryFromDrv = drv:
           if lib.isDerivation drv then
@@ -113,6 +112,15 @@
             { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
           },
         })
+        local pywal16 = require('pywal16')
+        pywal16.setup()
+        local lualine = require('lualine')
+        lualine.setup {
+          options = {
+            theme = 'pywal16-nvim',
+          },
+        }
+        require('colorizer').setup()
       '';
   };
 

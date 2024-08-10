@@ -40,8 +40,8 @@
         gaps_in = 20
         gaps_out = 20
         border_size = 5
-        col.active_border = $color1 $color2 100deg
-        col.inactive_border = rgba(595959aa)
+        col.active_border = $color1 $color5 100deg
+        col.inactive_border = $color0
         layout = dwindle
       }
 
@@ -58,7 +58,7 @@
           passes = 1
         }
         drop_shadow = yes
-        shadow_range = 4
+        shadow_range = 6
         shadow_render_power = 3
         col.shadow = rgba(1a1a1aee)
       }
