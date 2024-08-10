@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = [ pkgs.pyprland ];
+{pkgs, ...}: {
+  home.packages = [pkgs.pyprland];
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
 
   wayland.windowManager.hyprland = {
@@ -102,13 +101,13 @@
       bind = $mainMod, B, exec, BEMOJI_PICKER_CMD="rofi -dmenu -theme ~/.config/rofi/bemoji.rasi" bemoji
 
       # Window management bindings
-      bind = $mainMod, M, exit, 
-      bind = $mainMod, Q, killactive, 
-      bind = $mainMod, F, togglefloating, 
-      bind = $mainMod, O, pseudo, 
-      bind = $mainMod, S, togglesplit, 
+      bind = $mainMod, M, exit,
+      bind = $mainMod, Q, killactive,
+      bind = $mainMod, F, togglefloating,
+      bind = $mainMod, O, pseudo,
+      bind = $mainMod, S, togglesplit,
 
-      # Computer control bindings 
+      # Computer control bindings
       binde = $mainMod, F2, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       binde = $mainMod, F3, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bind = $mainMod, F4, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -163,7 +162,7 @@
       binde = ,h,resizeactive,-10 0
       binde = ,k,resizeactive,0 -10
       binde = ,j,resizeactive,0 10
-      bind = $mainMod, Z, submap, reset 
+      bind = $mainMod, Z, submap, reset
       submap = reset
 
       # To make screensharing work

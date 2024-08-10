@@ -2,7 +2,6 @@
   description = "Nixos config flake";
 
   inputs = {
-
     # nixpkgs
     nixpkgs.url = "nixpkgs/nixos-24.05";
     master.url = "github:nixos/nixpkgs/master";
@@ -15,12 +14,16 @@
     lobster.url = "github:justchokingaround/lobster";
   };
 
-  outputs = { self, nixpkgs, master, home-manager, ... } @ inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-
+  outputs = {
+    self,
+    nixpkgs,
+    master,
+    home-manager,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
     nixosConfigurations = {
       LaptopNixos = nixpkgs.lib.nixosSystem {
         inherit system;
