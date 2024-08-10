@@ -1,0 +1,149 @@
+(defwidget profile-widget []
+  (box
+    :class "profile-widget"
+    :orientation "h"
+    :spacing -65
+    (box
+      :class "user-profile"
+      :halign "start"
+      :orientation "h"
+      :space-evenly false
+      (box :class "avatar")
+      (box 
+        :orientation "v" 
+        :space-evenly false
+        (label :class "user-hostname" :halign "start" :text hostname)
+        (label :class "uptime" :halign "start" :text uptime)))
+    (box
+      :class "buttons"
+      :halign "end"
+      :orientation "h"
+      :space-evenly false
+      (button
+        :class "button lock"
+        :onclick "swaylock"
+        "")
+
+      (button
+        :class "button poweroff"
+        :onclick "shutdown now"
+        ""))))
+
+(defwidget battery-widget []
+  (overlay
+    (progress
+      :class "battery-prog ${EWW_BATTERY.BAT1.status != "Discharging" ? "charging" : EWW_BATTERY.BAT1.capacity < battery_critical_threshold ? "critical" : ""}"
+      :value {EWW_BATTERY.BAT1.capacity})
+    (box
+      :valign "center"
+      :space-evenly true
+      :class "battery-text"
+      :orientation "h"
+      (box
+        :orientation "v"
+        :space-evenly true
+        :halign "start"
+        (label
+          :halign "start"
+          :class "battery-title"
+          :text "Battery")
+        (label
+          :halign "start"
+          :class "battery-percentage"
+          :text "${EWW_BATTERY.BAT1.capacity}%"))
+      (label
+        :class "battery-icon ${EWW_BATTERY.BAT1.status != "Discharging" ? "charging" : ""}"
+        :halign "end"
+        :valign "end"
+        :text {EWW_BATTERY.BAT1.status != "Discharging" ? "󰂄" : EWW_BATTERY.BAT1.capacity < battery_critical_threshold ? "󰂃" : "󰁹"}))))
+
+(defwidget weather-widget []
+  (button
+    :class "weather"
+    :onclick "kitty --class=floating --detach --hold curl wttr.in; sh - c \"read -p \"Press any key to continue... \" -n1 -s\" & eww update reveal_control=false"
+    :timeout "1s"
+    (box
+      :orientation "v"
+      :space-evenly false
+      (label
+        :class "weather-desc"
+        :halign "start"
+        :limit-width 10
+        :text weather_condition)
+      (label
+        :class "weather-temp"
+        :halign "start"
+        :text temperature)
+      (label
+        :class "weather-icon"
+        :halign "end"
+        :text weather_icon))))
+
+(defwidget date-widget []          
+  (box
+    :class "date-control"
+    :orientation "v"
+    :space-evenly false
+    (label 
+      :class "date-text-month"
+      :halign "start"
+      :text control-date)
+
+    (label
+      :class "date-text-day"
+      :halign "start"
+      :text weekday)))
+
+(defwidget bottom []
+  (box :class "bottom"))
+
+(defwidget apps []
+  (box 
+    :class "apps"
+    :orientation "h"
+    :valign "center"
+    (button 
+      :class "appbutton nvim"
+      :onclick "kitty bash ~/.config/eww/scripts/nvim & eww update reveal_control=false"
+      "")
+      
+    (button 
+      :class "appbutton github"
+      :onclick "firefox --new-window github.com & eww update reveal_control=false"
+      "")
+      
+    (button 
+      :class "appbutton reddit"
+      :onclick "firefox --new-window www.reddit.com/r/unixporn & eww update reveal_control=false"
+      "")
+      
+    (button 
+      :class "appbutton discord"
+      :onclick "discord & eww update reveal_control=false"
+      "󰙯")))
+
+(defwidget system_progress [data icon css]
+  (box
+    :class "progress"
+    (circular-progress
+      :class css
+      :value data
+      :thickness 15
+      (overlay
+        :valign "center"
+        (label
+          :class "icon"
+          :text icon)))))
+    
+(defwidget stats []
+  (box
+    :orientation "h"
+    :class "stats"
+    (system_progress
+      :css "cpu"
+      :data {EWW_CPU['avg']}
+      :icon "")
+    (system_progress
+      :css "ram"
+      :data {EWW_RAM['used_mem_perc']}
+      :icon "󰒋")))

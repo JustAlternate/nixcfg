@@ -4,6 +4,7 @@
     enable = true;
     extraPackages = with pkgs; [
       # LazyVim
+      cmake
       stylua
       lazygit
       fd
@@ -76,6 +77,8 @@
           { name = "mini.indentscope"; path = mini-nvim; }
           { name = "mini.pairs"; path = mini-nvim; }
           { name = "mini.surround"; path = mini-nvim; }
+          nvim-colorizer-lua
+          pywal16.nvim
         ];
         mkEntryFromDrv = drv:
           if lib.isDerivation drv then
@@ -128,5 +131,4 @@
 
   # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
   xdg.configFile."nvim/lua".source = ./lua;
-  xdg.configFile."nvim/init.lua".source = ./lua/init.lua;
 }
