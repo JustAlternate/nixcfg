@@ -1,5 +1,4 @@
-{ config, lib, pkgs, ... }:
-{
+_: {
   imports = [
     ./pywal
     ./hyprland

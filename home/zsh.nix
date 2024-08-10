@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     zsh
     zoxide
@@ -27,7 +30,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "dotenv" "vi-mode" ];
+      plugins = ["git" "dotenv" "vi-mode"];
       theme = "agnoster";
     };
 

@@ -52,7 +52,6 @@
         noice-nvim
         nui-nvim
         nvim-cmp
-        nvim-lint
         nvim-lspconfig
         nvim-notify
         nvim-spectre
@@ -101,7 +100,6 @@
           path = mini-nvim;
         }
         nvim-colorizer-lua
-        none-ls-nvim
         null-ls-nvim
       ];
       mkEntryFromDrv = drv:
