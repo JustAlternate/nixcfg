@@ -1,0 +1,11 @@
+(include "./yuck/powermenu/layout.yuck")
+
+(defwindow powermenu
+  :monitor 0
+  :geometry (geometry
+              :width "100%"
+              :height "106%"
+              :anchor "center")
+  :wm-ignore true
+  :stacking "overlay"
+  (powermenu_layout))

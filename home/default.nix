@@ -119,6 +119,7 @@ in
     git
     gcc
     cmake
+    lua
 
     # Launchers
     rofi-wayland

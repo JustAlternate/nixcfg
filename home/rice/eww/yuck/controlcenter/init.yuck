@@ -1,0 +1,13 @@
+(include "./yuck/controlcenter/layout.yuck")
+
+(defwindow controlcenter
+  :monitor 0
+  :geometry (geometry
+              :x "14px"
+              :y "14px"
+              :anchor "top left")
+              
+  :stacking "fg"
+  :exclusive true
+  :wm-ignore true
+  (controlcenter_layout))
