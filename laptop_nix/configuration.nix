@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [ # Include the results of the hardware scan.
