@@ -1,10 +1,10 @@
 return {
-	"nvimtools/none-ls.nvim",
+	"jose-elias-alvarez/null-ls.nvim",
 	config = function()
-		local none_ls = require("none-ls")
-		none_ls.setup({
+		local null_ls = require("null-ls")
+		null_ls.setup({
 			sources = {
-				none_ls.builtins.diagnostics.statix, -- add statix here
+				null_ls.builtins.diagnostics.statix, -- add statix here
 			},
 		})
 	end,
