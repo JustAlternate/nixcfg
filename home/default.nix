@@ -37,6 +37,7 @@ in {
         brightnessctl
         grimblast
         conky
+
         # Sound
         pwvucontrol
 
@@ -80,8 +81,8 @@ in {
         bemoji
 
         # Cli tools
-
         ## Utility
+        xdg-utils
         playerctl
         unzip
         wget
@@ -98,6 +99,7 @@ in {
         ani-cli
         sshfs
         neovim-remote
+        pandoc
 
         ## Show-off
         fastfetch

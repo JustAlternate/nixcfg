@@ -6,6 +6,8 @@
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
+      yarn
+
       # LazyVim
       cmake
       stylua
@@ -16,7 +18,6 @@
       ripgrep
 
       # LSP stuff
-      # Nix
       nil
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
@@ -101,6 +102,7 @@
         }
         nvim-colorizer-lua
         null-ls-nvim
+        markdown-preview-nvim
       ];
       mkEntryFromDrv = drv:
         if lib.isDerivation drv
