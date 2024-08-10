@@ -102,6 +102,7 @@
         }
         nvim-colorizer-lua
         none-ls-nvim
+        null-ls-nvim
       ];
       mkEntryFromDrv = drv:
         if lib.isDerivation drv
