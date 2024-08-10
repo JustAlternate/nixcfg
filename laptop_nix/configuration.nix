@@ -10,9 +10,10 @@
   ];
 
   nix = {
-    # Add the possibility to install unstable packages
-    experimental-features = ["nix-command" "flakes"];
-
+    settings = {
+      # Add the possibility to install unstable packages
+      experimental-features = ["nix-command" "flakes"];
+    };
     optimise.automatic = true;
     gc = {
       automatic = true;
@@ -82,6 +83,8 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
+  sound.enable = true;
+
   services = {
     xserver = {
       # Configure keymap in X11
@@ -91,6 +94,15 @@
 
       # Load nvidia driver for Xorg and Wayland
       videoDrivers = ["nvidia" "amdvlk"];
+    };
+
+    # sound using pipewire:
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
     };
 
     # Enable automatic login for the user.
@@ -128,16 +140,6 @@
     description = "justalternate";
     extraGroups = ["networkmanager" "wheel"];
   };
-
-  # sound using pipewire:
-  pipewire = {
-    enable = true;
-    audio.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-  sound.enable = true;
 
   security = {
     rtkit.enable = true; # Did you read the comment?
