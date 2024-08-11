@@ -183,7 +183,7 @@
 
       # window rule
       #windowrule = animation slide bottom, kitty
-      windowrule = opacity 0.91 override, vesktop
+      windowrule = opacity 0.92 override, vesktop
       windowrule = opacity 0.99 override, firefox
 
       # To make screensharing work
