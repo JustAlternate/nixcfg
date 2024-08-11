@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.pyprland];
+{ pkgs, ... }: {
+  home.packages = [ pkgs.pyprland ];
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
 
   wayland.windowManager.hyprland = {
@@ -103,9 +103,22 @@
       # Window management bindings
       bind = $mainMod, M, exit,
       bind = $mainMod, Q, killactive,
+
       bind = $mainMod, F, togglefloating,
+      bind = $mainMod, F, resizeactive, exact 1280 720
+      bind = $mainMod, F, centerwindow
+
       bind = $mainMod, O, pseudo,
       bind = $mainMod, S, togglesplit,
+
+      bind = $mainMod SHIFT, h, swapwindow, l
+      binde = $mainMod SHIFT, h, moveactive, -50 0
+      bind = $mainMod SHIFT, l, swapwindow, r
+      binde = $mainMod SHIFT, l, moveactive, 50 0
+      bind = $mainMod SHIFT, k, swapwindow, u
+      binde = $mainMod SHIFT, k, moveactive, 0 -50
+      bind = $mainMod SHIFT, j, swapwindow, d
+      binde = $mainMod SHIFT, j, moveactive, 0 50
 
       # Computer control bindings
       binde = $mainMod, F2, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
@@ -158,10 +171,10 @@
       bindm = $mainMod, mouse:273, resizewindow
       bind = $mainMod, Z, submap, resize
       submap = resize
-      binde = ,l,resizeactive,10 0
-      binde = ,h,resizeactive,-10 0
-      binde = ,k,resizeactive,0 -10
-      binde = ,j,resizeactive,0 10
+      binde = ,l,resizeactive,20 0
+      binde = ,h,resizeactive,-20 0
+      binde = ,k,resizeactive,0 -20
+      binde = ,j,resizeactive,0 20
       bind = $mainMod, Z, submap, reset
       submap = reset
 
