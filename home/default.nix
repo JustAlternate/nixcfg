@@ -1,13 +1,14 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
+{ pkgs
+, inputs
+, ...
+}:
+let
   master = import inputs.master {
     system = "x86_64-linux";
     config.allowUnfree = true;
   };
-in {
+in
+{
   imports = [
     ./rice
     ./nvim
@@ -145,7 +146,7 @@ in {
         winetricks
         wine-wayland
       ]
-      ++ (import ./bin {inherit pkgs;});
+      ++ (import ./bin { inherit pkgs; });
 
     # For env var
     sessionVariables = {
