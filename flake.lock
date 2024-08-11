@@ -92,7 +92,8 @@
         "home-manager": "home-manager",
         "lobster": "lobster",
         "master": "master",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "themecord": "themecord"
       }
     },
     "systems": {
@@ -107,6 +108,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "themecord": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1723253108,
+        "narHash": "sha256-YBTqBEcke1KiM37XJ2q0VFY/xQ+E+QqIBcUYvJvimjM=",
+        "owner": "danihek",
+        "repo": "themecord",
+        "rev": "f22bafbfe00e7e19e5f72915b2a86cd73214cd60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danihek",
+        "repo": "themecord",
         "type": "github"
       }
     }

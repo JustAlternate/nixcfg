@@ -50,6 +50,9 @@
       }
 
       decoration {
+        active_opacity = 1.0;
+        inactive_opacity = 0.65;
+
         rounding = 10
         blur {
           enabled = true
@@ -177,6 +180,11 @@
       binde = ,j,resizeactive,0 20
       bind = $mainMod, Z, submap, reset
       submap = reset
+
+      # window rule
+      #windowrule = animation slide bottom, kitty
+      windowrule = opacity 0.95 override, vesktop
+      windowrule = opacity 0.99 override, firefox
 
       # To make screensharing work
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
