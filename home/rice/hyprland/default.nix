@@ -51,7 +51,7 @@
 
       decoration {
         active_opacity = 1.0;
-        inactive_opacity = 0.65;
+        inactive_opacity = 0.88;
 
         rounding = 10
         blur {
@@ -94,14 +94,14 @@
 
       # Application bindings
       bind = $mainMod, R, exec, rofi -config ~/.config/rofi/bottom_large.rasi -show drun || killall rofi
-      bind = $mainMod, N, exec, cliphist list | rofi -config ~/.config/rofi/bottom_large.rasi-dmenu -display-columns 2 | cliphist decode | wl-copy || killall rofi
+      bind = $mainMod, N, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy || killall rofi
       bind = $mainMod, T, exec, kitty
       bind = $mainMod, W, exec, firefox
-      bind = $mainMod, E, exec, kitty yazi
+      bind = $mainMod, E, exec, kitty --single-instance --detach zsh -i -c 'yazi'
       bind = $mainMod, D, exec, vesktop
       bind = $mainMod, P, exec, select_wallpaper
       bind = $mainMod, C, exec, hyprctl keyword animation "fadeOut,0,0,default"; grimblast --freeze save area - | satty --filename - --fullscreen --output-filename ~/screenshots/$(date '+%Y%m%d-%H:%M:%S').png; hyprctl keyword animation "fadeOut,1,4,default"
-      bind = $mainMod, B, exec, BEMOJI_PICKER_CMD="rofi -dmenu -theme ~/.config/rofi/bemoji.rasi" bemoji
+      bind = $mainMod, B, exec, BEMOJI_PICKER_CMD="rofi -dmenu -theme ~/.config/rofi/bemoji.rasi" bemoji || killall rofi
 
       # Window management bindings
       bind = $mainMod, M, exit,
@@ -183,7 +183,7 @@
 
       # window rule
       #windowrule = animation slide bottom, kitty
-      windowrule = opacity 0.95 override, vesktop
+      windowrule = opacity 0.90 override, vesktop
       windowrule = opacity 0.99 override, firefox
 
       # To make screensharing work
