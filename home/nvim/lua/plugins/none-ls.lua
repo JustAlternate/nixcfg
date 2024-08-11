@@ -6,9 +6,12 @@ return {
 			sources = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.completion.spell,
+
 				null_ls.builtins.code_actions.statix,
 				null_ls.builtins.diagnostics.statix,
 				null_ls.builtins.diagnostics.deadnix,
+
+				null_ls.builtins.formatting.nixpkgs_fmt,
 			},
 		})
 	end,
