@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./pywal
     ./hyprland
@@ -6,10 +6,19 @@
     ./rofi
   ];
 
+  home.sessionVariables = {
+    GTK_THEME = "Material-dark";
+    XCURSOR_THEME = "pokemon-cursor";
+    XCURSOR_SIZE = "24";
+    HYPRCURSOR_THEME = "pokemon-cursor";
+    HYPRCURSOR_SIZE = "24";
+  };
+
   qt = {
     enable = true;
     platformTheme = "gtk";
   };
+
 
   gtk = {
     enable = true;
