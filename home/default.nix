@@ -67,7 +67,6 @@ in {
         # Video
         vlc
         obs-studio
-        davinci-resolve
         inputs.lobster.packages.x86_64-linux.lobster
 
         # Image
