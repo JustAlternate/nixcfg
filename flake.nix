@@ -14,10 +14,10 @@
 
     # other urls
     lobster.url = "github:justchokingaround/lobster";
-    themecord = {
-      url = "github:danihek/themecord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # themecord = {
+    #   url = "github:danihek/themecord";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =

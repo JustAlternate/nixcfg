@@ -42,11 +42,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1723231698,
-        "narHash": "sha256-THuV/L86dUg3WauPpHzBkBcF7GRq7HWG3WdK4eKpaVA=",
+        "lastModified": 1723650321,
+        "narHash": "sha256-8lj9Z8FlbvFo/kWcIo9PoxPDwvqhVl5PvaGNxKFZsb4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "033d54ee79bb3df2ca72629a24f762dcfae90150",
+        "rev": "faa61ee8832017448f95d2cfdea1b3f85e4c838d",
         "type": "github"
       },
       "original": {
@@ -74,11 +74,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1722987190,
-        "narHash": "sha256-68hmex5efCiM2aZlAAEcQgmFI4ZwWt8a80vOeB/5w3A=",
+        "lastModified": 1723556749,
+        "narHash": "sha256-+CHVZnTnIYRLYsARInHYoWkujzcRkLY/gXm3s5bE52o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "21cc704b5e918c5fbf4f9fff22b4ac2681706d90",
+        "rev": "4a92571f9207810b559c9eac203d1f4d79830073",
         "type": "github"
       },
       "original": {
@@ -92,8 +92,7 @@
         "home-manager": "home-manager",
         "lobster": "lobster",
         "master": "master",
-        "nixpkgs": "nixpkgs_2",
-        "themecord": "themecord"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
@@ -108,26 +107,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "themecord": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1723253108,
-        "narHash": "sha256-YBTqBEcke1KiM37XJ2q0VFY/xQ+E+QqIBcUYvJvimjM=",
-        "owner": "danihek",
-        "repo": "themecord",
-        "rev": "f22bafbfe00e7e19e5f72915b2a86cd73214cd60",
-        "type": "github"
-      },
-      "original": {
-        "owner": "danihek",
-        "repo": "themecord",
         "type": "github"
       }
     }
