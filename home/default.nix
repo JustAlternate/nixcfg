@@ -128,7 +128,6 @@ in
         gcc
         lua
         go
-        gnumake
         cmake
 
         # Launchers
