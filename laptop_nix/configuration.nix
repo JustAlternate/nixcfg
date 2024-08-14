@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
@@ -12,7 +11,9 @@
   nix = {
     settings = {
       # Add the possibility to install unstable packages
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [ "https://nix-gaming.cachix.org" ];
+      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
     };
     optimise.automatic = true;
     gc = {
@@ -23,7 +24,7 @@
   };
 
   environment = {
-    shells = with pkgs; [zsh];
+    shells = with pkgs; [ zsh ];
 
     systemPackages = with pkgs; [
       stalonetray
@@ -33,6 +34,7 @@
       git
       vim
       home-manager
+      gnumake
     ];
 
     sessionVariables = {
@@ -93,7 +95,7 @@
       xkbVariant = "";
 
       # Load nvidia driver for Xorg and Wayland
-      videoDrivers = ["nvidia" "amdvlk"];
+      videoDrivers = [ "nvidia" "amdvlk" ];
     };
 
     # sound using pipewire:
@@ -138,7 +140,7 @@
     home = "/home/justalternate";
     isNormalUser = true;
     description = "justalternate";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   security = {
@@ -197,11 +199,11 @@
       # Enable this if you have graphical corruption issues or application crashes after waking
       # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
       # of just the bare essentials.
-      powerManagement.enable = false;
+      powerManagement.enable = true;
 
       # Fine-grained power management. Turns off GPU when not in use.
       # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-      powerManagement.finegrained = false;
+      powerManagement.finegrained = true;
 
       # Use the NVidia open source kernel module (not to be confused with the
       # independent third-party "nouveau" open source driver).
@@ -210,7 +212,7 @@
       # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
       # Only available from driver 515.43.04+
       # Currently alpha-quality/buggy, so false is currently the recommended setting.
-      open = false;
+      open = true;
 
       # Enable the Nvidia settings menu,
       # accessible via `nvidia-settings`.
@@ -257,4 +259,5 @@
 
     hyprland.enable = true;
   };
+
 }

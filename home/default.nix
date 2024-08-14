@@ -126,9 +126,10 @@ in
         scdoc
         git
         gcc
-        cmake
         lua
         go
+        gnumake
+        cmake
 
         # Launchers
         rofi-wayland
