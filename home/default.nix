@@ -120,16 +120,6 @@ in
         bluez
         blueman
 
-        # Developpment
-        nodePackages.node2nix
-        openssh
-        scdoc
-        git
-        gcc
-        lua
-        go
-        cmake
-
         # Launchers
         rofi-wayland
 

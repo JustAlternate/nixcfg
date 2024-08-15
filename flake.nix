@@ -14,10 +14,11 @@
 
     # other urls
     lobster.url = "github:justchokingaround/lobster";
-    # themecord = {
-    #   url = "github:danihek/themecord";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    themecord = {
+      url = "github:danihek/themecord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs =
@@ -33,6 +34,7 @@
       nixosConfigurations = {
         LaptopNixos = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = { inherit inputs; };
           modules = [
             ./laptop_nix/configuration.nix
             home-manager.nixosModules.home-manager
