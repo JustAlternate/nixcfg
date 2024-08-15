@@ -14,6 +14,7 @@ in
     ./nvim
     ./zsh.nix
     ./ssh
+    ./dev
   ];
   home = {
     username = "justalternate";
