@@ -1,5 +1,6 @@
 { pkgs
 , lib
+, inputs
 , ...
 }:
 let
@@ -11,7 +12,7 @@ in
   home.packages = with pkgs; [
     pywal
     pywalfox-native
-    # inputs.themecord.packages.x86_64-linux.default
+    inputs.themecord.packages.x86_64-linux.default
   ];
 
   home.file.".mozilla/native-messaging-hosts/pywalfox.json".text = lib.replaceStrings [ "<path>" ] [

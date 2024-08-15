@@ -1,19 +1,23 @@
 { config
 , pkgs
+, inputs
 , ...
 }: {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
 
   nix = {
     settings = {
       # Add the possibility to install unstable packages
       experimental-features = [ "nix-command" "flakes" ];
-      # substituters = [ "https://nix-gaming.cachix.org" ];
-      # trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+
+      # Nix Gaming cache
+      substituters = [ "https://nix-gaming.cachix.org" ];
+      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
     };
     optimise.automatic = true;
     gc = {
@@ -100,10 +104,16 @@
     # sound using pipewire:
     pipewire = {
       enable = true;
-      audio.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      lowLatency = {
+        # enable this module
+        enable = true;
+        # defaults (no need to be set unless modified)
+        quantum = 64;
+        rate = 48000;
+      };
     };
 
     # Enable automatic login for the user.
@@ -143,7 +153,7 @@
   };
 
   security = {
-    rtkit.enable = true; # Did you read the comment?
+    rtkit.enable = true;
 
     # For god sake pls stop asking for my passwd every 5 commands..
     sudo = {
