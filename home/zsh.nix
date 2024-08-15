@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   home.packages = with pkgs; [
     zsh
@@ -16,6 +15,7 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
+      lg = "lazygit";
       ll = "ls -l";
       nixcfg = "cd ~/.config/dotfiles";
       ls = "eza --color=auto --icons=always";
@@ -30,7 +30,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "dotenv" "vi-mode"];
+      plugins = [ "git" "dotenv" "vi-mode" ];
       theme = "agnoster";
     };
 
