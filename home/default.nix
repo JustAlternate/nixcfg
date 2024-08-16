@@ -125,6 +125,7 @@ in
         rofi-wayland
 
         # Games
+        space-cadet-pinball
         hmcl
         steam
         master.osu-lazer-bin
@@ -136,6 +137,10 @@ in
         wine
         winetricks
         wine-wayland
+
+        # Miscs
+        cpu-x
+
       ]
       ++ (import ./bin { inherit pkgs; });
 
