@@ -18,7 +18,6 @@
       url = "github:danihek/themecord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs =
