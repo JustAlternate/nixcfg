@@ -60,8 +60,16 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    kernelModules = [
+      "nvidia_uvm"
+      "nvidia_modeset"
+      "nvidia_drm"
+      "nvidia"
+    ];
+  };
 
   users.defaultUserShell = pkgs.zsh;
 
@@ -114,6 +122,11 @@
         quantum = 64;
         rate = 48000;
       };
+    };
+
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
     };
 
     # Enable automatic login for the user.
@@ -221,7 +234,7 @@
       # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
       # Only available from driver 515.43.04+
       # Currently alpha-quality/buggy, so false is currently the recommended setting.
-      open = true;
+      open = false;
 
       # Enable the Nvidia settings menu,
       # accessible via `nvidia-settings`.

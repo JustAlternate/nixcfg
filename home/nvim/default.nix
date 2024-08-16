@@ -22,6 +22,7 @@
       deadnix # Find and remove unused code in .nix source files
       alejandra # Nix Code Formatter
       nixpkgs-fmt
+      llm-ls
 
       lua-language-server
       pyright
@@ -107,6 +108,7 @@
           null-ls-nvim
           none-ls-nvim
           markdown-preview-nvim
+          llm-nvim
         ];
         mkEntryFromDrv = drv:
           if lib.isDerivation drv
