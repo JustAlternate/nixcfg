@@ -4,7 +4,7 @@
   inputs = {
     # nixpkgs
     nixpkgs.url = "nixpkgs/nixos-24.05";
-    master.url = "github:nixos/nixpkgs/master";
+    nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # home-manager
     home-manager = {
@@ -20,14 +20,25 @@
     };
   };
 
+
   outputs =
     { nixpkgs
     , home-manager
+    , nixos-unstable
     , ...
     } @ inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      nixos-overlays = [
+        # Allow configurations to use pkgs.unstable.<package-name>.
+        (final: prev: {
+          unstable = import nixos-unstable {
+            system = prev.system;
+            config.allowUnfree = true;
+          };
+        })
+      ];
     in
     {
       nixosConfigurations = {
@@ -44,6 +55,7 @@
         justalternate = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+            { nixpkgs.overlays = nixos-overlays; }
             ./home
           ];
           extraSpecialArgs = {
