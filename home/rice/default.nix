@@ -4,6 +4,7 @@
     ./hyprland
     ./eww
     ./rofi
+    ./fastfetch
   ];
 
   home.sessionVariables = {
@@ -31,32 +32,5 @@
 
     iconTheme.package = pkgs.papirus-icon-theme;
     iconTheme.name = "Papirus";
-  };
-
-  programs.fastfetch = {
-    enable = true;
-    settings = {
-      logo = {
-        source = "nixos_small";
-        padding = {
-          right = 1;
-        };
-      };
-
-      display = {
-        binaryPrefix = "si";
-        color = "blue";
-        separator = "  ";
-      };
-
-      modules = [
-        "host"
-        "os"
-        "uptime"
-        "cpu"
-        "memory"
-        "colors"
-      ];
-    };
   };
 }
