@@ -108,7 +108,6 @@
           null-ls-nvim
           none-ls-nvim
           markdown-preview-nvim
-          llm-nvim
         ];
         mkEntryFromDrv = drv:
           if lib.isDerivation drv

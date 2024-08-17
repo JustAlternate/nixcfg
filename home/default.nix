@@ -104,7 +104,6 @@ in
         pandoc
 
         ## Show-off
-        fastfetch
         cmatrix
         cava
         cbonsai
