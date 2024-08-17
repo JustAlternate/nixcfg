@@ -2,12 +2,6 @@
 , inputs
 , ...
 }:
-let
-  master = import inputs.master {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
-in
 {
   imports = [
     ./rice
@@ -39,6 +33,7 @@ in
         brightnessctl
         grimblast
         conky
+        lxappearance
 
         # Sound
         pwvucontrol
@@ -56,7 +51,7 @@ in
         # File managers
         xfce.thunar
         xfce.thunar-volman
-        master.yazi
+        unstable.yazi
 
         # Browser
         chromium
@@ -67,11 +62,13 @@ in
         youtube-music
 
         # Video
+        ffmpeg
         vlc
         obs-studio
         inputs.lobster.packages.x86_64-linux.lobster
 
         # Image
+        imagemagick
         mupdf
         feh
         gimp
@@ -127,7 +124,7 @@ in
         space-cadet-pinball
         hmcl
         steam
-        master.osu-lazer-bin
+        unstable.osu-lazer-bin
 
         ## Drivers/Requirements
         ckb-next
@@ -136,6 +133,7 @@ in
         wine
         winetricks
         wine-wayland
+        zlib
 
         # Miscs
         cpu-x
