@@ -1,13 +1,15 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   programs.fastfetch = {
     package = pkgs.unstable.fastfetch;
     enable = true;
     settings = {
       logo = {
+        padding = {
+          top = 1;
+          right = 1;
+        };
         type = "kitty-direct";
-        source = "./nixos-logo.png";
-        width = 32;
-        height = 15;
+        source = "${config.home.homeDirectory}/.config/dotfiles/home/rice/fastfetch/nixos-logo-small.png";
       };
 
       display = {
@@ -17,15 +19,14 @@
       };
 
       modules = [
-        "break"
-        {
-          "type" = "title";
-          "key" = "              ";
-
-        }
         {
           "type" = "custom";
           "format" = "╭──────────────────────SYSTEM──────────────────────╮";
+        }
+        {
+          "type" = "title";
+          "key" = "├─ HOST";
+          "keyColor" = "blue";
         }
         {
           "type" = "os";
@@ -58,6 +59,12 @@
           "type" = "terminal";
           "key" = "├─ TERMINAL";
           "keyColor" = "green";
+        }
+        {
+          "type" = "media";
+          "key" = "├─󰝚 PLAYING";
+          "keyColor" = "yellow";
+          "format" = "{1}";
         }
         {
           "type" = "custom";
