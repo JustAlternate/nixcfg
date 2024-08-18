@@ -1,12 +1,8 @@
 { lib
 , pkgs
 , ...
-}: {
-
-  imports = [
-    ./ollama-copilot.nix
-  ];
-
+}:
+{
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
