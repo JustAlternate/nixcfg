@@ -1,16 +1,15 @@
 (include "./yuck/hbar/layout.yuck")
 
 ;; 14 is the amount of pixels between windows
-(defwindow hbar 
+(defwindow hbar
   :monitor 0
-  :geometry (geometry 
+  :geometry (geometry
               :x "0%"
               :y "14px"
               :width "${1920 - 2*14}px"
               :height "4%"
               :anchor "top center")
-              
+
   :stacking "bg"
   :exclusive true
   (hbar_layout))
-  

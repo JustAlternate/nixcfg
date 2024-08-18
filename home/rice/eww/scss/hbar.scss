@@ -172,3 +172,22 @@ tooltip {
   background: $surface0;
 }
 
+.mic-dropdown {
+  background-color: $background;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button {
+  background-color: $background;
+  color: $color1;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  margin: 2px 0;
+}
+
+button:hover {
+  background-color: $color4;
+}
+

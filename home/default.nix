@@ -36,6 +36,7 @@
 
         # Sound
         pwvucontrol
+        pulseaudio
 
         # Networking
         networkmanagerapplet
