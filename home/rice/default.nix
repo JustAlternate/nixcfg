@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   imports = [
     ./pywal
     ./hyprland
@@ -7,30 +7,26 @@
     ./fastfetch
   ];
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
+    catppuccin-gtk = pkgs.catppuccin-gtk.override {
+      accents = [ "teal" ];
+      size = "standard";
+      variant = "macchiato";
+    };
+  };
+
   home.sessionVariables = {
-    GTK_THEME = "Material-dark";
-    XCURSOR_THEME = "pokemon-cursor";
+    GTK_THEME = "catppuccin-macchiato-teal-standard";
+    XCURSOR_THEME = "Catppuccin-Macchiato-Teal";
     XCURSOR_SIZE = "24";
-    HYPRCURSOR_THEME = "pokemon-cursor";
+    HYPRCURSOR_THEME = "Catppuccin-Macchiato-Teal";
     HYPRCURSOR_SIZE = "24";
   };
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
-  };
-
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Materia-dark";
-      package = pkgs.materia-theme;
-    };
-    cursorTheme.package = pkgs.pokemon-cursor;
-    cursorTheme.name = "pokemon-cursor";
-
-    iconTheme.package = pkgs.papirus-icon-theme;
-    iconTheme.name = "Papirus";
+    platformTheme.name = "gtk2";
+    style.name = "gtk2";
   };
 }

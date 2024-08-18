@@ -1,13 +1,11 @@
 { config
 , pkgs
-, inputs
 , ...
 }: {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
 
   nix = {
@@ -115,13 +113,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      lowLatency = {
-        # enable this module
-        enable = true;
-        # defaults (no need to be set unless modified)
-        quantum = 64;
-        rate = 48000;
-      };
     };
 
     ollama = {

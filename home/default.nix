@@ -33,7 +33,6 @@
         brightnessctl
         grimblast
         conky
-        lxappearance
 
         # Sound
         pwvucontrol

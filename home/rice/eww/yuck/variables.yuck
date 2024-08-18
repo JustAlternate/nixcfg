@@ -28,8 +28,4 @@
 
 (defvar reveal_control false)
 
-(defpoll weather_condition :initial "Waiting..." :interval "10s" "bash ~/.config/eww/scripts/weather condition")
-(defpoll weather_icon :initial "" :interval "10s" "bash ~/.config/eww/scripts/weather icon")
-(defpoll temperature :initial "xx°C" :interval "10s" "bash ~/.config/eww/scripts/weather temperature")
-
 (defvar reveal_apps false)

@@ -1,6 +1,14 @@
 { pkgs, ... }: {
-  home.packages = [ pkgs.pyprland ];
+  home.packages = with pkgs; [
+    pyprland
+    hyprcursor
+  ];
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
+
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
