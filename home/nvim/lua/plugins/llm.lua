@@ -3,7 +3,7 @@ return {
 	"David-Kunz/gen.nvim",
 	cmd = "Gen",
 	opts = {
-		model = "codellama:7b", -- The default model to use.
+		model = "codeqwen:latest", -- The default model to use.
 		quit_map = "q", -- set keymap for close the response window
 		retry_map = "<c-r>", -- set keymap to re-send the current prompt
 		accept_map = "<c-cr>", -- set keymap to replace the previous selection with the last result
@@ -24,7 +24,7 @@ return {
 				.. options.host
 				.. ":"
 				.. options.port
-				.. "/api/generate -d $body"
+				.. "/api/chat -d $body"
 		end,
 		-- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
 		-- This can also be a command string.
