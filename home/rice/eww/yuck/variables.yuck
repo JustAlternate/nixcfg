@@ -12,15 +12,15 @@
 (defpoll battery_left :interval "1m" "bash ~/.config/eww/scripts/battery-left")
 
 (defvar brightness_visible false)
-(defpoll current_brightness :initial 0 :interval "1s" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defpoll current_brightness :initial 0 :interval "5s" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
 
 (defvar volume_visible false)
-(defpoll current_volume :initial 0 :interval "1s" "pamixer --get-volume")
-(defpoll volume_icon :initial "󰕾" :interval "0.2s" "bash ~/.config/eww/scripts/get-volume-icon")
+(defpoll current_volume :initial 0 :interval "5s" "pamixer --get-volume")
+(defpoll volume_icon :initial "󰕾" :interval "5s" "bash ~/.config/eww/scripts/get-volume-icon")
 
-(defpoll mic_icon :initial "󰍬" :interval "0.2s" "bash ~/.config/eww/scripts/get-mic-icon")
+(defpoll mic_icon :initial "󰍬" :interval "5s" "bash ~/.config/eww/scripts/get-mic-icon")
 
-(defpoll uptime :initial "0m" :interval "1s" "uptime --pretty | ~/.config/eww/scripts/uptime")
+(defpoll uptime :initial "0m" :interval "5s" "uptime --pretty | ~/.config/eww/scripts/uptime")
 (defpoll hostname :initial "user@hostname" :interval "24h" "bash ~/.config/eww/scripts/hostname")
 
 (defpoll weekday :initial "Weekday" :interval "1m" "date +'%A'")
