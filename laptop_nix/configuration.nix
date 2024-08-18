@@ -29,7 +29,6 @@
     shells = with pkgs; [ zsh ];
 
     systemPackages = with pkgs; [
-      stalonetray
       busybox
       pipewire
       wireplumber

@@ -2,6 +2,7 @@
   (button 
     :class "nixos_icon"
     :valign "center"
+    :halign "center"
     :onclick ""
     "󱄅"))
     
@@ -104,9 +105,10 @@
     :class "tray_box"
     (systray
       :orientation "h"
-      :icon-size 16
+      :icon-size 20
       :space-evenly true
-      :spacing 14
+      :spacing 12
+      :pack_direction "right"
     )
   )
 )

@@ -1,10 +1,15 @@
-_: {
+{ pkgs, ... }: {
   imports = [
     ./pywal
     ./hyprland
     ./eww
     ./rofi
     ./fastfetch
+  ];
+
+  home.packages = with pkgs; [
+    trayer
+    palenight-theme
   ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -17,10 +22,13 @@ _: {
   };
 
   home.sessionVariables = {
-    GTK_THEME = "catppuccin-macchiato-teal-standard";
-    XCURSOR_THEME = "Catppuccin-Macchiato-Teal";
+    GTK_THEME = "palenight";
+    # GTK_THEME = "catppuccin-macchiato-teal-standard";
+    # XCURSOR_THEME = "Catppuccin-Macchiato-Teal";
+    XCURSOR_THEME = "Numix-Cursor";
     XCURSOR_SIZE = "24";
-    HYPRCURSOR_THEME = "Catppuccin-Macchiato-Teal";
+    # HYPRCURSOR_THEME = "Catppuccin-Macchiato-Teal";
+    HYPRCURSOR_THEME = "Numix-Cursor";
     HYPRCURSOR_SIZE = "24";
   };
 
@@ -28,5 +36,36 @@ _: {
     enable = true;
     platformTheme.name = "gtk2";
     style.name = "gtk2";
+  };
+
+  gtk = {
+    enable = true;
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    theme = {
+      name = "palenight";
+      package = pkgs.palenight-theme;
+    };
+
+    cursorTheme = {
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
 }

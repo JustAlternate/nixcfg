@@ -20,7 +20,7 @@
     :space-evenly false
     :halign "end"
     (container)))
-    
+
 (defwidget hbar_layout []
   (box
     :class "hbar"
