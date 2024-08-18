@@ -94,18 +94,22 @@
           :tooltip "${current_volume}%")))))
 
 (defwidget mic []
-  (button 
+  (button
     :class "mic_icon"
-    :onclick "pwvucontrol &"
+    :onclick "
+        if [ \"$(eww active-windows | grep mic_dropdown)\" ]; then
+          eww close mic_dropdown;
+        else
+          eww open mic_dropdown;
+        fi"
     mic_icon))
-
 
 (defwidget tray []
   (box
     :class "tray_box"
     (systray
       :orientation "h"
-      :icon-size 20
+      :icon-size 28
       :space-evenly true
       :spacing 12
       :pack_direction "right"
@@ -120,7 +124,7 @@
     :space-evenly false
     :spacing 15
     (tray)
-    (wifi)
+    ;(wifi)
     (battery)
     (brightness)
     (volume)
