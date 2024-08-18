@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     pyprland
     hyprcursor
+    hyprland-protocols
   ];
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
 
