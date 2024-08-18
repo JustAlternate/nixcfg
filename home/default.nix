@@ -116,9 +116,6 @@
         bluez
         blueman
 
-        # Launchers
-        rofi-wayland
-
         # Games
         space-cadet-pinball
         hmcl
