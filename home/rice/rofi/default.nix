@@ -1,4 +1,8 @@
-_: {
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
+    # Launchers
+    rofi-wayland
+  ];
   xdg = {
     configFile = {
       "rofi/bottom_large.rasi".source = ./bottom_large.rasi;
