@@ -20,6 +20,7 @@
       ls = "eza --color=auto --icons=always";
       cd = "z";
       neofetch = "fastfetch";
+      ssh = "kitten ssh";
     };
 
     history = {
