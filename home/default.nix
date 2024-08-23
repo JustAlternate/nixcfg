@@ -57,6 +57,9 @@
         chromium
         firefox-wayland
 
+        # Other gui apps
+        thunderbird
+
         # Music
         mpv
         youtube-music
@@ -122,6 +125,7 @@
         hmcl
         steam
         unstable.osu-lazer-bin
+        bottles
 
         ## Drivers/Requirements
         ckb-next
