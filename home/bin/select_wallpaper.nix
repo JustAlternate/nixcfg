@@ -3,7 +3,7 @@ pkgs.writeShellScriptBin "select_wallpaper"
   ''
     #!/usr/bin/env bash
     # Set some variables
-    wall_dir="$HOME/wallpaper/"
+    wall_dir="./../rice/wallpaper/"
     cacheDir="$HOME/.cache/jp/"
 
     # Create cache dir if not exists
@@ -44,7 +44,6 @@ pkgs.writeShellScriptBin "select_wallpaper"
     eww reload &
     pywalfox update &
     ~/./.config/conky/update_conky.sh &
-    #cp ~/.cache/wal/discord-pywal.css ~/.config/vesktop/themes/pywal.css &
     themecord &
     cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
     [[ $(pidof cava) != "" ]] && pkill -USR1 cava &
