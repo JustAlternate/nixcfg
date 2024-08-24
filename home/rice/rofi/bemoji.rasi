@@ -9,10 +9,16 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun";
+    modi:                       "drun";
     show-icons:                 true;
     display-drun:               "";
-	drun-display-format:        "{name}";
+    drun-display-format:        "{name}";
+
+    disable-history: false;
+    sorting-method: "normal";
+    max-history-size: 25;
+    case-sensitive: false;
+    matching: "fuzzy";
 }
 
 /*****----- Global Properties -----*****/
