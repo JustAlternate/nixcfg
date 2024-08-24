@@ -102,6 +102,7 @@
         sshfs
         neovim-remote
         pandoc
+        lazygit
 
         ## Show-off
         cmatrix

@@ -9,10 +9,16 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun";
+    modi:                       "drun";
     show-icons:                 true;
     display-drun:               "";
-	drun-display-format:        "{name}";
+    drun-display-format:        "{name}";
+
+    disable-history: false;
+    sorting-method: "normal";
+    max-history-size: 25;
+    case-sensitive: false;
+    matching: "fuzzy";
 }
 
 /*****----- Global Properties -----*****/
@@ -129,8 +135,8 @@ element {
     border-color:                @color1;
     background-color:            transparent;
     text-color:                  @foreground;
-    orientation:                 vertical;
     cursor:                      pointer;
+    orientation:                 vertical;
 }
 element normal.normal {
     background-color:            transparent;
