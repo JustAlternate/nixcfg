@@ -2,7 +2,6 @@
   imports = [
     ./nvim
     ./zsh
-    ./docker
   ];
   home = {
     stateVersion = "24.05";
