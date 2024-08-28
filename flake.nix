@@ -29,12 +29,12 @@
     } @ inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      systemMac = "aarch64-darwin";
       nixos-overlays = [
         # Allow configurations to use pkgs.unstable.<package-name>.
-        (final: prev: {
+        (_: prev: {
           unstable = import nixos-unstable {
-            system = prev.system;
+            inherit (prev) system;
             config.allowUnfree = true;
           };
         })
@@ -46,21 +46,30 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./laptop_nix/configuration.nix
+            ./Laptop/configuration.nix
             home-manager.nixosModules.home-manager
           ];
         };
       };
       homeConfigurations = {
+        # Asus TUF gaming Laptop
         justalternate = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
-            ./home
+            ./Laptop/home
           ];
           extraSpecialArgs = {
             inherit inputs;
           };
+        };
+        # MacOS work Laptop
+        loicweber = home-manager.lib.homeManagerConfiguration {
+          # aarch64 means ARM, i.e. apple silicon
+          pkgs = nixpkgs.legacyPackages.${systemMac};
+          modules = [
+            ./Mac
+          ];
         };
       };
     };
