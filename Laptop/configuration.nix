@@ -1,12 +1,23 @@
 { config
 , pkgs
+, inputs
 , ...
 }: {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    inputs.sops-nix.nixosModules.sops
   ];
+
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/justalternate/.config/sops/age/keys.txt";
+    secrets.test-pass = {
+      owner = config.users.users.justalternate.name;
+    };
+  };
 
   nix = {
     settings = {
