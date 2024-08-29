@@ -40,7 +40,7 @@
     '';
 
     initExtraFirst = ''
-      cat /home/justalternate/.cache/wal/sequences
+      cat ${config.home.homeDirectory}/.cache/wal/sequences
     '';
   };
 }

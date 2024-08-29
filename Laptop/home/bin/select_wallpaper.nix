@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 pkgs.writeShellScriptBin "select_wallpaper"
   ''
     #!/usr/bin/env bash
     # Set some variables
-    wall_dir="/home/justalternate/.config/dotfiles/Laptop/home/rice/wallpaper/"
+    wall_dir="${config.home.homeDirectory}/.config/dotfiles/Laptop/home/rice/wallpaper/"
     cacheDir="$HOME/.cache/jp/"
 
     # Create cache dir if not exists
