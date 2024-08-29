@@ -3,7 +3,7 @@ pkgs.writeShellScriptBin "select_wallpaper"
   ''
     #!/usr/bin/env bash
     # Set some variables
-    wall_dir="./../rice/wallpaper/"
+    wall_dir="/home/justalternate/.config/dotfiles/rice/wallpaper/"
     cacheDir="$HOME/.cache/jp/"
 
     # Create cache dir if not exists

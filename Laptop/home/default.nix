@@ -139,6 +139,7 @@
 
         # Miscs
         cpu-x
+        marp-cli
 
       ]
       ++ (import ./bin { inherit pkgs; });
