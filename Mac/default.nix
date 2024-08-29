@@ -9,6 +9,7 @@
     homeDirectory = "/Users/loicweber/";
     packages = with pkgs; [
       cmatrix
+      sops
     ];
   };
   xdg.enable = true;
