@@ -75,6 +75,9 @@
           modules = [
             ./Mac
           ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
         };
       };
     };
