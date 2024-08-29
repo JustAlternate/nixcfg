@@ -42,6 +42,15 @@
       PATH = "/opt/homebrew/opt/openjdk/bin:/opt/homebrew/Cellar/python@3.11/bin:/usr/local/go/bin:${config.home.homeDirectory}/go/bin:$PATH";
       GOPATH = "${config.home.homeDirectory}/go";
       GOBIN = "${config.home.homeDirectory}/go/bin";
+
+
+      # Usage of swissknife :
+      ARTIFACTORY_USERNAME = "justalternateidz";
+      ARTIFACTORY_PASSWORD = "${config.sops.secrets.test-pass}";
+      NOMAD_ADDR = "https://nomad.dev.iadvize.io";
+      GITHUB_USERNAME = "justalternateidz";
+      CORE_MYSQL_USER = "livechat";
+
     };
   };
 }
