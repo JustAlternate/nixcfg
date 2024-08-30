@@ -5,9 +5,9 @@
 {
   imports = [
     ./rice
-    ./nvim
     ./zsh.nix
     ./dev
+    ./nvim
     ../../shared/ssh.nix
   ];
   home = {

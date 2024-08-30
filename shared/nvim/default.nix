@@ -1,7 +1,8 @@
 { lib
 , pkgs
 , ...
-}: {
+}:
+{
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
@@ -23,11 +24,12 @@
       deadnix # Find and remove unused code in .nix source files
       alejandra # Nix Code Formatter
       nixpkgs-fmt
+      llm-ls
 
       lua-language-server
       stylua
-      pyright
       shfmt
+      pyright
       gopls
     ];
 
@@ -51,7 +53,6 @@
           flash-nvim
           friendly-snippets
           gitsigns-nvim
-          markdown-preview-nvim
           indent-blankline-nvim
           lualine-nvim
           neodev-nvim
@@ -78,6 +79,7 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
+          markdown-preview-nvim
           {
             name = "LuaSnip";
             path = luasnip;
@@ -148,13 +150,10 @@
             { import = "plugins" },
 
             -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
-            { "nvim-treesitter/nvim-treesitter",
-              opts = function(_, opts)
-                opts.ensure_installed = {}
-              end,
-            },
+            { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
           },
         })
+        require('colorizer').setup()
       '';
   };
 
