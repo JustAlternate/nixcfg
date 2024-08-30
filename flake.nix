@@ -35,6 +35,7 @@
     let
       system = "x86_64-linux";
       systemMac = "aarch64-darwin";
+      systemArm = "aarch64-linux";
       nixos-overlays = [
         # Allow configurations to use pkgs.unstable.<package-name>.
         (_: prev: {
@@ -55,6 +56,14 @@
             home-manager.nixosModules.home-manager
           ];
         };
+        BeaverNixos = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./Beaver/configuration.nix
+            home-manager.nixosModules.home-manager
+          ];
+        };
       };
       homeConfigurations = {
         # Asus TUF gaming Laptop
@@ -63,6 +72,15 @@
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
             ./Laptop/home
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        beaver = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${systemArm};
+          modules = [
+            ./Beaver/home
           ];
           extraSpecialArgs = {
             inherit inputs;
