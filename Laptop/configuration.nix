@@ -8,7 +8,10 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../shared/sops.nix
+    inputs.sops-nix.nixosModules.sops
   ];
+
+  sops.age.keyFile = "/home/justalternate/.config/sops/age/keys.txt";
 
   nix = {
     settings = {
