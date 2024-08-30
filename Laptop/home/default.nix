@@ -7,8 +7,8 @@
     ./rice
     ./nvim
     ./zsh.nix
-    ./ssh
     ./dev
+    ../../shared/ssh.nix
   ];
   home = {
     username = "justalternate";

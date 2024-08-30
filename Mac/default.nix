@@ -1,12 +1,10 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./nvim
     ./zsh
     ../shared/sops.nix
-    inputs.sops-nix.homeManagerModules.sops
+    ../shared/ssh.nix
   ];
-
-  sops.age.keyFile = "/Users/loicweber/.config/sops/age/keys.txt";
 
   home = {
     stateVersion = "24.05";
