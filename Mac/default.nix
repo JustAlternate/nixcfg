@@ -2,8 +2,11 @@
   imports = [
     ./nvim
     ./zsh
+    ../shared/sops.nix
     inputs.sops-nix.homeManagerModules.sops
   ];
+
+  sops.age.keyFile = "/Users/loicweber/.config/sops/age/keys.txt";
 
   home = {
     stateVersion = "24.05";
@@ -11,17 +14,7 @@
     homeDirectory = "/Users/loicweber/";
     packages = with pkgs; [
       cmatrix
-      sops
     ];
-  };
-
-  sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    defaultSymlinkPath = "/home/loicweber/.config/secrets";
-    defaultSecretsMountPoint = "/home/loicweber/.config/secrets.d";
-    age.keyFile = "/Users/loicweber/.config/sops/age/keys.txt";
-    secrets."test-pass" = { };
   };
 
   xdg.enable = true;
