@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
@@ -6,21 +6,8 @@
     ./planka/docker-compose.nix
     ./tianji/docker-compose.nix
     ./owncloud/docker-compose.nix
-    inputs.sops-nix.nixosModules.sops
+    ../shared/sops.nix
   ];
-
-  sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/root/.config/sops/age/keys.txt";
-    secrets = {
-      test-pass = { };
-      "OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD" = { };
-      "PLANKA/SECRET_KEY" = { };
-      "TIANJI/POSTGRES_PASSWORD" = { };
-      "TIANJI/JWT_SECRET" = { };
-    };
-  };
 
   nix = {
     settings = {
