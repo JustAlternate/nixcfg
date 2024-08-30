@@ -4,9 +4,9 @@
 }:
 {
   imports = [
-    ./ssh
     ./nvim
     ./fastfetch
+    ../../shared/ssh.nix
     ./zsh.nix
     inputs.sops-nix.homeManagerModules.sops
   ];

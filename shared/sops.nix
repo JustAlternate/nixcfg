@@ -1,11 +1,13 @@
 { pkgs, inputs, ... }: {
+
   imports = [
-    inputs.sops-nix.nixosModules.sops
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
+    sops.age.keyFile = "~/.config/sops/age/keys.txt";
     secrets = {
       test-pass = { };
       "OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD" = { };

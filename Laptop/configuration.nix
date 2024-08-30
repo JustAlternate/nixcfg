@@ -1,6 +1,5 @@
 { config
 , pkgs
-, inputs
 , ...
 }: {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
@@ -8,10 +7,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../shared/sops.nix
-    inputs.sops-nix.nixosModules.sops
   ];
-
-  sops.age.keyFile = "/home/justalternate/.config/sops/age/keys.txt";
 
   nix = {
     settings = {

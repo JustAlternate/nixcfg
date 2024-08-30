@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -8,10 +8,7 @@
     ./tianji/docker-compose.nix
     ./owncloud/docker-compose.nix
     ../shared/sops.nix
-    inputs.sops-nix.nixosModules.sops
   ];
-
-  sops.age.keyFile = "/root/config/sops/age/keys.txt";
 
   nix = {
     settings = {

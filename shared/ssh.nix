@@ -4,7 +4,7 @@ _: {
     addKeysToAgent = "yes";
     matchBlocks = {
       "beaver" = {
-        # justalternate.fr
+        # migrated justalternate.fr
         hostname = "195.201.116.51";
         user = "root";
         identityFile = "~/.ssh/id_ed25519";
