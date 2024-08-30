@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [
-    ./nvim
-    ./zsh
+    ./zsh.nix
+    ../shared/nvim
     ../shared/sops.nix
     ../shared/ssh.nix
   ];
