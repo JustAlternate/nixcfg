@@ -7,17 +7,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.sops-nix.nixosModules.sops
+    ../shared/sops.nix
   ];
-
-  sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/justalternate/.config/sops/age/keys.txt";
-    secrets.test-pass = {
-      owner = config.users.users.justalternate.name;
-    };
-  };
 
   nix = {
     settings = {
