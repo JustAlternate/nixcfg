@@ -1,12 +1,11 @@
-{ config
-, pkgs
+{ pkgs
 , ...
 }: {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #../shared/sops.nix
+    ../shared/sops.nix
   ];
 
   nix = {
