@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+PATTERN='([0-9]{2}):([0-9]{2}):([0-9]{2})'
+LINE=$(acpi -b | grep "Battery 0")
+
+if [[ $LINE =~ $PATTERN ]]; then
+	HOURS=$(echo "${BASH_REMATCH[1]}" | sed 's/^0*//')
+	MINUTES=$(echo "${BASH_REMATCH[2]}" | sed 's/^0*//')
+	
+	if [[ $HOURS -eq 0 ]]; then
+		echo "${MINUTES}m"
+	elif [[ $MINUTES -eq 0 ]]; then
+		echo "${HOURS}h"
+	else
+		echo "${HOURS}h ${MINUTES}m"
+	fi
+else
+	echo "Charging"
+fi
