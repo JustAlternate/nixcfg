@@ -5,7 +5,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../shared/sops.nix
-    ../shared/git.nix
   ];
 
   nix = {
@@ -32,6 +31,7 @@
       busybox
       pipewire
       wireplumber
+      git
       vim
       home-manager
     ];

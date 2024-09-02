@@ -1,14 +1,13 @@
 { pkgs
-, inputs
 , ...
 }:
 {
   imports = [
     ./fastfetch
+    ./zsh.nix
     ../../shared/nvim
     ../../shared/ssh.nix
-    ./zsh.nix
-    inputs.sops-nix.homeManagerModules.sops
+    ../../shared/git.nix
   ];
 
   home = {

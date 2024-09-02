@@ -1,5 +1,5 @@
 # Auto-generated using compose2nix v0.2.3-pre.
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Runtime
@@ -14,7 +14,7 @@
     image = "postgres:15.4-alpine";
     environment = {
       "POSTGRES_DB" = "tianji";
-      "POSTGRES_PASSWORD" = "cat ${config.sops.secrets."TIANJI/POSTGRES_PASSWORD".path}";
+      "POSTGRES_PASSWORD" = "cat /run/secrets/TIANJI/POSTGRES_PASSWORD";
       "POSTGRES_USER" = "tianji";
     };
     volumes = [
@@ -58,7 +58,7 @@
       "ALLOW_OPENAPI" = "true";
       "ALLOW_REGISTER" = "false";
       "DATABASE_URL" = "postgresql://tianji:tianji@postgres:5432/tianji";
-      "JWT_SECRET" = "cat ${config.sops.secrets."TIANJI/JWT_SECRET".path}";
+      "JWT_SECRET" = "cat /run/secrets/TIANJI/JWT_SECRET";
     };
     ports = [
       "12345:12345/tcp"
