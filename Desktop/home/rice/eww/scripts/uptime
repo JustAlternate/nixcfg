@@ -1,0 +1,10 @@
+#!/usr/bin/env --split-string=awk --file
+
+{
+	if ($0 ~ "up ") sub("up ", "", $0)
+	print $0
+}
+
+
+
+# vim:filetype=awk

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source_id=$(pactl list sources | awk '/Name:.*input/ {print $2}')
+
+volume=$(pactl list sources | awk -v source_id="$source_id" '$0 ~ source_id {getline; sub("Volume:.*\\/", "", $3); print $3}')
+
+echo "$volume"
+
+#amixer -D pulse sget Capture | awk -F '[^0-9]+' '/Left:/{print $3}'

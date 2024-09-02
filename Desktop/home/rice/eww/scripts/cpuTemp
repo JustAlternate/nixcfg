@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+temperature=$(sensors | grep 'Composite' | awk '{print $2}')
+clean=$(echo "$temperature" | grep -oE '[+-]?[0-9]+')
+
+echo "  ${temperature:1:2}°C "
+
