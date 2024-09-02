@@ -56,6 +56,14 @@
             home-manager.nixosModules.home-manager
           ];
         };
+        DesktopNixos = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./Desktop/configuration.nix
+            home-manager.nixosModules.home-manager
+          ];
+        };
         BeaverNixos = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = { inherit inputs; };
@@ -72,6 +80,16 @@
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
             ./Laptop/home
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        desktop = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+            { nixpkgs.overlays = nixos-overlays; }
+            ./Desktop/home
           ];
           extraSpecialArgs = {
             inherit inputs;
