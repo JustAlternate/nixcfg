@@ -6,7 +6,7 @@
     age.keyFile = "/nix/sops/age/keys.txt";
     secrets = {
       test-pass = { };
-      "EMAIL" = { owner = "justalternate"; };
+      "EMAIL" = { };
       "OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD" = { };
       "PLANKA/SECRET_KEY" = { };
       "TIANJI/POSTGRES_PASSWORD" = { };
