@@ -1,0 +1,15 @@
+(defwindow mic_dropdown
+  :monitor 0
+  :name "mic_dropdown"
+  :stacking "fg"
+  :exclusive true
+  :geometry (geometry :x "1500px" :y "5px" :width "100px" :height "100px")
+  :anchor "top right"
+  (box
+    :class "mic-dropdown"
+    :orientation "vertical"
+    (button :onclick "scripts/switch_output_device.sh 58" "Family 17h/19h HD Audio Controller Analog Stereo")
+    (button :onclick "scripts/switch_output_device.sh 68" "Corsair VOID ELITE Surround USB Adapter Analog Stereo")
+    (button :onclick "scripts/switch_output_device.sh 6723" "soundcore Space One")
+  )
+)
