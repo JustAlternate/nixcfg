@@ -6,7 +6,7 @@ in
   programs.git = {
     enable = true;
     userName = "JustAlternate";
-    userEmail = "loicw@justalternate.fr";
+    userEmail = "cat /run/secrets/EMAIL";
     extraConfig = {
       branch = {
         # Automatic remote tracking.

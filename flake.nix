@@ -30,6 +30,7 @@
     { nixpkgs
     , home-manager
     , nixos-unstable
+    , sops-nix
     , ...
     } @ inputs:
     let
@@ -54,6 +55,7 @@
           modules = [
             ./Laptop/configuration.nix
             home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
           ];
         };
         DesktopNixos = nixpkgs.lib.nixosSystem {
@@ -62,6 +64,7 @@
           modules = [
             ./Desktop/configuration.nix
             home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
           ];
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
@@ -70,6 +73,7 @@
           modules = [
             ./Beaver/configuration.nix
             home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
           ];
         };
       };
