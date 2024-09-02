@@ -9,6 +9,7 @@
     ./dev
     ./nvim
     ../../shared/ssh.nix
+    ../../shared/git.nix
   ];
   home = {
     username = "justalternate";
