@@ -15,7 +15,7 @@
     # sops
     sops-nix.url = "github:Mic92/sops-nix";
     # optional, not necessary for the module
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    #sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # other urls
     lobster.url = "github:justchokingaround/lobster";
