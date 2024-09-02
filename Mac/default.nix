@@ -4,6 +4,7 @@
     ../shared/nvim
     ../shared/sops.nix
     ../shared/ssh.nix
+    ../shared/git.nix
   ];
 
   home = {

@@ -1,5 +1,5 @@
 # Auto-generated using compose2nix v0.2.3-pre.
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Runtime
@@ -96,7 +96,7 @@
   virtualisation.oci-containers.containers."owncloud_server" = {
     image = "owncloud/server:10.15";
     environment = {
-      "OWNCLOUD_ADMIN_PASSWORD" = "cat ${config.sops.secrets."OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD".path}";
+      "OWNCLOUD_ADMIN_PASSWORD" = "cat /run/secrets/OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD";
       "OWNCLOUD_ADMIN_USERNAME" = "admin";
       "OWNCLOUD_DB_HOST" = "mariadb";
       "OWNCLOUD_DB_NAME" = "owncloud";

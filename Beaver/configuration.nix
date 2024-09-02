@@ -25,8 +25,8 @@
   environment = {
     systemPackages = with pkgs; [
       busybox
-      git
       vim
+      git
       home-manager
       docker-client
     ];
