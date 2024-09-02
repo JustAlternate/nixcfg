@@ -15,7 +15,7 @@
     environment = {
       "BASE_URL" = "https://planka.justalternate.fr";
       "DATABASE_URL" = "postgresql://postgres@postgres/planka";
-      "SECRET_KEY" = "cat ${config.sops.secrets."PLANKA/SECRET_KEY".path}";
+      "SECRET_KEY" = "cat /run/secrets/PLANKA/SECRET_KEY";
     };
     volumes = [
       "planka_attachments:/app/private/attachments:rw"
