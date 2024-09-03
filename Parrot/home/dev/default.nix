@@ -5,6 +5,7 @@
   imports = [
     ./R
     ./python
+    ./Ocaml
   ];
 
   home = {
