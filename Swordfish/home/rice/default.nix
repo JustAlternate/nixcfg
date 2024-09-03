@@ -1,12 +1,12 @@
 { pkgs, ... }: {
 
   imports = [
-    ../../../Laptop/home/rice/pywal
+    ../../../Parrot/home/rice/pywal
     ./hyprland
     ./eww
     ../../../shared/kitty.nix
-    ../../../Laptop/home/rice/rofi
-    ../../../Laptop/home/rice/fastfetch
+    ../../../Parrot/home/rice/rofi
+    ../../../Parrot/home/rice/fastfetch
   ];
 
   home.packages = with pkgs; [

@@ -48,12 +48,13 @@
       ];
     in
     {
+      # NixOS configurations
       nixosConfigurations = {
-        LaptopNixos = nixpkgs.lib.nixosSystem {
+        ParrotNixos = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./Laptop/configuration.nix
+            ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
           ];
@@ -77,13 +78,13 @@
           ];
         };
       };
+      # Nix Home-manger configurations
       homeConfigurations = {
-        # Asus TUF gaming Laptop
-        justalternate = home-manager.lib.homeManagerConfiguration {
+        parrot = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
-            ./Laptop/home
+            ./Parrot/home
           ];
           extraSpecialArgs = {
             inherit inputs;
@@ -108,12 +109,10 @@
             inherit inputs;
           };
         };
-        # MacOS work Laptop
-        loicweber = home-manager.lib.homeManagerConfiguration {
-          # aarch64 means ARM, i.e. apple silicon
+        owl = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${systemMac};
           modules = [
-            ./Mac
+            ./Owl
           ];
           extraSpecialArgs = {
             inherit inputs;
