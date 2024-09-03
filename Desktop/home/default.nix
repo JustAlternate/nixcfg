@@ -70,6 +70,8 @@
         vlc
         obs-studio
         inputs.lobster.packages.x86_64-linux.lobster
+        ## Video editing
+        kdePackages.kdenlive
 
         # Image
         imagemagick
