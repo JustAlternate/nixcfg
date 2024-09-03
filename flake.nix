@@ -58,11 +58,11 @@
             sops-nix.nixosModules.sops
           ];
         };
-        DesktopNixos = nixpkgs.lib.nixosSystem {
+        SwordfishNixos = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./Desktop/configuration.nix
+            ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
           ];
@@ -89,11 +89,11 @@
             inherit inputs;
           };
         };
-        desktop = home-manager.lib.homeManagerConfiguration {
+        swordfish = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
-            ./Desktop/home
+            ./Swordfish/home
           ];
           extraSpecialArgs = {
             inherit inputs;
