@@ -59,11 +59,6 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  networking.hostName = "nixos"; # Define your hostname.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
@@ -194,11 +189,17 @@
 
   programs = {
     zsh.enable = true;
-
     # Enable ssh-agent
     ssh.startAgent = true;
-
     hyprland.enable = true;
   };
 
+  services.openssh.enable = true;
+  users.users.justalternate.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
+
+  networking = {
+    hostName = "nixos"; # Define your hostname.
+    # Enable networking
+    networkmanager.enable = true;
+  };
 }
