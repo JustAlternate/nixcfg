@@ -1,6 +1,15 @@
 # ❄️ nixcfg
 
+This repository is used to manage my systems using Nix.
+
+- Beaver: My VPS running NixOS and selfhosting services such a kanban, a cloud storage, my websites...
+- Swordfish: My desktop gaming station which I also use for intensive computation.
+- Parrot: My semi gaming laptop which I mainly use for study and abroad.
+- Owl: My arm processor Mac M1.
+
 ## My very pywal centric NixOS Hyprland rice
+
+(For both swordfish and Parrot)
 
 ### Video Showcase [11 Aug 2024]
 
