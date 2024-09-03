@@ -1,0 +1,29 @@
+(include "./yuck/hbar2/widgets.yuck")
+
+(defwidget hbar_left2 []
+  (box
+    :space-evenly false
+    :halign "start"
+    :spacing 25
+    (nixos_icon)
+    (workspaces)))
+
+(defwidget hbar_center2 []
+  (box
+    :space-evenly false
+    :halign "center"
+    :spacing 25
+    (clock)))
+
+(defwidget hbar_right2 []
+  (box
+    :space-evenly false
+    :halign "end"
+    (container)))
+
+(defwidget hbar_layout2 []
+  (box
+    :class "hbar"
+    (hbar_left2)
+    (hbar_center2)
+    (hbar_right2)))
