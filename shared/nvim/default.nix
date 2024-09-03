@@ -24,8 +24,8 @@
       deadnix # Find and remove unused code in .nix source files
       alejandra # Nix Code Formatter
       nixpkgs-fmt
+      ocamlPackages.ocaml-lsp
       llm-ls
-
       lua-language-server
       stylua
       shfmt
