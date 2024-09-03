@@ -5,7 +5,7 @@
     ./eww
     ./rofi
     ./fastfetch
-    ../../shared/kitty.nix
+    ../../../shared/kitty.nix
   ];
 
   home.packages = with pkgs; [
