@@ -5,8 +5,8 @@
 {
   imports = [
     ./rice
-    ../../Laptop/home/zsh.nix
-    ../../Laptop/home/dev
+    ../../Parrot/home/zsh.nix
+    ../../Parrot/home/dev
     ./nvim
     ../../shared/ssh.nix
     ../../shared/git.nix
