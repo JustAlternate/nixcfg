@@ -59,14 +59,14 @@
 
   # Bootloader.
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    kernelModules = [
-      "nvidia_uvm"
-      "nvidia_modeset"
-      "nvidia_drm"
-      "nvidia"
-    ];
+    loader = {
+      grub = {
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+        device = "nodev";
+      };
+      efi.canTouchEfiVariables = false;
+    };
   };
 
   users.defaultUserShell = pkgs.zsh;
