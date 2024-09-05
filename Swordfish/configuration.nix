@@ -199,6 +199,7 @@
 
   networking = {
     hostName = "nixos"; # Define your hostname.
+    interfaces."enp4s0".wakeOnLan.enable = true;
     # Enable networking
     networkmanager.enable = true;
   };
