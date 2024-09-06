@@ -9,7 +9,8 @@
   ];
 
   home.packages = with pkgs; [
-    trayer
+    birdtray
+    patray
     palenight-theme
   ];
 
@@ -20,6 +21,12 @@
       size = "standard";
       variant = "macchiato";
     };
+  };
+
+  services.trayer = {
+    enable = true;
+    settings.transparent = false;
+    settings.tint = "0x282c34";
   };
 
   home.sessionVariables = {
