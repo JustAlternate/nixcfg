@@ -20,6 +20,7 @@
         lua
         go
         cmake
+        gnumake
       ];
   };
 }
