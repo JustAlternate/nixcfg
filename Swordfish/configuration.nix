@@ -89,12 +89,19 @@
       videoDrivers = [ "amdvlk" ];
     };
 
-    # sound using pipewire:
     pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+
+      # lowLatency = {
+      #   # enable this module
+      #   enable = true;
+      #   # defaults (no need to be set unless modified)
+      #   quantum = 64;
+      #   rate = 48000;
+      # };
     };
 
     ollama = {
@@ -193,6 +200,11 @@
     ssh.startAgent = true;
     hyprland.enable = true;
   };
+
+
+  services.xserver.wacom.enable = true;
+  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
   users.users.justalternate.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
