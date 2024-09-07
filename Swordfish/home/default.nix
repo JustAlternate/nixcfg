@@ -11,6 +11,7 @@
     ../../shared/ssh.nix
     ../../shared/git.nix
   ];
+
   home = {
     username = "justalternate";
     homeDirectory = "/home/justalternate";
@@ -128,11 +129,15 @@
         space-cadet-pinball
         hmcl
         steam
-        unstable.osu-lazer-bin
+        #unstable.osu-lazer-bin
         bottles
         appimage-run
+        inputs.nix-gaming.packages.${pkgs.system}.osu-stable
+        inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
 
         ## Drivers/Requirements
+        wacomtablet
+        opentabletdriver
         ckb-next
         meson
         jdk17
@@ -144,6 +149,7 @@
         # Miscs
         cpu-x
         marp-cli
+        android-udev-rules
 
       ]
       ++ (import ./bin { inherit pkgs; });
