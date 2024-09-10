@@ -5,6 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../shared/sops.nix
+    ../shared/display-manager.nix
   ];
 
   nix = {
@@ -53,8 +54,11 @@
 
   # Bootloader.
   boot = {
-    loader.systemd-boot.enable = true;
+    loader.grub.enable = true;
+    loader.grub.efiSupport = true;
+    loader.grub.device = "nodev";
     loader.efi.canTouchEfiVariables = true;
+    loader.efi.efiSysMountPoint = "/boot/efi";
   };
 
   users.defaultUserShell = pkgs.zsh;

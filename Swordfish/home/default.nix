@@ -54,6 +54,7 @@
         xfce.thunar
         xfce.thunar-volman
         unstable.yazi
+        gparted
 
         # Browser
         chromium
