@@ -80,6 +80,7 @@
           vim-startuptime
           which-key-nvim
           markdown-preview-nvim
+          go-nvim
           {
             name = "LuaSnip";
             path = luasnip;
@@ -154,6 +155,7 @@
           },
         })
         require('colorizer').setup()
+        require('go').setup()
       '';
   };
 
