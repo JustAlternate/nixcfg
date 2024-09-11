@@ -10,6 +10,7 @@
     ./nvim
     ../../shared/ssh.nix
     ../../shared/git.nix
+    ../../shared/display-manager.nix
   ];
   home = {
     username = "justalternate";
