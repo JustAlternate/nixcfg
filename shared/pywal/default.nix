@@ -16,10 +16,7 @@ in
   ];
 
   home.file = {
-    "~/.config/wal/templates/cava_conf" = ./template/cava_conf;
-    "~/.config/wal/templates/color-rofi" = ./template/color-rofi;
-    "~/.config/wal/templates/colors-hypr" = ./template/colors-hypr;
-    "~/.config/wal/templates/colors-discord" = ./template/colors-discord.css;
+    "~/.config/wal/templates" = ./template;
 
     ".mozilla/native-messaging-hosts/pywalfox.json".text = lib.replaceStrings [ "<path>" ] [
       "${pywalfox-wrapper}/bin/pywalfox-wrapper"
