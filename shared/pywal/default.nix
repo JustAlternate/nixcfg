@@ -16,7 +16,7 @@ in
   ];
 
   home.file = {
-    "~/.config/wal/templates" = ./template;
+    # "~/.config/wal/templates" = ./template/;
 
     ".mozilla/native-messaging-hosts/pywalfox.json".text = lib.replaceStrings [ "<path>" ] [
       "${pywalfox-wrapper}/bin/pywalfox-wrapper"
