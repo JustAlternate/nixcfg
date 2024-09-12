@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   imports = [
-    ./pywal
     ./hyprland
     ./eww
-    ./rofi
-    ./fastfetch
+    ../../../shared/rofi
+    ../../../shared/fastfetch
+    ../../../shared/pywal
     ../../../shared/kitty.nix
   ];
 
