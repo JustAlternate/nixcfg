@@ -49,14 +49,6 @@
     enable = true;
     listenAddress = "0.0.0.0";
     verbose = false;
-    appendConfig = ''
-      protocols:
-      (
-        { name: "ssh"; service: "ssh"; host: "localhost"; port: "22"; probe: "builtin"; },
-        { name: "http"; host: "localhost"; port: "80"; probe: "builtin"; },
-        { name: "ssl"; host: "localhost"; port: "4430"; probe: "builtin"; },
-      );
-    '';
   };
 
   services.openssh.enable = true;
