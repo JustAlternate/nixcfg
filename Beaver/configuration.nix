@@ -45,9 +45,21 @@
   networking.hostName = "nixos-beaver-8gb-nbg1-3";
   networking.domain = "";
 
+  services.sslh = {
+    enable = true;
+    listenAddress = "0.0.0.0";
+    verbose = false;
+    appendConfig = ''
+      protocols:
+      (
+        { name: "ssh"; service: "ssh"; host: "localhost"; port: "22"; probe: "builtin"; },
+        { name: "http"; host: "localhost"; port: "80"; probe: "builtin"; },
+        { name: "ssl"; host: "localhost"; port: "4430"; probe: "builtin"; },
+      );
+    '';
+  };
 
   services.openssh.enable = true;
-  services.sslh.enabe = true;
   users.users.root.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
 
   system.stateVersion = "23.11";
