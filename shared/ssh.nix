@@ -8,7 +8,6 @@ _: {
         hostname = "195.201.116.51";
         user = "root";
         identityFile = "~/.ssh/id_ed25519";
-        port = 22;
       };
       "ocelot" = {
         #batocera
