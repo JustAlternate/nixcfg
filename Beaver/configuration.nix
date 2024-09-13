@@ -47,7 +47,7 @@
 
 
   services.openssh.enable = true;
-  sevices.sslh.enabe = true;
+  services.sslh.enabe = true;
   users.users.root.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
 
   system.stateVersion = "23.11";
