@@ -45,6 +45,7 @@
   networking.hostName = "nixos-beaver-8gb-nbg1-3";
   networking.domain = "";
   services.openssh.enable = true;
+  services.openssh.ports = [ 22 993 220 143 ];
   users.users.root.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
 
   system.stateVersion = "23.11";
