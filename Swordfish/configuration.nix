@@ -53,11 +53,17 @@
 
   # Bootloader.
   boot = {
-    loader.grub.enable = true;
-    loader.grub.efiSupport = true;
-    loader.grub.device = "nodev";
-    loader.efi.canTouchEfiVariables = true;
-    loader.efi.efiSysMountPoint = "/boot/efi";
+    loader = {
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+    };
   };
 
   users.defaultUserShell = pkgs.zsh;
