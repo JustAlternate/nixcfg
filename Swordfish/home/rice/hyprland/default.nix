@@ -22,7 +22,6 @@
 
       # Monitor settings
       monitor=DP-3, 2560x1440@165, 0x0, 1
-      monitor=HDMI-A-1, 1920x1080, 2560x0, 1
 
       # Default env vars
       env = XCURSOR_SIZE,10
