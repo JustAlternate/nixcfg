@@ -9,7 +9,7 @@
           right = 1;
         };
         type = "kitty-direct";
-        source = "${config.home.homeDirectory}/.config/dotfiles/Parrot/home/rice/fastfetch/nixos-logo-small.png";
+        source = "${config.home.homeDirectory}/.config/dotfiles/shared/fastfetch/nixos-logo-small.png";
       };
 
       display = {
