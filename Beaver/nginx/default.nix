@@ -14,6 +14,7 @@
         "justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
+          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
 
           locations."/" = {
             root = "/var/www/justalternate.fr/";
@@ -23,6 +24,8 @@
         "planka.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
+          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
+
           locations."/" = {
             proxyPass = "http://127.0.0.1:3000";
             proxyWebsockets = true; # needed if you need to use WebSocket
@@ -38,6 +41,7 @@
         "tianji.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
+          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
           locations."/" = {
             proxyPass = "http://127.0.0.1:12345";
             proxyWebsockets = true; # needed if you need to use WebSocket
@@ -53,6 +57,7 @@
         "cloud.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
+          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
           locations."/" = {
             proxyPass = "http://127.0.0.1:8080";
             proxyWebsockets = true; # needed if you need to use WebSocket
