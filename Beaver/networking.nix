@@ -4,7 +4,7 @@
   networking = {
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 ];
+      allowedTCPPorts = [ 80 443 8443 ];
     };
     nameservers = [
       "8.8.8.8"
