@@ -1,4 +1,5 @@
 { pkgs
+, config
 , ...
 }: {
   imports = [
@@ -128,7 +129,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.justalternate = {
-    home = "/home/justalternate";
+    home = "${config.home.homeDirectory}";
     isNormalUser = true;
     description = "justalternate";
     extraGroups = [ "networkmanager" "wheel" ];
