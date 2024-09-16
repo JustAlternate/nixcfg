@@ -49,7 +49,31 @@
     enable = true;
     listenAddress = "0.0.0.0";
     verbose = false;
+    settings = {
+      protocols = [
+        {
+          host = "localhost";
+          name = "http";
+          port = "80";
+        }
+        {
+          host = "localhost";
+          name = "tls";
+          port = "8443";
+        }
+        {
+          host = "localhost";
+          name = "ssh";
+          port = "22";
+        }
+
+
+      ];
+    };
   };
+
+
+
 
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
