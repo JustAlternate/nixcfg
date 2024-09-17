@@ -7,6 +7,7 @@
     ./planka/docker-compose.nix
     ./tianji/docker-compose.nix
     ./owncloud/docker-compose.nix
+    ./hauk/docker-compose.nix
     ../shared/sops.nix
   ];
 
@@ -71,9 +72,6 @@
       ];
     };
   };
-
-
-
 
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
