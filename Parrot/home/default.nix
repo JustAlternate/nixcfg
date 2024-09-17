@@ -61,6 +61,7 @@
 
         # Other gui apps
         thunderbird
+        unstable.mousam
 
         # Music
         mpv
