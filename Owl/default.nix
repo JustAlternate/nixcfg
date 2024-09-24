@@ -2,7 +2,7 @@
   imports = [
     ./zsh.nix
     ../shared/nvim
-    ../shared/sops.nix
+    # ../shared/sops.nix
     ../shared/ssh.nix
     ../shared/git.nix
   ];
