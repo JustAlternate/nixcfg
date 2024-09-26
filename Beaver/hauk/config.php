@@ -272,7 +272,7 @@
 "velocity_unit"     => KILOMETERS_PER_HOUR,
 
 // The publicly accessible URL to reach Hauk, with trailing slash.
-"public_url"        => 'https://gps.justalternate.fr/'
+"public_url"        => 'https://hauk.justalternate.fr/'
 
 );
 
