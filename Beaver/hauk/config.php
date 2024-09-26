@@ -233,23 +233,23 @@
 // Default and maximum zoom levels allowed on the map (0-20), higher value means
 // closer zooming.
 "default_zoom"      => 14,
-"max_zoom"          => 19,
+"max_zoom"          => 20,
 
 // Maximum duration of a single location share, in seconds.
-"max_duration"      => 86400,
+"max_duration"      => 9900000,
 
 // Minimum time between each location update, in seconds.
-"min_interval"      => 1,
+"min_interval"      => 60,
 
 // The time that should pass without any location updates received, in seconds,
 // before the user is marked "offline" on the map.
-"offline_timeout"   => 30,
+"offline_timeout"   => 300,
 
 // The timeout in seconds for map update requests from the map view. If a web
 // request takes this long without a response, the map viewer is considered
 // offline and will get a warning notifying them that they have lost their
 // network connection.
-"request_timeout"   => 10,
+"request_timeout"   => 60,
 
 // Maximum number of data points stored for each share before old points are
 // deleted. Map clients will see up to this amount of data points when they load
