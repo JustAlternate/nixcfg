@@ -14,8 +14,10 @@
         "justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
-          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
-
+          listen = [
+            { port = 80; }
+            { port = 8443; ssl = true; }
+          ];
           locations."/" = {
             root = "/var/www/justalternate.fr/";
           };
@@ -24,7 +26,10 @@
         "planka.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
-          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
+          listen = [
+            { port = 80; }
+            { port = 8443; ssl = true; }
+          ];
 
           locations."/" = {
             proxyPass = "http://127.0.0.1:3000";
@@ -41,7 +46,10 @@
         "tianji.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
-          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
+          listen = [
+            { port = 80; }
+            { port = 8443; ssl = true; }
+          ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:12345";
             proxyWebsockets = true; # needed if you need to use WebSocket
@@ -57,7 +65,10 @@
         "cloud.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
-          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
+          listen = [
+            { port = 80; }
+            { port = 8443; ssl = true; }
+          ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:8080";
             proxyWebsockets = true; # needed if you need to use WebSocket
@@ -72,8 +83,10 @@
         "hauk.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;
-          listen = [{ addr = "127.0.0.1"; port = 8443; ssl = true; }];
-
+          listen = [
+            { port = 80; }
+            { port = 8443; ssl = true; }
+          ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:1212";
             extraConfig = ''
@@ -85,6 +98,11 @@
               add_header X-Content-Type-Options nosniff always;
               add_header X-XSS-Protection "1; mode=block" always;
               add_header X-Robots-Tag "noindex, nofollow" always;
+
+              location ^~ /.well-known/acme-challenge/ {
+                # Serve ACME challenge over HTTP without redirect
+                default_type "text/plain";
+                root /var/lib/acme/acme-challenge;
             '';
           };
         };
