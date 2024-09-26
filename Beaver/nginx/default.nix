@@ -15,8 +15,8 @@
           enableACME = true;
           forceSSL = true;
           listen = [
-            { port = 80; }
-            { port = 8443; ssl = true; }
+            { addr = "0.0.0.0"; port = 80; }
+            { addr = "0.0.0.0"; port = 8443; ssl = true; }
           ];
           locations."/" = {
             root = "/var/www/justalternate.fr/";
@@ -27,8 +27,8 @@
           enableACME = true;
           forceSSL = true;
           listen = [
-            { port = 80; }
-            { port = 8443; ssl = true; }
+            { addr = "0.0.0.0"; port = 80; }
+            { addr = "0.0.0.0"; port = 8443; ssl = true; }
           ];
 
           locations."/" = {
@@ -47,8 +47,8 @@
           enableACME = true;
           forceSSL = true;
           listen = [
-            { port = 80; }
-            { port = 8443; ssl = true; }
+            { addr = "0.0.0.0"; port = 80; }
+            { addr = "0.0.0.0"; port = 8443; ssl = true; }
           ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:12345";
@@ -66,8 +66,8 @@
           enableACME = true;
           forceSSL = true;
           listen = [
-            { port = 80; }
-            { port = 8443; ssl = true; }
+            { addr = "0.0.0.0"; port = 80; }
+            { addr = "0.0.0.0"; port = 8443; ssl = true; }
           ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:8080";
@@ -84,8 +84,8 @@
           enableACME = true;
           forceSSL = true;
           listen = [
-            { port = 80; }
-            { port = 8443; ssl = true; }
+            { addr = "0.0.0.0"; port = 80; }
+            { addr = "0.0.0.0"; port = 8443; ssl = true; }
           ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:1212";
@@ -103,6 +103,7 @@
                 # Serve ACME challenge over HTTP without redirect
                 default_type "text/plain";
                 root /var/lib/acme/acme-challenge;
+              }
             '';
           };
         };
