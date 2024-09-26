@@ -147,6 +147,7 @@
         winetricks
         wine-wayland
         zlib
+        lego
 
         # Miscs
         cpu-x
