@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  hauk:
+    image: bilde2910/hauk
+    container_name: hauk
+    volumes:
+      - ./:/etc/hauk
+    ports:
+      - 1212:80/tcp
