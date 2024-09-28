@@ -129,7 +129,7 @@
 
         # Games
         space-cadet-pinball
-        hmcl
+        unstable.hmcl
         steam
         #unstable.osu-lazer-bin
         bottles
@@ -142,7 +142,7 @@
         opentabletdriver
         ckb-next
         meson
-        jdk17
+        jdk20
         wine
         winetricks
         wine-wayland

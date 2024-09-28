@@ -58,6 +58,18 @@
         enable = true;
         efiSupport = true;
         device = "nodev";
+	# Windows dual boot
+	extraEntries = ''
+        menuentry "Windows" {
+          insmod part_gpt
+          insmod fat
+          insmod search_fs_uuid
+          insmod chain
+          search --fs-uuid --set=root 78FC-1AE0 
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+	'';
+	version = 2;
       };
       efi = {
         canTouchEfiVariables = true;
