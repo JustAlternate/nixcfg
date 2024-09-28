@@ -14,7 +14,7 @@
     image = "postgres:15.4-alpine";
     environment = {
       "POSTGRES_DB" = "tianji";
-      "POSTGRES_PASSWORD" = "cat /run/secrets/TIANJI/POSTGRES_PASSWORD";
+      "POSTGRES_PASSWORD" = "${"cat /run/secrets/TIANJI/POSTGRES_PASSWORD"}";
       "POSTGRES_USER" = "tianji";
     };
     volumes = [
@@ -58,7 +58,7 @@
       "ALLOW_OPENAPI" = "true";
       "ALLOW_REGISTER" = "false";
       "DATABASE_URL" = "postgresql://tianji:tianji@postgres:5432/tianji";
-      "JWT_SECRET" = "cat /run/secrets/TIANJI/JWT_SECRET";
+      "JWT_SECRET" = "${"cat /run/secrets/TIANJI/JWT_SECRET"}";
     };
     ports = [
       "12345:12345/tcp"

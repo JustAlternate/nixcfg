@@ -25,7 +25,7 @@
       alejandra # Nix Code Formatter
       nixpkgs-fmt
       ocamlPackages.ocaml-lsp
-      llm-ls
+      # llm-ls
       lua-language-server
       stylua
       shfmt

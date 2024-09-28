@@ -3,11 +3,12 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
-    ./nginx
-    ./planka/docker-compose.nix
-    ./tianji/docker-compose.nix
-    ./owncloud/docker-compose.nix
-    ../shared/sops.nix
+    ./nginx # Web server, reverse proxy
+    ./planka/docker-compose.nix # selfhosted Kanban
+    ./tianji/docker-compose.nix # selfhosted google analytics
+    ./owncloud/docker-compose.nix # selhosted google drive
+    ./hauk/docker-compose.nix # selfhosted google maps sharing location service
+    ../shared/sops.nix # Secrets management using ssh key
   ];
 
   nix = {
@@ -15,6 +16,8 @@
       experimental-features = [ "nix-command" "flakes" ];
     };
     optimise.automatic = true;
+
+    # Garbage collection
     gc = {
       automatic = true;
       dates = "weekly";
@@ -45,10 +48,31 @@
   networking.hostName = "nixos-beaver-8gb-nbg1-3";
   networking.domain = "";
 
+  # sslh for ssh through https in order to get around school wifi ssh port 22 firewall
   services.sslh = {
     enable = true;
     listenAddress = "0.0.0.0";
     verbose = false;
+    settings = {
+      protocols = [
+        {
+          host = "localhost";
+          name = "http";
+          port = "80";
+        }
+        # Redirect 443 https to 8443
+        {
+          host = "localhost";
+          name = "tls";
+          port = "8443";
+        }
+        {
+          host = "localhost";
+          name = "ssh";
+          port = "22";
+        }
+      ];
+    };
   };
 
   services.openssh.enable = true;
