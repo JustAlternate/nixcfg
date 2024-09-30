@@ -129,7 +129,6 @@
 
         # Games
         space-cadet-pinball
-        unstable.hmcl
         steam
         #unstable.osu-lazer-bin
         bottles
