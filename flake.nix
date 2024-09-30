@@ -17,6 +17,10 @@
     # optional, not necessary for the module
     #sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    # For nix-darwin for Owl
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     # other urls
     lobster.url = "github:justchokingaround/lobster";
     themecord = {
@@ -24,16 +28,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # For installing osu and osu-lazer
     nix-gaming.url = "github:fufexan/nix-gaming";
 
   };
 
 
   outputs =
-    { nixpkgs
+    { self
+    , nixpkgs
     , home-manager
     , nixos-unstable
     , sops-nix
+    , nix-darwin
     , ...
     } @ inputs:
     let
@@ -112,15 +119,26 @@
             inherit inputs;
           };
         };
-        owl = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${systemMac};
-          modules = [
-            ./Owl
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
       };
+
+      # Nix-darwin
+      darwinConfigurations."Owl" = nix-darwin.lib.darwinSystem {
+        system = systemMac;
+        specialArgs = { inherit inputs self; };
+        modules = [
+	   home-manager.darwinModules.home-manager
+          ./Owl/configuration.nix
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.loicweber = import ./Owl/home;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
+        ];
+      };
+      # Expose the package set, including overlays, for convenience.
+      darwinPackages = self.darwinConfigurations."Owl".pkgs;
     };
 }
