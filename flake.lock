@@ -58,6 +58,26 @@
         "type": "github"
       }
     },
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1727707210,
+        "narHash": "sha256-8XZp5XO2FC6INZEZ2WlwErtvFVpl45ACn8CJ2hfTA0Y=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "f61d5f2051a387a15817007220e9fb3bbead57b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nix-gaming": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -189,6 +209,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "lobster": "lobster",
+        "nix-darwin": "nix-darwin",
         "nix-gaming": "nix-gaming",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_3",

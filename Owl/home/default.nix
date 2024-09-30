@@ -1,16 +1,16 @@
 { pkgs, ... }: {
   imports = [
     ./zsh.nix
-    ../shared/nvim
-    # ../shared/sops.nix
-    ../shared/ssh.nix
-    ../shared/git.nix
+    ../../shared/nvim
+    # ../../shared/sops.nix
+    ../../shared/ssh.nix
+    ../../shared/git.nix
+    ./git.nix
+    ./ssh.nix
   ];
 
   home = {
     stateVersion = "24.05";
-    username = "loicweber";
-    homeDirectory = "/Users/loicweber/";
     packages = with pkgs; [
       cmatrix
     ];
