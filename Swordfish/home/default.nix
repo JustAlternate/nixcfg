@@ -128,7 +128,6 @@
         blueman
 
         # Games
-        space-cadet-pinball
         steam
         #unstable.osu-lazer-bin
         bottles
