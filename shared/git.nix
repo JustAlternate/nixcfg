@@ -10,7 +10,7 @@ in
   programs.git = {
     enable = true;
     userName = "JustAlternate";
-    userEmail = "cat /run/secrets/EMAIL";
+    userEmail = "loicw@justalternate.fr";
     extraConfig = {
       branch = {
         # Automatic remote tracking.
