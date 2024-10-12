@@ -135,6 +135,7 @@
         appimage-run
         inputs.nix-gaming.packages.${pkgs.system}.osu-stable
         inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
+        unstable.pokemmo-installer
 
         ## Drivers/Requirements
         wacomtablet

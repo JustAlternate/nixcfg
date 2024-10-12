@@ -31,6 +31,9 @@
       shfmt
       pyright
       gopls
+      (import ./ollama-copilot.nix {
+        inherit (pkgs) lib buildGoModule fetchFromGitHub;
+      })
     ];
 
     plugins = with pkgs.vimPlugins; [
