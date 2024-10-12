@@ -46,6 +46,7 @@
 
         # Text editors
         vim
+        texliveMedium
 
         # Terminals
         kitty
@@ -125,7 +126,6 @@
         blueman
 
         # Games
-        space-cadet-pinball
         hmcl
         steam
         unstable.osu-lazer-bin

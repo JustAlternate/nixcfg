@@ -21,6 +21,7 @@
         go
         cmake
         gnumake
+        framac
       ];
   };
 }
