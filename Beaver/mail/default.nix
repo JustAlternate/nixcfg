@@ -1,4 +1,8 @@
-_: {
+_:
+let
+  EMAIL = builtins.readFile "/run/secrets/EMAIL";
+in
+{
   imports = [
     (builtins.fetchTarball {
       # Pick a release version you are interested in and set its hash, e.g.
@@ -23,7 +27,7 @@ _: {
     # A list of all login accounts. To create the password hashes, use
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
-      "loicw@justalternate.fr" = {
+      EMAIL = {
         hashedPasswordFile = /run/secrets/HASHED_PASSWORD;
         aliases = [ "postmaster@example.com" ];
       };
@@ -33,5 +37,5 @@ _: {
     certificateScheme = "acme-nginx";
   };
   security.acme.acceptTerms = true;
-  security.acme.defaults.email = "loicw@justalternate.fr";
+  security.acme.defaults.email = EMAIL;
 }
