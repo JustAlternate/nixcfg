@@ -5,9 +5,10 @@
     ./networking.nix # generated at runtime by nixos-infect
     ./nginx # Web server, reverse proxy
     ./planka/docker-compose.nix # selfhosted Kanban
-    ./tianji/docker-compose.nix # selfhosted google analytics
+    # ./tianji/docker-compose.nix # selfhosted google analytics
     ./owncloud/docker-compose.nix # selhosted google drive
     ./hauk/docker-compose.nix # selfhosted google maps sharing location service
+    ./mail
     ../shared/sops.nix # Secrets management using ssh key
   ];
 
@@ -32,6 +33,7 @@
       git
       home-manager
       docker-client
+      lego
     ];
   };
 
