@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  EMAIL = builtins.readFile "/run/secrets/EMAIL";
+in
 {
   services = {
     nginx = {
@@ -122,6 +125,6 @@
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = "loicw@justalternate.fr";
+    defaults.email = EMAIL;
   };
 }

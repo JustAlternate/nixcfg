@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   inherit (lib) mkDefault;
+  EMAIL = builtins.readFile "/run/secrets/EMAIL";
 in
 {
   home.packages = with pkgs; [
@@ -10,7 +11,7 @@ in
   programs.git = {
     enable = true;
     userName = "JustAlternate";
-    userEmail = "loicw@justalternate.fr";
+    userEmail = EMAIL;
     extraConfig = {
       branch = {
         # Automatic remote tracking.
