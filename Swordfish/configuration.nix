@@ -214,13 +214,9 @@
   };
 
   home-manager = {
-    sharedModules = [
-      inputs.sops-nix.homeManagerModules.sops
-    ];
     useGlobalPkgs = true;
     useUserPackages = true;
   };
-  systemd.user.services.mbsync.Unit.After = [ "sops-nix.service" ];
 
   programs = {
     zsh.enable = true;
