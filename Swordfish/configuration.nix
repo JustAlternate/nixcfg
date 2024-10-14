@@ -1,5 +1,5 @@
 { pkgs
-, config
+, inputs
 , ...
 }: {
   imports = [
@@ -141,7 +141,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.justalternate = {
-    home = "${config.home.homeDirectory}";
+    home = "/home/justalternate/";
     isNormalUser = true;
     description = "justalternate";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -213,8 +213,10 @@
     ];
   };
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+  };
 
   programs = {
     zsh.enable = true;

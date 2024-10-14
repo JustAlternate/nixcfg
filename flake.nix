@@ -132,9 +132,11 @@
           home-manager.darwinModules.home-manager
           ./Owl/configuration.nix
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.loicweber = import ./Owl/home;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.loicweber = import ./Owl/home;
+            };
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
