@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
-  EMAIL = builtins.readFile "/run/secrets/EMAIL";
+  EMAIL = builtins.readFile config.sops.secrets.EMAIL.path;
 in
 {
   services = {
