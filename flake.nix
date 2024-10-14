@@ -31,6 +31,9 @@
     # For installing osu and osu-lazer
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    # Minecraft servers
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+
   };
 
 
@@ -126,7 +129,7 @@
         system = systemMac;
         specialArgs = { inherit inputs self; };
         modules = [
-	   home-manager.darwinModules.home-manager
+          home-manager.darwinModules.home-manager
           ./Owl/configuration.nix
           {
             home-manager.useGlobalPkgs = true;
