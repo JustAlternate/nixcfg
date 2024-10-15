@@ -1,7 +1,7 @@
 # Auto-generated using compose2nix v0.2.3-pre.
 { pkgs, lib, ... }:
 let
-  OWNCLOUD_ADMIN_PASSWORD = builtins.readFile "/run/secrets/OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD";
+  # OWNCLOUD_ADMIN_PASSWORD = builtins.readFile "/run/secrets/OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD";
 in
 {
   # Runtime
@@ -98,7 +98,7 @@ in
   virtualisation.oci-containers.containers."owncloud_server" = {
     image = "owncloud/server:10.15";
     environment = {
-      "OWNCLOUD_ADMIN_PASSWORD" = OWNCLOUD_ADMIN_PASSWORD;
+      "OWNCLOUD_ADMIN_PASSWORD" = "temp";
       "OWNCLOUD_ADMIN_USERNAME" = "JustAlternate";
       "OWNCLOUD_DB_HOST" = "mariadb";
       "OWNCLOUD_DB_NAME" = "owncloud";
