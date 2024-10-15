@@ -1,7 +1,4 @@
-{ config, ... }:
-let
-  EMAIL = builtins.readFile config.sops.secrets.EMAIL.path;
-in
+_:
 {
   imports = [
     (builtins.fetchTarball {
@@ -37,5 +34,5 @@ in
     certificateScheme = "acme-nginx";
   };
   security.acme.acceptTerms = true;
-  security.acme.defaults.email = EMAIL;
+  security.acme.defaults.email = "loicw@justalternate.fr";
 }

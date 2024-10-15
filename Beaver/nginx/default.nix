@@ -1,7 +1,4 @@
-{ pkgs, config, ... }:
-let
-  EMAIL = builtins.readFile config.sops.secrets.EMAIL.path;
-in
+{ pkgs, ... }:
 {
   services = {
     nginx = {
@@ -125,6 +122,6 @@ in
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = EMAIL;
+    defaults.email = "loicw@justalternate.fr";
   };
 }
