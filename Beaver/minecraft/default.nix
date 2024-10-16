@@ -33,6 +33,7 @@ in
           spawn-animals = true;
           spawn-monsters = true;
           spawn-npcs = true;
+          online-mode = false; # Accept crack player
         };
 
         # Performance jvm flags
