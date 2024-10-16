@@ -2,12 +2,6 @@
 , inputs
 , ...
 }:
-let
-  tex = pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-medium
-      tree-dvips;
-  };
-in
 {
   imports = [
     ./rice
@@ -52,7 +46,6 @@ in
 
         # Text editors
         vim
-        tex
 
         # Terminals
         kitty
