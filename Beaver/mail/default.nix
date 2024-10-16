@@ -24,7 +24,7 @@ _:
     # A list of all login accounts. To create the password hashes, use
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
-      EMAIL = {
+      "loicw@justalternate.fr" = {
         hashedPasswordFile = /run/secrets/HASHED_PASSWORD;
         aliases = [ "postmaster@example.com" ];
       };
