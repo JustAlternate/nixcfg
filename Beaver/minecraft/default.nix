@@ -1,4 +1,7 @@
 { pkgs, inputs, ... }:
+let
+  path = "/var/lib/minecraft-servers";
+in
 {
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
@@ -6,15 +9,14 @@
   services.minecraft-servers = {
     enable = true;
     eula = true; # Automatically accept eula
-    # Directory where to put all the servers files
-    dataDir = "/var/lib/minecraft-servers";
+    dataDir = path; # Directory to put the servers files
     servers = {
       fallen-kingdom-server = {
         enable = true;
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 
-        # Spin of the minecraft server to use and version (using unstable nixos branch to get latest papermc 1.21 version)
+        # Spin of the minecraft server to use and version (using unstable nixos branch to get latest papermc version)
         package = pkgs.unstable.papermcServers.papermc-1_21;
 
         serverProperties = {
@@ -40,17 +42,26 @@
 
         # symlinks can be used to manage declaratively other files such as plugins, mods...
         symlinks = {
+          # Mandatory paper config file
+          "spigot.yml" = ./spigot.yml; # use the spigot.yml file in this folder for production
+          "bukkit.yml" = ./bukkit.yml;
+          "config/paper-global.yml" = ./config/paper-global.yml;
+          "config/paper-world-defaults.yml" = ./config/paper-world-defaults.yml;
+
+          # Plugins fetch and configuration
           "plugins/FallenKingdom.jar" = pkgs.fetchurl rec {
             pname = "FallenKingdom";
             version = "2.23.2";
             url = "https://cdn.modrinth.com/data/wKYpobLb/versions/8oEbkpgh/${pname}-${version}.jar";
             hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
           };
+          "plugins/FallenKingdom/config.yml" = ./plugins/FallenKingdom/config.yml;
+          # symlink more config files if needed ....
         };
+
         # another-server = {
         #   enable = false;
         #   package = pkgs.fabricServers.fabric-1_18_2;
-        #   dataDir = "/var/minecraft-server";
         #   serverProperties = { /* */ };
         #   whitelist = { /* */ };
         # };
