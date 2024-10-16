@@ -71,7 +71,7 @@
         ffmpeg
         vlc
         obs-studio
-        inputs.lobster.packages.x86_64-linux.lobster
+        # inputs.lobster.packages.x86_64-linux.lobster
 
         # Image
         imagemagick
