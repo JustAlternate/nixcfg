@@ -106,7 +106,8 @@
       xkbVariant = "";
 
       # Load nvidia driver for Xorg and Wayland
-      videoDrivers = [ "nvidia" "amdvlk" ];
+      videoDrivers = [ "amdvlk" ];
+      # videoDrivers = [ "nvidia" "amdvlk" ];
     };
 
     # sound using pipewire:
@@ -117,10 +118,10 @@
       pulse.enable = true;
     };
 
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
+    # ollama = {
+    #   enable = true;
+    #   acceleration = "cuda";
+    # };
 
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
@@ -141,8 +142,8 @@
         CPU_MAX_PERF_ON_BAT = 20;
 
         #Optional helps save long term battery health
-        START_CHARGE_THRESH_BAT0 = 70; # 40 and bellow it starts to charge
-        STOP_CHARGE_THRESH_BAT0 = 90; # 80 and above it stops charging
+        START_CHARGE_THRESH_BAT0 = 70; # and bellow it starts to charge
+        STOP_CHARGE_THRESH_BAT0 = 90; # and above it stops charging
       };
     };
   };
@@ -202,7 +203,6 @@
         amdvlk
         vaapiVdpau
         libvdpau-va-gl
-        nvidia-vaapi-driver
       ];
     };
 
@@ -214,7 +214,7 @@
       # Enable this if you have graphical corruption issues or application crashes after waking
       # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
       # of just the bare essentials.
-      powerManagement.enable = true;
+      powerManagement.enable = false;
 
       # Fine-grained power management. Turns off GPU when not in use.
       # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -234,7 +234,7 @@
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
 
       prime = {
         offload.enable = true;
@@ -244,14 +244,6 @@
       };
     };
   };
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05";
 
   xdg.portal = {
     config.common.default = "*";
@@ -275,4 +267,11 @@
     hyprland.enable = true;
   };
 
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "24.05";
 }
