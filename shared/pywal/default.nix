@@ -12,7 +12,7 @@ in
   home.packages = with pkgs; [
     pywal
     pywalfox-native
-    inputs.themecord.packages.x86_64-linux.default
+    #inputs.themecord.packages.x86_64-linux.default
   ];
 
   home.file = {

@@ -15,18 +15,18 @@
     # sops
     sops-nix.url = "github:Mic92/sops-nix";
     # optional, not necessary for the module
-    #sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # For nix-darwin for Owl
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # other urls
-    lobster.url = "github:justchokingaround/lobster";
-    themecord = {
-      url = "github:danihek/themecord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lobster.url = "github:justchokingaround/lobster";
+    # themecord = {
+    #   url = "github:danihek/themecord";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # For installing osu and osu-lazer
     nix-gaming.url = "github:fufexan/nix-gaming";
