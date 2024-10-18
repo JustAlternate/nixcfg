@@ -1,7 +1,7 @@
 # Auto-generated using compose2nix v0.2.3-pre.
 { pkgs, lib, config, ... }:
 let
-  # SECRET_KEY = builtins.readFile "/run/secrets/PLANKA/SECRET_KEY";
+  SECRET_KEY = builtins.readFile "/run/secrets/PLANKA/SECRET_KEY";
 in
 {
   # Runtime
@@ -17,7 +17,7 @@ in
     environment = {
       "BASE_URL" = "https://planka.justalternate.fr";
       "DATABASE_URL" = "postgresql://postgres@postgres/planka";
-      "SECRET_KEY" = "temp";
+      "SECRET_KEY" = SECRET_KEY;
     };
     volumes = [
       "planka_attachments:/app/private/attachments:rw"
