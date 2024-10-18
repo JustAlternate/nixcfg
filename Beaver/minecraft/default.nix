@@ -1,7 +1,4 @@
 { pkgs, inputs, ... }:
-let
-  path = "/var/lib/minecraft-servers";
-in
 {
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
@@ -9,10 +6,9 @@ in
   services.minecraft-servers = {
     enable = true;
     eula = true; # Automatically accept eula
-    dataDir = path; # Directory to put the servers files
     servers = {
-      fallen-kingdom-server = {
-        enable = false;
+      fallen-kingdom = {
+        enable = true;
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 
@@ -59,13 +55,6 @@ in
           "plugins/FallenKingdom/config.yml" = ./plugins/FallenKingdom/config.yml;
           # symlink more config files if needed ....
         };
-
-        # another-server = {
-        #   enable = false;
-        #   package = pkgs.fabricServers.fabric-1_18_2;
-        #   serverProperties = { /* */ };
-        #   whitelist = { /* */ };
-        # };
       };
     };
   };
