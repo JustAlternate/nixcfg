@@ -42,7 +42,6 @@
     , nixpkgs
     , home-manager
     , nixos-unstable
-    , sops-nix
     , nix-darwin
     , ...
     } @ inputs:
@@ -69,7 +68,7 @@
           modules = [
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
           ];
         };
         SwordfishNixos = nixpkgs.lib.nixosSystem {
@@ -78,7 +77,7 @@
           modules = [
             ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
           ];
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
@@ -87,7 +86,7 @@
           modules = [
             ./Beaver/configuration.nix
             home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
           ];
         };
