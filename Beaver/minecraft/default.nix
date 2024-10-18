@@ -12,7 +12,7 @@ in
     dataDir = path; # Directory to put the servers files
     servers = {
       fallen-kingdom-server = {
-        enable = true;
+        enable = false;
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 
