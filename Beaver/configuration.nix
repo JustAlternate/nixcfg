@@ -9,7 +9,7 @@
     ./owncloud/docker-compose.nix # selhosted google drive
     ./hauk/docker-compose.nix # selfhosted google maps sharing location service
     ./mail
-    # ./minecraft
+    ./minecraft
     ../shared/sops.nix # Secrets management using ssh key
   ];
 
