@@ -62,6 +62,7 @@
         # Other gui apps
         thunderbird
         unstable.mousam
+        inkscape
 
         # Music
         mpv
@@ -127,7 +128,7 @@
         # Games
         hmcl
         steam
-        unstable.osu-lazer-bin
+        # unstable.osu-lazer-bin
         bottles
 
         ## Drivers/Requirements
