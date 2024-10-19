@@ -6,6 +6,8 @@
   services.minecraft-servers = {
     enable = true;
     eula = true; # Automatically accept eula
+    dataDir = "/srv/minecraft";
+    runDir = "/srv/minecraft";
     servers = {
       fallen-kingdom = {
         enable = true;
@@ -24,7 +26,7 @@
           max-players = 10;
           white-list = false;
           enable-command-block = true;
-          view-distance = 8;
+          view-distance = 16;
           simulation-distance = 8;
           spawn-animals = true;
           spawn-monsters = true;
@@ -33,7 +35,7 @@
         };
 
         # Performance jvm flags
-        jvmOpts = "-Xms2G -Xmx6G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
+        jvmOpts = "-Xms2G -Xmx6G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1";
 
         # whitelist = { /* */ };
 
@@ -42,8 +44,6 @@
           # Mandatory paper config file
           "spigot.yml" = ./spigot.yml; # use the spigot.yml file in this folder for production
           "bukkit.yml" = ./bukkit.yml;
-          "config/paper-global.yml" = ./config/paper-global.yml;
-          "config/paper-world-defaults.yml" = ./config/paper-world-defaults.yml;
 
           # Plugins fetch and configuration
           "plugins/FallenKingdom.jar" = pkgs.fetchurl rec {
@@ -53,9 +53,26 @@
             hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
           };
           "plugins/FallenKingdom/config.yml" = ./plugins/FallenKingdom/config.yml;
+
+          "plugins/WorldEdit.jar" = pkgs.fetchurl rec {
+            pname = "worldedit-bukkit";
+            version = "7.3.7";
+            url = "https://cdn.modrinth.com/data/1u6JkXh5/versions/H12HdUau/${pname}-${version}.jar";
+            hash = "sha256-5W+VZBHAR314IPVqAz2Ghnw6nOGA69H1W8leraaZl1U=";
+          };
           # symlink more config files if needed ....
         };
       };
     };
+  };
+  systemd.tmpfiles.rules = [
+    "d /srv/minecraft 0770 minecraft minecraft"
+  ];
+
+  users.groups.minecraft = { };
+  users.users.minecraft = {
+    isSystemUser = true;
+    group = "minecraft";
+    home = "/srv/minecraft";
   };
 }
