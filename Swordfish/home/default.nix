@@ -72,7 +72,7 @@
         ffmpeg
         vlc
         obs-studio
-        inputs.lobster.packages.x86_64-linux.lobster
+        # inputs.lobster.packages.x86_64-linux.lobster
         ## Video editing
         kdePackages.kdenlive
 
@@ -141,7 +141,7 @@
         opentabletdriver
         ckb-next
         meson
-        jdk20
+        jdk22
         wine
         winetricks
         wine-wayland
