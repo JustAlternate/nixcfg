@@ -12,6 +12,10 @@ let
       fancyhdr
       ncctools
       ifmtarg
+      tocloft
+      pst-tree
+      pstricks
+      listings
       ;
   };
 in
