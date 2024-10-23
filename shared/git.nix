@@ -9,8 +9,8 @@ in
 
   programs.git = {
     enable = true;
-    userName = "JustAlternate";
-    userEmail = "loicw@justalternate.fr";
+    userName = mkDefault "JustAlternate";
+    userEmail = mkDefault "loicw@justalternate.fr";
     extraConfig = {
       branch = {
         # Automatic remote tracking.
