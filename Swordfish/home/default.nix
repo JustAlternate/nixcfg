@@ -129,7 +129,6 @@
 
         # Games
         steam
-        #unstable.osu-lazer-bin
         bottles
         appimage-run
         inputs.nix-gaming.packages.${pkgs.system}.osu-stable
