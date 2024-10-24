@@ -6,8 +6,7 @@ pkgs.writeShellScriptBin "change_wallpaper"
     wal -i /home/justalternate/.config/dotfiles/shared/wallpaper/$file &
     sleep 0.4
     pywalfox update &
-    ~/./.config/conky/update_conky.sh &
-    themecord &
+    # ~/./.config/conky/update_conky.sh &
     cp ~/.cache/wal/cava_conf ~/.config/cava/config &
     [[ $(pidof cava) != "" ]] && pkill -USR1 cava &
   ''
