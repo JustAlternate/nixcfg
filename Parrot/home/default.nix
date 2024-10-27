@@ -126,9 +126,8 @@
         blueman
 
         # Games
-        hmcl
         steam
-        # unstable.osu-lazer-bin
+        inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
         bottles
 
         ## Drivers/Requirements
