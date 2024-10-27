@@ -66,6 +66,13 @@
             url = "https://www.spigotmc.org/resources/skinsrestorer.2124/download?version=${version}";
             hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
           };
+	  
+	  "plugins/ShopKeepers.jar" = pkgs.fetchurl rec {
+            pname = "ShopKeepers";
+            version = "554167";
+            url = "https://www.spigotmc.org/resources/shopkeepers.80756/download?version=${version}";
+            hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
+          };
 
           "plugins/WorldEdit.jar" = pkgs.fetchurl rec {
             pname = "worldedit-bukkit";
