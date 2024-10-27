@@ -3,6 +3,12 @@
   imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
 
+  environment = {
+    systemPackages = with pkgs; [
+      tmux
+    ];
+  };
+
   services.minecraft-servers = {
     enable = true;
     eula = true; # Automatically accept eula
