@@ -44,7 +44,7 @@ pkgs.writeShellScriptBin "select_wallpaper"
     eww reload &
     pywalfox update &
     # ~/./.config/conky/update_conky.sh &
-    themecord &
+    # themecord &
     cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
     [[ $(pidof cava) != "" ]] && pkill -USR1 cava &
     exit 0
