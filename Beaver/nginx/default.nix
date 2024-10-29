@@ -43,6 +43,16 @@
           };
         };
 
+        "mail.justalternate.fr" = {
+          enableACME = true;
+          forceSSL = true;
+          listen = [
+            { addr = "0.0.0.0"; port = 80; }
+            { addr = "0.0.0.0"; port = 995; }
+            { addr = "0.0.0.0"; port = 8443; ssl = true; }
+          ];
+        };
+
         "tianji.justalternate.fr" = {
           enableACME = true;
           forceSSL = true;

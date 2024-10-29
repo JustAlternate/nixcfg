@@ -72,7 +72,7 @@
         ffmpeg
         vlc
         obs-studio
-        inputs.lobster.packages.x86_64-linux.lobster
+        # inputs.lobster.packages.x86_64-linux.lobster
         ## Video editing
         kdePackages.kdenlive
 
@@ -128,20 +128,19 @@
         blueman
 
         # Games
-        space-cadet-pinball
         steam
-        #unstable.osu-lazer-bin
         bottles
         appimage-run
         inputs.nix-gaming.packages.${pkgs.system}.osu-stable
         inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
+        unstable.pokemmo-installer
 
         ## Drivers/Requirements
         wacomtablet
         opentabletdriver
         ckb-next
         meson
-        jdk20
+        jdk22
         wine
         winetricks
         wine-wayland
