@@ -14,7 +14,7 @@
   ];
 
   home.sessionVariables = {
-    GTK_THEME = "Materia-dark";
+    # GTK_THEME = "Materia-dark";
     XCURSOR_THEME = "Numix-Cursor";
     XCURSOR_SIZE = "24";
     HYPRCURSOR_THEME = "Numix-Cursor";
@@ -35,10 +35,10 @@
       package = pkgs.reversal-icon-theme;
     };
 
-    theme = {
-      name = "Materia-dark";
-      package = pkgs.materia-theme;
-    };
+    # theme = {
+    #   name = "Materia-dark";
+    #   package = pkgs.materia-theme;
+    # };
 
     cursorTheme = {
       name = "Numix-Cursor";

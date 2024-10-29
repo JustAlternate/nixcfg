@@ -6,6 +6,7 @@
     ./R
     ./python
     ./Ocaml
+    ./latex
   ];
 
   home = {
@@ -21,6 +22,7 @@
         go
         cmake
         gnumake
+        # framac
       ];
   };
 }
