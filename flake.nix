@@ -15,21 +15,24 @@
     # sops
     sops-nix.url = "github:Mic92/sops-nix";
     # optional, not necessary for the module
-    #sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # For nix-darwin for Owl
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # other urls
-    lobster.url = "github:justchokingaround/lobster";
-    themecord = {
-      url = "github:danihek/themecord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lobster.url = "github:justchokingaround/lobster";
+    # themecord = {
+    #   url = "github:danihek/themecord";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # For installing osu and osu-lazer
     nix-gaming.url = "github:fufexan/nix-gaming";
+
+    # Minecraft servers
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
   };
 
@@ -39,7 +42,6 @@
     , nixpkgs
     , home-manager
     , nixos-unstable
-    , sops-nix
     , nix-darwin
     , ...
     } @ inputs:
@@ -66,7 +68,7 @@
           modules = [
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
           ];
         };
         SwordfishNixos = nixpkgs.lib.nixosSystem {
@@ -75,7 +77,7 @@
           modules = [
             ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
           ];
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
@@ -84,7 +86,8 @@
           modules = [
             ./Beaver/configuration.nix
             home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
           ];
         };
       };
@@ -126,12 +129,14 @@
         system = systemMac;
         specialArgs = { inherit inputs self; };
         modules = [
-	   home-manager.darwinModules.home-manager
+          home-manager.darwinModules.home-manager
           ./Owl/configuration.nix
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.loicweber = import ./Owl/home;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.loicweber = import ./Owl/home;
+            };
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix

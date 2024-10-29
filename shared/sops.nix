@@ -5,7 +5,8 @@
     defaultSopsFormat = "yaml";
     age.keyFile = "/nix/sops/age/keys.txt";
     secrets = {
-      test-pass = { };
+      "HASHED_PASSWORD" = { };
+      "PASSWORD" = { };
       "EMAIL" = { };
       "OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD" = { };
       "PLANKA/SECRET_KEY" = { };
