@@ -13,6 +13,9 @@
     stateVersion = "24.05";
     packages = with pkgs; [
       cmatrix
+      postgresql
+      poetry
+      go-mockery
     ];
   };
 
