@@ -62,6 +62,7 @@
         # Other gui apps
         thunderbird
         unstable.mousam
+        inkscape
 
         # Music
         mpv
@@ -71,7 +72,7 @@
         ffmpeg
         vlc
         obs-studio
-        inputs.lobster.packages.x86_64-linux.lobster
+        # inputs.lobster.packages.x86_64-linux.lobster
 
         # Image
         imagemagick
@@ -125,10 +126,8 @@
         blueman
 
         # Games
-        space-cadet-pinball
-        hmcl
         steam
-        unstable.osu-lazer-bin
+        inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
         bottles
 
         ## Drivers/Requirements

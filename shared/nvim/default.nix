@@ -25,12 +25,21 @@
       alejandra # Nix Code Formatter
       nixpkgs-fmt
       ocamlPackages.ocaml-lsp
+
       # llm-ls
       lua-language-server
       stylua
       shfmt
       pyright
       gopls
+
+      # Latex preview
+      mupdf
+      xdotool
+
+      (import ./ollama-copilot.nix {
+        inherit (pkgs) lib buildGoModule fetchFromGitHub;
+      })
     ];
 
     plugins = with pkgs.vimPlugins; [
