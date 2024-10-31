@@ -39,7 +39,7 @@
     '';
 
     sessionVariables = {
-      PATH = "/opt/homebrew/opt/openjdk/bin:/opt/homebrew/Cellar/python@3.11/bin:/usr/local/go/bin:$PATH";
+      PATH = "/opt/homebrew/opt/openjdk/bin:/opt/homebrew/Cellar/python@3.11/bin:/usr/local/go/bin:/opt/homebrew/bin:$PATH";
       GOPATH = "/usr/local/go";
       GOBIN = "/usr/go/bin";
 
