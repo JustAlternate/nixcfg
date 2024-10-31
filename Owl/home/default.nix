@@ -15,7 +15,7 @@
       cmatrix
       postgresql
       poetry
-      go-mockery
+      unstable.go
     ];
   };
 
