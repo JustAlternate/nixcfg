@@ -34,6 +34,9 @@
     # Minecraft servers
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
+    # Brew for OWL
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
   };
 
 
@@ -129,7 +132,9 @@
         system = systemMac;
         specialArgs = { inherit inputs self; };
         modules = [
+          { nixpkgs.overlays = nixos-overlays; }
           home-manager.darwinModules.home-manager
+          inputs.nix-homebrew.darwinModules.nix-homebrew
           ./Owl/configuration.nix
           {
             home-manager = {

@@ -39,9 +39,9 @@
     '';
 
     sessionVariables = {
-      PATH = "/opt/homebrew/opt/openjdk/bin:/opt/homebrew/Cellar/python@3.11/bin:/usr/local/go/bin:${config.home.homeDirectory}/go/bin:$PATH";
-      GOPATH = "${config.home.homeDirectory}/go";
-      GOBIN = "${config.home.homeDirectory}/go/bin";
+      PATH = "/opt/homebrew/opt/openjdk/bin:/opt/homebrew/Cellar/python@3.11/bin:/usr/local/go/bin:$PATH";
+      GOPATH = "/usr/local/go";
+      GOBIN = "/usr/go/bin";
 
 
       # Usage of swissknife :
