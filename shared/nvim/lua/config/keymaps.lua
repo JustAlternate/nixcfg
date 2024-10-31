@@ -5,3 +5,7 @@ vim.api.nvim_set_keymap("n", "U", "<C-r>", {
 	desc = "Redo last change",
 	noremap = true,
 })
+
+vim.api.nvim_set_keymap("n", "<leader>cgt", "<cmd>GoTestFile<CR>", {
+	desc = "GoTestFile",
+})

@@ -1,5 +1,5 @@
-{ pkgs, self, ... }: {
-  environment.systemPackages = [];
+{ self, ... }: {
+  environment.systemPackages = [ ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -9,7 +9,7 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;
 
   # Set Git commit hash for darwin-version.
@@ -23,4 +23,18 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   users.users.loicweber.home = "/Users/loicweber";
+
+  nix-homebrew = {
+    # Install Homebrew under the default prefix
+    enable = true;
+
+    # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+    enableRosetta = true;
+
+    # User owning the Homebrew prefix
+    user = "loicweber";
+
+    # Automatically migrate existing Homebrew installations
+    autoMigrate = true;
+  };
 }
