@@ -132,9 +132,9 @@
         system = systemMac;
         specialArgs = { inherit inputs self; };
         modules = [
-          { nixpkgs.overlays = nixos-overlays; }
-          home-manager.darwinModules.home-manager
           inputs.nix-homebrew.darwinModules.nix-homebrew
+          home-manager.darwinModules.home-manager
+          { nixpkgs.overlays = nixos-overlays; }
           ./Owl/configuration.nix
           {
             home-manager = {
