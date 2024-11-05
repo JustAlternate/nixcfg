@@ -3,7 +3,7 @@ pkgs.writeShellScriptBin "select_wallpaper"
   ''
     #!/usr/bin/env bash
     # Set some variables
-    wall_dir="/home/justalternate/.config/dotfiles/shared/wallpaper/"
+    wall_dir="/home/justalternate/nixcfg/shared/wallpaper/"
     cacheDir="$HOME/.cache/jp/"
 
     # Create cache dir if not exists
