@@ -16,7 +16,7 @@
     shellAliases = {
       lg = "lazygit";
       ll = "ls -l";
-      nixcfg = "cd ~/.config/dotfiles";
+      nixcfg = "cd ~/nixcfg";
       ls = "eza --color=auto --icons=always";
       cd = "z";
       neofetch = "fastfetch";
