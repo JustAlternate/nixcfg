@@ -1,5 +1,5 @@
 # Auto-generated using compose2nix v0.2.3-pre.
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 let
   SECRET_KEY = builtins.readFile "/run/secrets/PLANKA/SECRET_KEY";
 in

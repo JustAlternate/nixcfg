@@ -4,10 +4,11 @@
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
     ./nginx # Web server, reverse proxy
-    ./planka/docker-compose.nix # selfhosted Kanban
+    ./planka # selfhosted Kanban
+    ./vaultwarden
     # ./tianji/docker-compose.nix # selfhosted google analytics
-    ./owncloud/docker-compose.nix # selhosted google drive
-    ./hauk/docker-compose.nix # selfhosted google maps sharing location service
+    ./owncloud # selhosted google drive
+    ./hauk # selfhosted google maps sharing location service
     ./mail
     ./minecraft
     ../shared/sops.nix # Secrets management using ssh key
