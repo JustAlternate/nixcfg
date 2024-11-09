@@ -16,7 +16,7 @@
     runDir = "/srv/minecraft";
     servers = {
       fallen-kingdom = {
-        enable = true;
+        enable = false;
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 

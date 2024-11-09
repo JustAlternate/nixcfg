@@ -10,6 +10,7 @@
       "EMAIL" = { };
       "OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD" = { };
       "PLANKA/SECRET_KEY" = { };
+      "VAULTWARDEN/ENV" = { };
       "TIANJI/POSTGRES_PASSWORD" = { };
       "TIANJI/JWT_SECRET" = { };
     };
