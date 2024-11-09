@@ -43,7 +43,9 @@
         # Performance jvm flags
         jvmOpts = "-Xms2G -Xmx6G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1";
 
-        # whitelist = { /* */ };
+        whitelist = {
+          JustAlternate = "8a3f19cf-9927-3b67-b784-4967c6d0005e";
+        };
 
         # symlinks can be used to manage declaratively other files such as plugins, mods...
         symlinks = {
@@ -59,19 +61,18 @@
             hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
           };
           "plugins/FallenKingdom/config.yml" = ./plugins/FallenKingdom/config.yml;
-		
-	  "plugins/SkinsRestorer.jar" = pkgs.fetchurl rec {
+
+          "plugins/SkinsRestorer.jar" = pkgs.fetchurl {
             pname = "SkinsRestorer";
-            version = "559493";
-            url = "https://www.spigotmc.org/resources/skinsrestorer.2124/download?version=${version}";
-            hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
+            url = "https://objects.githubusercontent.com/github-production-release-asset-2e65be/105874986/e2327cac-01ef-48e8-a41a-778d71fa6f32?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241105T175629Z&X-Amz-Expires=300&X-Amz-Signature=1bf1f3ff6668115ee1e6eb708da732961802d78d0b2c4200d56e89255fd5654a&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DSkinsRestorer.jar&response-content-type=application%2Foctet-stream";
+            hash = "sha256-D4pvASk15fgqDreBXAZl4+YEnys3exLRRrYXXm+0kqc=";
           };
-	  
-	  "plugins/ShopKeepers.jar" = pkgs.fetchurl rec {
+
+          "plugins/ShopKeepers.jar" = pkgs.fetchurl rec {
             pname = "ShopKeepers";
-            version = "554167";
-            url = "https://www.spigotmc.org/resources/shopkeepers.80756/download?version=${version}";
-            hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
+            version = "2.23.0";
+            url = "https://mediafilez.forgecdn.net/files/5619/313/Shopkeepers-${version}.jar";
+            hash = "sha256-IFiPr4rFOH7t3IY663s8WBN5wWDQuG0rU1jL61wiWrA=";
           };
 
           "plugins/WorldEdit.jar" = pkgs.fetchurl rec {
