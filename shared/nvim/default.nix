@@ -191,10 +191,12 @@
               vimdoc
               go
               markdown
+              markdown_inline
               dockerfile
               vim
               sql
               make
+              yuck
             ])).dependencies;
       };
     in
