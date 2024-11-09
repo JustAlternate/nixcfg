@@ -10,6 +10,16 @@ _:
     })
   ];
 
+  services.nginx.virtualHosts."mail.justalternate.fr" = {
+    enableACME = true;
+    forceSSL = true;
+    listen = [
+      { addr = "0.0.0.0"; port = 80; }
+      { addr = "0.0.0.0"; port = 995; }
+      { addr = "0.0.0.0"; port = 8443; ssl = true; }
+    ];
+  };
+
   services.dovecot2.sieve.extensions = [ "fileinto" ];
 
   mailserver = {
@@ -33,6 +43,4 @@ _:
     # down nginx and opens port 80.
     certificateScheme = "acme-nginx";
   };
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "loicw@justalternate.fr";
 }
