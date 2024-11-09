@@ -63,6 +63,7 @@
 
         # Other gui apps
         thunderbird
+        bitwarden-desktop
 
         # Music
         mpv
@@ -73,6 +74,7 @@
         vlc
         obs-studio
         # inputs.lobster.packages.x86_64-linux.lobster
+
         ## Video editing
         kdePackages.kdenlive
 
@@ -146,11 +148,11 @@
         wine-wayland
         zlib
         lego
+        android-udev-rules
 
         # Miscs
         cpu-x
         marp-cli
-        android-udev-rules
 
       ]
       ++ (import ./bin { inherit pkgs; });
