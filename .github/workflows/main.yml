@@ -1,4 +1,5 @@
-name: nixcfg CI
+name: nixcfg Continuous Integration
+
 on:
   push:
     branches:
@@ -27,13 +28,24 @@ jobs:
   build_Beaver:
     name: building Beaver
     runs-on: self-hosted
-    if: ${{ contains(toJson(github.event.commits.*.modified), 'Beaver/') }}
+    needs: lint_job
+
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-    - name: Check flake is correct
-      run: nix flake check --all-systems --keep-going --impure
+      - name: Check changes in Beaver folder
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            beaver:
+              - 'Beaver/**'
 
-    - name: Build Beaver
-      run: nix build .#nixosConfigurations.BeaverNixos.config.system.build.toplevel --impure
+      - name: Check flake is correct
+        run: nix flake check --all-systems --keep-going --impure
+        if: steps.changes.outputs.beaver == 'true'
+
+      - name: Build beaver
+        run: nix build .#nixosConfigurations.BeaverNixos.config.system.build.toplevel --impure
+        if: steps.changes.outputs.beaver == 'true'
