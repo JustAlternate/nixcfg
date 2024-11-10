@@ -1,9 +1,8 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 {
   home = {
-    packages = with pkgs;
+    packages =
+      with pkgs;
       let
         list-packages = with rPackages; [
           ggplot2
@@ -13,8 +12,6 @@
         ];
         r-with-packages = rWrapper.override { packages = list-packages; };
       in
-      [
-        r-with-packages
-      ];
+      [ r-with-packages ];
   };
 }

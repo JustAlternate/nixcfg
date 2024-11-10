@@ -1,7 +1,5 @@
-{ config
-, pkgs
-, ...
-}: {
+{ config, pkgs, ... }:
+{
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     # Include the results of the hardware scan.
@@ -12,7 +10,10 @@
   nix = {
     settings = {
       # Add the possibility to install unstable packages
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
       # Nix Gaming cache
       substituters = [ "https://nix-gaming.cachix.org" ];
@@ -53,9 +54,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # fonts:
-  fonts.fonts = with pkgs; [
-    nerdfonts
-  ];
+  fonts.fonts = with pkgs; [ nerdfonts ];
 
   # Bootloader.
   boot = {
@@ -156,7 +155,10 @@
     home = "/home/justalternate";
     isNormalUser = true;
     description = "justalternate";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   security = {

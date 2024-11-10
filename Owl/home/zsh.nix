@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   home = {
     packages = with pkgs; [
       fastfetch
@@ -29,7 +30,11 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "dotenv" "vi-mode" ];
+      plugins = [
+        "git"
+        "dotenv"
+        "vi-mode"
+      ];
       theme = "agnoster";
     };
 
@@ -43,14 +48,12 @@
       GOPATH = "/usr/local/go";
       GOBIN = "/usr/go/bin";
 
-
       # Usage of swissknife :
       ARTIFACTORY_USERNAME = "justalternateidz";
       # ARTIFACTORY_PASSWORD = "${config.sops.secrets.test-pass}"; #NOT WORKING
       NOMAD_ADDR = "https://nomad.dev.iadvize.io";
       GITHUB_USERNAME = "justalternateidz";
       CORE_MYSQL_USER = "livechat";
-
     };
   };
 }

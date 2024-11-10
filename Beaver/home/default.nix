@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 {
   imports = [
     ./fastfetch
@@ -16,21 +14,20 @@
 
     stateVersion = "24.05";
 
-    packages = with pkgs;
-      [
-        # Cli tools
-        ## Utility
-        unzip
-        wget
-        ripgrep
-        socat
-        jq
-        lazygit
-        sops
+    packages = with pkgs; [
+      # Cli tools
+      ## Utility
+      unzip
+      wget
+      ripgrep
+      socat
+      jq
+      lazygit
+      sops
 
-        ## Monitoring
-        htop
-      ];
+      ## Monitoring
+      htop
+    ];
 
     # For env var
     sessionVariables = {

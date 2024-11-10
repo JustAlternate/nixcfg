@@ -36,18 +36,17 @@
 
     # Brew for OWL
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-
   };
 
-
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , nixos-unstable
-    , nix-darwin
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nixos-unstable,
+      nix-darwin,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       systemMac = "aarch64-darwin";
@@ -67,7 +66,9 @@
       nixosConfigurations = {
         ParrotNixos = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
@@ -76,7 +77,9 @@
         };
         SwordfishNixos = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
@@ -85,7 +88,9 @@
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
           system = systemArm;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./Beaver/configuration.nix
             home-manager.nixosModules.home-manager
@@ -118,9 +123,7 @@
         };
         beaver = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${systemArm};
-          modules = [
-            ./Beaver/home
-          ];
+          modules = [ ./Beaver/home ];
           extraSpecialArgs = {
             inherit inputs;
           };
@@ -130,7 +133,9 @@
       # Nix-darwin
       darwinConfigurations."Owl" = nix-darwin.lib.darwinSystem {
         system = systemMac;
-        specialArgs = { inherit inputs self; };
+        specialArgs = {
+          inherit inputs self;
+        };
         modules = [
           inputs.nix-homebrew.darwinModules.nix-homebrew
           home-manager.darwinModules.home-manager
