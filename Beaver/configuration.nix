@@ -11,6 +11,7 @@
     ./hauk # selfhosted google maps sharing location service
     ./mail
     ./minecraft
+    ./action-runner
     ../shared/sops.nix # Secrets management using ssh key
   ];
 
