@@ -5,15 +5,35 @@ on:
       - main
 
 jobs:
-  format_job:
-    name: nixcfg
-    runs-on: self-hosted 
+  lint:
+    name: nixcfg linting
+    runs-on: self-hosted
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Formatting nixcfg
+
+      - name: Formatting with nixfmt
         run: nixfmt . -c
 
+      - name: Antipattern linting for Nix code with statix
+        run: statix check . -i docker-compose.nix
 
+      - name: Scan nix file for dead code with deadnix
+        run: deadnix . -f
 
+      - name: Nix Flake check no build
+        run: nix flake check --no-build github:NixOS/patchelf --all-systems --keep-going
 
+  build_Beaver:
+    name: building Beaver
+    runs-on: self-hosted
+    if: ${{ contains(toJson(github.event.commits.*.modified), 'Beaver/') }}
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Check flake is correct
+      run: nix flake check --all-systems --keep-going --impure
+
+    - name: Build Beaver
+      run: nix build .#nixosConfigurations.BeaverNixos.config.system.build.toplevel --impure
