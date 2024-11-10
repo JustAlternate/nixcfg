@@ -78,8 +78,6 @@
     };
   };
 
-  users.defaultUserShell = pkgs.zsh;
-
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
@@ -137,17 +135,6 @@
 
   # Configure console keymap
   console.keyMap = "fr";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.justalternate = {
-    home = "/home/justalternate/";
-    isNormalUser = true;
-    description = "justalternate";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
 
   security = {
     rtkit.enable = true;
@@ -232,9 +219,22 @@
   hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
-  users.users.justalternate.openssh.authorizedKeys.keys = [
-    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
-  ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    # Define a user account. Don't forget to set a password with ‘passwd’.
+    users.justalternate = {
+      home = "/home/justalternate/";
+      isNormalUser = true;
+      description = "justalternate";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+    };
+    users.justalternate.openssh.authorizedKeys.keys = [
+      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
+    ];
+  };
 
   networking = {
     hostName = "nixos"; # Define your hostname.

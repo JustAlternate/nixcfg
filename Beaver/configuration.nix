@@ -44,8 +44,14 @@
   };
 
   programs.zsh.enable = true;
-  # set Zsh as the default user shell for all users
-  users.defaultUserShell = pkgs.zsh;
+  services.openssh.enable = true;
+  users = {
+    # set Zsh as the default user shell for all users
+    defaultUserShell = pkgs.zsh;
+    users.root.openssh.authorizedKeys.keys = [
+      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
+    ];
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -81,11 +87,6 @@
       ];
     };
   };
-
-  services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
-    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
-  ];
 
   system.stateVersion = "23.11";
 }
