@@ -1,7 +1,4 @@
-{ pkgs
-, inputs
-, ...
-}:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./rice
@@ -26,7 +23,8 @@
     # release notes.
     stateVersion = "24.05";
 
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
         # Desktop
         swww
@@ -153,7 +151,6 @@
         # Miscs
         cpu-x
         marp-cli
-
       ]
       ++ (import ./bin { inherit pkgs; });
 

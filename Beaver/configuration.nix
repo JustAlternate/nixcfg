@@ -16,7 +16,10 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
     optimise.automatic = true;
 
@@ -45,7 +48,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
@@ -80,7 +82,9 @@
   };
 
   services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
+  users.users.root.openssh.authorizedKeys.keys = [
+    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
+  ];
 
   system.stateVersion = "23.11";
 }

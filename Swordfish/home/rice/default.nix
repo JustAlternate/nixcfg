@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-
+{ pkgs, ... }:
+{
   imports = [
     ./hyprland
     ./eww
@@ -9,9 +9,7 @@
     ../../../shared/fastfetch
   ];
 
-  home.packages = with pkgs; [
-    trayer
-  ];
+  home.packages = with pkgs; [ trayer ];
 
   home.sessionVariables = {
     # GTK_THEME = "Materia-dark";

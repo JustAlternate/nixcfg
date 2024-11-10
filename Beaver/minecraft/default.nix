@@ -4,9 +4,7 @@
   nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
 
   environment = {
-    systemPackages = with pkgs; [
-      tmux
-    ];
+    systemPackages = with pkgs; [ tmux ];
   };
 
   services.minecraft-servers = {
@@ -86,9 +84,7 @@
       };
     };
   };
-  systemd.tmpfiles.rules = [
-    "d /srv/minecraft 0770 minecraft minecraft"
-  ];
+  systemd.tmpfiles.rules = [ "d /srv/minecraft 0770 minecraft minecraft" ];
 
   users.groups.minecraft = { };
   users.users.minecraft = {

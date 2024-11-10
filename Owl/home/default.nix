@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./zsh.nix
     ../../shared/nvim
@@ -8,7 +9,6 @@
     ./git.nix
     ./ssh.nix
   ];
-
 
   home = {
     stateVersion = "24.05";

@@ -1,20 +1,19 @@
 { pkgs, ... }:
-pkgs.writeShellScriptBin "startup"
-  ''
-    dunst &
-    swww-daemon &
+pkgs.writeShellScriptBin "startup" ''
+  dunst &
+  swww-daemon &
 
-    # Unlock brightness control
-    sudo chmod a+rw /sys/class/backlight/amdgpu_bl1/brightness &
+  # Unlock brightness control
+  sudo chmod a+rw /sys/class/backlight/amdgpu_bl1/brightness &
 
-    wl-paste --type text --watch cliphist store &
-    wl-paste --type image --watch cliphist store &
+  wl-paste --type text --watch cliphist store &
+  wl-paste --type image --watch cliphist store &
 
-    nm-applet --indicator &
+  nm-applet --indicator &
 
-    change_wallpaper &
+  change_wallpaper &
 
-    sleep 0.1
-    eww open --screen $(( $(hyprctl monitors | grep -c "Monitor") - 1 )) hbar &
-    #conky &
-  ''
+  sleep 0.1
+  eww open --screen $(( $(hyprctl monitors | grep -c "Monitor") - 1 )) hbar &
+  #conky &
+''

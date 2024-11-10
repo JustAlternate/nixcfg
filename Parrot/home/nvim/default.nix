@@ -1,8 +1,5 @@
-_:
-{
-  imports = [
-    ../../../shared/nvim/default.nix
-  ];
+_: {
+  imports = [ ../../../shared/nvim/default.nix ];
 
   # Append to the extra config config only for my laptop
   programs.neovim.extraLuaConfig = ''

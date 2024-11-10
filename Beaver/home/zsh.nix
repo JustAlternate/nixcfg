@@ -1,7 +1,5 @@
-{ pkgs
-, config
-, ...
-}: {
+{ pkgs, config, ... }:
+{
   home.packages = with pkgs; [
     zoxide
     eza
@@ -27,7 +25,11 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "dotenv" "vi-mode" ];
+      plugins = [
+        "git"
+        "dotenv"
+        "vi-mode"
+      ];
       theme = "agnoster";
     };
 
@@ -35,6 +37,5 @@
       fastfetch
       eval "$(zoxide init zsh)"
     '';
-
   };
 }

@@ -1,7 +1,4 @@
-{ lib
-, pkgs
-, ...
-}:
+{ lib, pkgs, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -37,14 +34,10 @@
       mupdf
       xdotool
 
-      (import ./ollama-copilot.nix {
-        inherit (pkgs) lib buildGoModule fetchFromGitHub;
-      })
+      (import ./ollama-copilot.nix { inherit (pkgs) lib buildGoModule fetchFromGitHub; })
     ];
 
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-    ];
+    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
 
     extraLuaConfig =
       let
@@ -123,13 +116,15 @@
           none-ls-nvim
           markdown-preview-nvim
         ];
-        mkEntryFromDrv = drv:
-          if lib.isDerivation drv
-          then {
-            name = "${lib.getName drv}";
-            path = drv;
-          }
-          else drv;
+        mkEntryFromDrv =
+          drv:
+          if lib.isDerivation drv then
+            {
+              name = "${lib.getName drv}";
+              path = drv;
+            }
+          else
+            drv;
         lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
       in
       ''
@@ -174,8 +169,8 @@
       parsers = pkgs.symlinkJoin {
         name = "treesitter-parsers";
         paths =
-          (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
-            with plugins; [
+          (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+            plugins: with plugins; [
               c
               lua
               python
@@ -197,7 +192,8 @@
               sql
               make
               yuck
-            ])).dependencies;
+            ]
+          )).dependencies;
       };
     in
     "${parsers}/parser";
