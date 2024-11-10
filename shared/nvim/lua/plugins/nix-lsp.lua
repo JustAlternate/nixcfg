@@ -7,7 +7,7 @@ return {
 					settings = {
 						["nil"] = {
 							formatting = {
-								command = { "alejandra" },
+								command = { "nixfmt" },
 							},
 						},
 					},
