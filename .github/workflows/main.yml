@@ -1,4 +1,4 @@
-name: nixcfg github action
+name: nixcfg CI
 on:
   push:
     branches:
