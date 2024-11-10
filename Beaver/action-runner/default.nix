@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  services.github-runner = {
+  services.github-runners = {
     "nixcfg" = {
       enable = true;
       url = "https://github.com/JustAlternate/nixcfg";
