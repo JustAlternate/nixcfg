@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  lint:
+  lint_nixcfg:
     name: nixcfg linting
     runs-on: self-hosted
     steps:
@@ -28,7 +28,7 @@ jobs:
   build_Beaver:
     name: building Beaver
     runs-on: self-hosted
-    needs: lint_job
+    needs: lint_nixcfg
 
     steps:
       - name: Check out repository
