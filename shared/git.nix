@@ -3,9 +3,7 @@ let
   inherit (lib) mkDefault;
 in
 {
-  home.packages = with pkgs; [
-    lazygit
-  ];
+  home.packages = with pkgs; [ lazygit ];
 
   programs.git = {
     enable = true;

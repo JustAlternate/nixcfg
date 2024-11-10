@@ -1,5 +1,6 @@
-{ pkgs ? import <nixpkgs> { system = "aarch64-darwin"; } }:
-
+{
+  pkgs ? import <nixpkgs> { system = "aarch64-darwin"; },
+}:
 pkgs.dockerTools.buildLayeredImage {
   name = "hello";
   tag = "latest";

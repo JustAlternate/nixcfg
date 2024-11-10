@@ -1,7 +1,14 @@
 # Auto-generated using compose2nix v0.2.3-pre.
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
-  OWNCLOUD_ADMIN_PASSWORD = builtins.readFile config.sops.secrets."OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD".path;
+  OWNCLOUD_ADMIN_PASSWORD =
+    builtins.readFile
+      config.sops.secrets."OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD".path;
 in
 {
   # Runtime
@@ -21,10 +28,11 @@ in
       "MYSQL_ROOT_PASSWORD" = "owncloud";
       "MYSQL_USER" = "owncloud";
     };
-    volumes = [
-      "owncloud_mysql:/var/lib/mysql:rw"
+    volumes = [ "owncloud_mysql:/var/lib/mysql:rw" ];
+    cmd = [
+      "--max-allowed-packet=128M"
+      "--innodb-log-file-size=64M"
     ];
-    cmd = [ "--max-allowed-packet=128M" "--innodb-log-file-size=64M" ];
     log-driver = "journald";
     extraOptions = [
       "--health-cmd=[\"mysqladmin\",\"ping\",\"-u\",\"root\",\"--password=owncloud\"]"
@@ -50,19 +58,16 @@ in
       "docker-network-owncloud_default.service"
       "docker-volume-owncloud_mysql.service"
     ];
-    partOf = [
-      "docker-compose-owncloud-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-owncloud-root.target"
-    ];
+    partOf = [ "docker-compose-owncloud-root.target" ];
+    wantedBy = [ "docker-compose-owncloud-root.target" ];
   };
   virtualisation.oci-containers.containers."owncloud_redis" = {
     image = "redis:6";
-    volumes = [
-      "owncloud_redis:/data:rw"
+    volumes = [ "owncloud_redis:/data:rw" ];
+    cmd = [
+      "--databases"
+      "1"
     ];
-    cmd = [ "--databases" "1" ];
     log-driver = "journald";
     extraOptions = [
       "--health-cmd=[\"redis-cli\",\"ping\"]"
@@ -88,12 +93,8 @@ in
       "docker-network-owncloud_default.service"
       "docker-volume-owncloud_redis.service"
     ];
-    partOf = [
-      "docker-compose-owncloud-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-owncloud-root.target"
-    ];
+    partOf = [ "docker-compose-owncloud-root.target" ];
+    wantedBy = [ "docker-compose-owncloud-root.target" ];
   };
   virtualisation.oci-containers.containers."owncloud_server" = {
     image = "owncloud/server:10.15";
@@ -111,12 +112,8 @@ in
       "OWNCLOUD_REDIS_HOST" = "redis";
       "OWNCLOUD_TRUSTED_DOMAINS" = "cloud.justalternate.fr,justalternate.fr";
     };
-    volumes = [
-      "owncloud_files:/mnt/data:rw"
-    ];
-    ports = [
-      "8080:8080/tcp"
-    ];
+    volumes = [ "owncloud_files:/mnt/data:rw" ];
+    ports = [ "8080:8080/tcp" ];
     dependsOn = [
       "owncloud_mariadb"
       "owncloud_redis"
@@ -146,12 +143,8 @@ in
       "docker-network-owncloud_default.service"
       "docker-volume-owncloud_files.service"
     ];
-    partOf = [
-      "docker-compose-owncloud-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-owncloud-root.target"
-    ];
+    partOf = [ "docker-compose-owncloud-root.target" ];
+    wantedBy = [ "docker-compose-owncloud-root.target" ];
   };
 
   # Networks

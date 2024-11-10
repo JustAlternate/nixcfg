@@ -1,5 +1,4 @@
-_:
-{
+_: {
   imports = [
     (builtins.fetchTarball {
       # Pick a release version you are interested in and set its hash, e.g.
@@ -14,9 +13,19 @@ _:
     enableACME = true;
     forceSSL = true;
     listen = [
-      { addr = "0.0.0.0"; port = 80; }
-      { addr = "0.0.0.0"; port = 995; }
-      { addr = "0.0.0.0"; port = 8443; ssl = true; }
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 995;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 8443;
+        ssl = true;
+      }
     ];
   };
 

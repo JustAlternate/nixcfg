@@ -20,9 +20,7 @@ in
       "POSTGRES_PASSWORD" = POSTGRES_PASSWORD;
       "POSTGRES_USER" = "tianji";
     };
-    volumes = [
-      "tianji_tianji-db-data:/var/lib/postgresql/data:rw"
-    ];
+    volumes = [ "tianji_tianji-db-data:/var/lib/postgresql/data:rw" ];
     log-driver = "journald";
     extraOptions = [
       "--health-cmd=pg_isready -U \${POSTGRES_USER} -d \${POSTGRES_DB}"
@@ -48,12 +46,8 @@ in
       "docker-network-tianji_default.service"
       "docker-volume-tianji_tianji-db-data.service"
     ];
-    partOf = [
-      "docker-compose-tianji-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-tianji-root.target"
-    ];
+    partOf = [ "docker-compose-tianji-root.target" ];
+    wantedBy = [ "docker-compose-tianji-root.target" ];
   };
   virtualisation.oci-containers.containers."tianji-tianji" = {
     image = "moonrailgun/tianji";
@@ -63,12 +57,8 @@ in
       "DATABASE_URL" = "postgresql://tianji:tianji@postgres:5432/tianji";
       "JWT_SECRET" = JWT_SECRET;
     };
-    ports = [
-      "12345:12345/tcp"
-    ];
-    dependsOn = [
-      "tianji-postgres"
-    ];
+    ports = [ "12345:12345/tcp" ];
+    dependsOn = [ "tianji-postgres" ];
     log-driver = "journald";
     extraOptions = [
       "--network-alias=tianji"
@@ -82,18 +72,10 @@ in
       RestartSec = lib.mkOverride 500 "100ms";
       RestartSteps = lib.mkOverride 500 9;
     };
-    after = [
-      "docker-network-tianji_default.service"
-    ];
-    requires = [
-      "docker-network-tianji_default.service"
-    ];
-    partOf = [
-      "docker-compose-tianji-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-tianji-root.target"
-    ];
+    after = [ "docker-network-tianji_default.service" ];
+    requires = [ "docker-network-tianji_default.service" ];
+    partOf = [ "docker-compose-tianji-root.target" ];
+    wantedBy = [ "docker-compose-tianji-root.target" ];
   };
 
   # Networks

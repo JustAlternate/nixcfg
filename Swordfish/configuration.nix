@@ -1,6 +1,5 @@
-{ pkgs
-, ...
-}: {
+{ pkgs, ... }:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -10,7 +9,10 @@
   nix = {
     settings = {
       # Add the possibility to install unstable packages
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
       # Nix Gaming cache
       substituters = [ "https://nix-gaming.cachix.org" ];
@@ -47,9 +49,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # fonts:
-  fonts.fonts = with pkgs; [
-    nerdfonts
-  ];
+  fonts.fonts = with pkgs; [ nerdfonts ];
 
   # Bootloader.
   boot = {
@@ -60,15 +60,15 @@
         device = "nodev";
         # Windows dual boot
         extraEntries = ''
-                  menuentry "Windows" {
-                    insmod part_gpt
-                    insmod fat
-                    insmod search_fs_uuid
-                    insmod chain
-                    search --fs-uuid --set=root 78FC-1AE0 
-                    chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-                  }
-          	'';
+          menuentry "Windows" {
+            insmod part_gpt
+            insmod fat
+            insmod search_fs_uuid
+            insmod chain
+            search --fs-uuid --set=root 78FC-1AE0
+            chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+          }
+        '';
         version = 2;
       };
       efi = {
@@ -143,7 +143,10 @@
     home = "/home/justalternate/";
     isNormalUser = true;
     description = "justalternate";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   security = {
@@ -224,13 +227,14 @@
     hyprland.enable = true;
   };
 
-
   services.xserver.wacom.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
-  users.users.justalternate.openssh.authorizedKeys.keys = [ ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21'' ];
+  users.users.justalternate.openssh.authorizedKeys.keys = [
+    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
+  ];
 
   networking = {
     hostName = "nixos"; # Define your hostname.
@@ -238,5 +242,4 @@
     # Enable networking
     networkmanager.enable = true;
   };
-
 }
