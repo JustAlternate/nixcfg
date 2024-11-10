@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 {
   imports = [
     ./R
@@ -10,19 +8,18 @@
   ];
 
   home = {
-    packages = with pkgs;
-      [
-        # Developpment
-        nodePackages.node2nix
-        openssh
-        scdoc
-        git
-        gcc
-        lua
-        go
-        cmake
-        gnumake
-        # framac
-      ];
+    packages = with pkgs; [
+      # Developpment
+      nodePackages.node2nix
+      openssh
+      scdoc
+      git
+      gcc
+      lua
+      go
+      cmake
+      gnumake
+      # framac
+    ];
   };
 }

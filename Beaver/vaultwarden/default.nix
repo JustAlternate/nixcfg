@@ -1,5 +1,4 @@
-_:
-{
+_: {
   services = {
     vaultwarden = {
       enable = true;
@@ -17,8 +16,15 @@ _:
       forceSSL = true;
       enableACME = true;
       listen = [
-        { addr = "0.0.0.0"; port = 80; }
-        { addr = "0.0.0.0"; port = 8443; ssl = true; }
+        {
+          addr = "0.0.0.0";
+          port = 80;
+        }
+        {
+          addr = "0.0.0.0";
+          port = 8443;
+          ssl = true;
+        }
       ];
       locations."/" = {
         proxyPass = "http://127.0.0.1:8222";

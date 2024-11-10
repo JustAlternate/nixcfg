@@ -1,6 +1,5 @@
 # Auto-generated using compose2nix v0.2.3-pre.
 { pkgs, lib, ... }:
-
 {
   # Runtime
   virtualisation.docker = {
@@ -12,12 +11,8 @@
   # Containers
   virtualisation.oci-containers.containers."hauk" = {
     image = "bilde2910/hauk";
-    volumes = [
-      "/root/nixcfg/Beaver/hauk:/etc/hauk:rw"
-    ];
-    ports = [
-      "1212:80/tcp"
-    ];
+    volumes = [ "/root/nixcfg/Beaver/hauk:/etc/hauk:rw" ];
+    ports = [ "1212:80/tcp" ];
     log-driver = "journald";
     extraOptions = [
       "--network-alias=hauk"
@@ -28,18 +23,10 @@
     serviceConfig = {
       Restart = lib.mkOverride 500 "no";
     };
-    after = [
-      "docker-network-hauk_default.service"
-    ];
-    requires = [
-      "docker-network-hauk_default.service"
-    ];
-    partOf = [
-      "docker-compose-hauk-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-hauk-root.target"
-    ];
+    after = [ "docker-network-hauk_default.service" ];
+    requires = [ "docker-network-hauk_default.service" ];
+    partOf = [ "docker-compose-hauk-root.target" ];
+    wantedBy = [ "docker-compose-hauk-root.target" ];
   };
 
   # Networks

@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-
+{ pkgs, ... }:
+{
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
@@ -13,14 +13,11 @@
       "VAULTWARDEN/ENV" = { };
       "TIANJI/POSTGRES_PASSWORD" = { };
       "TIANJI/JWT_SECRET" = { };
+      "ACTION_RUNNER/NIXCFG_TOKEN" = { };
     };
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      sops
-    ];
+    systemPackages = with pkgs; [ sops ];
   };
-
-
 }

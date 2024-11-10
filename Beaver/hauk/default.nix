@@ -1,15 +1,19 @@
-_:
-{
-  imports = [
-    ./docker-compose.nix
-  ];
+_: {
+  imports = [ ./docker-compose.nix ];
 
   services.nginx.virtualHosts."hauk.justalternate.fr" = {
     enableACME = true;
     forceSSL = true;
     listen = [
-      { addr = "0.0.0.0"; port = 80; }
-      { addr = "0.0.0.0"; port = 8443; ssl = true; }
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 8443;
+        ssl = true;
+      }
     ];
     locations."/" = {
       proxyPass = "http://127.0.0.1:1212";

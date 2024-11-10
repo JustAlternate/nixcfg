@@ -24,12 +24,8 @@ in
       "planka_project-background-images:/app/public/project-background-images:rw"
       "planka_user-avatars:/app/public/user-avatars:rw"
     ];
-    ports = [
-      "3000:1337/tcp"
-    ];
-    dependsOn = [
-      "planka-postgres"
-    ];
+    ports = [ "3000:1337/tcp" ];
+    dependsOn = [ "planka-postgres" ];
     log-driver = "journald";
     extraOptions = [
       "--network-alias=planka"
@@ -55,12 +51,8 @@ in
       "docker-volume-planka_project-background-images.service"
       "docker-volume-planka_user-avatars.service"
     ];
-    partOf = [
-      "docker-compose-planka-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-planka-root.target"
-    ];
+    partOf = [ "docker-compose-planka-root.target" ];
+    wantedBy = [ "docker-compose-planka-root.target" ];
   };
   virtualisation.oci-containers.containers."planka-postgres" = {
     image = "postgres:14-alpine";
@@ -68,9 +60,7 @@ in
       "POSTGRES_DB" = "planka";
       "POSTGRES_HOST_AUTH_METHOD" = "trust";
     };
-    volumes = [
-      "planka_db-data:/var/lib/postgresql/data:rw"
-    ];
+    volumes = [ "planka_db-data:/var/lib/postgresql/data:rw" ];
     log-driver = "journald";
     extraOptions = [
       "--health-cmd=pg_isready -U postgres -d planka"
@@ -96,12 +86,8 @@ in
       "docker-network-planka_default.service"
       "docker-volume-planka_db-data.service"
     ];
-    partOf = [
-      "docker-compose-planka-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-planka-root.target"
-    ];
+    partOf = [ "docker-compose-planka-root.target" ];
+    wantedBy = [ "docker-compose-planka-root.target" ];
   };
 
   # Networks
