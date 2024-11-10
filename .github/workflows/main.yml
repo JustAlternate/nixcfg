@@ -1,0 +1,19 @@
+name: nixcfg github action
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  format_job:
+    name: nixcfg CI
+    runs-on: self-hosted 
+    steps:
+      - name: Check out repository
+      - uses: actions/checkout@v4
+      - name: Formatting nixcfg
+      - run: nixfmt .
+
+
+
+
