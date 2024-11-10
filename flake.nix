@@ -153,7 +153,5 @@
           }
         ];
       };
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Owl".pkgs;
     };
 }
