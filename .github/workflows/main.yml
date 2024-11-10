@@ -6,7 +6,7 @@ on:
 
 jobs:
   format_job:
-    name: nixcfg CI
+    name: nixcfg
     runs-on: self-hosted 
     steps:
       - name: Check out repository
