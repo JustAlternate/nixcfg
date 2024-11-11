@@ -43,7 +43,7 @@ messages:
   outdated-server: Outdated server! I'm still on {0}
   restart: Server is restarting
 commands:
-  tab-complete: 0
+  tab-complete: 1
   send-namespaced: true
   log: true
   spam-exclusions:

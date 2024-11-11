@@ -14,7 +14,7 @@
     runDir = "/srv/minecraft";
     servers = {
       fallen-kingdom = {
-        enable = false;
+        enable = true;
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 
@@ -26,24 +26,25 @@
           motd = "Fallen Kingdom minecraft server powered by NixOS!";
           server-port = 25565;
           difficulty = 2;
-          gamemode = 1;
-          max-players = 10;
+          gamemode = 0;
+          max-players = 9;
           white-list = false;
           enable-command-block = true;
-          view-distance = 16;
+          view-distance = 14;
           simulation-distance = 8;
           spawn-animals = true;
           spawn-monsters = true;
           spawn-npcs = true;
           online-mode = false; # Accept crack player
+          spawn-protection = 0;
         };
 
         # Performance jvm flags
         jvmOpts = "-Xms2G -Xmx6G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1";
 
-        whitelist = {
-          JustAlternate = "8a3f19cf-9927-3b67-b784-4967c6d0005e";
-        };
+        # whitelist = {
+        #   JustAlternate = "8a3f19cf-9927-3b67-b784-4967c6d0005e";
+        # };
 
         # symlinks can be used to manage declaratively other files such as plugins, mods...
         symlinks = {
@@ -58,12 +59,11 @@
             url = "https://cdn.modrinth.com/data/wKYpobLb/versions/8oEbkpgh/${pname}-${version}.jar";
             hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
           };
-          "plugins/FallenKingdom/config.yml" = ./plugins/FallenKingdom/config.yml;
 
           "plugins/SkinsRestorer.jar" = pkgs.fetchurl {
             pname = "SkinsRestorer";
-            url = "https://objects.githubusercontent.com/github-production-release-asset-2e65be/105874986/e2327cac-01ef-48e8-a41a-778d71fa6f32?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241105T175629Z&X-Amz-Expires=300&X-Amz-Signature=1bf1f3ff6668115ee1e6eb708da732961802d78d0b2c4200d56e89255fd5654a&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DSkinsRestorer.jar&response-content-type=application%2Foctet-stream";
-            hash = "sha256-D4pvASk15fgqDreBXAZl4+YEnys3exLRRrYXXm+0kqc=";
+            url = "https://objects.githubusercontent.com/github-production-release-asset-2e65be/105874986/8123aca2-ff4b-4ee6-a77e-aeffb2aaf38f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241111%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241111T092447Z&X-Amz-Expires=300&X-Amz-Signature=882df521bdba574bef888d004f6faef91d071fd95229074532b0d402335e2c23&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DSkinsRestorer.jar&response-content-type=application%2Foctet-stream";
+            hash = "sha256-Dc/yZW5CsWU596+sGV5mWqOVeg4+QTNt5FM3yH7vsLw=";
           };
 
           "plugins/ShopKeepers.jar" = pkgs.fetchurl rec {
