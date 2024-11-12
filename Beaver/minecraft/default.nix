@@ -8,13 +8,13 @@
   };
 
   services.minecraft-servers = {
-    enable = true;
+    enable = false;
     eula = true; # Automatically accept eula
     dataDir = "/srv/minecraft";
     runDir = "/srv/minecraft";
     servers = {
       fallen-kingdom = {
-        enable = true;
+        enable = false;
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 
@@ -27,7 +27,7 @@
           server-port = 25565;
           difficulty = 2;
           gamemode = 0;
-          max-players = 9;
+          max-players = 10;
           white-list = false;
           enable-command-block = true;
           view-distance = 14;
