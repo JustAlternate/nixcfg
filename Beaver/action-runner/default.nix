@@ -7,9 +7,13 @@
       url = "https://github.com/JustAlternate/nixcfg";
       tokenFile = /run/secrets/ACTION_RUNNER/NIXCFG_TOKEN;
       extraPackages = with pkgs; [
+        # For Nix lint jobs
         nixfmt-rfc-style
         statix
         deadnix
+
+        # For Nix deploy jobs
+        morph
       ];
     };
   };
