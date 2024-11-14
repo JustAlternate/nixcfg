@@ -29,6 +29,8 @@ jobs:
     name: building Beaver
     runs-on: self-hosted
     needs: lint_nixcfg
+    outputs:
+      built: ${{ steps.set_build_status.outputs.built }}
 
     steps:
       - name: Check out repository
