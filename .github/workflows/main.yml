@@ -50,25 +50,23 @@ jobs:
         run: nix build .#nixosConfigurations.BeaverNixos.config.system.build.toplevel --impure
         if: steps.changes.outputs.beaver == 'true'
 
-      - name: Upload Beaver build
-        uses: actions/upload-artifact@v4
-        with:
-          name: beaver-result
-          path: result
-          retention-days: 10
-          overwrite: true
+      - name: Save Beaver build
+        run: |
+          mkdir -p /run/github-runner/deploy/beaver${{ github.sha }}
+          mv result /run/github-runner/deploy/beaver${{ github.sha }}
+        if: steps.changes.outputs.beaver == 'true'
+
+      - name: Set build status
+        run: echo "built=${{ steps.changes.outputs.beaver == 'true' }}" >> $GITHUB_OUTPUT
+        if: steps.changes.outputs.beaver == 'true'
 
   deploy_Beaver:
     name: deploy Beaver
     runs-on: self-hosted
     needs: build_Beaver
+    if: needs.build_Beaver.outputs.built == 'true'
 
     steps:
-      - name: Download Beaver build
-        uses: actions/download-artifact@v4
-        with:
-          name: beaver-result
-
       - name: Deploy Beaver
-        run: morph deploy .github/deploy/beaver.nix switch
+        run: /run/github-runner/deploy/beaver${{ github.sha }}/bin/switch-to-configuration switch 
 
