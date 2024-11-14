@@ -7,5 +7,5 @@ vim.api.nvim_set_keymap("n", "U", "<C-r>", {
 })
 
 vim.api.nvim_set_keymap("n", "<leader>cgt", "<cmd>GoTestFile<CR>", {
-	desc = "GoTestFile",
+	desc = "GoTestFile -F",
 })
