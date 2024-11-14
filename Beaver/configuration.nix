@@ -40,6 +40,7 @@
       home-manager
       docker-client
       lego
+      unstable.morph
     ];
   };
 
