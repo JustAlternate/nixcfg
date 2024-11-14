@@ -15,6 +15,9 @@
       # Telescope
       ripgrep
 
+      # Spectre
+      gnused # Mac implementation for sed is special and need this package for using gsed executable
+
       # LSP stuff
       nil
       statix # Lints and suggestions for the nix programming language
@@ -31,9 +34,9 @@
 
       # Latex preview
       mupdf
-      xdotool
 
       (import ./ollama-copilot.nix { inherit (pkgs) lib buildGoModule fetchFromGitHub; })
+      ollama
     ];
 
     plugins = with pkgs.vimPlugins; [ lazy-nvim ];
