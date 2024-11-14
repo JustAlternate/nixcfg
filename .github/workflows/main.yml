@@ -70,4 +70,5 @@ jobs:
           name: beaver-result
 
       - name: Deploy Beaver
+        run: morph deploy .github/deploy/beaver.nix switch
 
