@@ -6,7 +6,6 @@
     ./nginx # Web server, reverse proxy
     ./planka # selfhosted Kanban
     ./vaultwarden
-    # ./tianji/docker-compose.nix # selfhosted google analytics
     ./owncloud # selhosted google drive
     ./hauk # selfhosted google maps sharing location service
     ./mail
