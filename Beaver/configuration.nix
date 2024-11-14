@@ -6,7 +6,7 @@
     ./nginx # Web server, reverse proxy
     ./planka # selfhosted Kanban
     ./vaultwarden
-    ./owncloud # selhosted google drive
+    ./owncloud # selhosted google drivee
     ./hauk # selfhosted google maps sharing location service
     ./mail
     ./minecraft
