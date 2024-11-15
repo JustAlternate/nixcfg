@@ -32,7 +32,6 @@
       enable = true;
       plugins = [
         "git"
-        "dotenv"
         "vi-mode"
       ];
       theme = "agnoster";
