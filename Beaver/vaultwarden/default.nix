@@ -2,7 +2,7 @@ _: {
   services = {
     vaultwarden = {
       enable = true;
-      backupDir = "/root/backup/vaultwarden";
+      # backupDir = "/root/backup/vaultwarden";
       config = {
         domain = "https://vaultwarden.justalternate.fr";
         rocketAddress = "127.0.0.1";
