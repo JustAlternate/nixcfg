@@ -6,8 +6,7 @@
     ./nginx # Web server, reverse proxy
     ./planka # selfhosted Kanban
     ./vaultwarden
-    # ./tianji/docker-compose.nix # selfhosted google analytics
-    ./owncloud # selhosted google drive
+    ./owncloud # selhosted google drivee
     ./hauk # selfhosted google maps sharing location service
     ./mail
     ./minecraft
@@ -40,6 +39,7 @@
       home-manager
       docker-client
       lego
+      unstable.morph
     ];
   };
 
