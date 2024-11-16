@@ -105,6 +105,7 @@
         neovim-remote
         pandoc
         lazygit
+        morph
 
         ## Show-off
         cmatrix
