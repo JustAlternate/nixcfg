@@ -10,8 +10,5 @@ in
     };
   };
 
-  "beaver" = _: {
-    deployment.tags = [ "beaver" ];
-    imports = [ ../../Beaver/configuration.nix ];
-  };
+  "beaver" = import ../../Beaver/configuration.nix;
 }
