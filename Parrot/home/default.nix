@@ -1,14 +1,23 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-    ./rice
-    ./zsh.nix
-    ./dev
-    ./nvim
+    ./rice/eww
+    ../../shared/nvim
+    ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
-    ../../shared/display-manager.nix
+    ../../shared/desktop/dev
+    ../../shared/desktop/hyprland
+    ../../shared/desktop/rice.nix
   ];
+
+  wayland.windowManager.hyprland.extraConfig = ''
+    #env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+    # Monitor settings
+    monitor=eDP-1, 1920x1080, 0x1080, 1
+    monitor=HDMI-A-1, 1920x1080, 0x0, 1
+  '';
+
   home = {
     username = "justalternate";
     homeDirectory = "/home/justalternate";
@@ -142,7 +151,7 @@
         cpu-x
         marp-cli
       ]
-      ++ (import ./bin { inherit pkgs; });
+      ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 
     # For env var
     sessionVariables = {

@@ -1,13 +1,23 @@
 { pkgs, ... }:
 {
   imports = [
-    ./hyprland
-    ./eww
-    ../../../shared/rofi
-    ../../../shared/fastfetch
-    ../../../shared/pywal
-    ../../../shared/kitty.nix
+    ../fastfetch
+    ./rofi
+    ./pywal
+    ./kitty.nix
   ];
+
+  # Append to the extra config config only for my laptop
+  programs.neovim.extraLuaConfig = ''
+    local pywal16 = require('pywal16')
+    pywal16.setup()
+    local lualine = require('lualine')
+    lualine.setup {
+      options = {
+        theme = 'pywal16-nvim',
+      },
+    }
+  '';
 
   home.packages = with pkgs; [
     birdtray
@@ -35,7 +45,6 @@
 
   gtk = {
     enable = true;
-
     iconTheme = {
       name = "Reversal";
       package = pkgs.reversal-icon-theme;
@@ -45,17 +54,5 @@
       name = "Numix-Cursor";
       package = pkgs.numix-cursor-theme;
     };
-
-    # gtk3.extraConfig = {
-    #   Settings = ''
-    #     gtk-application-prefer-dark-theme=1
-    #   '';
-    # };
-    #
-    # gtk4.extraConfig = {
-    #   Settings = ''
-    #     gtk-application-prefer-dark-theme=1
-    #   '';
-    # };
   };
 }
