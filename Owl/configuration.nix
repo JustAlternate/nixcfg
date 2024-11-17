@@ -38,4 +38,9 @@
     # Automatically migrate existing Homebrew installations
     autoMigrate = true;
   };
+
+  # For env var
+  sessionVariables = {
+    EDITOR = "nvim";
+  };
 }
