@@ -4,6 +4,7 @@
     ../fastfetch
     ./rofi
     ./pywal
+    ./hyprland
     ./kitty.nix
   ];
 
