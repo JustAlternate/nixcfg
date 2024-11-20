@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  # CONFIGURATION FOR A HOMEMADE GAMING RIG FEATURING
+  # Motherboard: B550 GAMING X
+  # CPU: AMD Ryzen 7 5800X
+  # GPU: AMD Radeon RX 6800
+  # RAM: 32G
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -8,12 +13,10 @@
 
   nix = {
     settings = {
-      # Add the possibility to install unstable packages
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-
       # Nix Gaming cache
       substituters = [ "https://nix-gaming.cachix.org" ];
       trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
@@ -113,14 +116,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-
-      # lowLatency = {
-      #   # enable this module
-      #   enable = true;
-      #   # defaults (no need to be set unless modified)
-      #   quantum = 64;
-      #   rate = 48000;
-      # };
     };
 
     ollama = {
