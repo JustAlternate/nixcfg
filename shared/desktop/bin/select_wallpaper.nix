@@ -2,7 +2,7 @@
 pkgs.writeShellScriptBin "select_wallpaper" ''
   #!/usr/bin/env bash
   # Set some variables
-  wall_dir="/home/justalternate/nixcfg/shared/wallpaper/"
+  wall_dir="/home/justalternate/nixcfg/shared/desktop/wallpaper/"
   cacheDir="$HOME/.cache/jp/"
 
   # Create cache dir if not exists
@@ -42,8 +42,6 @@ pkgs.writeShellScriptBin "select_wallpaper" ''
   sleep 0.4
   eww reload &
   pywalfox update &
-  # ~/./.config/conky/update_conky.sh &
-  # themecord &
   cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
   [[ $(pidof cava) != "" ]] && pkill -USR1 cava &
   exit 0
