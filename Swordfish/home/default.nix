@@ -1,14 +1,19 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-    ./rice
-    ../../Parrot/home/zsh.nix
-    ../../Parrot/home/dev
-    ./nvim
+    ./rice/eww
+    ../../shared/nvim
+    ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
-    ../../shared/display-manager.nix
+    ../../shared/desktop/dev
+    ../../shared/desktop/rice.nix
   ];
+
+  wayland.windowManager.hyprland.extraConfig = ''
+    # Monitor settings
+    monitor=DP-3, 2560x1440@165, 0x0, 1
+  '';
 
   home = {
     username = "justalternate";
@@ -156,7 +161,8 @@
         cpu-x
         marp-cli
       ]
-      ++ (import ./bin { inherit pkgs; });
+      ## Install my custom scripts
+      ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 
     # For env var
     sessionVariables = {
