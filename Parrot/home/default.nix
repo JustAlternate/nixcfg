@@ -7,7 +7,6 @@
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/desktop/dev
-    ../../shared/desktop/hyprland
     ../../shared/desktop/rice.nix
   ];
 
