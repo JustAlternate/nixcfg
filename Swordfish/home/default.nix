@@ -118,6 +118,7 @@
         deadnix # Find and remove unused code in .nix source files
         nixfmt-rfc-style # Nix Code Formatter
         morph
+        deploy-rs
 
         ## Show-off
         cmatrix
