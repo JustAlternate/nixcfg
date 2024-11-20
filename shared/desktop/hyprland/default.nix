@@ -5,6 +5,12 @@
     hyprcursor
     hyprland-protocols
   ];
+
+  # Launch hyprland at startup
+  programs.zsh.profileExtra = ''
+    [[ $(tty) == /dev/tty1 ]]&&exec Hyprland
+  '';
+
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
 
   home.sessionVariables = {
