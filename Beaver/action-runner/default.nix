@@ -13,7 +13,8 @@
         deadnix
 
         # For Nix deploy jobs
-        morph
+        openssh
+        deploy-rs
       ];
     };
   };
