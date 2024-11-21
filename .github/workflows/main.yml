@@ -25,12 +25,12 @@ jobs:
       - name: Nix Flake check
         run: nix flake check --all-systems --keep-going --impure
 
-  CD_Beaver:
-    name: deploy Beaver
-    runs-on: self-hosted
-    needs: CI
-
-    steps:
-      - name: Deploy Beaver
-        run: morph deploy .github/deployment/machines.nix switch
-
+  # CD_Beaver:
+  #   name: deploy Beaver
+  #   runs-on: self-hosted
+  #   needs: CI
+  #
+  #   steps:
+  #     - name: Deploy Beaver
+  #       run: morph deploy .github/deployment/machines.nix switch
+  #
