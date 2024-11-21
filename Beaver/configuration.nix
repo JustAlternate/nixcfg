@@ -39,7 +39,8 @@
       home-manager
       docker-client
       lego
-      unstable.morph
+      deploy-rs
+      lolcat
     ];
   };
 
