@@ -6,31 +6,33 @@ on:
       - main
 
 jobs:
-  CI:
-    name: CI for nixcfg
-    runs-on: self-hosted
+  # CI:
+  #   name: CI for nixcfg
+  #   runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Formatting with nixfmt
+  #       run: nixfmt . -c
+  #
+  #     - name: Antipattern linting for Nix code with statix
+  #       run: statix check . -i docker-compose.nix
+  #
+  #     - name: Scan nix file for dead code with deadnix
+  #       run: deadnix . -f
+  #
+  #     - name: Nix Flake check
+  #       run: nix flake check --all-systems --keep-going --impure
+
+  CD_Beaver:
+    name: deploy Beaver
+    runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
+    # needs: CI
     steps:
+
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Formatting with nixfmt
-        run: nixfmt . -c
-
-      - name: Antipattern linting for Nix code with statix
-        run: statix check . -i docker-compose.nix
-
-      - name: Scan nix file for dead code with deadnix
-        run: deadnix . -f
-
-      - name: Nix Flake check
-        run: nix flake check --all-systems --keep-going --impure
-
-  # CD_Beaver:
-  #   name: deploy Beaver
-  #   runs-on: self-hosted
-  #   needs: CI
-  #
-  #   steps:
-  #     - name: Deploy Beaver
-  #       run: morph deploy .github/deployment/machines.nix switch
-  #
+      - name: Deploy Beaver
+        run: deploy .#BeaverNixos --skip-checks -- --impure
