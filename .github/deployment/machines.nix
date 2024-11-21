@@ -1,14 +1,11 @@
-let
-  pkgs = import (import ./nixpkgs.nix) { };
-in
 {
-  network = {
-    inherit pkgs;
-    description = "simple hosts";
-    ordering = {
-      tags = [ "beaver" ];
-    };
-  };
+  network.description = "simple hosts";
 
-  "beaver" = import ../../Beaver/configuration.nix;
+  "beaver" = _: {
+    deployment = {
+      targetUser = "root";
+      targetHost = "justalternate.fr";
+    };
+    imports = [ ../../Beaver/configuration.nix ];
+  };
 }
