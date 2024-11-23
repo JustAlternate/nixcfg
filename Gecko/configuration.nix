@@ -1,19 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
-
+{ lib, pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
-  boot.loader.grub.enable = false;
-  # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   networking.hostName = "GeckoNixos1"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -117,11 +110,15 @@
     };
   };
 
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  boot.tmp.cleanOnBoot = true;
+  boot = {
+    # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+    loader.grub.enable = false;
+    # Enables the generation of /boot/extlinux/extlinux.conf
+    loader.generic-extlinux-compatible.enable = true;
+    tmp.cleanOnBoot = true;
+  };
   zramSwap.enable = true;
 
   # Open ports in the firewall.
@@ -155,4 +152,3 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
-
