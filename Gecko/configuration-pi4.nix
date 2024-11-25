@@ -1,12 +1,6 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 { lib, pkgs, ... }:
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration-pi4.nix ];
 
   networking.hostName = "GeckoNixos1"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -28,69 +22,40 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Configure keymap in X11
   services.xserver.xkb.layout = "fr";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     firefox
-  #     tree
-  #   ];
-  # };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     git
     wget
     htop
     nmon
-    libraspberrypi
-    raspberrypi-eeprom
     cmatrix
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  programs.zsh.enable = true;
   users = {
     # set Zsh as the default user shell for all users
     defaultUserShell = pkgs.zsh;
     users.root.openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
     ];
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "vi-mode"
+      ];
+      theme = "agnoster";
+    };
   };
 
   nix = {
