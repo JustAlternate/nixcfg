@@ -15,22 +15,14 @@
 
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
-    kernelPackages = pkgs.linuxPackages_rpi3;
     initrd.availableKernelModules = [ "xhci_pci" ];
     initrd.kernelModules = [ ];
     kernelModules = [ ];
     extraModulePackages = [ ];
     kernelParams = [ "cma=256M" ];
     loader = {
+      generic-extlinux-compatible.enable = true;
       grub.enable = false;
-      raspberryPi = {
-        enable = true;
-        version = 3;
-        uboot.enable = true;
-        firmwareConfig = ''
-          gpu_mem=256
-        '';
-      };
     };
   };
 
