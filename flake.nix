@@ -37,8 +37,8 @@
     # For installing osu and osu-lazer
     nix-gaming.url = "github:fufexan/nix-gaming";
 
-    # Minecraft servers
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    # Minecraft servers
 
   };
 
@@ -103,11 +103,11 @@
           ];
         };
         GeckoNixos = nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = systemArm;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./Gecko/configuration.nix ];
+          modules = [ ./Gecko/configuration-pi3b+.nix ];
         };
       };
 
