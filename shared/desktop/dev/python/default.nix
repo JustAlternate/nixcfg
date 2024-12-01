@@ -10,6 +10,7 @@
           flask
           pygame
           pygame-sdl2
+          psutil
           matplotlib
           numpy
           opencv4
