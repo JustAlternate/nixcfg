@@ -10,6 +10,8 @@
     ../../shared/desktop/rice.nix
   ];
 
+  custom.neovim.pywal16.enable = true;
+
   wayland.windowManager.hyprland.extraConfig = ''
     # Monitor settings
     monitor=DP-3, 2560x1440@165, 0x0, 1
