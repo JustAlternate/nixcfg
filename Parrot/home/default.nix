@@ -2,13 +2,15 @@
 {
   imports = [
     ./rice/eww
-    ../../shared/nvim
+    ../../shared/nvim/extended.nix
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/desktop/dev
     ../../shared/desktop/rice.nix
   ];
+
+  custom.neovim.pywal16.enable = true;
 
   wayland.windowManager.hyprland.extraConfig = ''
     #env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
