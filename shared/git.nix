@@ -10,7 +10,7 @@ in
     extraConfig = {
       branch = {
         # Automatic remote tracking.
-        autoSetupMerge = mkDefault "current";
+        autoSetupMerge = mkDefault "simple";
         # Automatically use rebase for new branches.
         autoSetupRebase = mkDefault "always";
       };
