@@ -8,12 +8,18 @@
   ...
 }:
 {
+  imports = [
+    ./default.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
+
+  networking.hostName = "GeckoNixos2";
+
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
   ];
 
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" ];
     initrd.kernelModules = [ ];
@@ -24,7 +30,9 @@
       generic-extlinux-compatible.enable = true;
       grub.enable = false;
     };
+    tmp.cleanOnBoot = true;
   };
+  zramSwap.enable = true;
 
   fileSystems = {
     "/boot" = {
