@@ -5,12 +5,16 @@
   ...
 }:
 {
+  imports = [
+    ./default.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
+
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
   ];
 
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" ];
     initrd.kernelModules = [ ];
