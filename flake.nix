@@ -107,7 +107,7 @@
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./Gecko/configuration-pi3b+.nix ];
+          modules = [ ./Gecko/default.nix ];
         };
       };
 
