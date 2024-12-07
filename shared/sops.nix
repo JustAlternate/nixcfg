@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
@@ -14,6 +14,7 @@
       "TIANJI/POSTGRES_PASSWORD" = { };
       "TIANJI/JWT_SECRET" = { };
       "ACTION_RUNNER/NIXCFG_TOKEN" = { };
+      "JELLYFIN/DELUGE-AUTH" = { };
     };
   };
 
