@@ -13,6 +13,7 @@
     ./minecraft
     ./action-runner
     ../shared/sops.nix # Secrets management using ssh key
+    ./jellyfin-stack
   ];
 
   nix = {
