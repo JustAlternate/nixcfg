@@ -2,7 +2,7 @@
 {
   imports = [
     ./rice/eww
-    ../../shared/nvim
+    ../../shared/nvim/extended.nix
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
