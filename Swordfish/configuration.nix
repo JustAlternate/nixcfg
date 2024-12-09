@@ -60,24 +60,19 @@
     loader = {
       grub = {
         enable = true;
-        efiSupport = true;
-        device = "nodev";
+        device = "/dev/nvme0n1";
+        useOSProber = true;
         # Windows dual boot
-        extraEntries = ''
-          menuentry "Windows" {
-            insmod part_gpt
-            insmod fat
-            insmod search_fs_uuid
-            insmod chain
-            search --fs-uuid --set=root 78FC-1AE0
-            chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-          }
-        '';
-        version = 2;
-      };
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
+        # extraEntries = ''
+        #   menuentry "Windows" {
+        #     insmod part_gpt
+        #     insmod fat
+        #     insmod search_fs_uuid
+        #     insmod chain
+        #     search --fs-uuid --set=root 78FC-1AE0
+        #     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        #   }
+        # '';
       };
     };
   };
@@ -121,7 +116,13 @@
 
     ollama = {
       enable = true;
+      acceleration = "rocm";
+      package = pkgs.unstable.ollama-rocm;
+      environmentVariables = {
+        HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+      };
     };
+    open-webui.enable = true;
 
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
@@ -210,9 +211,9 @@
     hyprland.enable = true;
   };
 
-  services.xserver.wacom.enable = true;
-  hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = true;
+  #services.xserver.wacom.enable = true;
+  #hardware.opentabletdriver.enable = true;
+  #hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
   users = {

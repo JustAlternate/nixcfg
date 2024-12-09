@@ -88,6 +88,7 @@
             ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
           ];
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
