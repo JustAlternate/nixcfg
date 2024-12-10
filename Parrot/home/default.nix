@@ -116,6 +116,8 @@
         pandoc
         lazygit
         morph
+        asciinema-agg
+        asciinema
 
         ## Show-off
         cmatrix
