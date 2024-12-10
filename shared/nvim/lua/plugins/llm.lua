@@ -3,7 +3,7 @@ return {
 	"David-Kunz/gen.nvim",
 	cmd = "Gen",
 	opts = {
-		model = "codeqwen:latest", -- The default model to use.
+		model = "qwen2.5-coder", -- The default model to use.
 		quit_map = "q", -- set keymap for close the response window
 		retry_map = "<c-r>", -- set keymap to re-send the current prompt
 		accept_map = "<cr>", -- set keymap to replace the previous selection with the last result
