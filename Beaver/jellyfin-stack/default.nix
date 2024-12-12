@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
   jellyfin-http = 8096;
   jellyfin-https = 8920;
@@ -17,32 +17,42 @@ in
 {
   services = {
     jellyfin = {
-      enable = true;
+      enable = false;
+      user = "root";
+      group = "media";
     };
 
     radarr = {
-      enable = true;
+      enable = false;
+      user = "root";
+      group = "media";
     };
 
     sonarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
+      user = "root";
+      group = "media";
     };
 
     prowlarr = {
-      enable = true;
+      enable = false;
     };
 
     bazarr = {
-      enable = true;
+      enable = false;
       listenPort = bazarr;
+      user = "root";
+      group = "media";
     };
 
     deluge = {
-      enable = true;
+      enable = false;
       declarative = true;
       openFirewall = true;
-      authFile = /run/secrets/JELLYFIN/DELUGE-AUTH;
+      user = "root";
+      group = "media";
+      authFile = "/run/secrets/JELLYFIN/DELUGE-AUTH";
       web = {
         enable = true;
         port = deluge-web;
@@ -106,10 +116,99 @@ in
     ];
 
     locations."/" = {
-      proxyPass = "http://127.0.0.1:8920";
+      proxyPass = "http://127.0.0.1:8096";
       proxyWebsockets = true; # needed if you need to use WebSocket
       extraConfig = "proxy_ssl_server_name on;";
     };
   };
 
+  services.nginx.virtualHosts."radarr.justalternate.fr" = {
+    enableACME = true;
+    forceSSL = true;
+    listen = [
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 8443;
+        ssl = true;
+      }
+    ];
+
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:7878";
+      proxyWebsockets = true; # needed if you need to use WebSocket
+      extraConfig = "proxy_ssl_server_name on;";
+    };
+  };
+
+  services.nginx.virtualHosts."sonarr.justalternate.fr" = {
+    enableACME = true;
+    forceSSL = true;
+    listen = [
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 8443;
+        ssl = true;
+      }
+    ];
+
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8989";
+      proxyWebsockets = true; # needed if you need to use WebSocket
+      extraConfig = "proxy_ssl_server_name on;";
+    };
+  };
+  services.nginx.virtualHosts."prowlarr.justalternate.fr" = {
+    enableACME = true;
+    forceSSL = true;
+    listen = [
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 8443;
+        ssl = true;
+      }
+    ];
+
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:9696";
+      proxyWebsockets = true; # needed if you need to use WebSocket
+      extraConfig = "proxy_ssl_server_name on;";
+    };
+  };
+
+  services.nginx.virtualHosts."deluge.justalternate.fr" = {
+    enableACME = true;
+    forceSSL = true;
+    listen = [
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 8443;
+        ssl = true;
+      }
+    ];
+
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8112";
+      proxyWebsockets = true; # needed if you need to use WebSocket
+      extraConfig = "proxy_ssl_server_name on;";
+    };
+  };
+
+  users.groups.media = { };
+  users.groups.media.members = [ "root" ];
 }
