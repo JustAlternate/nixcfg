@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  # CONFIGURATION FOR A HOMEMADE GAMING RIG FEATURING
+  # Motherboard: B550 GAMING X
+  # CPU: AMD Ryzen 7 5800X
+  # GPU: AMD Radeon RX 6800
+  # RAM: 32G
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -8,12 +13,10 @@
 
   nix = {
     settings = {
-      # Add the possibility to install unstable packages
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-
       # Nix Gaming cache
       substituters = [ "https://nix-gaming.cachix.org" ];
       trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
@@ -53,27 +56,23 @@
 
   # Bootloader.
   boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       grub = {
         enable = true;
-        efiSupport = true;
-        device = "nodev";
+        device = "/dev/nvme0n1";
+        useOSProber = true;
         # Windows dual boot
-        extraEntries = ''
-          menuentry "Windows" {
-            insmod part_gpt
-            insmod fat
-            insmod search_fs_uuid
-            insmod chain
-            search --fs-uuid --set=root 78FC-1AE0
-            chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-          }
-        '';
-        version = 2;
-      };
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
+        # extraEntries = ''
+        #   menuentry "Windows" {
+        #     insmod part_gpt
+        #     insmod fat
+        #     insmod search_fs_uuid
+        #     insmod chain
+        #     search --fs-uuid --set=root 78FC-1AE0
+        #     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        #   }
+        # '';
       };
     };
   };
@@ -113,19 +112,17 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-
-      # lowLatency = {
-      #   # enable this module
-      #   enable = true;
-      #   # defaults (no need to be set unless modified)
-      #   quantum = 64;
-      #   rate = 48000;
-      # };
     };
 
     ollama = {
       enable = true;
+      acceleration = "rocm";
+      package = pkgs.unstable.ollama-rocm;
+      environmentVariables = {
+        HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+      };
     };
+    open-webui.enable = true;
 
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
@@ -214,9 +211,9 @@
     hyprland.enable = true;
   };
 
-  services.xserver.wacom.enable = true;
-  hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = true;
+  #services.xserver.wacom.enable = true;
+  #hardware.opentabletdriver.enable = true;
+  #hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
   users = {

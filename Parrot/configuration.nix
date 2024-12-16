@@ -9,12 +9,10 @@
 
   nix = {
     settings = {
-      # Add the possibility to install unstable packages
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-
       # Nix Gaming cache
       substituters = [ "https://nix-gaming.cachix.org" ];
       trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];

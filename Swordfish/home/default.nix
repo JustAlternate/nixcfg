@@ -1,14 +1,21 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-    ./rice
-    ../../Parrot/home/zsh.nix
-    ../../Parrot/home/dev
-    ./nvim
+    ./rice/eww
+    ../../shared/nvim/extended.nix
+    ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
-    ../../shared/display-manager.nix
+    ../../shared/desktop/dev
+    ../../shared/desktop/rice.nix
   ];
+
+  custom.neovim.pywal16.enable = true;
+
+  wayland.windowManager.hyprland.extraConfig = ''
+    # Monitor settings
+    monitor=DP-3, 2560x1440@165, 0x0, 1
+  '';
 
   home = {
     username = "justalternate";
@@ -112,6 +119,8 @@
         statix # Lints and suggestions for the nix programming language
         deadnix # Find and remove unused code in .nix source files
         nixfmt-rfc-style # Nix Code Formatter
+        morph
+        deploy-rs
 
         ## Show-off
         cmatrix
@@ -155,7 +164,8 @@
         cpu-x
         marp-cli
       ]
-      ++ (import ./bin { inherit pkgs; });
+      ## Install my custom scripts
+      ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 
     # For env var
     sessionVariables = {

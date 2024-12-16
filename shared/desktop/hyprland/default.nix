@@ -5,6 +5,12 @@
     hyprcursor
     hyprland-protocols
   ];
+
+  # Launch hyprland at startup
+  programs.zsh.profileExtra = ''
+    [[ $(tty) == /dev/tty1 ]]&&exec Hyprland
+  '';
+
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
 
   home.sessionVariables = {
@@ -18,12 +24,6 @@
     xwayland.enable = true;
 
     extraConfig = ''
-      # Electron env for wayland
-      env = ELECTRON_OZONE_PLATFORM_HINT,auto
-
-      # Monitor settings
-      monitor=DP-3, 2560x1440@165, 0x0, 1
-
       # Default env vars
       env = XCURSOR_SIZE,10
 
