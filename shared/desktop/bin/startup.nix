@@ -14,6 +14,6 @@ pkgs.writeShellScriptBin "startup" ''
   change_wallpaper &
 
   sleep 0.1
-  eww open --screen $(( $(hyprctl monitors | grep -c "Monitor") - 1 )) hbar &
+  eww open hbar &
   #conky &
 ''

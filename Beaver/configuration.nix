@@ -9,9 +9,11 @@
     ./owncloud # selhosted google drivee
     ./hauk # selfhosted google maps sharing location service
     ./mail
+    ./portainer
     ./minecraft
     ./action-runner
     ../shared/sops.nix # Secrets management using ssh key
+    ./jellyfin-stack
   ];
 
   nix = {
@@ -39,7 +41,8 @@
       home-manager
       docker-client
       lego
-      unstable.morph
+      deploy-rs
+      lolcat
     ];
   };
 

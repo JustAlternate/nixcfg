@@ -1,18 +1,18 @@
 { pkgs, ... }:
 {
   imports = [
-    ./R
+    # ./R
     ./python
-    ./Ocaml
+    # ./Ocaml
     ./latex
   ];
 
   home = {
     packages = with pkgs; [
       # Developpment
-      nodePackages.node2nix
+      # nodePackages.node2nix
       openssh
-      scdoc
+      # scdoc
       git
       gcc
       lua

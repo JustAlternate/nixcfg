@@ -20,22 +20,26 @@
     # For nix-darwin for Owl
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     # other urls
     # lobster.url = "github:justchokingaround/lobster";
-    # themecord = {
-    #   url = "github:danihek/themecord";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    themecord = {
+      url = "github:danihek/themecord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # For installing osu and osu-lazer
     nix-gaming.url = "github:fufexan/nix-gaming";
 
-    # Minecraft servers
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    # Minecraft servers
 
-    # Brew for OWL
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
   outputs =
@@ -84,6 +88,7 @@
             ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
           ];
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
@@ -98,7 +103,15 @@
             { nixpkgs.overlays = nixos-overlays; }
           ];
         };
+        # GeckoNixos = nixpkgs.lib.nixosSystem {
+        #   system = systemArm;
+        #   specialArgs = {
+        #     inherit inputs;
+        #   };
+        #   modules = [ ./Gecko/default.nix ];
+        # };
       };
+
       # Nix Home-manger configurations
       homeConfigurations = {
         parrot = home-manager.lib.homeManagerConfiguration {
