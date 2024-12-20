@@ -6,9 +6,9 @@ on:
       - main
 
 jobs:
-  lint_nixcfg:
-    name: nixcfg linting
-    runs-on: self-hosted
+  CI:
+    name: CI for nixcfg
+    runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -22,52 +22,17 @@ jobs:
       - name: Scan nix file for dead code with deadnix
         run: deadnix . -f
 
-      - name: Nix Flake check no build
-        run: nix flake check --no-build github:NixOS/patchelf --all-systems --keep-going
-
-  build_Beaver:
-    name: building Beaver
-    runs-on: self-hosted
-    needs: lint_nixcfg
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Check changes in Beaver folder
-        uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            beaver:
-              - 'Beaver/**'
-
-      - name: Check flake is correct
+      - name: Nix Flake check
         run: nix flake check --all-systems --keep-going --impure
-        if: steps.changes.outputs.beaver == 'true'
 
-      - name: Build Beaver
-        run: nix build .#nixosConfigurations.BeaverNixos.config.system.build.toplevel --impure
-        if: steps.changes.outputs.beaver == 'true'
-
-      - name: Upload Beaver build
-        uses: actions/upload-artifact@v4
-        with:
-          name: beaver-result
-          path: result
-          retention-days: 10
-          overwrite: true
-
-  deploy_Beaver:
-    name: deploy Beaver
-    runs-on: self-hosted
-    needs: build_Beaver
-
-    steps:
-      - name: Download Beaver build
-        uses: actions/download-artifact@v4
-        with:
-          name: beaver-result
-
-      - name: Deploy Beaver
-
+  # CD_Beaver:
+  #   name: deploy Beaver
+  #   runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
+  #   needs: CI
+  #   steps:
+  #
+  #     - name: Check out repository
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Deploy Beaver
+  #       run: deploy .#BeaverNixos --skip-checks -- --impure

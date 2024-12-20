@@ -1,10 +1,8 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib) mkDefault;
 in
 {
-  home.packages = with pkgs; [ lazygit ];
-
   programs.git = {
     enable = true;
     userName = mkDefault "JustAlternate";
@@ -18,7 +16,7 @@ in
       };
       push = {
         autoSetupRemote = true;
-        default = mkDefault "simple";
+        default = mkDefault "current";
       };
     };
   };

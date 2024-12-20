@@ -9,6 +9,12 @@ _: {
         user = "root";
         identityFile = "~/.ssh/id_ed25519";
       };
+      "GeckoNixos1" = {
+        hostname = "192.168.1.3";
+        user = "root";
+        port = 22;
+        identityFile = "~/.ssh/id_ed25519";
+      };
       "ocelot" = {
         #batocera
         hostname = "192.168.1.242";

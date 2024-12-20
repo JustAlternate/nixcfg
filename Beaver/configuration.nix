@@ -6,13 +6,14 @@
     ./nginx # Web server, reverse proxy
     ./planka # selfhosted Kanban
     ./vaultwarden
-    # ./tianji/docker-compose.nix # selfhosted google analytics
-    ./owncloud # selhosted google drive
+    ./owncloud # selhosted google drivee
     ./hauk # selfhosted google maps sharing location service
     ./mail
+    ./portainer
     ./minecraft
     ./action-runner
     ../shared/sops.nix # Secrets management using ssh key
+    ./jellyfin-stack
   ];
 
   nix = {
@@ -40,6 +41,8 @@
       home-manager
       docker-client
       lego
+      deploy-rs
+      lolcat
     ];
   };
 

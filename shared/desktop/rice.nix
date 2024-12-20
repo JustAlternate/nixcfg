@@ -1,12 +1,11 @@
 { pkgs, ... }:
 {
   imports = [
+    ../fastfetch
+    ./rofi
+    ./pywal
     ./hyprland
-    ./eww
-    ../../../shared/rofi
-    ../../../shared/fastfetch
-    ../../../shared/pywal
-    ../../../shared/kitty.nix
+    ./kitty.nix
   ];
 
   home.packages = with pkgs; [
@@ -35,7 +34,6 @@
 
   gtk = {
     enable = true;
-
     iconTheme = {
       name = "Reversal";
       package = pkgs.reversal-icon-theme;
@@ -45,17 +43,5 @@
       name = "Numix-Cursor";
       package = pkgs.numix-cursor-theme;
     };
-
-    # gtk3.extraConfig = {
-    #   Settings = ''
-    #     gtk-application-prefer-dark-theme=1
-    #   '';
-    # };
-    #
-    # gtk4.extraConfig = {
-    #   Settings = ''
-    #     gtk-application-prefer-dark-theme=1
-    #   '';
-    # };
   };
 }
