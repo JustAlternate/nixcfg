@@ -35,9 +35,6 @@
       # Latex preview
       mupdf
 
-      # Ascii image rendering
-      ascii-image-converter
-
       (import ./ollama-copilot.nix { inherit (pkgs) lib buildGoModule fetchFromGitHub; })
       ollama
     ];
@@ -88,7 +85,6 @@
           which-key-nvim
           markdown-preview-nvim
           go-nvim
-          baleia-nvim
           {
             name = "LuaSnip";
             path = luasnip;
