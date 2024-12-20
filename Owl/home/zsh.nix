@@ -6,6 +6,7 @@
       zsh
       zoxide
       eza
+      lazygit
     ];
   };
 

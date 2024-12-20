@@ -3,7 +3,6 @@
   imports = [
     ./zsh.nix
     ../../shared/nvim
-    # ../../shared/sops.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
     ./git.nix
@@ -13,11 +12,14 @@
   home = {
     stateVersion = "24.05";
     packages = with pkgs; [
-      cmatrix
       postgresql
-      poetry
       unstable.go
     ];
+
+    # For env var
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
   };
 
   xdg.enable = true;
