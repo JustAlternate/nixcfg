@@ -10,6 +10,8 @@
     ../../shared/desktop/rice.nix
   ];
 
+  programs.ydotool.enable = true;
+
   custom.neovim.pywal16.enable = true;
 
   wayland.windowManager.hyprland.extraConfig = ''
@@ -103,7 +105,6 @@
         wl-clipboard
         wl-clipboard-x11
         cliphist
-        busybox
         ripgrep
         thefuck
         pamixer
