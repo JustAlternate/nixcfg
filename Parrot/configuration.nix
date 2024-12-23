@@ -94,8 +94,6 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  sound.enable = true;
-
   services = {
     xserver = {
       # Configure keymap in X11
@@ -202,7 +200,6 @@
     # Enable OpenGL
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
 
       extraPackages = with pkgs; [
