@@ -434,6 +434,11 @@
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
         "rev": "cc5f59e353d94a907cd9e06919aaecb093b59d46",
+        "lastModified": 1734832422,
+        "narHash": "sha256-Ot9HidtOWkKIX65o5KH6GrnQ3CefYLJx0nk0G99BTk8=",
+        "owner": "Infinidoge",
+        "repo": "nix-minecraft",
+        "rev": "bab1c34f0a1009b516c4cc3b30d663db43d993ce",
         "type": "github"
       },
       "original": {
@@ -449,6 +454,11 @@
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "de1864217bfa9b5845f465e771e0ecb48b30e02d",
+        "lastModified": 1734435836,
+        "narHash": "sha256-kMBQ5PRiFLagltK0sH+08aiNt3zGERC2297iB6vrvlU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4989a246d7a390a859852baddb1013f825435cee",
         "type": "github"
       },
       "original": {
@@ -538,6 +548,11 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "1807c2b91223227ad5599d7067a61665c52d1295",
+        "lastModified": 1734737257,
+        "narHash": "sha256-GIMyMt1pkkoXdCq9un859bX6YQZ/iYtukb9R5luazLM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1c6e20d41d6a9c1d737945962160e8571df55daa",
         "type": "github"
       },
       "original": {

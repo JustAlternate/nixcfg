@@ -14,7 +14,7 @@
   # custom.neovim.pywal16.enable = true;
 
   wayland.windowManager.hyprland.extraConfig = ''
-    #env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+    env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
     # Monitor settings
     monitor=eDP-1, 1920x1080, 0x1080, 1
     monitor=HDMI-A-1, 1920x1080, 0x0, 1
@@ -104,7 +104,6 @@
         wl-clipboard
         wl-clipboard-x11
         cliphist
-        busybox
         ripgrep
         thefuck
         pamixer
