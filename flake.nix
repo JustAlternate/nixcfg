@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # sops
     sops-nix.url = "github:Mic92/sops-nix";
     # optional, not necessary for the module
@@ -143,7 +148,7 @@
         };
       };
 
-      # Nix-darwin
+      # Nix-darwin configurations
       darwinConfigurations."Owl" = nix-darwin.lib.darwinSystem {
         system = systemMac;
         specialArgs = {
@@ -151,19 +156,10 @@
         };
         modules = [
           inputs.nix-homebrew.darwinModules.nix-homebrew
+          inputs.nixvim.nixDarwinModules.nixvim
           home-manager.darwinModules.home-manager
           { nixpkgs.overlays = nixos-overlays; }
           ./Owl/configuration.nix
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.loicweber = import ./Owl/home;
-            };
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
         ];
       };
     };
