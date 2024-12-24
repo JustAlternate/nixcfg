@@ -2,9 +2,11 @@
 {
   imports = [
     ./keymaps.nix
+		./neotree.nix
+		./conform.nix
   ];
 
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     ripgrep
     fzf
     fd
@@ -38,7 +40,6 @@
 
       # Undo stuff from days ago
       swapfile = true;
-      backup = true;
       undofile = true;
 
       # Better splitting
@@ -49,25 +50,11 @@
     plugins = {
       lazy.enable = true;
       flash.enable = true;
-      # neo-tree.enable = true;
+			web-devicons.enable = true;
       mini.enable = true;
       which-key.enable = true;
       lualine.enable = true;
       toggleterm.enable = true;
-      conform-nvim = {
-        enable = true;
-        settings = {
-          formatters_by_ft = {
-            tex = [ "latexindent" ];
-            nix = [ "alejandra" ];
-            markdown = [ "prettierd" ];
-          };
-          format_on_save = {
-            lsp_format = "fallback";
-          };
-        };
-      };
-
     };
   };
 }
