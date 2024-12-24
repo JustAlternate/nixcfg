@@ -1,5 +1,7 @@
 { self, ... }:
 {
+  imports = [ ../shared/nixvim ];
+
   environment.systemPackages = [ ];
 
   # Auto upgrade nix package and the daemon service.
@@ -24,6 +26,12 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   users.users.loicweber.home = "/Users/loicweber";
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.loicweber = import ./home;
+  };
 
   nix-homebrew = {
     # Install Homebrew under the default prefix
