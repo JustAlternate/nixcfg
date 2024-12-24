@@ -6,28 +6,28 @@
 			# Windows
 			{
 				mode = "n";
-				key = "<C-Up>";
+				key = "<C-k>";
 				action = "<C-w>k";
 				options.desc = "Move To Window Up";
 			}
 
 			{
 				mode = "n";
-				key = "<C-Down>";
+				key = "<C-j>";
 				action = "<C-w>j";
 				options.desc = "Move To Window Down";
 			}
 
 			{
 				mode = "n";
-				key = "<C-Left>";
+				key = "<C-h>";
 				action = "<C-w>h";
 				options.desc = "Move To Window Left";
 			}
 
 			{
 				mode = "n";
-				key = "<C-Right>";
+				key = "<C-l>";
 				action = "<C-w>l";
 				options.desc = "Move To Window Right";
 			}
