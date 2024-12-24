@@ -18,13 +18,16 @@
     };
 
     # sops
-    sops-nix.url = "github:Mic92/sops-nix";
-    # optional, not necessary for the module
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # For nix-darwin for Owl
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     # other urls
@@ -124,6 +127,7 @@
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
             ./Parrot/home
+            inputs.nixvim.homeManagerModules.nixvim
           ];
           extraSpecialArgs = {
             inherit inputs;
