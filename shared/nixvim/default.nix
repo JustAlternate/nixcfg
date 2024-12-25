@@ -4,6 +4,7 @@
     ./keymaps.nix
 		./neotree.nix
 		./conform.nix
+		./whichkey.nix
   ];
 
   home.packages = with pkgs; [
@@ -52,9 +53,13 @@
       flash.enable = true;
 			web-devicons.enable = true;
       mini.enable = true;
-      which-key.enable = true;
       lualine.enable = true;
       toggleterm.enable = true;
+			snacks.enable = true;
+			lazygit.enable = true;
+			telescope.enable = true;
+			bufferline.enable = true;
+			fzf-lua.enable = true;
     };
   };
 }
