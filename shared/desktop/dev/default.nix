@@ -19,6 +19,8 @@
       go
       cmake
       gnumake
+      duckdb
+      dbt
       # framac
     ];
   };
