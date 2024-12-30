@@ -1,5 +1,7 @@
 { self, ... }:
 {
+  imports = [ ../shared/nixvim ];
+
   environment.systemPackages = [ ];
 
   # Auto upgrade nix package and the daemon service.
@@ -25,6 +27,12 @@
 
   users.users.loicweber.home = "/Users/loicweber";
 
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.loicweber = import ./home;
+  };
+
   nix-homebrew = {
     # Install Homebrew under the default prefix
     enable = true;
@@ -37,10 +45,5 @@
 
     # Automatically migrate existing Homebrew installations
     autoMigrate = true;
-  };
-
-  # For env var
-  sessionVariables = {
-    EDITOR = "nvim";
   };
 }
