@@ -3,23 +3,31 @@
 
   inputs = {
     # nixpkgs
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # sops
-    sops-nix.url = "github:Mic92/sops-nix";
-    # optional, not necessary for the module
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # For nix-darwin for Owl
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     # other urls
@@ -119,6 +127,7 @@
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
             ./Parrot/home
+            inputs.nixvim.homeManagerModules.nixvim
           ];
           extraSpecialArgs = {
             inherit inputs;
@@ -143,7 +152,7 @@
         };
       };
 
-      # Nix-darwin
+      # Nix-darwin configurations
       darwinConfigurations."Owl" = nix-darwin.lib.darwinSystem {
         system = systemMac;
         specialArgs = {
@@ -151,19 +160,10 @@
         };
         modules = [
           inputs.nix-homebrew.darwinModules.nix-homebrew
+          inputs.nixvim.nixDarwinModules.nixvim
           home-manager.darwinModules.home-manager
           { nixpkgs.overlays = nixos-overlays; }
           ./Owl/configuration.nix
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.loicweber = import ./Owl/home;
-            };
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
         ];
       };
     };

@@ -29,22 +29,23 @@
     shells = with pkgs; [ zsh ];
 
     systemPackages = with pkgs; [
-      busybox
       pipewire
       wireplumber
       git
       vim
       home-manager
+      gparted
+      parted
     ];
 
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
-      #GBM_BACKEND = "nvidia_drm";
-      #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      GBM_BACKEND = "nvidia_drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       WLR_NO_HARDWARE_CURSORS = "1";
-      #LIBVA_DRIVER_NAME = "nvidia";
+      LIBVA_DRIVER_NAME = "nvidia";
       XDG_SESSION_TYPE = "wayland";
-      #__NV_PRIME_RENDER_OFFLOAD = "1";
+      __NV_PRIME_RENDER_OFFLOAD = "1";
     };
   };
 
@@ -93,8 +94,6 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  sound.enable = true;
-
   services = {
     xserver = {
       # Configure keymap in X11
@@ -103,8 +102,11 @@
       xkbVariant = "";
 
       # Load nvidia driver for Xorg and Wayland
-      videoDrivers = [ "amdvlk" ];
-      # videoDrivers = [ "nvidia" "amdvlk" ];
+      # videoDrivers = [ "amdvlk" ];
+      videoDrivers = [
+        "nvidia"
+        "amdvlk"
+      ];
     };
 
     # sound using pipewire:
@@ -156,6 +158,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "ydotool"
     ];
   };
 
@@ -189,6 +192,7 @@
       });
     '';
   };
+
   hardware = {
     # bluetooth:
     bluetooth.enable = true;
@@ -196,7 +200,6 @@
     # Enable OpenGL
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
 
       extraPackages = with pkgs; [
@@ -234,7 +237,7 @@
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
 
       prime = {
         offload.enable = true;

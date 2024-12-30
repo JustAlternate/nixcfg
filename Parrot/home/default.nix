@@ -2,7 +2,8 @@
 {
   imports = [
     ./rice/eww
-    ../../shared/nvim/extended.nix
+    # ../../shared/nvim/extended.nix
+    ../../shared/nixvim
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
@@ -10,10 +11,10 @@
     ../../shared/desktop/rice.nix
   ];
 
-  custom.neovim.pywal16.enable = true;
+  # custom.neovim.pywal16.enable = true;
 
   wayland.windowManager.hyprland.extraConfig = ''
-    #env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+    env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
     # Monitor settings
     monitor=eDP-1, 1920x1080, 0x1080, 1
     monitor=HDMI-A-1, 1920x1080, 0x0, 1
@@ -103,7 +104,6 @@
         wl-clipboard
         wl-clipboard-x11
         cliphist
-        busybox
         ripgrep
         thefuck
         pamixer
