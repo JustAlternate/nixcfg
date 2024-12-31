@@ -10,10 +10,9 @@
     ./hauk # selfhosted google maps sharing location service
     ./mail
     ./portainer
-    ./minecraft
+    # ./minecraft
     ./action-runner
     ../shared/sops.nix # Secrets management using ssh key
-    ./jellyfin-stack
   ];
 
   nix = {
@@ -63,6 +62,8 @@
   zramSwap.enable = true;
   networking.hostName = "nixos-beaver-8gb-nbg1-3";
   networking.domain = "";
+
+  services.fail2ban.enable = true;
 
   # sslh for ssh through https in order to get around school wifi ssh port 22 firewall
   services.sslh = {
