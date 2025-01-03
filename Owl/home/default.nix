@@ -2,7 +2,6 @@
 {
   imports = [
     ./zsh.nix
-    ../../shared/nvim
     ../../shared/ssh.nix
     ../../shared/git.nix
     ./git.nix
