@@ -11,6 +11,7 @@
   home.packages = with pkgs; [
     birdtray
     patray
+    unrar
   ];
 
   services.trayer = {
