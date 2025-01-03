@@ -22,7 +22,6 @@
         "<space>" = "none";
       };
     };
-
     keymaps = [
       {
         mode = "n";
