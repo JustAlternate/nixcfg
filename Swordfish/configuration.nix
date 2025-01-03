@@ -223,6 +223,8 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "input"
+        "uinput"
       ];
     };
     users.justalternate.openssh.authorizedKeys.keys = [
@@ -235,5 +237,22 @@
     interfaces."enp4s0".wakeOnLan.enable = true;
     # Enable networking
     networkmanager.enable = true;
+  };
+
+  systemd = {
+    services.ydotool = {
+      description = "ydotool daemon";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.ydotool}/bin/ydotoold";
+        Restart = "always";
+      };
+      environment = {
+        XDG_RUNTIME_DIR = "%t";
+        WAYLAND_DISPLAY = "wayland-1";
+        YDOTOOL_SOCKET = "/run/.ydotool_socket";
+      };
+    };
+    tmpfiles.rules = [ "d /run/.ydotool_socket 0755 justalternate" ];
   };
 }

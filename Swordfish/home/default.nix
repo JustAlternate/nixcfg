@@ -97,6 +97,7 @@
 
         # Cli tools
         ## Utility
+        ydotool
         xdg-utils
         playerctl
         unzip
