@@ -28,7 +28,7 @@ _: {
           java_language_server.enable = true;
           bashls.enable = true;
           nil_ls.enable = true;
-          statix.enable = true;
+          # statix.enable = true;
           nixd.enable = true;
           pylsp.enable = true;
           pyright.enable = true;
