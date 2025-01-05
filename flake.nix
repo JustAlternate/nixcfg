@@ -126,8 +126,8 @@
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
-            ./Parrot/home
             inputs.nixvim.homeManagerModules.nixvim
+            ./Parrot/home
           ];
           extraSpecialArgs = {
             inherit inputs;
@@ -137,6 +137,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
+            inputs.nixvim.homeManagerModules.nixvim
             ./Swordfish/home
           ];
           extraSpecialArgs = {
