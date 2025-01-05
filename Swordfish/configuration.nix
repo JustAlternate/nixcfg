@@ -17,9 +17,6 @@
         "nix-command"
         "flakes"
       ];
-      # Nix Gaming cache
-      substituters = [ "https://nix-gaming.cachix.org" ];
-      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
     };
     optimise.automatic = true;
     gc = {
@@ -34,17 +31,13 @@
 
     systemPackages = with pkgs; [
       busybox
-      pipewire
-      wireplumber
       git
       vim
       home-manager
     ];
 
     sessionVariables = {
-      NIXOS_OZONE_WL = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
-      XDG_SESSION_TYPE = "wayland";
     };
   };
 
@@ -62,17 +55,6 @@
         enable = true;
         device = "/dev/nvme0n1";
         useOSProber = true;
-        # Windows dual boot
-        # extraEntries = ''
-        #   menuentry "Windows" {
-        #     insmod part_gpt
-        #     insmod fat
-        #     insmod search_fs_uuid
-        #     insmod chain
-        #     search --fs-uuid --set=root 78FC-1AE0
-        #     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-        #   }
-        # '';
       };
     };
   };
@@ -97,6 +79,7 @@
   services = {
     xserver = {
       # Configure keymap in X11
+      enable = false;
 
       layout = "fr";
       xkbVariant = "";
@@ -124,8 +107,6 @@
 
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
-
-    dbus.enable = true;
   };
 
   # Configure console keymap
@@ -144,37 +125,11 @@
 
     # Polkit.
     polkit.enable = true;
-    polkit.extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if (
-          subject.isInGroup("users")
-            && (
-              action.id == "org.freedesktop.login1.reboot" ||
-              action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-              action.id == "org.freedesktop.login1.power-off" ||
-              action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-            )
-          )
-        {
-          return polkit.Result.YES;
-        }
-      });
-    '';
   };
   hardware = {
-    # bluetooth:
-    bluetooth.enable = true;
-
-    # Enable OpenGL
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
-
-      extraPackages = with pkgs; [
-        amdvlk
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
+      enable32Bit = true;
     };
   };
 
@@ -184,17 +139,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05";
-
-  xdg.portal = {
-    config.common.default = "*";
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
+  system.stateVersion = "24.11";
 
   home-manager = {
     useGlobalPkgs = true;
@@ -203,9 +148,7 @@
 
   programs = {
     zsh.enable = true;
-    # Enable ssh-agent
     ssh.startAgent = true;
-    hyprland.enable = true;
   };
 
   #services.xserver.wacom.enable = true;
@@ -215,7 +158,6 @@
   services.openssh.enable = true;
   users = {
     defaultUserShell = pkgs.zsh;
-    # Define a user account. Don't forget to set a password with ‘passwd’.
     users.justalternate = {
       home = "/home/justalternate/";
       isNormalUser = true;
@@ -226,6 +168,8 @@
         "input"
         "uinput"
       ];
+      initialPassword = "";
+      password = "";
     };
     users.justalternate.openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
