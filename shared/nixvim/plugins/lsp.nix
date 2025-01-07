@@ -5,7 +5,6 @@ _: {
       lint.enable = true;
       lsp = {
         enable = true;
-        servers.typos_lsp.enable = true;
         keymaps.lspBuf = {
           "<c-k>" = "signature_help";
           "gi" = "implementation";
@@ -18,11 +17,11 @@ _: {
           gopls = {
             enable = true;
           };
-          # grammarly.enable = true;
-          ltex = {
-            enable = true;
-            settings.language = "fr";
-          };
+          grammarly.enable = true;
+          #ltex = {
+          #  enable = true;
+          #  settings.language = "fr";
+          #};
           html.enable = true;
           cssls.enable = true;
           java_language_server.enable = true;
