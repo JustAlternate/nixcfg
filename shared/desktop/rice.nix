@@ -27,16 +27,16 @@
   #  style.name = "gtk2";
   #};
 
- # gtk = {
- #   enable = true;
- #   iconTheme = {
- #     name = "Reversal";
- #     package = pkgs.reversal-icon-theme;
- #   };
+  # gtk = {
+  #   enable = true;
+  #   iconTheme = {
+  #     name = "Reversal";
+  #     package = pkgs.reversal-icon-theme;
+  #   };
 
- #   cursorTheme = {
- #     name = "Numix-Cursor";
- #     package = pkgs.numix-cursor-theme;
- #   };
- # };
+  #   cursorTheme = {
+  #     name = "Numix-Cursor";
+  #     package = pkgs.numix-cursor-theme;
+  #   };
+  # };
 }
