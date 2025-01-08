@@ -9,7 +9,8 @@
     ./owncloud # selhosted google drivee
     ./hauk # selfhosted google maps sharing location service
     ./mail
-    ./portainer
+    # ./tianji
+    # ./portainer
     # ./minecraft
     ./action-runner
     ../shared/sops.nix # Secrets management using ssh key
