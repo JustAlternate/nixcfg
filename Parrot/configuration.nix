@@ -158,7 +158,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "ydotool"
     ];
   };
 

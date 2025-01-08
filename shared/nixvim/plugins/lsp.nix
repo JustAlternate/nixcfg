@@ -17,7 +17,7 @@ _: {
           gopls = {
             enable = true;
           };
-          grammarly.enable = true;
+          #grammarly.enable = true;
           #ltex = {
           #  enable = true;
           #  settings.language = "fr";
