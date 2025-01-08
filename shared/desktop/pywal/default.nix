@@ -1,9 +1,9 @@
-{ pkgs, lib, ... }:
-let
-  pywalfox-wrapper = pkgs.writeShellScriptBin "pywalfox-wrapper" ''
-    ${pkgs.pywalfox-native}/bin/pywalfox start
-  '';
-in
+{ pkgs, ... }:
+# let
+#   pywalfox-wrapper = pkgs.writeShellScriptBin "pywalfox-wrapper" ''
+#     ${pkgs.pywalfox-native}/bin/pywalfox start
+#   '';
+# in
 {
   home.packages = with pkgs; [
     pywal
