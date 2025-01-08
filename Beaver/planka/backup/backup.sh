@@ -29,7 +29,7 @@ echo "Success!"
 
 # Create tgz
 echo -n "Creating final tarball $BACKUP_DATETIME-backup.tgz ... "
-tar -czf $BACKUP_DATETIME-backup.tgz \
+tar -czf planka-backup.tgz \
     $BACKUP_DATETIME-backup/postgres.sql \
     $BACKUP_DATETIME-backup/user-avatars \
     $BACKUP_DATETIME-backup/project-background-images \
