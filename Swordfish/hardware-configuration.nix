@@ -7,29 +7,25 @@
   modulesPath,
   ...
 }:
+
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
   boot = {
-    initrd = {
-      availableKernelModules = [
-        "xhci_pci"
-        "ahci"
-        "nvme"
-        "usbhid"
-        "usb_storage"
-        "sd_mod"
-      ];
-      kernelModules = [ ];
-    };
-    kernelModules = [
-      "kvm-amd"
-      "amdgpu"
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
     ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/53848ba8-60ce-4cce-8dd2-103fbeb6cf81";
+    device = "/dev/disk/by-uuid/b311832b-d67c-48b4-ae48-13c511827b0d";
     fsType = "ext4";
   };
 
