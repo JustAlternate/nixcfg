@@ -46,8 +46,37 @@
     ];
   };
 
-  programs.zsh.enable = true;
-  services.openssh.enable = true;
+  services = {
+    fail2ban.enable = true;
+
+    # sslh for ssh through https in order to get around school wifi ssh port 22 firewall
+    sslh = {
+      enable = true;
+      listenAddress = "0.0.0.0";
+      verbose = false;
+      settings = {
+        protocols = [
+          {
+            host = "localhost";
+            name = "http";
+            port = "80";
+          }
+          # Redirect 443 https to 8443
+          {
+            host = "localhost";
+            name = "tls";
+            port = "8443";
+          }
+          {
+            host = "localhost";
+            name = "ssh";
+            port = "22";
+          }
+        ];
+      };
+    };
+    openssh.enable = true;
+  };
   users = {
     # set Zsh as the default user shell for all users
     defaultUserShell = pkgs.zsh;
@@ -56,6 +85,8 @@
     ];
   };
 
+  programs.zsh.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -63,35 +94,6 @@
   zramSwap.enable = true;
   networking.hostName = "nixos-beaver-8gb-nbg1-3";
   networking.domain = "";
-
-  services.fail2ban.enable = true;
-
-  # sslh for ssh through https in order to get around school wifi ssh port 22 firewall
-  services.sslh = {
-    enable = true;
-    listenAddress = "0.0.0.0";
-    verbose = false;
-    settings = {
-      protocols = [
-        {
-          host = "localhost";
-          name = "http";
-          port = "80";
-        }
-        # Redirect 443 https to 8443
-        {
-          host = "localhost";
-          name = "tls";
-          port = "8443";
-        }
-        {
-          host = "localhost";
-          name = "ssh";
-          port = "22";
-        }
-      ];
-    };
-  };
 
   system.stateVersion = "23.11";
 }
