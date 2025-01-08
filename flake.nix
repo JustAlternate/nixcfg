@@ -146,7 +146,10 @@
         };
         beaver = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${systemArm};
-          modules = [ ./Beaver/home ];
+          modules = [
+            inputs.nixvim.homeManagerModules.nixvim
+            ./Beaver/home
+          ];
           extraSpecialArgs = {
             inherit inputs;
           };
