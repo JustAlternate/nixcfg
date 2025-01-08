@@ -24,6 +24,9 @@
       jq
       lazygit
       sops
+      zip
+      terraform
+      awscli2
 
       ## Monitoring
       htop
