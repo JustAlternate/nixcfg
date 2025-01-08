@@ -57,7 +57,7 @@ in
       "DATABASE_URL" = "postgresql://tianji:tianji@postgres:5432/tianji";
       "JWT_SECRET" = JWT_SECRET;
     };
-    ports = [ "12345:12345/tcp" ];
+    ports = [ "9100:9100/tcp" ];
     dependsOn = [ "tianji-postgres" ];
     log-driver = "journald";
     extraOptions = [
