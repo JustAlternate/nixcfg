@@ -2,7 +2,6 @@
 {
   imports = [
     ./rice/eww
-    # ../../shared/nvim/extended.nix
     ../../shared/nixvim
     ../../shared/zsh.nix
     ../../shared/ssh.nix
@@ -10,8 +9,6 @@
     ../../shared/desktop/dev
     ../../shared/desktop/rice.nix
   ];
-
-  # custom.neovim.pywal16.enable = true;
 
   wayland.windowManager.hyprland.extraConfig = ''
     env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
@@ -81,7 +78,6 @@
         ffmpeg
         vlc
         obs-studio
-        # inputs.lobster.packages.x86_64-linux.lobster
 
         # Image
         imagemagick
@@ -138,13 +134,12 @@
 
         # Games
         steam
-        inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
+        # inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
         bottles
 
         ## Drivers/Requirements
         ckb-next
         meson
-        jdk17
         wine
         winetricks
         wine-wayland
