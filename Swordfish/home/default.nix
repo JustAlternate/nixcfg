@@ -2,15 +2,13 @@
 {
   imports = [
     ./rice/eww
-    ../../shared/nvim/extended.nix
+    ../../shared/nixvim
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/desktop/dev
     ../../shared/desktop/rice.nix
   ];
-
-  custom.neovim.pywal16.enable = true;
 
   wayland.windowManager.hyprland.extraConfig = ''
     # Monitor settings
@@ -28,7 +26,7 @@
     # You should not change this value, even if you update Home Manager. If you do
     # want to update the value, then make sure to first check the Home Manager
     # release notes.
-    stateVersion = "24.05";
+    stateVersion = "24.11";
 
     packages =
       with pkgs;
@@ -78,17 +76,15 @@
         ffmpeg
         vlc
         obs-studio
-        # inputs.lobster.packages.x86_64-linux.lobster
 
         ## Video editing
-        kdePackages.kdenlive
+        #kdePackages.kdenlive
 
         # Image
         imagemagick
         mupdf
         feh
         gimp
-        cinnamon.pix
         satty
 
         # Social media
@@ -113,14 +109,11 @@
         jq
         ani-cli
         sshfs
-        neovim-remote
         pandoc
         lazygit
         statix # Lints and suggestions for the nix programming language
         deadnix # Find and remove unused code in .nix source files
         nixfmt-rfc-style # Nix Code Formatter
-        morph
-        deploy-rs
 
         ## Show-off
         cmatrix
@@ -141,10 +134,7 @@
 
         # Games
         steam
-        bottles
         appimage-run
-        inputs.nix-gaming.packages.${pkgs.system}.osu-stable
-        inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
         unstable.pokemmo-installer
 
         ## Drivers/Requirements
@@ -152,7 +142,6 @@
         opentabletdriver
         ckb-next
         meson
-        jdk22
         wine
         winetricks
         wine-wayland
