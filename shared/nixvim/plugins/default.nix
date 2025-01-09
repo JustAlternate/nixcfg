@@ -11,11 +11,9 @@ _: {
     ./luasnip.nix
     ./cmp.nix
     ./toggleterm.nix
-    ./gitsigns.nix
     ./fidget.nix
     ./gitsigns.nix
     ./lspsaga.nix
-    ./indent-blankline.nix
     ./trouble.nix
     ./nui.nix
     ./precognition.nix
