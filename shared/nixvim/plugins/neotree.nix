@@ -13,7 +13,7 @@ _: {
 
       filesystem = {
         bindToCwd = false;
-        useLibuvFileWatcher = true;
+        useLibuvFileWatcher = false;
         followCurrentFile.enabled = true;
       };
 
