@@ -26,12 +26,6 @@ _: {
           cssls.enable = true;
           java_language_server.enable = true;
           bashls.enable = true;
-          nil_ls.enable = true;
-          # statix.enable = true;
-          nixd.enable = true;
-          pylsp.enable = true;
-          pyright.enable = true;
-          ruff.enable = true;
 
           hyprls.enable = true;
           # rust-analyzer = {
