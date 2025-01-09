@@ -9,7 +9,7 @@
 
   home = {
     packages = with pkgs; [
-      # Developpment
+      # Development
       # nodePackages.node2nix
       openssh
       # scdoc
@@ -22,6 +22,8 @@
       duckdb
       dbt
       # framac
+      terraform
+      awscli2
     ];
   };
 }
