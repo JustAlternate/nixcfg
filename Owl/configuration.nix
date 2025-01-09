@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  imports = [ ../shared/nixvim ];
+  imports = [ ];
 
   environment.systemPackages = [ ];
 
