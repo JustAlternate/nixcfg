@@ -2,9 +2,6 @@ _: {
   programs.nixvim = {
     plugins.notify = {
       enable = true;
-      # remove animations for preformance
-      stages = "static";
-      timeout = 4000;
     };
 
     keymaps = [

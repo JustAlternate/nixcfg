@@ -4,5 +4,6 @@ _: {
     ./markdown.nix
     ./nix.nix
     ./python.nix
+    ./go.nix
   ];
 }
