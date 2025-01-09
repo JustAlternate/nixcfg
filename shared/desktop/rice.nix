@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ../fastfetch
@@ -6,6 +6,7 @@
     ./pywal
     ./hyprland
     ./kitty.nix
+    ./gonixvim.nix
   ];
 
   home.packages = with pkgs; [
