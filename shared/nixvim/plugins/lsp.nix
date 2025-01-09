@@ -10,13 +10,6 @@ _: {
           "gi" = "implementation";
         };
         servers = {
-          lua_ls = {
-            enable = true;
-            settings.telemetry.enable = false;
-          };
-          gopls = {
-            enable = true;
-          };
           #grammarly.enable = true;
           #ltex = {
           #  enable = true;
@@ -26,12 +19,6 @@ _: {
           cssls.enable = true;
           java_language_server.enable = true;
           bashls.enable = true;
-
-          hyprls.enable = true;
-          # rust-analyzer = {
-          #   enable = true;
-          #   installCargo = true;
-          # };
         };
       };
     };
