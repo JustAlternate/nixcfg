@@ -6,14 +6,11 @@
     nixpkgs.url = "nixpkgs/nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    gonixvim.url = "github:JustAlternate/gonixvim";
+
     # home-manager
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,7 +28,6 @@
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     # other urls
-    # lobster.url = "github:justchokingaround/lobster";
     themecord = {
       url = "github:danihek/themecord";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -126,7 +122,6 @@
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
-            inputs.nixvim.homeManagerModules.nixvim
             ./Parrot/home
           ];
           extraSpecialArgs = {
@@ -137,7 +132,6 @@
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
-            inputs.nixvim.homeManagerModules.nixvim
             ./Swordfish/home
           ];
           extraSpecialArgs = {
@@ -147,7 +141,6 @@
         beaver = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${systemArm};
           modules = [
-            inputs.nixvim.homeManagerModules.nixvim
             ./Beaver/home
           ];
           extraSpecialArgs = {
@@ -164,7 +157,6 @@
         };
         modules = [
           inputs.nix-homebrew.darwinModules.nix-homebrew
-          inputs.nixvim.nixDarwinModules.nixvim
           home-manager.darwinModules.home-manager
           { nixpkgs.overlays = nixos-overlays; }
           ./Owl/configuration.nix

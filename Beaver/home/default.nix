@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./fastfetch
     ../../shared/zsh.nix
-    ../../shared/nixvim
     ../../shared/ssh.nix
     ../../shared/git.nix
   ];
@@ -30,6 +29,8 @@
 
       ## Monitoring
       htop
+
+      inputs.gonixvim.packages.${system}.default
     ];
 
     # For env var

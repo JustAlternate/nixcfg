@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./zsh.nix
@@ -13,6 +13,7 @@
     packages = with pkgs; [
       postgresql
       unstable.go
+      inputs.gonixvim.packages.${system}.default
     ];
 
     # For env var
