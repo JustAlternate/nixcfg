@@ -1,40 +1,49 @@
 # nixcfg
 
-This repository is used to manage my systems using Nix.
+This repository contains the declaration of my systems running [Nix/NixOS](https://nixos.org/)
 
-- Beaver: My VPS running NixOS and selfhosting services such a kanban, a cloud storage, my websites...
-- Swordfish: My desktop gaming station which I also use for intensive computation.
-- Parrot: My semi gaming laptop which I mainly use for study and abroad.
+- Beaver: My VPS running NixOS and selfhosting services
+- Swordfish: My NixOS desktop gaming station which I also use for intensive computation.
+- Parrot: My NixOS semi gaming laptop which I mainly use for study and abroad.
 - Owl: My arm processor Mac M1.
 - Gecko: My raspberry py configs (WIP)
 
 ## My very pywal centric NixOS Hyprland rice
 
-(For both swordfish and Parrot)
+(For both Swordfish and Parrot)
 
 ### Video Showcase [11 Aug 2024]
 
 [![video showcase](https://img.youtube.com/vi/M6VRL6bqdks/0.jpg)](https://www.youtube.com/watch?v=M6VRL6bqdks)
 _click the image to go to the video_
 
-This repository contains the declaration of my system running under [NixOS](https://nixos.org/)
-
 ### Features
 
 #### Desktop (Swordfish and Parrot)
-- DE: Hyprland
-- Terminal: Kitty
-- Bar: Eww
-- File Manager: yazi
-- Editor: Neovim (LazyVim)
-- Fetcher: fastfetch
-- Font: nerdfonts
-- Launcher: rofi-wayland
-- Browser: firefox
-- Discord: Vesktop
-- System monitoring: mission-center, conky
-- Emoji wheel: rofi + bemoji
-- Music Visualizer: cava
+- DE: [Hyprland](https://hyprland.org/)
+- Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/)
+- Bar: [Eww](https://github.com/elkowar/eww)
+- File Manager: [yazi](https://yazi-rs.github.io/)
+- Editor: Neovim [gonixvim](https://github.com/JustAlternate/gonixvim)
+- Fetcher: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
+- Font: [nerdfonts](https://www.nerdfonts.com/)
+- Launcher: [rofi-wayland](https://github.com/A417ya/rofi-wayland)
+- Browser: [firefox](https://www.mozilla.org/en-US/firefox/)
+- Discord: [Vesktop](https://github.com/Vencord/Vesktop)
+- Emoji wheel: rofi + [bemoji](https://github.com/marty-oehme/bemoji)
+- Music Visualizer: [cava](https://github.com/karlstav/cava)
+- Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
+
+#### VPS (Beaver)
+- Reverse proxy & web server: [nginx](https://nginx.org/en/)
+- Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
+- Kanban: [Planka](https://github.com/plankanban/planka)
+- Cloud storage server: [Owncloud](https://owncloud.com/)
+- Sharing gps location service: [Hauk](https://github.com/bilde2910/Hauk)
+- Selfhosted CI/CD runner: [github-runners](https://github.com/actions/runner)
+- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+- Minecraft server: [nix-minecraft](https://github.com/Infinidoge/nix-minecraft)
+- S3 auto backup service: made by myself
 
 ## Installation
 
