@@ -7,9 +7,6 @@
     ./latex
   ];
 
-  virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "justalternate" ];
-
   home = {
     packages = with pkgs; [
       # Development
