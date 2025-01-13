@@ -83,7 +83,6 @@
         mupdf
         feh
         gimp
-        cinnamon.pix
         satty
 
         # Social media
