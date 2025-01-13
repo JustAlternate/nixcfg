@@ -13,6 +13,7 @@
     birdtray
     patray
     unrar
+    bc
   ];
 
   home.sessionVariables = {

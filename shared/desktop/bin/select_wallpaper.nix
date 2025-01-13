@@ -2,7 +2,7 @@
 pkgs.writeShellScriptBin "select_wallpaper" ''
   #!/usr/bin/env bash
   # Set some variables
-  wall_dir="/home/justalternate/nixcfg/shared/desktop/wallpaper/"
+  wall_dir="$HOME/nixcfg/shared/desktop/wallpaper/"
   cacheDir="$HOME/.cache/jp/"
 
   # Create cache dir if not exists
@@ -41,7 +41,7 @@ pkgs.writeShellScriptBin "select_wallpaper" ''
   wal -i $wall_dir/$wall_selection &
   sleep 0.4
   eww reload &
-  pywalfox update &
+  # pywalfox update &
   cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
   [[ $(pidof cava) != "" ]] && pkill -USR1 cava &
   exit 0
