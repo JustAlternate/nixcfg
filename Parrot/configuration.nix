@@ -5,6 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../shared/sops.nix
+    ../shared/desktop/dev/docker/default.nix
   ];
 
   nix = {
@@ -117,10 +118,10 @@
       pulse.enable = true;
     };
 
-    # ollama = {
-    #   enable = true;
-    #   acceleration = "cuda";
-    # };
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
 
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
