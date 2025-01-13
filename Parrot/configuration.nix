@@ -75,7 +75,7 @@
   networking.hostName = "nixos"; # Define your hostname.
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = false;
 
   time.timeZone = "Europe/Paris";
 
