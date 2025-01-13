@@ -45,7 +45,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # fonts:
-  fonts.fonts = with pkgs; [ nerdfonts ];
+  fonts.packages = with pkgs; [ nerdfonts ];
 
   # Bootloader.
   boot = {
@@ -81,8 +81,8 @@
       # Configure keymap in X11
       enable = false;
 
-      layout = "fr";
-      xkbVariant = "";
+      xkb.layout = "fr";
+      xkb.variant = "";
 
       # Load nvidia driver for Xorg and Wayland
       videoDrivers = [ "amdvlk" ];
