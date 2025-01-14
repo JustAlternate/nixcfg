@@ -122,6 +122,7 @@
       enable = true;
       acceleration = "cuda";
     };
+    open-webui.enable = true;
 
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
