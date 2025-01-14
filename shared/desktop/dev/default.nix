@@ -5,6 +5,7 @@
     ./python
     # ./Ocaml
     ./latex
+    ./java
   ];
 
   home = {
