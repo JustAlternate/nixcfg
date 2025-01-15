@@ -146,6 +146,7 @@
         # Miscs
         cpu-x
         marp-cli
+        upower
       ]
       ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 
