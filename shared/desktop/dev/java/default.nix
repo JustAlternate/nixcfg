@@ -5,7 +5,6 @@
       jdk17
       maven
 
-      sbt
       sbt-extras
       scala
       scalafmt
