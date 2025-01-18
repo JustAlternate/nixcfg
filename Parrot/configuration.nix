@@ -79,6 +79,19 @@
   # Enable networking
   networking = {
     networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22
+        80
+        443
+      ];
+      allowedUDPPorts = [
+        53
+        67
+        68
+      ];
+    };
   };
 
   time.timeZone = "Europe/Paris";
