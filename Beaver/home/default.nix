@@ -26,6 +26,7 @@
       zip
       terraform
       awscli2
+      compose2nix
 
       ## Monitoring
       htop
