@@ -20,7 +20,7 @@ in
 
   # Containers
   virtualisation.oci-containers.containers."justvpn" = {
-    image = "justvpn:1.0";
+    image = "justvpn:1.1";
     environment = {
       "SSH_PASSWORD" = PASSWORD;
     };
