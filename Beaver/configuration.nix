@@ -13,7 +13,7 @@
     # ./portainer
     # ./minecraft
     ./action-runner
-    ./JustVPN
+    # ./JustVPN
     ../shared/sops.nix # Secrets management using ssh key
   ];
 
