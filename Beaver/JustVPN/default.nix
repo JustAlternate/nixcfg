@@ -31,12 +31,13 @@ _: {
       };
       "/api/start" = {
         proxyPass = "http://127.0.0.1:3030/start";
-        extraConfig =
-          # required when the target is also TLS server with multiple hosts
-          "proxy_ssl_server_name on;"
-          +
-            # required when the server wants to use HTTP Authentication
-            "proxy_pass_header Authorization;";
+        extraConfig = ''
+          proxy_read_timeout 300;
+          proxy_connect_timeout 300;
+
+          proxy_ssl_server_name on;
+          proxy_pass_header Authorization;
+        '';
       };
     };
   };
