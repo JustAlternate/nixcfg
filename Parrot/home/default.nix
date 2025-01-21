@@ -47,6 +47,7 @@
 
         # Networking
         networkmanagerapplet
+        networkmanager-openconnect
         networkmanager
 
         # Text editors
