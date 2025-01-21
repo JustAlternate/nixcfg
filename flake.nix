@@ -6,7 +6,7 @@
     nixpkgs.url = "nixpkgs/nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    gonixvim.url = "github:JustAlternate/gonixvim";
+    justnixvim.url = "github:JustAlternate/justnixvim";
 
     # home-manager
     home-manager = {
