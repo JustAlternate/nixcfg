@@ -31,7 +31,7 @@
       ## Monitoring
       htop
 
-      inputs.gonixvim.packages.${system}.default
+      inputs.justnixvim.packages.${system}.default
     ];
 
     # For env var
