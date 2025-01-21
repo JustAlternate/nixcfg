@@ -24,7 +24,7 @@ _click the image to go to the video_
 - Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/)
 - Bar: [Eww](https://github.com/elkowar/eww)
 - File Manager: [yazi](https://yazi-rs.github.io/)
-- Editor: Neovim [gonixvim](https://github.com/JustAlternate/gonixvim)
+- Editor: Neovim [justnixvim](https://github.com/JustAlternate/justnixvim)
 - Fetcher: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - Font: [nerdfonts](https://www.nerdfonts.com/)
 - Launcher: [rofi-wayland](https://github.com/A417ya/rofi-wayland)
