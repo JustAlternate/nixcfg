@@ -113,7 +113,7 @@ in
       "OWNCLOUD_TRUSTED_DOMAINS" = "cloud.justalternate.fr,justalternate.fr";
     };
     volumes = [ "owncloud_files:/mnt/data:rw" ];
-    ports = [ "8080:8080/tcp" ];
+    ports = [ "3010:8080/tcp" ];
     dependsOn = [
       "owncloud_mariadb"
       "owncloud_redis"
