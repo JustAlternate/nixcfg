@@ -77,6 +77,9 @@
       };
     };
     openssh.enable = true;
+    openssh.settings = {
+      PasswordAuthentication = false;
+    };
   };
   users = {
     # set Zsh as the default user shell for all users
