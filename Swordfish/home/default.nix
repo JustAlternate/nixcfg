@@ -11,7 +11,8 @@
 
   wayland.windowManager.hyprland.extraConfig = ''
     # Monitor settings
-    monitor=DP-3, 2560x1440@165, 0x0, 1
+    monitor=DP-3, 2560x1440@165, 1920x0, 1
+    monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
   '';
 
   home = {
