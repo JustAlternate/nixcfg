@@ -107,13 +107,20 @@
             { nixpkgs.overlays = nixos-overlays; }
           ];
         };
-        # GeckoNixos = nixpkgs.lib.nixosSystem {
-        #   system = systemArm;
-        #   specialArgs = {
-        #     inherit inputs;
-        #   };
-        #   modules = [ ./Gecko/default.nix ];
-        # };
+        GeckoNixos1 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./Gecko/hardware-configuration-pi3b+.nix ];
+        };
+        GeckoNixos2 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./Gecko/hardware-configuration-pi4.nix ];
+        };
       };
 
       # Nix Home-manger configurations
