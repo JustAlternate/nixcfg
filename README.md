@@ -65,7 +65,7 @@ mkdir <myMachineName>
 
 Create your hardware config
 ```
-nixos-generate-config --show-hardware-config > <myMachineName>/hardware-config.nix
+nixos-generate-config --show-hardware-config > <myMachineName>/hardware-configuration.nix
 ```
 
 Modify your host configuration by importing different modules
