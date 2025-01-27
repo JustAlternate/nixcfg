@@ -14,7 +14,7 @@
 
         # For Nix deploy jobs
         openssh
-        deploy-rs
+        nixos-rebuild
       ];
     };
   };
