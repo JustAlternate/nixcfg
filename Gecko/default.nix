@@ -43,6 +43,9 @@
       ];
       theme = "agnoster";
     };
+    shellAliases = {
+      temp = "vcgencmd measure_temp";
+    };
   };
 
   nix = {
