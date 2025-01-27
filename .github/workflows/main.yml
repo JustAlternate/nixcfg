@@ -25,26 +25,26 @@ jobs:
       - name: Nix Flake check
         run: nix flake check --all-systems --keep-going --impure
 
-  CD:
-    name: deploy Gecko
-    runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
-    needs: CI
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            Gecko:
-              - 'Gecko/**'
-            Beaver:
-              - 'Beaver/**'
-
-      - name: Deploy Gecko1
-        if: steps.changes.outputs.Gecko == 'true'
-        run: nixos-rebuild switch --flake ./#GeckoNixos1 --target-host GeckoNixos1
-
-      - name: Deploy Gecko2
-        if: steps.changes.outputs.Gecko == 'true'
-        run: nixos-rebuild switch --flake .#GeckoNixos2 --target-host GeckoNixos2
+  # CD:
+  #   name: deploy Gecko
+  #   runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
+  #   needs: CI
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v4
+  #     - uses: dorny/paths-filter@v2
+  #       id: changes
+  #       with:
+  #         filters: |
+  #           Gecko:
+  #             - 'Gecko/**'
+  #           Beaver:
+  #             - 'Beaver/**'
+  #
+  #     - name: Deploy Gecko1
+  #       if: steps.changes.outputs.Gecko == 'true'
+  #       run: nixos-rebuild switch --flake ./#GeckoNixos1 --target-host GeckoNixos1
+  #
+  #     - name: Deploy Gecko2
+  #       if: steps.changes.outputs.Gecko == 'true'
+  #       run: nixos-rebuild switch --flake .#GeckoNixos2 --target-host GeckoNixos2
