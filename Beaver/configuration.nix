@@ -43,7 +43,6 @@
       home-manager
       docker-client
       lego
-      deploy-rs
       lolcat
     ];
   };
