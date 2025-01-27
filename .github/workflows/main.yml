@@ -43,8 +43,8 @@ jobs:
 
       - name: Deploy Gecko1
         if: steps.changes.outputs.Gecko == 'true'
-        run: nixos-rebuild switch --flake ~/nixcfg#GeckoNixos1 --target-host GeckoNixos1
+        run: nixos-rebuild switch --flake ./#GeckoNixos1 --target-host GeckoNixos1
 
       - name: Deploy Gecko2
         if: steps.changes.outputs.Gecko == 'true'
-        run: nixos-rebuild switch --flake ~/nixcfg#GeckoNixos2 --target-host GeckoNixos2
+        run: nixos-rebuild switch --flake .#GeckoNixos2 --target-host GeckoNixos2
