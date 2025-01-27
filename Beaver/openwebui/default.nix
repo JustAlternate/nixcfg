@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+_: {
   imports = [ ./docker-compose.nix ];
   services.nginx.virtualHosts."ai.justalternate.fr" = {
     enableACME = true;
