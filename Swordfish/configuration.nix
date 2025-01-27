@@ -51,13 +51,8 @@
   # Bootloader.
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    loader = {
-      grub = {
-        enable = true;
-        device = "/dev/nvme0n1";
-        useOSProber = true;
-      };
-    };
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
   };
 
   time.timeZone = "Europe/Paris";

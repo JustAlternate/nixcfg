@@ -33,11 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # For installing osu and osu-lazer
     nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -107,13 +102,20 @@
             { nixpkgs.overlays = nixos-overlays; }
           ];
         };
-        # GeckoNixos = nixpkgs.lib.nixosSystem {
-        #   system = systemArm;
-        #   specialArgs = {
-        #     inherit inputs;
-        #   };
-        #   modules = [ ./Gecko/default.nix ];
-        # };
+        GeckoNixos1 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./Gecko/hardware-configuration-pi3b+.nix ];
+        };
+        GeckoNixos2 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./Gecko/hardware-configuration-pi4.nix ];
+        };
       };
 
       # Nix Home-manger configurations
