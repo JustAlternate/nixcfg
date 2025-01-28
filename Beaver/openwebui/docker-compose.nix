@@ -1,15 +1,9 @@
 # Auto-generated using compose2nix v0.3.1.
 {
   pkgs,
-  config,
   lib,
   ...
 }:
-
-let
-  TOGETHERAI_KEY = builtins.readFile config.sops.secrets."TOGETHERAI_KEY".path;
-in
-
 {
   # Runtime
   virtualisation.docker = {
@@ -20,11 +14,7 @@ in
 
   # Containers
   virtualisation.oci-containers.containers."open-webui-openwebui" = {
-    image = "ghcr.io/open-webui/open-webui:main";
-    environment = {
-      "OPENAI_API_BASE_URL" = "https://api.together.xyz/v1";
-      "OPENAI_API_KEY" = TOGETHERAI_KEY;
-    };
+    image = "ghcr.io/open-webui/open-webui:latest";
     volumes = [
       "open-webui_open-webui:/app/backend/data:rw"
     ];
