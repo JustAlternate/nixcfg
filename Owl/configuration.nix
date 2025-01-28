@@ -3,7 +3,6 @@
   imports = [ ];
 
   environment.systemPackages = [
-    inputs.justnixvim.packages.aarch64-darwin.default
   ];
 
   # Auto upgrade nix package and the daemon service.

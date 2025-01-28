@@ -10,6 +10,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  networking.hostName = "GeckoNixos2";
+
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
@@ -20,6 +22,8 @@
     initrd.kernelModules = [ ];
     kernelModules = [ ];
     extraModulePackages = [ ];
+    loader.grub.enable = false;
+    loader.generic-extlinux-compatible.enable = true;
   };
 
   fileSystems."/" = {

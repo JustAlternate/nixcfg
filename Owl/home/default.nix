@@ -13,6 +13,7 @@
     packages = with pkgs; [
       postgresql
       unstable.go
+      inputs.justnixvim.packages.${system}.default
     ];
 
     # For env var

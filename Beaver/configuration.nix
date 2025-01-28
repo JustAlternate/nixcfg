@@ -6,6 +6,7 @@
     ./nginx # Web server, reverse proxy
     ./planka # selfhosted Kanban
     ./vaultwarden
+    ./openwebui # My personal llm ui backed by together ai for the inference API
     ./owncloud # selhosted google drivee
     ./hauk # selfhosted google maps sharing location service
     ./mail
@@ -13,6 +14,7 @@
     # ./portainer
     # ./minecraft
     ./action-runner
+    ./JustVPN
     ../shared/sops.nix # Secrets management using ssh key
   ];
 
@@ -41,7 +43,6 @@
       home-manager
       docker-client
       lego
-      deploy-rs
       lolcat
     ];
   };
@@ -76,6 +77,9 @@
       };
     };
     openssh.enable = true;
+    openssh.settings = {
+      PasswordAuthentication = false;
+    };
   };
   users = {
     # set Zsh as the default user shell for all users

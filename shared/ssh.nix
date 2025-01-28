@@ -10,6 +10,14 @@ _: {
         identityFile = "~/.ssh/id_ed25519";
       };
       "GeckoNixos1" = {
+        # RPI3b+
+        hostname = "192.168.1.248";
+        user = "root";
+        port = 22;
+        identityFile = "~/.ssh/id_ed25519";
+      };
+      "GeckoNixos2" = {
+        # RPI4B
         hostname = "192.168.1.3";
         user = "root";
         port = 22;

@@ -29,9 +29,16 @@ scale trough {
 
 tooltip * {
 	margin: 4px;
+	background-color: $base;
+  color: $text;
+	border-radius: 10px;
+	font-family: $font;
+	font-weight: bold;
 }
 
 tooltip {
+	margin: 4px;
+  background: $base;
 	background-color: $base;
 	color: $text;
 	font-family: $font;
@@ -39,10 +46,14 @@ tooltip {
 	border-radius: 10px;
 }
 
-.hbar {
-	background-color: rgba($base, 1);
-	padding: 5px 10px 8px 10px;
-	border-radius: 20px;
+.popup {
+	margin: 4px;
+  background: $base;
+	background-color: $base;
+	color: $text;
+	font-family: $font;
+	font-weight: bold;
+	border-radius: 10px;
 }
 
 .nixos_icon {
@@ -189,4 +200,3 @@ tooltip {
 button:hover {
   background-color: $color4;
 }
-
