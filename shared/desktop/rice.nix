@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../fastfetch
@@ -6,13 +6,14 @@
     ./pywal
     ./hyprland
     ./kitty.nix
-    ./gonixvim.nix
+    ./justnixvim.nix
   ];
 
   home.packages = with pkgs; [
     birdtray
     patray
     unrar
+    bc
   ];
 
   home.sessionVariables = {
