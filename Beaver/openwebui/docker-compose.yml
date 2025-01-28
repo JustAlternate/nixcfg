@@ -1,0 +1,11 @@
+version: '3'
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "3040:8080"
+    volumes:
+      - open-webui:/app/backend/data
+    env_file: "/run/secrets/TOGETHERAI"
+volumes:
+  open-webui:

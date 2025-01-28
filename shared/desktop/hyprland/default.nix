@@ -23,6 +23,11 @@
     xwayland.enable = true;
 
     extraConfig = ''
+      # For power usage:
+      decoration:blur:enabled = false
+      decoration:shadow:enabled = false
+      misc:vfr = true
+
       # Default env vars
       env = XCURSOR_SIZE,10
 
@@ -45,9 +50,9 @@
       general {
         gaps_in = 20
         gaps_out = 20
-        border_size = 5
-        col.active_border = $color1 $color5 100deg
-        col.inactive_border = $color0
+        border_size = 0
+        # col.active_border = $color1 $color5 100deg
+        # col.inactive_border = $color0
         layout = dwindle
       }
 
@@ -62,14 +67,14 @@
 
         rounding = 10
         blur {
-          enabled = true
+          enabled = false
           size = 2
           passes = 1
         }
       }
 
       animations {
-        enabled = yes
+        enabled = false
         bezier = wind, 0.05, 0.9, 0.1, 1.05
         bezier = winIn, 0.1, 1.1, 0.1, 1.1
         bezier = winOut, 0.3, -0.3, 0, 1

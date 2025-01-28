@@ -6,7 +6,7 @@
     nixpkgs.url = "nixpkgs/nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    gonixvim.url = "github:JustAlternate/gonixvim";
+    justnixvim.url = "github:JustAlternate/justnixvim";
 
     # home-manager
     home-manager = {
@@ -30,11 +30,6 @@
     # other urls
     themecord = {
       url = "github:danihek/themecord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -107,13 +102,20 @@
             { nixpkgs.overlays = nixos-overlays; }
           ];
         };
-        # GeckoNixos = nixpkgs.lib.nixosSystem {
-        #   system = systemArm;
-        #   specialArgs = {
-        #     inherit inputs;
-        #   };
-        #   modules = [ ./Gecko/default.nix ];
-        # };
+        GeckoNixos1 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./Gecko/hardware-configuration-pi3b+.nix ];
+        };
+        GeckoNixos2 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./Gecko/hardware-configuration-pi4.nix ];
+        };
       };
 
       # Nix Home-manger configurations

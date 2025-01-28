@@ -29,9 +29,26 @@ scale trough {
 
 tooltip * {
 	margin: 4px;
+	background-color: $base;
+  color: $text;
+	border-radius: 10px;
+	font-family: $font;
+	font-weight: bold;
 }
 
 tooltip {
+	margin: 4px;
+  background: $base;
+	background-color: $base;
+	color: $text;
+	font-family: $font;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.popup {
+	margin: 4px;
+  background: $base;
 	background-color: $base;
 	color: $text;
 	font-family: $font;
@@ -189,4 +206,3 @@ tooltip {
 button:hover {
   background-color: $color4;
 }
-

@@ -26,11 +26,12 @@
       zip
       terraform
       awscli2
+      compose2nix
 
       ## Monitoring
       htop
 
-      inputs.gonixvim.packages.${system}.default
+      inputs.justnixvim.packages.${system}.default
     ];
 
     # For env var

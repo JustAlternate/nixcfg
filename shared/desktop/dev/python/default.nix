@@ -28,6 +28,9 @@
           seaborn
           transformers
           virtualenv
+          jupyterlab
+          scikit-image
+          ipympl
         ]
       ))
     ];

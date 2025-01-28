@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../shared/desktop/dev/docker/default.nix
     ../shared/sops.nix
   ];
 
@@ -45,18 +46,13 @@
   nixpkgs.config.allowUnfree = true;
 
   # fonts:
-  fonts.fonts = with pkgs; [ nerdfonts ];
+  fonts.packages = with pkgs; [ nerdfonts ];
 
   # Bootloader.
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    loader = {
-      grub = {
-        enable = true;
-        device = "/dev/nvme0n1";
-        useOSProber = true;
-      };
-    };
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
   };
 
   time.timeZone = "Europe/Paris";
@@ -81,8 +77,8 @@
       # Configure keymap in X11
       enable = false;
 
-      layout = "fr";
-      xkbVariant = "";
+      xkb.layout = "fr";
+      xkb.variant = "";
 
       # Load nvidia driver for Xorg and Wayland
       videoDrivers = [ "amdvlk" ];

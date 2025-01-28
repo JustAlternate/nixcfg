@@ -1,4 +1,47 @@
+@use "./include.scss" as *;
+@use "/home/justalternate/.cache/wal/colors.scss" as *;
+
+$font: Hack;
+
+$sapphire: 		#74c7ec;
+$red: 		 	#f38ba8;
+$reddark:               #cc0000;
+$green: 		#a6e3a1;
+$blue: 			#5277C3;
+$text: 			$color3;
+$subtext1: 		$color1;
+$subtext0: 		$color0;
+$overlay2: 		$foreground;
+$overlay1: 		$foreground;
+$overlay0: 		$foreground;
+$surface2: 		$foreground;
+$surface1: 		$foreground;
+$surface0: 		$color1;
+$base: 			$background;
+
 * {
 	all: unset;
 	transition: 250ms ease-out;
+}
+
+tooltip {
+	background-color: $base;
+	font-family: $font;
+	font-weight: bold;
+	border-radius: 10px;
+	color: $text;
+	margin: 4px;
+	background-color: $base;
+	border-radius: 10px;
+}
+
+.popup {
+	margin: 4px;
+  border-radius: 10px;
+  background: $base;
+  color: $text;
+  background-color: $base;
+  border-radius: 10px;
+  font-family: $font;
+  font-weight: bold;
 }
