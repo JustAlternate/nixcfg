@@ -47,6 +47,7 @@
 
         # Networking
         networkmanagerapplet
+        networkmanager-openconnect
         networkmanager
 
         # Text editors
@@ -83,7 +84,6 @@
         mupdf
         feh
         gimp
-        cinnamon.pix
         satty
 
         # Social media
@@ -147,6 +147,7 @@
         # Miscs
         cpu-x
         marp-cli
+        upower
       ]
       ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 

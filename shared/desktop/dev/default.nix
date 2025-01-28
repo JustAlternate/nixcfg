@@ -5,6 +5,7 @@
     ./python
     # ./Ocaml
     ./latex
+    ./java
   ];
 
   home = {
@@ -24,6 +25,7 @@
       # framac
       terraform
       awscli2
+      github-markdown-toc-go
     ];
   };
 }
