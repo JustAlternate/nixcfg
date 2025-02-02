@@ -11,8 +11,8 @@
     ./hauk # selfhosted google maps sharing location service
     ./mail
     # ./tianji
-    # ./portainer
     # ./minecraft
+    ./monitoring
     ./action-runner
     ./JustVPN
     ../shared/sops.nix # Secrets management using ssh key
