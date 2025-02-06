@@ -45,6 +45,7 @@
       bindkey -r '^R'
       bindkey -r '^S'
 
+      bindkey '^O' autosuggest-accept
     '';
 
     initExtraFirst = ''
