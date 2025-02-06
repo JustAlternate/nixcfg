@@ -1,8 +1,9 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   imports = [ ];
 
-  environment.systemPackages = [ ];
+  environment.systemPackages = [
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
