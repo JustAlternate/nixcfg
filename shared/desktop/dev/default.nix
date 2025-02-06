@@ -26,6 +26,8 @@
       terraform
       awscli2
       github-markdown-toc-go
+
+      devenv
     ];
   };
 }
