@@ -132,6 +132,9 @@
         blueman
 
         # Games
+        godot_4
+        gdtoolkit_4
+        steam-run-free
         steam
         # inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
         bottles
