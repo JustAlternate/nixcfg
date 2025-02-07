@@ -6,6 +6,7 @@
     ../../shared/git.nix
     ./git.nix
     ./ssh.nix
+    ../../shared/desktop/dev/python
   ];
 
   home = {
@@ -13,7 +14,13 @@
     packages = with pkgs; [
       postgresql
       unstable.go
-      inputs.justnixvim.packages.${system}.default
+      mysql80
+
+      jdk17
+
+      sbt-extras
+      scala_2_13
+      scalafmt
     ];
 
     # For env var
