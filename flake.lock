@@ -299,11 +299,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1737365102,
-        "narHash": "sha256-xajO4+h967iGttSMiYBCYHYSjBkSZVWT75CwKYumiWI=",
+        "lastModified": 1738851709,
+        "narHash": "sha256-hihh81veuSm2pbqIQk7eJCOWkyf7TENHOOfRkw2gpBE=",
         "owner": "JustAlternate",
         "repo": "justnixvim",
-        "rev": "34f73d94ce63cc16d29ce919bedb9cfa6eb03ea4",
+        "rev": "78dbe4991fe857ca5705e76a773900ced498022f",
         "type": "github"
       },
       "original": {
@@ -341,15 +341,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1737162735,
-        "narHash": "sha256-5T+HkouTMGaRm0rh3kgD4Z1O7ONKfgjyoPQH5rSyreU=",
+        "lastModified": 1737421067,
+        "narHash": "sha256-/hgw8fDKDpko0XqOw1e9tX8lS2Hqecg7W/JsONun6Qc=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "87131f51f8256952d1a306b5521cedc2dc61aa08",
+        "rev": "cae8d1c4a3bd37be5887203fe3b0c3a860c53a07",
         "type": "github"
       },
       "original": {
         "owner": "LnL7",
+        "ref": "nix-darwin-24.11",
         "repo": "nix-darwin",
         "type": "github"
       }
