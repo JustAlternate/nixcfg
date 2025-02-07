@@ -11,6 +11,12 @@ in
       "github.com" = {
         identityFile = mkForce "~/.ssh/mac_id_ed25519";
       };
+      "*.iadvize.net" = {
+        user = "iadvize";
+      };
+      "10.62.*.*" = {
+        identityFile = mkForce "~/.ssh/mac_id_ed25519";
+      };
     };
   };
 }

@@ -9,6 +9,8 @@
       (python3.withPackages (
         ps: with ps; [
           flask
+          requests
+          mysql-connector
           hypothesis
           pygame
           psutil
