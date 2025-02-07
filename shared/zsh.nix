@@ -39,6 +39,13 @@
     initExtra = ''
       fastfetch
       eval "$(zoxide init zsh)"
+
+      bindkey '^J' history-incremental-search-backward
+      bindkey '^K' history-incremental-search-forward
+      bindkey -r '^R'
+      bindkey -r '^S'
+
+      bindkey '^O' autosuggest-accept
     '';
 
     initExtraFirst = ''
