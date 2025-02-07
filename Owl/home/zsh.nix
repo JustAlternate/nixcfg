@@ -43,6 +43,15 @@
       source ~/env-var/.env
       fastfetch
       eval "$(zoxide init zsh)"
+
+      bindkey '^J' history-incremental-search-backward
+      bindkey '^K' history-incremental-search-forward
+      bindkey -r '^R'
+      bindkey -r '^S'
+
+      # Bind Ctrl+O to accept the entire suggestion
+      bindkey '^O' autosuggest-accept
+
     '';
 
     sessionVariables = {
