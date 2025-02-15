@@ -14,7 +14,7 @@
 
   # Containers
   virtualisation.oci-containers.containers."open-webui-openwebui" = {
-    image = "ghcr.io/open-webui/open-webui:0.5.9";
+    image = "ghcr.io/open-webui/open-webui:0.5.12";
     volumes = [
       "open-webui_open-webui:/app/backend/data:rw"
     ];
