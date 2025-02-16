@@ -39,6 +39,7 @@
     initExtra = ''
       fastfetch
       eval "$(zoxide init zsh)"
+      source ~/env-var/.env
 
       bindkey '^J' history-incremental-search-backward
       bindkey '^K' history-incremental-search-forward

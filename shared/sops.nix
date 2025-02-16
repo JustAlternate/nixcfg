@@ -14,9 +14,7 @@
       "TIANJI/POSTGRES_PASSWORD" = { };
       "TIANJI/JWT_SECRET" = { };
       "ACTION_RUNNER/NIXCFG_TOKEN" = { };
-      "JELLYFIN/DELUGE-AUTH" = { };
-      "TOGETHERAI" = { };
-      "TOGETHERAI_KEY" = { };
+      "DEEPINFRA_API_KEY" = { };
     };
   };
 
