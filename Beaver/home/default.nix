@@ -5,6 +5,7 @@
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
+    ../../shared/desktop/justnixvim.nix
   ];
 
   home = {
@@ -30,8 +31,6 @@
 
       ## Monitoring
       htop
-
-      inputs.justnixvim.packages.${system}.default
     ];
 
     # For env var
