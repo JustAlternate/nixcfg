@@ -50,6 +50,7 @@
 
         # Text editors
         vim
+        unstable.windsurf
 
         # Terminals
         kitty
