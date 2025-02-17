@@ -1,0 +1,45 @@
+repos:
+  - repo: local
+    hooks:
+      - id: nixfmt
+        name: Format Nix files with nixfmt
+        entry: nixfmt
+        language: system
+        types: [ nix ]
+        files: \.nix$
+        stages: [ pre-commit ]
+        additional_dependencies: [ nixfmt ]
+        pass_filenames: false
+        args: [ . -c ]
+
+      - id: deadnix
+        name: Scan Nix files for dead code with deadnix
+        entry: deadnix
+        language: system
+        types: [ nix ]
+        files: \.nix$
+        stages: [ pre-commit ]
+        additional_dependencies: [ deadnix ]
+        pass_filenames: false
+        args: [ . -f ]
+
+      - id: nix-flake-check
+        name: Nix Flake check
+        entry: nix flake check
+        language: system
+        types: [ nix ]
+        files: flake.nix
+        stages: [ pre-commit ]
+        pass_filenames: false
+        args: [ --all-systems --keep-going --impure ]
+
+      - id: statix
+        name: Antipattern linting for Nix code with statix
+        entry: statix
+        language: system
+        types: [ nix ]
+        files: \.nix$
+        stages: [ pre-commit ]
+        additional_dependencies: [ statix ]
+        pass_filenames: false
+        args: [ check . ]
