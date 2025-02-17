@@ -41,9 +41,29 @@ _: {
       "/api/start" = {
         proxyPass = "http://127.0.0.1:3030/start";
         extraConfig = ''
-          proxy_read_timeout 300;
-          proxy_connect_timeout 300;
-
+          proxy_ssl_server_name on;
+          proxy_pass_header Authorization;
+        '';
+      };
+      "/api/ws" = {
+        proxyPass = "http://127.0.0.1:3030/ws";
+        proxyWebsockets = true; # needed if you need to use WebSocket
+        extraConfig = ''
+          proxy_read_timeout 500s;
+          proxy_send_timeout 600s;
+          proxy_connect_timeout 500s;
+          send_timeout 500s;
+          proxy_ssl_server_name on;
+          proxy_pass_header Authorization;
+        '';
+      };
+      "/api/init" = {
+        proxyPass = "http://127.0.0.1:3030/init";
+        extraConfig = ''
+          proxy_read_timeout 500s;
+          proxy_send_timeout 500s;
+          proxy_connect_timeout 500s;
+          send_timeout 500s;
           proxy_ssl_server_name on;
           proxy_pass_header Authorization;
         '';
