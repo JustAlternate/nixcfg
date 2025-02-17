@@ -20,9 +20,10 @@ in
 
   # Containers
   virtualisation.oci-containers.containers."justvpn" = {
-    image = "justvpn:1.7";
+    image = "justvpn:1.14";
     environment = {
       "SSH_PASSWORD" = PASSWORD;
+      "JWT_TOKEN" = PASSWORD;
     };
     ports = [
       "3030:8081/tcp"
