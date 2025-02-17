@@ -64,7 +64,6 @@ _: {
           proxy_send_timeout 500s;
           proxy_connect_timeout 500s;
           send_timeout 500s;
-          proxy_ssl_server_name on;
           proxy_pass_header Authorization;
         '';
       };
