@@ -10,6 +10,8 @@
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
 
+      proxyTimeout = "500s";
+
       virtualHosts = {
         "justalternate.fr" = {
           enableACME = true;
