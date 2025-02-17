@@ -50,6 +50,7 @@
 
         # Text editors
         vim
+        unstable.windsurf
 
         # Terminals
         kitty
@@ -133,9 +134,11 @@
         blueman
 
         # Games
+        godot3
         steam
         appimage-run
         unstable.pokemmo-installer
+        unstable.osu-lazer-bin
 
         ## Drivers/Requirements
         wacomtablet
