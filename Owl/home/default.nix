@@ -7,6 +7,7 @@
     ./git.nix
     ./ssh.nix
     ../../shared/desktop/dev/python
+    ../../shared/desktop/kitty.nix
   ];
 
   home = {
@@ -21,6 +22,9 @@
       sbt-extras
       scala_2_13
       scalafmt
+
+      tgpt
+      graphqurl
     ];
 
     # For env var
@@ -31,4 +35,9 @@
 
   xdg.enable = true;
   programs.home-manager.enable = true;
+  programs.kitty = {
+    settings = {
+      hide_window_decorations = "titlebar-only";
+    };
+  };
 }
