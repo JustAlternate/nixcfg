@@ -12,4 +12,8 @@ _: {
       background_opacity = "0.98";
     };
   };
+  programs.tmux = {
+    enable = true;
+  };
+
 }
