@@ -1,6 +1,13 @@
-{ self, inputs, ... }:
 {
-  imports = [ ];
+  self,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./window-manager.nix
+  ];
 
   environment.systemPackages = [
     inputs.justnixvim.packages."aarch64-darwin".default
