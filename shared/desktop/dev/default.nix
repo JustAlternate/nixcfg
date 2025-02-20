@@ -28,6 +28,7 @@
       github-markdown-toc-go
 
       devenv
+      pre-commit
     ];
   };
 }
