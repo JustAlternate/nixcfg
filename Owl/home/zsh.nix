@@ -23,6 +23,7 @@
       neofetch = "fastfetch";
       lg = "lazygit";
       db_connect = "~/github/system-toolbox/databases/./connect.sh";
+      ai = "tgpt --provider ollama --model qwen2.5-coder:7b";
     };
 
     history = {
