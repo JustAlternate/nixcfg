@@ -7,6 +7,7 @@
       zoxide
       eza
       lazygit
+      tgpt
     ];
   };
 
@@ -23,7 +24,7 @@
       neofetch = "fastfetch";
       lg = "lazygit";
       db_connect = "~/github/system-toolbox/databases/./connect.sh";
-      ai = "tgpt --provider ollama --model qwen2.5-coder:7b";
+      ai = "tgpt --provider openai --url https://api.deepinfra.com/v1/openai/chat/completions --model Qwen/Qwen2.5-Coder-32B-Instruct";
     };
 
     history = {
