@@ -11,9 +11,13 @@ _: {
       enable_audio_bell = false;
       background_opacity = "0.98";
     };
+    extraConfig = ''
+      map ctrl+alt+n switch_tab_next
+    '';
   };
   programs.tmux = {
     enable = true;
+    shell = "\${pkgs.zsh}/bin/zsh";
   };
 
 }
