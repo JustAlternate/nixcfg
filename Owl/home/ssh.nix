@@ -14,9 +14,11 @@ in
       "*.iadvize.net" = {
         user = "iadvize";
       };
-      "10.62.*.*" = {
-        identityFile = mkForce "~/.ssh/mac_id_ed25519";
-      };
     };
+    extraConfig = ''
+      Host 10.62.*.*
+      StrictHostKeyChecking no
+      IdentityFile ~/.ssh/mac_id_ed25519
+    '';
   };
 }

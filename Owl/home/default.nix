@@ -23,7 +23,6 @@
       scala_2_13
       scalafmt
 
-      tgpt
       graphqurl
     ];
 
