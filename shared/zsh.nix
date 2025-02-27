@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     zoxide
+    tgpt
     eza
   ];
   # Programs configuration
@@ -19,6 +20,7 @@
       cd = "z";
       neofetch = "fastfetch";
       ssh = "kitten ssh";
+      ai = "tgpt --provider openai --url https://api.deepinfra.com/v1/openai/chat/completions --model Qwen/Qwen2.5-Coder-32B-Instruct";
     };
 
     history = {
