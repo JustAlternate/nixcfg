@@ -24,4 +24,5 @@
       fsType = "ext4";
     };
   };
+  nixpkgs.hostPlatform = "aarch64-linux";
 }
