@@ -18,8 +18,7 @@
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 
-        # Spin of the minecraft server to use and version (using unstable nixos branch to get latest papermc version)
-        package = pkgs.unstable.papermcServers.papermc-1_21;
+        package = pkgs.papermcServers.papermc-1_21;
 
         serverProperties = {
           # A list can be found here : https://minecraft.wiki/w/Server.properties
