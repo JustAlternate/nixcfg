@@ -19,12 +19,22 @@ in
   virtualisation.oci-containers.backend = "docker";
 
   # Containers
-  virtualisation.oci-containers.containers."justvpn" = {
-    image = "justvpn:1.15";
+  virtualisation.oci-containers.containers."justvpn-justvpn" = {
+    image = "justvpn:latest";
     environment = {
+      "API_BASE_URL" = "https://vpn.justalternate.fr/api";
+      "API_PORT" = "3030";
+      "FRONTEND_CORS_ORIGIN" = "*";
+      "IAC_DIR_PATH" = "../iac";
       "SSH_PASSWORD" = PASSWORD;
       "JWT_TOKEN" = PASSWORD;
+      "TERRAFORM_WORKING_DIR" = "./src";
+      "USERS_FILE_PATH" = "./src/users.json";
     };
+    volumes = [
+      "/var/www/JustVPN/iac:/app/iac:rw"
+      "/var/www/JustVPN/src:/app/src:rw"
+    ];
     ports = [
       "3030:8081/tcp"
     ];
@@ -34,7 +44,7 @@ in
       "--network=justvpn_default"
     ];
   };
-  systemd.services."docker-justvpn" = {
+  systemd.services."docker-justvpn-justvpn" = {
     serviceConfig = {
       Restart = lib.mkOverride 90 "always";
       RestartMaxDelaySec = lib.mkOverride 90 "1m";

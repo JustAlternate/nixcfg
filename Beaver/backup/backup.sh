@@ -20,7 +20,7 @@ for i in "${!OBJECTS_PATH[@]}"; do
 done
 
 echo "Backup planka ..."
-/root/nixcfg/Beaver/planka/backup/./backup.sh
+/root/nixcfg/Beaver/services/planka/backup/./backup.sh
 if [ ! -f ./planka-backup.tgz ]; then
 	echo "Error planka file is not here !!"
 	touch /root/ERROR_WHEN_EXECUTING_BACKUP #TODO:IMPLEMENT proper alerting system
