@@ -7,6 +7,7 @@
     secrets = {
       "HASHED_PASSWORD" = { };
       "PASSWORD" = { };
+      "TRACCAR" = { };
       "EMAIL" = { };
       "OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD" = { };
       "PLANKA/SECRET_KEY" = { };
