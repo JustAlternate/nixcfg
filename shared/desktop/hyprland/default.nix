@@ -193,7 +193,6 @@
       # window rule
       #windowrule = animation slide bottom, kitty
       windowrule = opacity 0.92 override, vesktop
-      windowrule = opacity 0.99 override, firefox
 
       # To make screensharing work
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
