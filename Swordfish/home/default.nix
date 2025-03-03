@@ -51,6 +51,7 @@
         # Text editors
         vim
         master.windsurf
+        master.code-cursor
 
         # Terminals
         kitty
