@@ -32,8 +32,8 @@ in
       "USERS_FILE_PATH" = "./src/users.json";
     };
     volumes = [
-      "/var/www/JustVPN/iac:/app/iac:rw"
-      "/var/www/JustVPN/src:/app/src:rw"
+      "/var/www/JustVPN/iac/secrets.tfvars:/app/iac/secrets.tfvars:rw"
+      "/var/www/JustVPN/src/users.json:/app/src/users.json:rw"
     ];
     ports = [
       "3030:8081/tcp"
