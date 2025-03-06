@@ -52,6 +52,7 @@
         vim
         master.windsurf
         master.code-cursor
+        master.vscode-fhs
 
         # Terminals
         kitty
