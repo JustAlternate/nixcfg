@@ -9,6 +9,13 @@ _: {
         user = "root";
         identityFile = "~/.ssh/id_ed25519";
       };
+      "gh-explorer" = {
+        # gh-explorer.fr
+        hostname = "188.245.183.30";
+        user = "root";
+        identityFile = "~/.ssh/id_ed25519";
+        port = 443;
+      };
       "GeckoNixos1" = {
         # RPI3b+
         hostname = "192.168.1.248";
