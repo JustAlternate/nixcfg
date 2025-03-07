@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     pyprland
-    hyprcursor
     hyprland-protocols
   ];
 
@@ -27,9 +26,6 @@
       decoration:blur:enabled = false
       decoration:shadow:enabled = false
       misc:vfr = true
-
-      # Default env vars
-      env = XCURSOR_SIZE,10
 
       # Input settings
       input {
