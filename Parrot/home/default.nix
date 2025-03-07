@@ -52,6 +52,8 @@
 
         # Text editors
         vim
+        unstable.claude-code
+        unstable.vscodium-fhs
 
         # Terminals
         kitty
