@@ -31,19 +31,19 @@
             {
               targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
             }
+          ];
+        }
+        {
+          job_name = "gh-explorer";
+          static_configs = [
             {
-              job_name = "gh-explorer";
-              static_configs = [
-                {
-                  targets = [ "metrics.gh-explorer.fr/metrics" ];
-                }
-              ];
-              scheme = "https";
-              tls_config = {
-                insecure_skip_verify = true;
-              };
+              targets = [ "metrics.gh-explorer.com" ];
             }
           ];
+          scheme = "https";
+          tls_config = {
+            insecure_skip_verify = true;
+          };
         }
       ];
     };
