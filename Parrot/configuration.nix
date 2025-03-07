@@ -59,6 +59,7 @@
 
   # Bootloader.
   boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       grub = {
         enable = true;
