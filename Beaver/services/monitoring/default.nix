@@ -31,6 +31,18 @@
             {
               targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
             }
+            {
+              job_name = "gh-explorer";
+              static_configs = [
+                {
+                  targets = [ "metrics.gh-explorer.fr/metrics" ];
+                }
+              ];
+              scheme = "https";
+              tls_config = {
+                insecure_skip_verify = true;
+              };
+            }
           ];
         }
       ];
@@ -53,7 +65,10 @@
     ];
     locations."/" = {
       proxyPass = "http://127.0.0.1:3060";
-      proxyWebsockets = true;
+      recommendedProxySettings = true;
+    };
+    locations."/prometheus" = {
+      proxyPass = "http://127.0.0.1:9001";
       recommendedProxySettings = true;
     };
   };
