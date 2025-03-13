@@ -141,6 +141,7 @@
         appimage-run
         unstable.pokemmo-installer
         unstable.osu-lazer-bin
+        unstable.hmcl
 
         ## Drivers/Requirements
         wacomtablet
@@ -153,6 +154,7 @@
         zlib
         lego
         android-udev-rules
+        android-studio
 
         # Miscs
         cpu-x
