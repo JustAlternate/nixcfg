@@ -85,6 +85,7 @@
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
           ];
         };
         SwordfishNixos = nixpkgs.lib.nixosSystem {
