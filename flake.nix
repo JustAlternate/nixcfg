@@ -100,7 +100,7 @@
             { nixpkgs.overlays = nixos-overlays; }
           ];
         };
-        BeaverNixos = nixos-unstable.lib.nixosSystem {
+        BeaverNixos = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
