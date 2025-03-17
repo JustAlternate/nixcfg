@@ -45,6 +45,21 @@
             insecure_skip_verify = true;
           };
         }
+        {
+          job_name = "gh-explorer-backend";
+          static_configs = [
+            {
+              targets = [ "gh-explorer.com" ];
+            }
+          ];
+          metrics_path = "/api/v1/metrics";
+          scrape_interval = "15s";
+          scrape_timeout = "10s";
+          scheme = "https";
+          tls_config = {
+            insecure_skip_verify = true;
+          };
+        }
       ];
     };
   };
@@ -65,10 +80,6 @@
     ];
     locations."/" = {
       proxyPass = "http://127.0.0.1:3060";
-      recommendedProxySettings = true;
-    };
-    locations."/prometheus" = {
-      proxyPass = "http://127.0.0.1:9001";
       recommendedProxySettings = true;
     };
   };
