@@ -28,7 +28,25 @@
             }
           ];
           locations."/" = {
-            root = "/var/www/justalternate.fr/";
+            root = "/var/www/justalternate/";
+          };
+        };
+        "justalternate.com" = {
+          enableACME = true;
+          forceSSL = true;
+          listen = [
+            {
+              addr = "0.0.0.0";
+              port = 80;
+            }
+            {
+              addr = "0.0.0.0";
+              port = 8443;
+              ssl = true;
+            }
+          ];
+          locations."/" = {
+            root = "/var/www/justalternate/";
           };
         };
       };
