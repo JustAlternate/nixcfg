@@ -4,7 +4,7 @@ _: {
       enable = true;
       # backupDir = "/root/backup/vaultwarden";
       config = {
-        domain = "https://vaultwarden.justalternate.fr";
+        domain = "https://vaultwarden.justalternate.com";
         rocketAddress = "127.0.0.1";
         rocketPort = 8222;
         signupsAllowed = false; # Never put this to true
@@ -12,7 +12,7 @@ _: {
       environmentFile = "/run/secrets/VAULTWARDEN/ENV";
     };
 
-    nginx.virtualHosts."vaultwarden.justalternate.fr" = {
+    nginx.virtualHosts."vaultwarden.justalternate.com" = {
       forceSSL = true;
       enableACME = true;
       listen = [

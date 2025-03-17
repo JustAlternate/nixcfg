@@ -2,6 +2,8 @@
 { pkgs, lib, ... }:
 let
   SECRET_KEY = builtins.readFile "/run/secrets/PLANKA/SECRET_KEY";
+  EMAIL = builtins.readFile "/run/secrets/EMAIL";
+  PASSWORD = builtins.readFile "/run/secrets/PASSWORD";
 in
 {
   # Runtime
@@ -15,9 +17,13 @@ in
   virtualisation.oci-containers.containers."planka-planka" = {
     image = "ghcr.io/plankanban/planka:latest";
     environment = {
-      "BASE_URL" = "https://planka.justalternate.fr";
+      "BASE_URL" = "https://planka.justalternate.com";
       "DATABASE_URL" = "postgresql://postgres@postgres/planka";
       "SECRET_KEY" = SECRET_KEY;
+      "DEFAULT_ADMIN_EMAIL" = EMAIL;
+      "DEFAULT_ADMIN_PASSWORD" = PASSWORD;
+      "DEFAULT_ADMIN_NAME" = "JustAlternate JustAlternate";
+      "DEFAULT_ADMIN_USERNAME" = "justalternate";
     };
     volumes = [
       "planka_attachments:/app/private/attachments:rw"
