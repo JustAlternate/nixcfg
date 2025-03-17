@@ -26,14 +26,6 @@ resource "cloudflare_zone" "justalternate_zone" {
 	type = "full"	
 }
 
-resource "cloudflare_zone" "ghexplorer_zone" {
-	account = {
-		id = "2e927365979a96c77a03b9545911f007"
-	}
-  name = "gh-explorer.com"
-	type = "full"	
-}
-
 resource "cloudflare_dns_record" "JustAlternate-default" {
   zone_id  = cloudflare_zone.justalternate_zone.id
   name     = "@"
@@ -41,6 +33,14 @@ resource "cloudflare_dns_record" "JustAlternate-default" {
   content  = "195.201.116.51"
   ttl      = 120
   proxied  = false
+}
+
+resource "cloudflare_zone" "ghexplorer_zone" {
+	account = {
+		id = "2e927365979a96c77a03b9545911f007"
+	}
+  name = "gh-explorer.com"
+	type = "full"	
 }
 
 resource "cloudflare_dns_record" "GHExplorer-default" {
