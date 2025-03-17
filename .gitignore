@@ -1,4 +1,6 @@
 # Compiled files
+.terraform/**
+secrets.tfvars
 .terraform.*
 .terraform./**
 *.tfstate
