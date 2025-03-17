@@ -1,7 +1,7 @@
 _: {
   imports = [ ./docker-compose.nix ];
 
-  services.nginx.virtualHosts."vpn.justalternate.fr" = {
+  services.nginx.virtualHosts."vpn.justalternate.com" = {
     enableACME = true;
     forceSSL = true;
     listen = [
