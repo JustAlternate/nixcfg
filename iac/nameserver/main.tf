@@ -35,6 +35,15 @@ resource "cloudflare_dns_record" "JustAlternate-default" {
   proxied  = false
 }
 
+resource "cloudflare_dns_record" "JustAlternate-planka" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "planka"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
 resource "cloudflare_zone" "ghexplorer_zone" {
 	account = {
 		id = "2e927365979a96c77a03b9545911f007"
