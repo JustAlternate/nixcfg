@@ -1,9 +1,9 @@
 # Compiled files
-.terraform/**
+.terraform/
 secrets.tfvars
 .terraform.*
 .terraform./**
-*.tfstate
+*.tfstate*
 *.tfstate.backup
 *.tfstate.lock.info
 terraform.tfvars
