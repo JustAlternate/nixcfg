@@ -13,7 +13,7 @@
       proxyTimeout = "500s";
 
       virtualHosts = {
-        "justalternate.fr" = {
+        "justalternate.com" = {
           enableACME = true;
           forceSSL = true;
           listen = [
@@ -28,7 +28,7 @@
             }
           ];
           locations."/" = {
-            root = "/var/www/justalternate.fr/";
+            root = "/var/www/justalternate/justalternate/";
           };
         };
       };
@@ -36,6 +36,6 @@
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = "loicw@justalternate.fr";
+    defaults.email = "loicw@justalternate.com";
   };
 }
