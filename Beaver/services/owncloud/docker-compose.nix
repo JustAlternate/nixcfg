@@ -106,11 +106,11 @@ in
       "OWNCLOUD_DB_PASSWORD" = "owncloud";
       "OWNCLOUD_DB_TYPE" = "mysql";
       "OWNCLOUD_DB_USERNAME" = "owncloud";
-      "OWNCLOUD_DOMAIN" = "cloud.justalternate.fr";
+      "OWNCLOUD_DOMAIN" = "cloud.justalternate.com";
       "OWNCLOUD_MYSQL_UTF8MB4" = "true";
       "OWNCLOUD_REDIS_ENABLED" = "true";
       "OWNCLOUD_REDIS_HOST" = "redis";
-      "OWNCLOUD_TRUSTED_DOMAINS" = "cloud.justalternate.fr,justalternate.fr";
+      "OWNCLOUD_TRUSTED_DOMAINS" = "cloud.justalternate.com,justalternate.com";
     };
     volumes = [ "owncloud_files:/mnt/data:rw" ];
     ports = [ "3010:8080/tcp" ];

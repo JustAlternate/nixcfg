@@ -137,6 +137,7 @@
     # ollama = {
     #   enable = true;
     #   acceleration = "cuda";
+    #   package = pkgs.master.ollama;
     # };
     # open-webui.enable = true;
 

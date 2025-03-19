@@ -2,7 +2,7 @@ _: {
   imports = [ ./docker-compose.nix ];
 
   services = {
-    nginx.virtualHosts."ai.justalternate.fr" = {
+    nginx.virtualHosts."ai.justalternate.com" = {
       enableACME = true;
       forceSSL = true;
       listen = [
@@ -21,7 +21,7 @@ _: {
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
-    nginx.virtualHosts."monitor.justalternate.fr" = {
+    nginx.virtualHosts."monitor.justalternate.com" = {
       enableACME = true;
       forceSSL = true;
       listen = [

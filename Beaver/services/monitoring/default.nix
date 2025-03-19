@@ -7,7 +7,7 @@
         server = {
           http_addr = "127.0.0.1";
           http_port = 3060;
-          domain = "monitoring.justalternate.fr";
+          domain = "monitoring.justalternate.com";
           serve_from_sub_path = true;
         };
       };
@@ -45,11 +45,26 @@
             insecure_skip_verify = true;
           };
         }
+        {
+          job_name = "gh-explorer-backend";
+          static_configs = [
+            {
+              targets = [ "gh-explorer.com" ];
+            }
+          ];
+          metrics_path = "/api/v1/metrics";
+          scrape_interval = "15s";
+          scrape_timeout = "10s";
+          scheme = "https";
+          tls_config = {
+            insecure_skip_verify = true;
+          };
+        }
       ];
     };
   };
 
-  services.nginx.virtualHosts."monitoring.justalternate.fr" = {
+  services.nginx.virtualHosts."monitoring.justalternate.com" = {
     enableACME = true;
     forceSSL = true;
     listen = [
@@ -65,10 +80,6 @@
     ];
     locations."/" = {
       proxyPass = "http://127.0.0.1:3060";
-      recommendedProxySettings = true;
-    };
-    locations."/prometheus" = {
-      proxyPass = "http://127.0.0.1:9001";
       recommendedProxySettings = true;
     };
   };

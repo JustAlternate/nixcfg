@@ -85,6 +85,7 @@
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
           ];
         };
         SwordfishNixos = nixpkgs.lib.nixosSystem {
@@ -99,7 +100,7 @@
             { nixpkgs.overlays = nixos-overlays; }
           ];
         };
-        BeaverNixos = nixos-unstable.lib.nixosSystem {
+        BeaverNixos = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
