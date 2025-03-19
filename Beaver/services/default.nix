@@ -6,7 +6,7 @@ _: {
     ./openwebui # My personal llm ui backed by together ai for the inference API
     ./owncloud # selhosted google drive
     ./mail
-    # ./minecraft
+    ./minecraft
     ./monitoring
     ./action-runner
     ./JustVPN

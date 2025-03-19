@@ -8,7 +8,7 @@
   };
 
   services.minecraft-servers = {
-    enable = false;
+    enable = true;
     eula = true; # Automatically accept eula
     dataDir = "/srv/minecraft";
     runDir = "/srv/minecraft";
@@ -18,7 +18,7 @@
         autoStart = true; # Start on boot
         openFirewall = true; # Open port specified in the serverProperties config
 
-        package = pkgs.papermcServers.papermc-1_21;
+        package = pkgs.papermcServers.papermc-1_20_4;
 
         serverProperties = {
           # A list can be found here : https://minecraft.wiki/w/Server.properties
@@ -26,11 +26,11 @@
           server-port = 25565;
           difficulty = 2;
           gamemode = 0;
-          max-players = 10;
+          max-players = 2;
           white-list = false;
           enable-command-block = true;
-          view-distance = 14;
-          simulation-distance = 8;
+          view-distance = 16;
+          simulation-distance = 10;
           spawn-animals = true;
           spawn-monsters = true;
           spawn-npcs = true;
@@ -51,33 +51,33 @@
           "spigot.yml" = ./spigot.yml; # use the spigot.yml file in this folder for production
           "bukkit.yml" = ./bukkit.yml;
 
-          # Plugins fetch and configuration
-          "plugins/FallenKingdom.jar" = pkgs.fetchurl rec {
-            pname = "FallenKingdom";
-            version = "2.23.2";
-            url = "https://cdn.modrinth.com/data/wKYpobLb/versions/8oEbkpgh/${pname}-${version}.jar";
-            hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
-          };
+          # # Plugins fetch and configuration
+          # "plugins/FallenKingdom.jar" = pkgs.fetchurl rec {
+          #   pname = "FallenKingdom";
+          #   version = "2.23.2";
+          #   url = "https://cdn.modrinth.com/data/wKYpobLb/versions/8oEbkpgh/${pname}-${version}.jar";
+          #   hash = "sha256-6vL1k0uy/dLg9NncYWe3QS98XwVF39MAqYiWXtoYfAc=";
+          # };
 
-          "plugins/SkinsRestorer.jar" = pkgs.fetchurl {
-            pname = "SkinsRestorer";
-            url = "https://objects.githubusercontent.com/github-production-release-asset-2e65be/105874986/8123aca2-ff4b-4ee6-a77e-aeffb2aaf38f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241111%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241111T092447Z&X-Amz-Expires=300&X-Amz-Signature=882df521bdba574bef888d004f6faef91d071fd95229074532b0d402335e2c23&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DSkinsRestorer.jar&response-content-type=application%2Foctet-stream";
-            hash = "sha256-Dc/yZW5CsWU596+sGV5mWqOVeg4+QTNt5FM3yH7vsLw=";
-          };
+          # "plugins/SkinsRestorer.jar" = pkgs.fetchurl {
+          #   pname = "SkinsRestorer";
+          #   url = "https://objects.githubusercontent.com/github-production-release-asset-2e65be/105874986/8123aca2-ff4b-4ee6-a77e-aeffb2aaf38f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241111%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241111T092447Z&X-Amz-Expires=300&X-Amz-Signature=882df521bdba574bef888d004f6faef91d071fd95229074532b0d402335e2c23&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DSkinsRestorer.jar&response-content-type=application%2Foctet-stream";
+          #   hash = "sha256-Dc/yZW5CsWU596+sGV5mWqOVeg4+QTNt5FM3yH7vsLw=";
+          # };
 
-          "plugins/ShopKeepers.jar" = pkgs.fetchurl rec {
-            pname = "ShopKeepers";
-            version = "2.23.0";
-            url = "https://mediafilez.forgecdn.net/files/5619/313/Shopkeepers-${version}.jar";
-            hash = "sha256-IFiPr4rFOH7t3IY663s8WBN5wWDQuG0rU1jL61wiWrA=";
-          };
+          # "plugins/ShopKeepers.jar" = pkgs.fetchurl rec {
+          #   pname = "ShopKeepers";
+          #   version = "2.23.0";
+          #   url = "https://mediafilez.forgecdn.net/files/5619/313/Shopkeepers-${version}.jar";
+          #   hash = "sha256-IFiPr4rFOH7t3IY663s8WBN5wWDQuG0rU1jL61wiWrA=";
+          # };
 
-          "plugins/WorldEdit.jar" = pkgs.fetchurl rec {
-            pname = "worldedit-bukkit";
-            version = "7.3.7";
-            url = "https://cdn.modrinth.com/data/1u6JkXh5/versions/H12HdUau/${pname}-${version}.jar";
-            hash = "sha256-5W+VZBHAR314IPVqAz2Ghnw6nOGA69H1W8leraaZl1U=";
-          };
+          # "plugins/WorldEdit.jar" = pkgs.fetchurl rec {
+          #   pname = "worldedit-bukkit";
+          #   version = "7.3.7";
+          #   url = "https://cdn.modrinth.com/data/1u6JkXh5/versions/H12HdUau/${pname}-${version}.jar";
+          #   hash = "sha256-5W+VZBHAR314IPVqAz2Ghnw6nOGA69H1W8leraaZl1U=";
+          # };
           # symlink more config files if needed ....
         };
       };
