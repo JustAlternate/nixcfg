@@ -22,7 +22,7 @@ in
   virtualisation.oci-containers.containers."justvpn-justvpn" = {
     image = "justvpn:latest";
     environment = {
-      "API_BASE_URL" = "https://vpn.justalternate.fr/api";
+      "API_BASE_URL" = "https://vpn.justalternate.com/api";
       "API_PORT" = "3030";
       "FRONTEND_CORS_ORIGIN" = "*";
       "IAC_DIR_PATH" = "../iac";
