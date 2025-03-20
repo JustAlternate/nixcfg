@@ -49,14 +49,8 @@
         networkmanagerapplet
         networkmanager-openconnect
         networkmanager
-
-        # Text editors
-        vim
-        unstable.claude-code
-        unstable.vscodium-fhs
-
-        # Terminals
-        kitty
+        wireguard-tools
+        wg-netmanager
 
         # File managers
         xfce.thunar
@@ -71,6 +65,7 @@
         thunderbird
         unstable.mousam
         inkscape
+        bitwarden-desktop
 
         # Music
         mpv
@@ -91,43 +86,6 @@
         # Social media
         vesktop
         bemoji
-
-        # Cli tools
-        ## Utility
-        xdg-utils
-        playerctl
-        unzip
-        wget
-        wl-clipboard
-        wl-clipboard-x11
-        cliphist
-        ripgrep
-        thefuck
-        pamixer
-        fzf
-        socat
-        jq
-        ani-cli
-        sshfs
-        neovim-remote
-        pandoc
-        lazygit
-        morph
-        asciinema-agg
-        asciinema
-
-        ## Show-off
-        cmatrix
-        cava
-        cbonsai
-
-        ## Monitoring
-        nvtopPackages.full
-        htop
-        powertop
-        lshw
-        acpi
-        mission-center
 
         # Bluetooth
         bluez
