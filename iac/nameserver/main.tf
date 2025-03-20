@@ -44,6 +44,69 @@ resource "cloudflare_dns_record" "JustAlternate-planka" {
   proxied  = false
 }
 
+resource "cloudflare_dns_record" "JustAlternate-cloud" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "cloud"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
+resource "cloudflare_dns_record" "JustAlternate-vpn" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "vpn"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
+resource "cloudflare_dns_record" "JustAlternate-ai" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "ai"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
+resource "cloudflare_dns_record" "JustAlternate-monitoring" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "monitoring"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
+resource "cloudflare_dns_record" "JustAlternate-monitor" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "monitor"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
+resource "cloudflare_dns_record" "JustAlternate-play" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "play"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
+resource "cloudflare_dns_record" "JustAlternate-vaultwarden" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "vaultwarden"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
 resource "cloudflare_zone" "ghexplorer_zone" {
 	account = {
 		id = "2e927365979a96c77a03b9545911f007"
