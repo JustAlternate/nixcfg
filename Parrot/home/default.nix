@@ -49,6 +49,8 @@
         networkmanagerapplet
         networkmanager-openconnect
         networkmanager
+        wireguard-tools
+        wg-netmanager
 
         # Text editors
         vim
