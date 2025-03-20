@@ -28,7 +28,7 @@
             }
           ];
           locations."/" = {
-            root = "/var/www/justalternate/justalternate/";
+            root = "/var/www/justalternate/";
           };
         };
       };
@@ -36,6 +36,6 @@
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = "loicw@justalternate.com";
+    defaults.email = "loicw@justalternate.fr";
   };
 }
