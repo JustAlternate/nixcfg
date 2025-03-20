@@ -71,6 +71,7 @@
         thunderbird
         unstable.mousam
         inkscape
+        bitwarden-desktop
 
         # Music
         mpv
