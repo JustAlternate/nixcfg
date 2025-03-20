@@ -31,6 +31,7 @@
       git
       home-manager
       docker-client
+      docker-compose
       lego
       lolcat
     ];
