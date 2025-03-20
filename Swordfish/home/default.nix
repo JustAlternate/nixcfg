@@ -48,15 +48,6 @@
         networkmanagerapplet
         networkmanager
 
-        # Text editors
-        vim
-        master.windsurf
-        master.code-cursor
-        master.vscode-fhs
-
-        # Terminals
-        kitty
-
         # File managers
         xfce.thunar
         xfce.thunar-volman
@@ -94,43 +85,6 @@
         vesktop
         bemoji
 
-        # Cli tools
-        ## Utility
-        xdg-utils
-        playerctl
-        unzip
-        wget
-        wl-clipboard
-        wl-clipboard-x11
-        cliphist
-        busybox
-        ripgrep
-        thefuck
-        pamixer
-        fzf
-        socat
-        jq
-        ani-cli
-        sshfs
-        pandoc
-        lazygit
-        statix # Lints and suggestions for the nix programming language
-        deadnix # Find and remove unused code in .nix source files
-        nixfmt-rfc-style # Nix Code Formatter
-
-        ## Show-off
-        cmatrix
-        cava
-        cbonsai
-
-        ## Monitoring
-        nvtopPackages.full
-        htop
-        powertop
-        lshw
-        acpi
-        mission-center
-
         # Bluetooth
         bluez
         blueman
@@ -141,6 +95,7 @@
         appimage-run
         unstable.pokemmo-installer
         unstable.osu-lazer-bin
+        unstable.hmcl
 
         ## Drivers/Requirements
         wacomtablet
@@ -153,6 +108,7 @@
         zlib
         lego
         android-udev-rules
+        android-studio
 
         # Miscs
         cpu-x

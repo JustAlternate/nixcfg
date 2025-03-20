@@ -6,7 +6,6 @@
     ./pywal
     ./hyprland
     ./kitty.nix
-    ./justnixvim.nix
   ];
 
   home.packages = with pkgs; [

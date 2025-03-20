@@ -99,7 +99,7 @@
         HSA_OVERRIDE_GFX_VERSION = "10.3.0";
       };
     };
-    open-webui.enable = true;
+    # open-webui.enable = true;
 
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
