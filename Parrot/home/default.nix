@@ -49,6 +49,8 @@
         networkmanagerapplet
         networkmanager-openconnect
         networkmanager
+        wireguard-tools
+        wg-netmanager
 
         # File managers
         xfce.thunar
@@ -63,6 +65,7 @@
         thunderbird
         unstable.mousam
         inkscape
+        bitwarden-desktop
 
         # Music
         mpv
