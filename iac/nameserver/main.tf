@@ -62,6 +62,15 @@ resource "cloudflare_dns_record" "JustAlternate-vpn" {
   proxied  = false
 }
 
+resource "cloudflare_dns_record" "JustAlternate-explorer" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "explorer"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
 resource "cloudflare_dns_record" "JustAlternate-ai" {
   zone_id  = cloudflare_zone.justalternate_zone.id
   name     = "ai"
