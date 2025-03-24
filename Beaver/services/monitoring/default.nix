@@ -34,18 +34,6 @@
           ];
         }
         {
-          job_name = "gh-explorer";
-          static_configs = [
-            {
-              targets = [ "metrics.gh-explorer.com" ];
-            }
-          ];
-          scheme = "https";
-          tls_config = {
-            insecure_skip_verify = true;
-          };
-        }
-        {
           job_name = "gh-explorer-backend";
           static_configs = [
             {
