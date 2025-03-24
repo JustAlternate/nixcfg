@@ -70,6 +70,9 @@
       videoDrivers = [ "amdvlk" ];
     };
 
+    dbus.enable = true;
+    gnome.gnome-keyring.enable = true;
+
     pipewire = {
       enable = true;
       alsa.enable = true;
