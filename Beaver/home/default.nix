@@ -5,7 +5,6 @@
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
-    ../../shared/desktop/justnixvim.nix
   ];
 
   home = {
@@ -28,6 +27,8 @@
       terraform
       awscli2
       compose2nix
+
+      inputs.justnixvim.packages.${system}.default
 
       ## Monitoring
       htop
