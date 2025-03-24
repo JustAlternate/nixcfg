@@ -10,22 +10,8 @@
     ./hardware-configuration.nix
     ../shared/desktop/dev/docker/default.nix
     ../shared/sops.nix
+    ../shared/optimise.nix
   ];
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-    optimise.automatic = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
 
   environment = {
     shells = with pkgs; [ zsh ];

@@ -1,5 +1,9 @@
 { lib, pkgs, ... }:
 {
+  imports = [
+    ../shared/optimise.nix
+  ]
+
   time.timeZone = "Europe/Paris";
 
   # Select internationalisation properties.
@@ -45,23 +49,6 @@
     };
     shellAliases = {
       temp = "vcgencmd measure_temp";
-    };
-  };
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-    optimise.automatic = true;
-
-    # Garbage collection
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 3d";
     };
   };
 
