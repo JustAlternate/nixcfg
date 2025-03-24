@@ -13,6 +13,9 @@
     patray
     unrar
     bc
+    spacedrive
+    fractal
+    gcr # for gnome keyring
   ];
 
   home.sessionVariables = {
