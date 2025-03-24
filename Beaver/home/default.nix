@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./fastfetch
+    ../../shared/fastfetch.nix
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix

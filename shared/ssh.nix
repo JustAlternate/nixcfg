@@ -25,7 +25,7 @@ _: {
       };
       "GeckoNixos2" = {
         # RPI4B
-        hostname = "192.168.1.3";
+        hostname = "192.168.1.247";
         user = "root";
         port = 22;
         identityFile = "~/.ssh/id_ed25519";

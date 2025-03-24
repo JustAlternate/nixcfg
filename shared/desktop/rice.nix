@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
   imports = [
-    ../fastfetch
     ./rofi
     ./pywal
     ./hyprland
     ./kitty.nix
+    ../fastfetch.nix
   ];
 
   home.packages = with pkgs; [
