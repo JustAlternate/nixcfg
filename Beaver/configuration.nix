@@ -5,24 +5,8 @@
     ./networking.nix # generated at runtime by nixos-infect
     ./services
     ../shared/sops.nix # Secrets management using ssh key
+    ../shared/optimise.nix
   ];
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-    optimise.automatic = true;
-
-    # Garbage collection
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
 
   environment = {
     systemPackages = with pkgs; [

@@ -6,25 +6,8 @@
     ./hardware-configuration.nix
     ../shared/sops.nix
     ../shared/desktop/dev/docker/default.nix
+    ../shared/optimise.nix
   ];
-
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      # Nix Gaming cache
-      substituters = [ "https://nix-gaming.cachix.org" ];
-      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
-    };
-    optimise.automatic = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
 
   environment = {
     shells = with pkgs; [ zsh ];
