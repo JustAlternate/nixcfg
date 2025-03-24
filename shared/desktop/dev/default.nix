@@ -66,7 +66,6 @@
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
       nixfmt-rfc-style # Nix Code Formatter
-      neovim-remote
       asciinema-agg
       asciinema
 
