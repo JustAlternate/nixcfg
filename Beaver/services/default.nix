@@ -10,6 +10,7 @@ _: {
     ./monitoring
     ./action-runner
     ./JustVPN
+    ./gh-explorer
   ];
 
 }
