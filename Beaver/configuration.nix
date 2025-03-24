@@ -3,9 +3,10 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
-    ./services
     ../shared/sops.nix # Secrets management using ssh key
     ../shared/optimise.nix
+
+    ./services
   ];
 
   environment = {
