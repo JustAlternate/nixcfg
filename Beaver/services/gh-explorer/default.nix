@@ -1,6 +1,4 @@
 _: {
-  imports = [ ./docker-compose.nix ];
-
   services.nginx.virtualHosts."explorer.justalternate.com" = {
     enableACME = true;
     forceSSL = true;
@@ -21,7 +19,7 @@ _: {
         root = "/var/www/gh-explorer/";
         extraConfig = "try_files $uri $uri/ =404;";
       };
-      locations."/api/v1/" = {
+      "/api/v1/" = {
         proxyPass = "http://127.0.0.1:3031";
         proxyWebsockets = true;
       };
