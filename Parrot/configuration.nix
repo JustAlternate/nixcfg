@@ -128,6 +128,7 @@
     getty.autologinUser = "justalternate";
 
     dbus.enable = true;
+    gnome.gnome-keyring.enable = true;
     upower.enable = true;
     tlp = {
       enable = true;
