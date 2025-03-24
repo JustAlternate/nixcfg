@@ -2,7 +2,6 @@
 {
   home = {
     packages = with pkgs; [
-      fastfetch
       zsh
       zoxide
       eza
