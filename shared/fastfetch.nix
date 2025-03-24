@@ -48,7 +48,22 @@
           "type" = "packages";
           "key" = "├─ PACKAGES";
           "keyColor" = "blue";
-          "format" = "{1} {2}";
+        }
+        {
+          "type" = "wm";
+          "key" = "├─ WINDOW MANAGER";
+          "keyColor" = "red";
+        }
+        {
+          "type" = "terminal";
+          "key" = "├─ TERMINAL";
+          "keyColor" = "green";
+        }
+        {
+          "type" = "media";
+          "key" = "├─󰝚 PLAYING";
+          "keyColor" = "yellow";
+          "format" = "{1}";
         }
         {
           "type" = "custom";
