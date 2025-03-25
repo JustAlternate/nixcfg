@@ -10,7 +10,6 @@
 {
   imports = [
     ./default.nix
-    ./nginx.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
