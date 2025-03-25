@@ -5,20 +5,17 @@
     ./networking.nix # generated at runtime by nixos-infect
     ../shared/sops.nix # Secrets management using ssh key
     ../shared/optimise.nix
-
     ./services
   ];
 
   environment = {
     systemPackages = with pkgs; [
       busybox
-      vim
       git
       home-manager
       docker-client
       docker-compose
       lego
-      lolcat
     ];
   };
 
