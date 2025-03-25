@@ -9,6 +9,8 @@
     ../../shared/desktop/rice.nix
   ];
 
+  desktop.enable = true;
+
   wayland.windowManager.hyprland.extraConfig = ''
     env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
     # Monitor settings
