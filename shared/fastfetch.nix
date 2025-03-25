@@ -8,7 +8,7 @@
         source = "nixos_small";
         padding = {
           right = 1;
-          top = 2;
+          top = 1;
         };
       };
 
