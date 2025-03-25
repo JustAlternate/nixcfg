@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./zsh.nix
+    ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
     ./git.nix
