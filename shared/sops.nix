@@ -15,6 +15,7 @@
       "TIANJI/JWT_SECRET" = { };
       "ACTION_RUNNER/NIXCFG_TOKEN" = { };
       "DEEPINFRA_API_KEY" = { };
+      "GROQ_API_KEY" = { };
     };
   };
 
