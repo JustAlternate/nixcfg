@@ -44,6 +44,15 @@ resource "cloudflare_dns_record" "JustAlternate-planka" {
   proxied  = false
 }
 
+resource "cloudflare_dns_record" "JustAlternate-pareto" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "pareto"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
 resource "cloudflare_dns_record" "JustAlternate-cloud" {
   zone_id  = cloudflare_zone.justalternate_zone.id
   name     = "cloud"
