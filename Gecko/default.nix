@@ -2,7 +2,7 @@
 {
   imports = [
     ../shared/optimise.nix
-  ]
+  ];
 
   time.timeZone = "Europe/Paris";
 
