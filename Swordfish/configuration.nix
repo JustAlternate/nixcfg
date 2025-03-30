@@ -28,6 +28,16 @@
     };
   };
 
+  xdg.portal = {
+    config.common.default = "*";
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -39,6 +49,7 @@
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    initrd.kernelModules = [ "amdgpu" ];
   };
 
   time.timeZone = "Europe/Paris";
@@ -136,6 +147,8 @@
     ssh.startAgent = true;
   };
 
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.wacom.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
