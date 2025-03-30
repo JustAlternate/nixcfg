@@ -1,23 +1,36 @@
-{ lib, ... }:
-let
-  inherit (lib) mkDefault;
-in
+{ lib, config, ... }:
+with lib;
 {
-  programs.git = {
-    enable = true;
-    userName = mkDefault "JustAlternate";
-    userEmail = mkDefault "loicw@justalternate.fr";
-    extraConfig = {
-      branch = {
-        # Automatic remote tracking.
-        autoSetupMerge = mkDefault "simple";
-        # Automatically use rebase for new branches.
-        autoSetupRebase = mkDefault "always";
-      };
-      push = {
-        autoSetupRemote = true;
-        default = mkDefault "current";
-      };
+  options.git = {
+    work = {
+      enable = mkEnableOption "work git profile";
     };
   };
+
+  config = mkMerge [
+    {
+      programs.git = {
+        enable = true;
+        userName = "JustAlternate";
+        userEmail = "loicw@justalternate.fr";
+        extraConfig = {
+          branch = {
+            autoSetupMerge = "simple";
+            autoSetupRebase = "always";
+          };
+          push = {
+            autoSetupRemote = true;
+            default = "current";
+          };
+        };
+      };
+    }
+
+    (mkIf config.git.work.enable {
+      programs.git = {
+        userName = "JustAlternateIDZ";
+        userEmail = "loic.weber@iadvize.com";
+      };
+    })
+  ];
 }

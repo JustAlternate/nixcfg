@@ -9,6 +9,8 @@
     ../../shared/desktop/rice.nix
   ];
 
+  desktop.enable = true;
+
   wayland.windowManager.hyprland.extraConfig = ''
     # Monitor settings
     monitor=DP-3, 2560x1440@165, 1920x0, 1
