@@ -3,7 +3,7 @@
 aws s3 ls s3://my-beaver-backup
 
 OBJECTS_PATH=("/var/www/justalternate/" "/var/lib/docker/volumes/owncloud_mysql/" "/var/lib/docker/volumes/owncloud_files/" "/var/lib/docker/volumes/open-webui_open-webui/" "/var/lib/docker/volumes/openwebui-monitor_postgres_data")
-OBJECTS_NAME=("justalternate.zip" "owncloud_mysql.zip" "owncloud_files.zip" "open-webui_open-webui.zip" "openwebui-monitor_postgres_data.zip")
+OBJECTS_NAME=("justalternate.zip" "owncloud_mysql_2025.zip" "owncloud_files_2025.zip" "open-webui_open-webui.zip" "openwebui-monitor_postgres_data.zip")
 
 for i in "${!OBJECTS_PATH[@]}"; do
 	echo "Backup ${OBJECTS_PATH[$i]}"

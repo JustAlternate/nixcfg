@@ -1,14 +1,16 @@
 { pkgs, ... }:
 {
   imports = [
-    ./zsh.nix
+    ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
-    ./git.nix
-    ./ssh.nix
+    ../../shared/ssh.nix
     ../../shared/desktop/dev/python
     ../../shared/desktop/kitty.nix
   ];
+
+  options.git.work.enable = true;
+  options.ssh.work.enable = true;
 
   home = {
     stateVersion = "24.05";
