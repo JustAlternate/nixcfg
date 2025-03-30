@@ -17,7 +17,7 @@ with lib;
             cat "${config.home.homeDirectory}/.cache/wal/sequences"
         '';
         initExtra = ''
-          export $(cat env-var/.env | grep -v '^#' | xargs)
+          export $(cat ~/env-var/.env | grep -v '^#' | xargs)
         '';
       };
     })
@@ -25,7 +25,7 @@ with lib;
     (mkIf pkgs.stdenv.isDarwin {
       programs.zsh = {
         initExtra = ''
-          export $(cat env-var/.env | grep -v '^#' | xargs)
+          export $(cat ~/env-var/.env | grep -v '^#' | xargs)
         '';
         shellAliases = {
           db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
