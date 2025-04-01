@@ -33,7 +33,12 @@
       nodejs_23
       gh
       unstable.claude-code
-      unstable.aider-chat
+
+      typst
+      typstyle
+      typstfmt
+      typst-lsp
+      typst-live
 
       ## Monitoring
       nvtopPackages.full
