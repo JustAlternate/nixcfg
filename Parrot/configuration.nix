@@ -264,7 +264,10 @@
     # Enable ssh-agent
     ssh.startAgent = true;
 
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 
   # This value determines the NixOS release from which the default
