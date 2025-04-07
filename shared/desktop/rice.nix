@@ -8,6 +8,16 @@
     ../fastfetch.nix
   ];
 
+  # Override packages
+  nixpkgs.config.packageOverrides = pkgs: {
+    colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
+    catppuccin-gtk = pkgs.catppuccin-gtk.override {
+      accents = [ "teal" ]; # You can specify multiple accents here to output multiple themes
+      size = "standard";
+      variant = "macchiato";
+    };
+  };
+
   home.packages = with pkgs; [
     birdtray
     patray
@@ -15,32 +25,29 @@
     bc
     spacedrive
     fractal
+
     gcr # for gnome keyring
+
+    # Theming
+    numix-icon-theme-circle
+    colloid-icon-theme
+    catppuccin-gtk
+    catppuccin-kvantum
+    catppuccin-cursors.macchiatoTeal
   ];
 
   home.sessionVariables = {
-    XCURSOR_THEME = "Numix-Cursor";
+    GTK_THEME = "catppuccin-macchiato-teal-standard";
+    XCURSOR_THEME = "Catppuccin-Macchiato-Teal";
     XCURSOR_SIZE = "24";
-    HYPRCURSOR_THEME = "Numix-Cursor";
+    HYPRCURSOR_THEME = "Catppuccin-Macchiato-Teal";
     HYPRCURSOR_SIZE = "24";
   };
 
-  #qt = {
-  #  enable = true;
-  #  platformTheme.name = "gtk2";
-  #  style.name = "gtk2";
-  #};
-
-  # gtk = {
-  #   enable = true;
-  #   iconTheme = {
-  #     name = "Reversal";
-  #     package = pkgs.reversal-icon-theme;
-  #   };
-
-  #   cursorTheme = {
-  #     name = "Numix-Cursor";
-  #     package = pkgs.numix-cursor-theme;
-  #   };
-  # };
+  # Enable Theme
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk2";
+    style.name = "gtk2";
+  };
 }

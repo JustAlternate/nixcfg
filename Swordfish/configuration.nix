@@ -72,13 +72,14 @@
   services = {
     xserver = {
       # Configure keymap in X11
-      enable = false;
+      enable = true;
+      displayManager.gdm.wayland = false;
+
+      videoDrivers = [ "amdgpu" ];
+      wacom.enable = true;
 
       xkb.layout = "fr";
       xkb.variant = "";
-
-      # Load nvidia driver for Xorg and Wayland
-      videoDrivers = [ "amdvlk" ];
     };
 
     dbus.enable = true;
@@ -145,11 +146,12 @@
   programs = {
     zsh.enable = true;
     ssh.startAgent = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  services.xserver.wacom.enable = true;
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
 

@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     pyprland
     hyprland-protocols
+    hyprcursor
   ];
 
   # Launch hyprland at startup
@@ -14,6 +15,7 @@
 
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   wayland.windowManager.hyprland = {
