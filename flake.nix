@@ -28,15 +28,6 @@
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
-    # other urls
-    themecord = {
-      url = "github:danihek/themecord";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # For installing osu and osu-lazer
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # Minecraft servers
 
