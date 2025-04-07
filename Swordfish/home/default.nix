@@ -98,6 +98,7 @@
         unstable.pokemmo-installer
         unstable.osu-lazer-bin
         unstable.hmcl
+        mgba
 
         ## Drivers/Requirements
         wacomtablet
