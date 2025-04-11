@@ -16,7 +16,9 @@ with lib;
             cat "${config.home.homeDirectory}/.cache/wal/sequences"
         '';
         initExtra = ''
-          export $(cat ~/env-var/.env | grep -v '^#' | xargs)
+          while IFS='=' read -r name value; do
+            [[ $name != \#* ]] && export "$name=$value"
+          done < ~/env-var/.env
         '';
       };
     })
@@ -24,7 +26,9 @@ with lib;
     (mkIf pkgs.stdenv.isDarwin {
       programs.zsh = {
         initExtra = ''
-          export $(cat ~/env-var/.env | grep -v '^#' | xargs)
+          while IFS='=' read -r name value; do
+            [[ $name != \#* ]] && export "$name=$value"
+          done < ~/env-var/.env
         '';
         shellAliases = {
           db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
