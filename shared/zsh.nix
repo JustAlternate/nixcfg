@@ -33,18 +33,6 @@ with lib;
         shellAliases = {
           db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
         };
-        sessionVariables = {
-          PATH = [
-            "/opt/homebrew/opt/php@7.4/bin"
-            "/opt/homebrew/opt/openjdk/bin"
-            "/opt/homebrew/Cellar/python@3.11/bin"
-            "/opt/homebrew/bin"
-            "$HOME/go/bin"
-            "$PATH"
-          ];
-          GOPATH = "$HOME/go";
-          GOBIN = "$HOME/go/bin";
-        };
       };
     })
 
@@ -53,6 +41,7 @@ with lib;
         zoxide
         tgpt
         eza
+        lazygit
       ];
 
       programs.zsh = {

@@ -26,7 +26,6 @@
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # Minecraft servers
@@ -158,7 +157,6 @@
           inherit inputs self;
         };
         modules = [
-          inputs.nix-homebrew.darwinModules.nix-homebrew
           home-manager.darwinModules.home-manager
           { nixpkgs.overlays = nixos-overlays; }
           ./Owl/configuration.nix
