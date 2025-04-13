@@ -1,13 +1,24 @@
 {
   self,
   inputs,
+  pkgs,
+  config,
   ...
 }:
 {
   imports = [
     ./window-manager.nix
-    ../shared/optimise.nix
   ];
+
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+    optimise.automatic = true;
+  };
 
   environment.systemPackages = [
     inputs.justnixvim.packages."aarch64-darwin".default
@@ -18,8 +29,7 @@
   # nix.package = pkgs.nix;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true; # default shell on catalina
-  # programs.fish.enable = true;
+  # programs.zsh.enable = true;
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -31,25 +41,27 @@
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  users.users.loicweber.home = "/Users/loicweber";
+  users.users.loicweber = {
+    home = "/Users/loicweber";
+  };
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.loicweber = import ./home;
-  };
+    extraSpecialArgs = { inherit inputs pkgs; };
 
-  nix-homebrew = {
-    # Install Homebrew under the default prefix
-    enable = true;
+    users.loicweber =
+      { pkgs, ... }:
+      {
+        # Define module here
+        # Explicitly set these:
+        home.homeDirectory = "/Users/loicweber";
+        home.username = "loicweber";
 
-    # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-    enableRosetta = true;
-
-    # User owning the Homebrew prefix
-    user = "loicweber";
-
-    # Automatically migrate existing Homebrew installations
-    autoMigrate = true;
+        # Import your actual home config:
+        imports = [
+          ./home/default.nix # Make sure this path is correct!
+        ];
+      };
   };
 }
