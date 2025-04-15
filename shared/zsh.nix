@@ -70,7 +70,7 @@ with lib;
             "dotenv"
             "vi-mode"
           ];
-          theme = "agnoster";
+          theme = "edvardm";
         };
         initExtra = ''
           fastfetch
