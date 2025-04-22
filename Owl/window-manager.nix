@@ -9,7 +9,7 @@
 
   services.aerospace = {
     enable = true;
-    package = pkgs.aerospace;
+    package = pkgs.unstable.aerospace;
 
     settings = {
       "after-login-command" = [ ];
