@@ -33,6 +33,9 @@
           jupyterlab
           scikit-image
           ipympl
+          boto3
+          psycopg2
+          pymysql
         ]
       ))
     ];

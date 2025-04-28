@@ -99,6 +99,7 @@
         steam-run-free
         steam
         bottles
+        mgba
 
         ## Drivers/Requirements
         ckb-next

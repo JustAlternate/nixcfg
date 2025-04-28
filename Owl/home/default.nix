@@ -1,44 +1,59 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
-    ../../shared/ssh.nix
+    ../../shared/fastfetch.nix
     ../../shared/desktop/dev/python
     ../../shared/desktop/kitty.nix
   ];
 
-  options.git.work.enable = true;
-  options.ssh.work.enable = true;
+  config = {
 
-  home = {
-    stateVersion = "24.05";
-    packages = with pkgs; [
-      postgresql
-      unstable.go
-      mysql80
+    git.work.enable = true;
+    ssh.work.enable = true;
 
-      jdk17
+    home = {
+      stateVersion = "24.05";
+      packages = with pkgs; [
+        postgresql
+        unstable.go
+        mysql80
 
-      sbt-extras
-      scala_2_13
-      scalafmt
+        jdk17
 
-      graphqurl
-    ];
+        sbt-extras
+        scala_2_13
+        scalafmt
 
-    # For env var
-    sessionVariables = {
-      EDITOR = "nvim";
+        graphqurl
+      ];
+
+      # For env var
+      sessionVariables = {
+        EDITOR = "nvim";
+      };
+
+      sessionPath = [
+        "/opt/homebrew/bin"
+        "/opt/homebrew/sbin"
+        "/opt/homebrew/opt/php@7.4/bin"
+        "/opt/homebrew/opt/openjdk/bin"
+        "$HOME/go/bin"
+      ];
     };
-  };
 
-  xdg.enable = true;
-  programs.home-manager.enable = true;
-  programs.kitty = {
-    settings = {
-      hide_window_decorations = "titlebar-only";
+    xdg.enable = true;
+
+    programs.kitty = {
+      settings = {
+        hide_window_decorations = "titlebar-only";
+      };
     };
   };
 }
