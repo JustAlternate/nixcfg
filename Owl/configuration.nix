@@ -48,19 +48,12 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs pkgs; };
-
-    users.loicweber =
-      { pkgs, ... }:
-      {
-        # Define module here
-        # Explicitly set these:
-        home.homeDirectory = "/Users/loicweber";
-        home.username = "loicweber";
-
-        # Import your actual home config:
-        imports = [
-          ./home/default.nix # Make sure this path is correct!
-        ];
-      };
+    users.loicweber = _: {
+      home.homeDirectory = "/Users/loicweber";
+      home.username = "loicweber";
+      imports = [
+        ./home/default.nix
+      ];
+    };
   };
 }
