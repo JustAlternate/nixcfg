@@ -1,9 +1,11 @@
 { lib, config, ... }:
+
 with lib;
 {
   options.git = {
     work = {
       enable = mkEnableOption "work git profile";
+      description = "Enable work-specific git user name and email.";
     };
   };
 
@@ -11,8 +13,6 @@ with lib;
     {
       programs.git = {
         enable = true;
-        userName = "JustAlternate";
-        userEmail = "loicw@justalternate.fr";
         extraConfig = {
           branch = {
             autoSetupMerge = "simple";
@@ -30,6 +30,13 @@ with lib;
       programs.git = {
         userName = "JustAlternateIDZ";
         userEmail = "loic.weber@iadvize.com";
+      };
+    })
+
+    (mkIf (!config.git.work.enable) {
+      programs.git = {
+        userName = "JustAlternate";
+        userEmail = "loicw@justalternate.fr";
       };
     })
   ];

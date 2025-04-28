@@ -16,7 +16,9 @@ with lib;
             cat "${config.home.homeDirectory}/.cache/wal/sequences"
         '';
         initExtra = ''
-          export $(cat ~/env-var/.env | grep -v '^#' | xargs)
+          while IFS='=' read -r name value; do
+            [[ $name != \#* ]] && export "$name=$value"
+          done < ~/env-var/.env
         '';
       };
     })
@@ -24,22 +26,12 @@ with lib;
     (mkIf pkgs.stdenv.isDarwin {
       programs.zsh = {
         initExtra = ''
-          export $(cat ~/env-var/.env | grep -v '^#' | xargs)
+          while IFS='=' read -r name value; do
+            [[ $name != \#* ]] && export "$name=$value"
+          done < ~/env-var/.env
         '';
         shellAliases = {
           db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
-        };
-        sessionVariables = {
-          PATH = [
-            "/opt/homebrew/opt/php@7.4/bin"
-            "/opt/homebrew/opt/openjdk/bin"
-            "/opt/homebrew/Cellar/python@3.11/bin"
-            "/opt/homebrew/bin"
-            "$HOME/go/bin"
-            "$PATH"
-          ];
-          GOPATH = "$HOME/go";
-          GOBIN = "$HOME/go/bin";
         };
       };
     })
@@ -49,6 +41,7 @@ with lib;
         zoxide
         tgpt
         eza
+        lazygit
       ];
 
       programs.zsh = {
@@ -77,7 +70,7 @@ with lib;
             "dotenv"
             "vi-mode"
           ];
-          theme = "agnoster";
+          theme = "edvardm";
         };
         initExtra = ''
           fastfetch

@@ -42,7 +42,7 @@ _click the image to go to the video_
 - Sharing gps location service: [Hauk](https://github.com/bilde2910/Hauk)
 - Selfhosted CI/CD runner: [github-runners](https://github.com/actions/runner)
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
-- Minecraft server: [nix-minecraft](https://github.com/Infinidoge/nix-minecraft)
+- Minecraft server: [docker-minecraft](https://github.com/itzg/docker-minecraft-server)
 - S3 auto backup service: made by myself
 
 ## Installation
@@ -95,5 +95,5 @@ ssh-keygen -t ed25519 -C "email@email.com"
 Create your sops age private key
 ```
 sudo mkdir -p /nix/sops/age
-sudo nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i /home/justalternate/.ssh/id_ed25519 > /nix/sops/age/keys.txt"
+sudo nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > /nix/sops/age/keys.txt"
 ```

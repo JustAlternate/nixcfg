@@ -9,7 +9,7 @@
 
   services.aerospace = {
     enable = true;
-    package = pkgs.aerospace;
+    package = pkgs.unstable.aerospace;
 
     settings = {
       "after-login-command" = [ ];
@@ -29,16 +29,16 @@
       "on-focused-monitor-changed" = [ "move-mouse monitor-lazy-center" ];
 
       "workspace-to-monitor-force-assignment" = {
-        "1" = "main";
-        "2" = "main";
-        "3" = "secondary";
-        "4" = "main";
-        "5" = "secondary";
-        "6" = "main";
-        "7" = "main";
-        "8" = "main";
-        "9" = "main";
-        "10" = "secondary";
+        "1" = "secondary";
+        "2" = "secondary";
+        "3" = "main";
+        "4" = "secondary";
+        "5" = "main";
+        "6" = "secondary";
+        "7" = "secondary";
+        "8" = "secondary";
+        "9" = "secondary";
+        "10" = "main";
       };
 
       # macOS hide application behavior
