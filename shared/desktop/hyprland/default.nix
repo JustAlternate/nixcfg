@@ -8,7 +8,7 @@
 
   # Launch hyprland at startup
   programs.zsh.profileExtra = ''
-    [[ $(tty) == /dev/tty1 ]]&&exec Hyprland
+    [[ $(tty) == /dev/tty1 ]] && exec Hyprland
   '';
 
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
@@ -189,8 +189,6 @@
       submap = reset
 
       # window rule
-      #windowrule = animation slide bottom, kitty
-      windowrule = opacity 0.92 override, vesktop
 
       # To make screensharing work
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

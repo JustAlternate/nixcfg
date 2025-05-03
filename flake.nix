@@ -3,15 +3,15 @@
 
   inputs = {
     # nixpkgs
-    nixpkgs.url = "nixpkgs/nixos-24.11";
-    nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # LEGACY FOR OWL
     master.url = "github:nixos/nixpkgs/master";
 
     justnixvim.url = "github:JustAlternate/justnixvim";
 
     # home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -26,10 +26,6 @@
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    # Minecraft servers
-
   };
 
   outputs =
@@ -68,14 +64,21 @@
       nixosConfigurations = {
         ParrotNixos = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs;
-          };
           modules = [
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.justalternate = import ./Parrot/home;
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
+              };
+            }
           ];
         };
         SwordfishNixos = nixpkgs.lib.nixosSystem {
@@ -92,13 +95,20 @@
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
           system = systemArm;
-          specialArgs = {
-            inherit inputs;
-          };
           modules = [
             ./Beaver/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.justalternate = import ./Beaver/home;
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
+              };
+            }
           ];
         };
         GeckoNixos1 = nixpkgs.lib.nixosSystem {
@@ -119,30 +129,11 @@
 
       # Nix Home-manger configurations
       homeConfigurations = {
-        parrot = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          modules = [
-            { nixpkgs.overlays = nixos-overlays; }
-            ./Parrot/home
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
         swordfish = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             { nixpkgs.overlays = nixos-overlays; }
             ./Swordfish/home
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-        };
-        beaver = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${systemArm};
-          modules = [
-            ./Beaver/home
           ];
           extraSpecialArgs = {
             inherit inputs;
