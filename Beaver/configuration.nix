@@ -25,7 +25,7 @@
     # sslh for ssh through https in order to get around school wifi ssh port 22 firewall
     sslh = {
       enable = true;
-      listenAddress = "0.0.0.0";
+      listenAddresses = "0.0.0.0";
       verbose = false;
       settings = {
         protocols = [
