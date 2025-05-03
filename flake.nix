@@ -103,7 +103,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.justalternate = import ./Beaver/home;
+                users.root = import ./Beaver/home;
                 extraSpecialArgs = {
                   inherit inputs;
                 };
