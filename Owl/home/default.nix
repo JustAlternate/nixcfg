@@ -19,7 +19,6 @@
     ssh.work.enable = true;
 
     home = {
-      stateVersion = "24.05";
       packages = with pkgs; [
         postgresql
         unstable.go
@@ -46,6 +45,8 @@
         "/opt/homebrew/opt/openjdk/bin"
         "$HOME/go/bin"
       ];
+
+      stateVersion = "24.05";
     };
 
     xdg.enable = true;

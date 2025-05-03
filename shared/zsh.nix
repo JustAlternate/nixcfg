@@ -11,11 +11,10 @@ with lib;
   config = mkMerge [
     (mkIf config.desktop.enable {
       programs.zsh = {
-        initExtraFirst = ''
+        initContent = ''
           [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
             cat "${config.home.homeDirectory}/.cache/wal/sequences"
-        '';
-        initExtra = ''
+
           while IFS='=' read -r name value; do
             [[ $name != \#* ]] && export "$name=$value"
           done < ~/env-var/.env
@@ -25,7 +24,7 @@ with lib;
 
     (mkIf pkgs.stdenv.isDarwin {
       programs.zsh = {
-        initExtra = ''
+        initContent = ''
           while IFS='=' read -r name value; do
             [[ $name != \#* ]] && export "$name=$value"
           done < ~/env-var/.env
@@ -72,7 +71,7 @@ with lib;
           ];
           theme = "edvardm";
         };
-        initExtra = ''
+        initContent = ''
           fastfetch
           eval "$(zoxide init zsh)"
           bindkey '^J' history-incremental-search-backward

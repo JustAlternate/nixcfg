@@ -18,7 +18,6 @@
       wireplumber
       git
       vim
-      home-manager
       gparted
       parted
     ];
@@ -38,7 +37,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # fonts:
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = with pkgs; [ nerd-fonts.hack ];
 
   # Bootloader.
   boot = {
@@ -255,9 +254,6 @@
     ];
   };
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-
   programs = {
     zsh.enable = true;
 
@@ -268,6 +264,7 @@
       enable = true;
       xwayland.enable = true;
     };
+
   };
 
   # This value determines the NixOS release from which the default
