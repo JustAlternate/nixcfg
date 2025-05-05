@@ -237,22 +237,6 @@
         "type": "github"
       }
     },
-    "master": {
-      "locked": {
-        "lastModified": 1744035660,
-        "narHash": "sha256-bia00ydEdR+0wqNN/TPTLQisgndMCY6NVSGW0uPmOy0=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "0bd982a343634fb29bb14a114592110125ef9128",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -293,22 +277,6 @@
         "owner": "LnL7",
         "ref": "nix-darwin-24.11",
         "repo": "nix-darwin",
-        "type": "github"
-      }
-    },
-    "nixos-unstable": {
-      "locked": {
-        "lastModified": 1743938762,
-        "narHash": "sha256-UgFYn8sGv9B8PoFpUfCa43CjMZBl1x/ShQhRDHBFQdI=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "74a40410369a1c35ee09b8a1abee6f4acbedc059",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -414,9 +382,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "justnixvim": "justnixvim",
-        "master": "master",
         "nix-darwin": "nix-darwin_2",
-        "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_3",
         "sops-nix": "sops-nix"
       }
