@@ -8,15 +8,7 @@
     ../fastfetch.nix
   ];
 
-  # Override packages
-  nixpkgs.config.packageOverrides = pkgs: {
-    colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
-    catppuccin-gtk = pkgs.catppuccin-gtk.override {
-      accents = [ "teal" ]; # You can specify multiple accents here to output multiple themes
-      size = "standard";
-      variant = "macchiato";
-    };
-  };
+  # TODO: FIX THIS
 
   home.packages = with pkgs; [
     birdtray
@@ -33,7 +25,6 @@
     colloid-icon-theme
     catppuccin-gtk
     catppuccin-kvantum
-    catppuccin-cursors.macchiatoTeal
   ];
 
   home.sessionVariables = {

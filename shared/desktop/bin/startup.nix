@@ -15,5 +15,4 @@ pkgs.writeShellScriptBin "startup" ''
 
   sleep 0.1
   eww open hbar &
-  #conky &
 ''

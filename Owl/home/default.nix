@@ -21,7 +21,7 @@
     home = {
       packages = with pkgs; [
         postgresql
-        unstable.go
+        go
         mysql80
 
         jdk17

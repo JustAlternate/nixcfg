@@ -4,8 +4,6 @@
   inputs = {
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixos-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # LEGACY FOR OWL
-    master.url = "github:nixos/nixpkgs/master";
 
     justnixvim.url = "github:JustAlternate/justnixvim";
 
@@ -33,8 +31,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixos-unstable,
-      master,
       nix-darwin,
       ...
     }@inputs:
@@ -42,22 +38,7 @@
       system = "x86_64-linux";
       systemMac = "aarch64-darwin";
       systemArm = "aarch64-linux";
-      nixos-overlays = [
-        # Allow configurations to use pkgs.unstable.<package-name>.
-        (_: prev: {
-          unstable = import nixos-unstable {
-            inherit (prev) system;
-            config.allowUnfree = true;
-          };
-        })
-        # Allow configurations to use pkgs.master.<package-name>.
-        (_: prev: {
-          master = import master {
-            inherit (prev) system;
-            config.allowUnfree = true;
-          };
-        })
-      ];
+      nixos-overlays = [ ];
     in
     {
       # NixOS configurations
@@ -68,7 +49,6 @@
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays; }
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -83,14 +63,20 @@
         };
         SwordfishNixos = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs;
-          };
           modules = [
             ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays; }
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.justalternate = import ./Swordfish/home;
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
+              };
+            }
           ];
         };
         BeaverNixos = nixpkgs.lib.nixosSystem {
@@ -124,20 +110,6 @@
             inherit inputs;
           };
           modules = [ ./Gecko/hardware-configuration-pi4.nix ];
-        };
-      };
-
-      # Nix Home-manger configurations
-      homeConfigurations = {
-        swordfish = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          modules = [
-            { nixpkgs.overlays = nixos-overlays; }
-            ./Swordfish/home
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-          };
         };
       };
 
