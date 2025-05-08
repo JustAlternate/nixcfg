@@ -14,5 +14,5 @@ pkgs.writeShellScriptBin "startup" ''
   change_wallpaper &
 
   sleep 0.1
-  eww open hbar &
+  waybar &
 ''
