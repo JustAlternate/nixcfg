@@ -131,6 +131,7 @@
       binde = $mainMod SHIFT, j, moveactive, 0 50
 
       # Computer control bindings
+      bind = $mainMod, F1, exec, ~/./nixcfg/shared/desktop/bin/switch_audio_output.sh
       binde = $mainMod, F2, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       binde = $mainMod, F3, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bind = $mainMod, F4, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
