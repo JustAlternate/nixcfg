@@ -32,7 +32,6 @@
 
       nodejs_23
       gh
-      unstable.claude-code
 
       typst
       typstyle
