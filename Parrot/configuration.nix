@@ -2,7 +2,6 @@
 {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../shared/sops.nix
     ../shared/desktop/dev/docker/default.nix
@@ -11,16 +10,10 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
-
     systemPackages = with pkgs; [
-      iw
-      pipewire
-      wireplumber
+      busybox
       git
       vim
-      home-manager
-      gparted
-      parted
     ];
 
     sessionVariables = {
@@ -38,7 +31,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # fonts:
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = with pkgs; [ nerd-fonts.hack ];
 
   # Bootloader.
   boot = {
@@ -117,13 +110,6 @@
       pulse.enable = true;
     };
 
-    # ollama = {
-    #   enable = true;
-    #   acceleration = "cuda";
-    #   package = pkgs.master.ollama;
-    # };
-    # open-webui.enable = true;
-
     # Enable automatic login for the user.
     getty.autologinUser = "justalternate";
 
@@ -161,7 +147,6 @@
 
   security = {
     rtkit.enable = true;
-
     # For god sake pls stop asking for my passwd every 5 commands..
     sudo = {
       enable = true;
@@ -255,9 +240,6 @@
     ];
   };
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-
   programs = {
     zsh.enable = true;
 
@@ -268,6 +250,7 @@
       enable = true;
       xwayland.enable = true;
     };
+
   };
 
   # This value determines the NixOS release from which the default
