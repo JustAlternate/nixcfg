@@ -12,17 +12,23 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 
 (For both Swordfish and Parrot)
 
-### Video Showcase [11 Aug 2024]
+![](./assets/20250508-11:52:59.png)
+
+### Video Showcase [11 Aug 2024] (slightly outdated)
 
 [![video showcase](https://img.youtube.com/vi/M6VRL6bqdks/0.jpg)](https://www.youtube.com/watch?v=M6VRL6bqdks)
 _click the image to go to the video_
+
+(Im no longer using eww nor pywalfox nor conky for my rice)
+
+
 
 ### Features
 
 #### Desktop (Swordfish and Parrot)
 - DE: [Hyprland](https://hyprland.org/)
 - Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/)
-- Bar: [Eww](https://github.com/elkowar/eww)
+- Bar: [Waybar](https://github.com/Alexays/Waybar)
 - File Manager: [yazi](https://yazi-rs.github.io/)
 - Editor: Neovim [justnixvim](https://github.com/JustAlternate/justnixvim)
 - Fetcher: [fastfetch](https://github.com/fastfetch-cli/fastfetch)

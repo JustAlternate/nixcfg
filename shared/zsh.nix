@@ -11,11 +11,10 @@ with lib;
   config = mkMerge [
     (mkIf config.desktop.enable {
       programs.zsh = {
-        initExtraFirst = ''
+        initContent = ''
           [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
             cat "${config.home.homeDirectory}/.cache/wal/sequences"
-        '';
-        initExtra = ''
+
           while IFS='=' read -r name value; do
             [[ $name != \#* ]] && export "$name=$value"
           done < ~/env-var/.env
@@ -25,7 +24,7 @@ with lib;
 
     (mkIf pkgs.stdenv.isDarwin {
       programs.zsh = {
-        initExtra = ''
+        initContent = ''
           while IFS='=' read -r name value; do
             [[ $name != \#* ]] && export "$name=$value"
           done < ~/env-var/.env
@@ -57,7 +56,7 @@ with lib;
           cd = "z";
           neofetch = "fastfetch";
           ssh = "kitten ssh";
-          ai = "tgpt --provider openai --url https://api.deepinfra.com/v1/openai/chat/completions --model Qwen/Qwen2.5-Coder-32B-Instruct";
+          ai = "tgpt --provider openai --url https://api.deepinfra.com/v1/openai/chat/completions --model Qwen/Qwen3-30B-A3B --preprompt 'The user is using Linux, if the question is about a linux command or a line of code, please answer with only one or 2 examples and do not give explanation unless the user asked for it. If the question is not specificly about a command or a line of code explain but make sure to be straight to the point. /nothink'";
         };
         history = {
           size = 10000;
@@ -72,7 +71,7 @@ with lib;
           ];
           theme = "edvardm";
         };
-        initExtra = ''
+        initContent = ''
           fastfetch
           eval "$(zoxide init zsh)"
           bindkey '^J' history-incremental-search-backward
