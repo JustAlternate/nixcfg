@@ -69,10 +69,6 @@
 
   services = {
     xserver = {
-      # Configure keymap in X11
-      enable = true;
-      displayManager.gdm.wayland = false;
-
       videoDrivers = [ "amdgpu" ];
       wacom.enable = true;
 
@@ -149,7 +145,9 @@
   hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
+
   users = {
+    defaultUserShell = pkgs.zsh;
     users.justalternate = {
       home = "/home/justalternate/";
       isNormalUser = true;
