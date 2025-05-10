@@ -3,14 +3,15 @@ _: {
     ./nginx # Web server, reverse proxy
     ./planka # selfhosted Kanban
     ./vaultwarden
-    ./openwebui # My personal llm ui backed by together ai for the inference API
-    ./owncloud # selhosted google drive
+    ./openwebui # My personal llm ui
+    ./owncloud # selhosted google drive equivalent
     ./mail
     ./minecraft
     ./monitoring
     ./action-runner
     ./JustVPN
     ./gh-explorer
+    ./dawarich
   ];
 
   services.nginx.virtualHosts = {
