@@ -1,3 +1,0 @@
-#!/bin/bash
-
-echo "$(whoami)@$(cat /etc/hostname)"
