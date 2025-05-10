@@ -5,6 +5,8 @@
   ...
 }:
 {
+  xdg.configFile."waybar/style.css".source = ./style.css;
+
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
