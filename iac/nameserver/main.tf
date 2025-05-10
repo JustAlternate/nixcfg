@@ -89,6 +89,15 @@ resource "cloudflare_dns_record" "JustAlternate-ai" {
   proxied  = false
 }
 
+resource "cloudflare_dns_record" "JustAlternate-geo" {
+  zone_id  = cloudflare_zone.justalternate_zone.id
+  name     = "geo"
+  type     = "A"
+  content  = "195.201.116.51"
+  ttl      = 120
+  proxied  = false
+}
+
 resource "cloudflare_dns_record" "JustAlternate-monitoring" {
   zone_id  = cloudflare_zone.justalternate_zone.id
   name     = "monitoring"
