@@ -80,6 +80,7 @@
       # Text editors
       vim
       inputs.justnixvim.packages.${system}.default
+      claude-code
 
     ];
   };
