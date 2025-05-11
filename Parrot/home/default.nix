@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    #./rice/eww
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
