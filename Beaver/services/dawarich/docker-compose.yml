@@ -17,7 +17,7 @@ services:
       start_period: 30s
       timeout: 10s
   dawarich_db:
-    image: postgis/postgis:17-3.5-alpine
+    image: imresamu/postgis:17-3.5-alpine
     shm_size: 1G
     container_name: dawarich_db
     volumes:
@@ -47,7 +47,7 @@ services:
     networks:
       - dawarich
     ports:
-      - 3000:3000
+      - 3001:3000
       # - 9394:9394 # Prometheus exporter, uncomment if needed
     stdin_open: true
     tty: true
@@ -62,9 +62,9 @@ services:
       DATABASE_PASSWORD: password
       DATABASE_NAME: dawarich_development
       MIN_MINUTES_SPENT_IN_CITY: 60
-      APPLICATION_HOSTS: localhost
+      APPLICATION_HOSTS: localhost,geo.justalternate.com
       TIME_ZONE: Europe/Paris
-      APPLICATION_PROTOCOL: https
+      APPLICATION_PROTOCOL: http
       DISTANCE_UNIT: km
       PROMETHEUS_EXPORTER_ENABLED: false
       PROMETHEUS_EXPORTER_HOST: 0.0.0.0
@@ -114,9 +114,9 @@ services:
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: password
       DATABASE_NAME: dawarich_development
-      APPLICATION_HOSTS: localhost
+      APPLICATION_HOSTS: localhost,geo.justalternate.com
       BACKGROUND_PROCESSING_CONCURRENCY: 10
-      APPLICATION_PROTOCOL: https
+      APPLICATION_PROTOCOL: http
       DISTANCE_UNIT: km
       PROMETHEUS_EXPORTER_ENABLED: false
       PROMETHEUS_EXPORTER_HOST: dawarich_app
