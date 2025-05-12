@@ -1,11 +1,12 @@
 _: {
+
   imports = [
     (builtins.fetchTarball {
       # Pick a release version you are interested in and set its hash, e.g.
-      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/master/nixos-mailserver-master.tar.gz";
+      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/da66510f688b7eac54e3cac7c75be4b8dd78ce8b/nixos-mailserver-da66510f688b7eac54e3cac7c75be4b8dd78ce8b.tar.gz";
       # To get the sha256 of the nixos-mailserver tarball, we can use the nix-prefetch-url command:
       # release="nixos-23.05"; nix-prefetch-url "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/${release}/nixos-mailserver-${release}.tar.gz" --unpack
-      sha256 = "sha256:0ixhbc3xrqy9jkz06zh7fk8dfghwb26252d7ayvsqa3xyxzrbpbh";
+      sha256 = "sha256:0imxmdbx8z0hn0yvgrhazs0qx788a92w8hgysr1vlqfxwd4qc3gf";
     })
   ];
 
