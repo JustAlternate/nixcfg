@@ -2,6 +2,7 @@
   self,
   inputs,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -9,7 +10,10 @@
     ./window-manager.nix
   ];
 
+  ids.gids.nixbld = lib.mkForce 350;
+
   nix = {
+    enable = true;
     settings = {
       experimental-features = [
         "nix-command"
@@ -23,10 +27,6 @@
     inputs.justnixvim.packages."aarch64-darwin".default
   ];
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
-
   # Create /etc/zshrc that loads the nix-darwin environment.
   # programs.zsh.enable = true;
 
@@ -37,23 +37,10 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
+  users.users.loicweber = {
+    home = "/Users/loicweber/";
+  };
+
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
-
-  users.users.loicweber = {
-    home = "/Users/loicweber";
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = { inherit inputs pkgs; };
-    users.loicweber = _: {
-      home.homeDirectory = "/Users/loicweber";
-      home.username = "loicweber";
-      imports = [
-        ./home/default.nix
-      ];
-    };
-  };
 }
