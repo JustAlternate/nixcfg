@@ -8,7 +8,7 @@
 
   # Launch hyprland at startup
   programs.zsh.profileExtra = ''
-    [[ $(tty) == /dev/tty1 ]]&&exec Hyprland
+    [[ $(tty) == /dev/tty1 ]] && exec Hyprland
   '';
 
   xdg.configFile."hypr/pyprland.json".source = ./pyprland.json;
@@ -22,6 +22,20 @@
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
+
+    settings = {
+      cursor = {
+        enable_hyprcursor = true;
+        no_hardware_cursors = true;
+      };
+      env = [
+        "XCURSOR_SIZE,32"
+        "XCURSOR_THEME,macOS-BigSur"
+        "HYPRCURSOR_THEME,macOS-BigSur"
+        "HYPRCURSOR_SIZE,32"
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+      ];
+    };
 
     extraConfig = ''
       # For power usage:
@@ -131,6 +145,7 @@
       binde = $mainMod SHIFT, j, moveactive, 0 50
 
       # Computer control bindings
+      bind = $mainMod, F1, exec, ~/./nixcfg/shared/desktop/bin/switch_audio_output.sh
       binde = $mainMod, F2, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       binde = $mainMod, F3, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bind = $mainMod, F4, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -189,8 +204,6 @@
       submap = reset
 
       # window rule
-      #windowrule = animation slide bottom, kitty
-      windowrule = opacity 0.92 override, vesktop
 
       # To make screensharing work
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
