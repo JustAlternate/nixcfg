@@ -33,12 +33,10 @@
 
       nodejs_23
       gh
-      unstable.claude-code
 
       typst
       typstyle
       typstfmt
-      typst-lsp
       typst-live
 
       ## Monitoring
@@ -82,10 +80,8 @@
 
       # Text editors
       vim
-      master.windsurf
-      master.code-cursor
-      master.vscode-fhs
       inputs.justnixvim.packages.${system}.default
+      claude-code
 
     ];
   };

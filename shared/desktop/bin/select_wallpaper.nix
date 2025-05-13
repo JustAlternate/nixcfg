@@ -39,8 +39,9 @@ pkgs.writeShellScriptBin "select_wallpaper" ''
   [[ -n "$wall_selection" ]] || exit 1
   swww img $wall_dir/$wall_selection --transition-step 10 --transition-fps 30 --transition-type center &
   wal -i $wall_dir/$wall_selection &
-  sleep 0.4
-  eww reload &
+  sleep 0.2
+  killall waybar
+  waybar &
   # pywalfox update &
   cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
   [[ $(pidof cava) != "" ]] && pkill -USR1 cava &

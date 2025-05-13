@@ -20,10 +20,9 @@
     ssh.work.enable = true;
 
     home = {
-      stateVersion = "24.05";
       packages = with pkgs; [
         postgresql
-        unstable.go
+        go
         mysql80
 
         jdk17
@@ -47,6 +46,8 @@
         "/opt/homebrew/opt/openjdk/bin"
         "$HOME/go/bin"
       ];
+
+      stateVersion = "24.05";
     };
 
     xdg.enable = true;
