@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ../../shared/desktop/dev/database
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
