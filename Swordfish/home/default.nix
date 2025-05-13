@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ./rice/eww
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
@@ -18,9 +17,6 @@
   '';
 
   home = {
-    username = "justalternate";
-    homeDirectory = "/home/justalternate";
-
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
     # introduces backwards incompatible changes.
@@ -40,7 +36,6 @@
         libnotify
         brightnessctl
         grimblast
-        conky
 
         # Sound
         pwvucontrol
@@ -53,7 +48,7 @@
         # File managers
         xfce.thunar
         xfce.thunar-volman
-        unstable.yazi
+        yazi
         gparted
 
         # Browser
@@ -95,9 +90,9 @@
         godot3
         steam
         appimage-run
-        unstable.pokemmo-installer
-        unstable.osu-lazer-bin
-        unstable.hmcl
+        pokemmo-installer
+        osu-lazer-bin
+        hmcl
         mgba
 
         ## Drivers/Requirements
@@ -126,8 +121,6 @@
       NIX_AUTO_RUN = 1;
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
