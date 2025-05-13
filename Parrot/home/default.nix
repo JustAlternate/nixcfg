@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ./rice/eww
     ../../shared/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
@@ -19,9 +18,6 @@
   '';
 
   home = {
-    username = "justalternate";
-    homeDirectory = "/home/justalternate";
-
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
     # introduces backwards incompatible changes.
@@ -41,7 +37,6 @@
         libnotify
         brightnessctl
         grimblast
-        conky
 
         # Sound
         pwvucontrol
@@ -57,7 +52,7 @@
         # File managers
         xfce.thunar
         xfce.thunar-volman
-        unstable.yazi
+        yazi
 
         # Browser
         chromium
@@ -65,8 +60,7 @@
 
         # Other gui apps
         thunderbird
-        unstable.mousam
-        inkscape
+        mousam
         bitwarden-desktop
 
         # Music
@@ -122,8 +116,6 @@
       NIX_AUTO_RUN = 1;
     };
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

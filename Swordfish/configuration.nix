@@ -15,12 +15,10 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
-
     systemPackages = with pkgs; [
       busybox
       git
       vim
-      home-manager
     ];
 
     sessionVariables = {
@@ -42,7 +40,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # fonts:
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = with pkgs; [ nerd-fonts.hack ];
 
   # Bootloader.
   boot = {
@@ -71,10 +69,6 @@
 
   services = {
     xserver = {
-      # Configure keymap in X11
-      enable = true;
-      displayManager.gdm.wayland = false;
-
       videoDrivers = [ "amdgpu" ];
       wacom.enable = true;
 
@@ -95,7 +89,7 @@
     ollama = {
       enable = true;
       acceleration = "rocm";
-      package = pkgs.unstable.ollama;
+      package = pkgs.ollama;
       environmentVariables = {
         HSA_OVERRIDE_GFX_VERSION = "10.3.0";
       };
@@ -138,11 +132,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11";
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-  };
-
   programs = {
     zsh.enable = true;
     ssh.startAgent = true;
@@ -156,6 +145,7 @@
   hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
+
   users = {
     defaultUserShell = pkgs.zsh;
     users.justalternate = {
