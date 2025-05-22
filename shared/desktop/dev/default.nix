@@ -6,6 +6,7 @@
     # ./Ocaml
     # ./latex
     ./java
+    ./database
   ];
 
   home = {
