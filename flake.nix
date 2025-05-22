@@ -21,7 +21,7 @@
 
     # For nix-darwin for Owl
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -38,7 +38,6 @@
       system = "x86_64-linux";
       systemMac = "aarch64-darwin";
       systemArm = "aarch64-linux";
-      nixos-overlays = [ ];
     in
     {
       # NixOS configurations
@@ -121,8 +120,17 @@
         };
         modules = [
           home-manager.darwinModules.home-manager
-          { nixpkgs.overlays = nixos-overlays; }
           ./Owl/configuration.nix
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.loicweber = import ./Owl/home;
+              extraSpecialArgs = {
+                inherit inputs;
+              };
+            };
+          }
         ];
       };
     };
