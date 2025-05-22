@@ -14,21 +14,12 @@ with lib;
         initContent = ''
           [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
             cat "${config.home.homeDirectory}/.cache/wal/sequences"
-
-          while IFS='=' read -r name value; do
-            [[ $name != \#* ]] && export "$name=$value"
-          done < ~/env-var/.env
         '';
       };
     })
 
     (mkIf pkgs.stdenv.isDarwin {
       programs.zsh = {
-        initContent = ''
-          while IFS='=' read -r name value; do
-            [[ $name != \#* ]] && export "$name=$value"
-          done < ~/env-var/.env
-        '';
         shellAliases = {
           db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
         };
@@ -72,6 +63,9 @@ with lib;
           theme = "edvardm";
         };
         initContent = ''
+          while IFS='=' read -r name value; do
+            [[ $name != \#* ]] && export "$name=$value"
+          done < ~/env-var/.env
           fastfetch
           eval "$(zoxide init zsh)"
           bindkey '^J' history-incremental-search-backward
