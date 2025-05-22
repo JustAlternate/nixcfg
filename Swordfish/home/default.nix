@@ -87,6 +87,7 @@
         blueman
 
         # Games
+        lutris
         godot3
         steam
         appimage-run
