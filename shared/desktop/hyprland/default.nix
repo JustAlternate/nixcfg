@@ -51,6 +51,7 @@
 
         touchpad {
           natural_scroll = no
+          disable_while_typing = false
         }
 
         sensitivity = 0
