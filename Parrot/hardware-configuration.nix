@@ -34,6 +34,8 @@
       "dmask=0022"
     ];
   };
+  services.libinput.touchpad.disableWhileTyping = false;
+  services.libinput.mouse.disableWhileTyping = false;
 
   swapDevices = [ { device = "/dev/disk/by-uuid/1e3edd82-c11d-4af7-9b00-5229b6278271"; } ];
 
