@@ -36,6 +36,7 @@
           boto3
           psycopg2
           pymysql
+          rdflib
         ]
       ))
     ];
