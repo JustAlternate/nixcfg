@@ -20,5 +20,8 @@ let
   };
 in
 {
-  home.packages = [ tex ];
+  home.packages = [
+    #tex
+    pkgs.texliveTeTeX
+  ];
 }
