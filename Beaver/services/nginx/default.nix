@@ -10,7 +10,7 @@
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
 
-      proxyTimeout = "500s";
+      proxyTimeout = "1000s";
 
       virtualHosts = {
         "justalternate.com" = {
@@ -55,5 +55,7 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "loicw@justalternate.fr";
+    useRoot = false;
+    defaults.enableDebugLogs = true;
   };
 }

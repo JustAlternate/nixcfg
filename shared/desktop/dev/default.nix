@@ -25,6 +25,7 @@
       # dbt
       # framac
       terraform
+      opentofu
       awscli2
       github-markdown-toc-go
 
@@ -38,6 +39,8 @@
       typstyle
       typstfmt
       typst-live
+
+      protege
 
       ## Monitoring
       nvtopPackages.full
