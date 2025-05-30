@@ -4,7 +4,7 @@
     # ./R
     ./python
     # ./Ocaml
-    # ./latex
+    ./latex
     ./java
     ./database
   ];
