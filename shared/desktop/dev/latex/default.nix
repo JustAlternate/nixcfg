@@ -22,6 +22,6 @@ in
 {
   home.packages = [
     #tex
-    pkgs.texliveTeTeX
+    pkgs.texliveFull
   ];
 }
