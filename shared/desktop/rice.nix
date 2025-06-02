@@ -9,7 +9,7 @@
     ../fastfetch.nix
   ];
 
-  # TODO: FIX THIS
+  services.kdeconnect.enable = true;
 
   home.packages = with pkgs; [
     birdtray
@@ -28,18 +28,30 @@
     catppuccin-kvantum
   ];
 
-  home.sessionVariables = {
-    GTK_THEME = "catppuccin-macchiato-teal-standard";
-    XCURSOR_THEME = "Catppuccin-Macchiato-Teal";
-    XCURSOR_SIZE = "24";
-    HYPRCURSOR_THEME = "Catppuccin-Macchiato-Teal";
-    HYPRCURSOR_SIZE = "24";
+  home.pointerCursor = {
+    gtk.enable = true;
+    # x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 20;
   };
 
-  # Enable Theme
-  qt = {
+  gtk = {
     enable = true;
-    platformTheme.name = "gtk2";
-    style.name = "gtk2";
+
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
+
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+
+    font = {
+      name = "Hack";
+      size = 11;
+    };
   };
 }
