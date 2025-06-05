@@ -55,7 +55,6 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "loicw@justalternate.fr";
-    useRoot = false;
-    defaults.enableDebugLogs = true;
+    useRoot = true;
   };
 }
