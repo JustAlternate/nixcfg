@@ -95,7 +95,7 @@
 
       # Load nvidia driver for Xorg and Wayland
       videoDrivers = [
-        "nvidia"
+        # "nvidia"
         "amdvlk"
       ];
     };
