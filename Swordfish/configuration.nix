@@ -11,6 +11,7 @@
     ../shared/desktop/dev/docker/default.nix
     ../shared/sops.nix
     ../shared/optimise.nix
+    ../shared/security.nix
   ];
 
   environment = {
@@ -97,26 +98,12 @@
     # open-webui.enable = true;
 
     # Enable automatic login for the user.
-    getty.autologinUser = "justalternate";
+    # getty.autologinUser = "justalternate";
   };
 
   # Configure console keymap
   console.keyMap = "fr";
 
-  security = {
-    rtkit.enable = true;
-
-    # For god sake pls stop asking for my passwd every 5 commands..
-    sudo = {
-      enable = true;
-      extraConfig = ''
-        justalternate ALL=(ALL) NOPASSWD: ALL
-      '';
-    };
-
-    # Polkit.
-    polkit.enable = true;
-  };
   hardware = {
     graphics = {
       enable = true;
@@ -141,7 +128,6 @@
 
   programs = {
     zsh.enable = true;
-    ssh.startAgent = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -152,25 +138,6 @@
   hardware.opentabletdriver.daemon.enable = true;
 
   services.openssh.enable = true;
-
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users.justalternate = {
-      home = "/home/justalternate/";
-      isNormalUser = true;
-      description = "justalternate";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "input"
-        "uinput"
-      ];
-      initialPassword = "";
-    };
-    users.justalternate.openssh.authorizedKeys.keys = [
-      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
-    ];
-  };
 
   networking = {
     hostName = "nixos"; # Define your hostname.

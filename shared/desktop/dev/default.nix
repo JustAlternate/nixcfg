@@ -32,7 +32,6 @@
       devenv
       pre-commit
 
-      nodejs_23
       gh
 
       typst
@@ -61,7 +60,6 @@
       cliphist
       busybox
       ripgrep
-      thefuck
       pamixer
       fzf
       socat
