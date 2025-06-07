@@ -29,10 +29,6 @@
         no_hardware_cursors = true;
       };
       env = [
-        "XCURSOR_SIZE,32"
-        "XCURSOR_THEME,macOS-BigSur"
-        "HYPRCURSOR_THEME,macOS-BigSur"
-        "HYPRCURSOR_SIZE,32"
         "ELECTRON_OZONE_PLATFORM_HINT,auto"
       ];
     };
@@ -51,6 +47,7 @@
 
         touchpad {
           natural_scroll = no
+          disable_while_typing = false
         }
 
         sensitivity = 0

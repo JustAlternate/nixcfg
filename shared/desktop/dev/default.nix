@@ -4,7 +4,7 @@
     # ./R
     ./python
     # ./Ocaml
-    # ./latex
+    ./latex
     ./java
     ./database
   ];
@@ -25,19 +25,21 @@
       # dbt
       # framac
       terraform
+      opentofu
       awscli2
       github-markdown-toc-go
 
       devenv
       pre-commit
 
-      nodejs_23
       gh
 
       typst
       typstyle
       typstfmt
       typst-live
+
+      protege
 
       ## Monitoring
       nvtopPackages.full
@@ -58,7 +60,6 @@
       cliphist
       busybox
       ripgrep
-      thefuck
       pamixer
       fzf
       socat
