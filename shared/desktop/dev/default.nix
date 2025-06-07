@@ -39,8 +39,6 @@
       typstfmt
       typst-live
 
-      protege
-
       ## Monitoring
       nvtopPackages.full
       htop
