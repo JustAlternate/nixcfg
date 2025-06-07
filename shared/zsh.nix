@@ -41,7 +41,7 @@ with lib;
         syntaxHighlighting.enable = true;
         shellAliases = {
           lg = "lazygit";
-          ll = "ls -l";
+          ll = "ls -la";
           nixcfg = "cd ~/nixcfg";
           ls = "eza --color=auto --icons=always";
           cd = "z";

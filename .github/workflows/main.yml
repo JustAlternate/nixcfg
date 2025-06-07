@@ -23,7 +23,7 @@ jobs:
         run: deadnix . -f
 
       - name: Nix Flake check
-        run: nix flake check --all-systems --keep-going --impure
+        run: nix flake check --all-systems --impure
 
   # CD:
   #   name: deploy Gecko
