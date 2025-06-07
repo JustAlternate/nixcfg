@@ -26,7 +26,6 @@
     sslh = {
       enable = true;
       listenAddresses = "0.0.0.0";
-      verbose = false;
       settings = {
         protocols = [
           {

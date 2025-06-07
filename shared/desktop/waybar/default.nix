@@ -70,15 +70,15 @@
         };
         "network" = {
           format-icons = [
-            "󰤯"
-            "󰤟"
-            "󰤢"
-            "󰤥"
-            "󰤨"
+            "󰤯 "
+            "󰤟 "
+            "󰤢 "
+            "󰤥 "
+            "󰤨 "
           ];
           format-ethernet = "󰈁";
           format-wifi = "{icon}";
-          format-disconnected = "󰤮";
+          format-disconnected = "󰤮 ";
           tooltip = false;
         };
         "tray" = {
@@ -92,18 +92,18 @@
           format-bluetooth-muted = "󰝟 {icon} ";
           format-muted = "󰍭 {format_source} ";
           format-source = " {volume}% ";
-          format-source-muted = "";
+          format-source-muted = " ";
           format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
+            headphone = " ";
+            hands-free = " ";
+            headset = " ";
+            phone = " ";
+            portable = " ";
+            car = " ";
             default = [
               ""
-              ""
-              ""
+              " "
+              " "
             ];
           };
           on-click = "sleep 0.1 && pwvucontrol";
