@@ -31,7 +31,6 @@
       [
         # Desktop
         swww
-        eww
         dunst
         libnotify
         brightnessctl
