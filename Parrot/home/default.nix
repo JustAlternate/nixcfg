@@ -32,7 +32,6 @@
       [
         # Desktop
         swww
-        eww
         dunst
         libnotify
         brightnessctl
@@ -92,7 +91,6 @@
         gdtoolkit_4
         steam-run-free
         steam
-        bottles
         mgba
 
         ## Drivers/Requirements
