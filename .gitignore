@@ -7,3 +7,4 @@ secrets.tfvars
 *.tfstate.backup
 *.tfstate.lock.info
 terraform.tfvars
+main.tf
