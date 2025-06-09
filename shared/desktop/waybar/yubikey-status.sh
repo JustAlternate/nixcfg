@@ -2,6 +2,7 @@
 
 STATE_FILE="$HOME/.cache/yubilock-state"
 PID_FILE="$HOME/.cache/yubilock.pid"
+SCRIPT_PATH="$HOME/nixcfg/shared/desktop/waybar/yubilock.sh"
 
 # Create state file if it doesn't exist
 if [ ! -f "$STATE_FILE" ]; then
@@ -24,9 +25,10 @@ if [ "$current_state" = "on" ]; then
     if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" > /dev/null; then
         echo "{\"text\": \"Yubilock: ON $yubikey_status\", \"class\": \"yubilock-on\", \"tooltip\": \"Yubilock enabled $yubikey_status\", \"alt\": \"active\"}"
     else
-        # Process died, update state
-        echo "off" > "$STATE_FILE"
-        echo "{\"text\": \"Yubilock: OFF $yubikey_status\", \"class\": \"yubilock-off\", \"tooltip\": \"YubiKey not present $yubikey_status\", \"alt\": \"inactive\"}"
+        # Process died, restart it
+				"$SCRIPT_PATH" &
+				echo "{\"text\": \"Yubilock: Restarting after dead process\", \"class\": \"yubilock-on\", \"tooltip\": \"Yubilock restarting after dead process $yubikey_status\", \"alt\": \"restarting\"}"
+
     fi
 else
     echo "{\"text\": \"Yubilock: OFF $yubikey_status\", \"class\": \"yubilock-off\", \"tooltip\": \"Yubilock disabled $yubikey_status\", \"alt\": \"inactive\"}"
