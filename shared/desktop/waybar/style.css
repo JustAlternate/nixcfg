@@ -93,3 +93,24 @@ window#waybar {
 #battery.critical {
     color: rgba(238, 46, 36, 1);
 }
+
+#custom-yubilock {
+    padding: 0 10px;
+    border-radius: 10px;
+    margin: 6px 0;
+}
+
+#custom-yubilock.yubilock-on {
+    background-color: @background;
+    color: #ffffff;
+}
+
+#custom-yubilock.yubilock-off {
+    background-color: @background;
+    color: #ffffff;
+}
+
+#custom-yubilock.yubilock-on:hover,
+#custom-yubilock.yubilock-off:hover {
+    background-color: @background;
+}

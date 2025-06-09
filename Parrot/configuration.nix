@@ -6,6 +6,7 @@
     ../shared/sops.nix
     ../shared/desktop/dev/docker/default.nix
     ../shared/optimise.nix
+    ../shared/security.nix
   ];
 
   environment = {
@@ -48,8 +49,6 @@
       };
     };
   };
-
-  users.defaultUserShell = pkgs.zsh;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -108,9 +107,6 @@
       pulse.enable = true;
     };
 
-    # Enable automatic login for the user.
-    getty.autologinUser = "justalternate";
-
     dbus.enable = true;
     gnome.gnome-keyring.enable = true;
     upower.enable = true;
@@ -131,47 +127,6 @@
 
   # Configure console keymap
   console.keyMap = "fr";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.justalternate = {
-    home = "/home/justalternate";
-    isNormalUser = true;
-    description = "justalternate";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
-
-  security = {
-    rtkit.enable = true;
-    # For god sake pls stop asking for my passwd every 5 commands..
-    sudo = {
-      enable = true;
-      extraConfig = ''
-        justalternate ALL=(ALL) NOPASSWD: ALL
-      '';
-    };
-
-    # Polkit.
-    polkit.enable = true;
-    polkit.extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if (
-          subject.isInGroup("users")
-            && (
-              action.id == "org.freedesktop.login1.reboot" ||
-              action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-              action.id == "org.freedesktop.login1.power-off" ||
-              action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-            )
-          )
-        {
-          return polkit.Result.YES;
-        }
-      });
-    '';
-  };
 
   hardware = {
     # bluetooth:
@@ -240,10 +195,6 @@
 
   programs = {
     zsh.enable = true;
-
-    # Enable ssh-agent
-    ssh.startAgent = true;
-
     hyprland = {
       enable = true;
       xwayland.enable = true;
