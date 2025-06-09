@@ -5,7 +5,7 @@
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/desktop/dev
-    ../../shared/desktop/rice.nix
+    ../../shared/desktop
   ];
 
   desktop.enable = true;
