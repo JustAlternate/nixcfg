@@ -38,12 +38,10 @@
 
   programs.gnupg.agent = {
     enable = true;
+    enableSSHSupport = false;
   };
 
-  security.pam = {
-    sshAgentAuth.enable = true;
-    rssh.enable = true;
-  };
+  programs.ssh.startAgent = true;
 
   security.pam.services = {
     swaylock.u2fAuth = true;
