@@ -7,6 +7,7 @@
     ./hyprland
     ./kitty.nix
     ../fastfetch.nix
+    ./dunst.nix
   ];
 
   home.packages = with pkgs; [
@@ -16,8 +17,6 @@
     bc
     spacedrive
     fractal
-
-    gcr # for gnome keyring
 
     # Theming
     numix-icon-theme-circle
