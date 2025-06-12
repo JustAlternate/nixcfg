@@ -34,6 +34,10 @@ with lib;
         lazygit
       ];
 
+      programs.direnv = {
+        enable = true;
+      };
+
       programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -57,7 +61,6 @@ with lib;
           enable = true;
           plugins = [
             "git"
-            "dotenv"
             "vi-mode"
           ];
           theme = "edvardm";
