@@ -32,15 +32,12 @@
       devenv
       pre-commit
 
-      nodejs_23
       gh
 
       typst
       typstyle
       typstfmt
       typst-live
-
-      protege
 
       ## Monitoring
       nvtopPackages.full
@@ -61,7 +58,6 @@
       cliphist
       busybox
       ripgrep
-      thefuck
       pamixer
       fzf
       socat
