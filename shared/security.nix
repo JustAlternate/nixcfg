@@ -38,8 +38,10 @@
 
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
+    enableSSHSupport = false;
   };
+
+  programs.ssh.startAgent = true;
 
   security.pam.services = {
     swaylock.u2fAuth = true;
@@ -49,7 +51,7 @@
     # sudo.u2fAuth = true;
   };
 
-  services.pcscd.enable = true;
+  # services.pcscd.enable = true;
 
   security.pam.yubico = {
     control = "sufficient";
