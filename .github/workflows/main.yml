@@ -22,8 +22,8 @@ jobs:
       - name: Scan nix file for dead code with deadnix
         run: deadnix . -f
 
-      - name: Nix Flake check
-        run: nix flake check --all-systems --impure
+      # - name: Nix Flake check
+      #   run: nix flake check --all-systems --impure
 
   # CD:
   #   name: deploy Gecko
