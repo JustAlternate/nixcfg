@@ -19,7 +19,9 @@
   home = {
     packages = with pkgs; [
       postgresql
-      go
+      # go
+      go_1_23
+
       mysql80
 
       jdk17

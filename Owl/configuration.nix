@@ -9,6 +9,9 @@
     ./window-manager.nix
   ];
 
+  # TEMP FIX
+  system.primaryUser = "loicweber";
+
   ids.gids.nixbld = lib.mkForce 350;
 
   nix = {
