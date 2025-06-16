@@ -8,7 +8,7 @@ _: {
     ./mail
     ./minecraft
     ./monitoring
-    ./action-runner
+    # ./action-runner
     ./JustVPN
     ./gh-explorer
     ./dawarich
