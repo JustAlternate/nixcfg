@@ -5,7 +5,7 @@
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/desktop/dev
-    ../../shared/desktop/rice.nix
+    ../../shared/desktop
   ];
 
   desktop.enable = true;
@@ -32,7 +32,6 @@
       [
         # Desktop
         swww
-        eww
         dunst
         libnotify
         brightnessctl
@@ -92,7 +91,6 @@
         gdtoolkit_4
         steam-run-free
         steam
-        bottles
         mgba
 
         ## Drivers/Requirements
