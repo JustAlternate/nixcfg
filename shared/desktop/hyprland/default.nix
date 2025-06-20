@@ -148,7 +148,7 @@
       bind = $mainMod, F4, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
       binde = $mainMod, F8, exec, brightnessctl s 10+
       binde = $mainMod, F7, exec, brightnessctl s 10-
-      bind = $mainMod, F11, exec, systemctl suspend
+      bind = $mainMod, F11, exec, swaylock --config ~/.config/swaylock/config
       bind = $mainMod, F12, exec, systemctl poweroff
 
       # Focus and workspace bindings

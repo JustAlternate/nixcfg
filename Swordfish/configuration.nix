@@ -78,7 +78,6 @@
     };
 
     dbus.enable = true;
-    gnome.gnome-keyring.enable = true;
 
     pipewire = {
       enable = true;

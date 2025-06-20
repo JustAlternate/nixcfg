@@ -39,7 +39,10 @@ _: {
     enableSubmission = true;
     enableSubmissionSsl = false;
     fqdn = "mail.justalternate.fr";
-    domains = [ "justalternate.fr" ];
+    domains = [
+      "justalternate.fr"
+      "justalternate.com"
+    ];
 
     # A list of all login accounts. To create the password hashes, use
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'

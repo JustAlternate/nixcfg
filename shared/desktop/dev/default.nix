@@ -71,6 +71,7 @@
       nixfmt-rfc-style # Nix Code Formatter
       asciinema-agg
       asciinema
+      deploy-rs
 
       ## Show-off
       cmatrix
