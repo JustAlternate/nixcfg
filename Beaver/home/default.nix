@@ -2,7 +2,7 @@
 {
   imports = [
     ../../shared/fastfetch.nix
-    ../../shared/zsh.nix
+    ../../shared/shell/zsh.nix
     ../../shared/ssh.nix
     ../../shared/git.nix
   ];
