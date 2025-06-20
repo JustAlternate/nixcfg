@@ -1,5 +1,12 @@
 { pkgs, ... }:
 {
+
+  #TODO: implements aerospace-scratchpad
+  # environment.systemPackages = with pkgs; [
+  #   # Requires custom packages
+  #   copkgs.aerospace-scratchpad
+  # ];
+
   services.jankyborders = {
     enable = true;
     width = 3.0;
@@ -80,8 +87,8 @@
             "cmd-t" = "exec-and-forget open -n /Applications/kitty.app/";
 
             # Layout commands
-            "cmd-period" = "layout tiles horizontal vertical";
-            "cmd-comma" = "layout accordion horizontal vertical";
+            # "cmd-period" = "layout tiles horizontal vertical";
+            # "cmd-comma" = "layout accordion horizontal vertical";
 
             # Focus commands
             "cmd-h" = "focus left";
@@ -96,8 +103,7 @@
             "cmd-shift-l" = "move right";
 
             # Resize commands
-            "cmd-minus" = "resize smart -50";
-            "cmd-equal" = "resize smart +50";
+            "cmd-shift-w" = "mode resize";
 
             # Workspace switching
             "cmd-1" = "workspace 1";
@@ -126,9 +132,15 @@
             # Workspace back and forth and moving workspace between monitors
             "cmd-tab" = "workspace-back-and-forth";
             "cmd-shift-tab" = "move-workspace-to-monitor --wrap-around next";
-
-            # Switch binding mode
-            "cmd-shift-semicolon" = "mode service";
+          };
+        };
+        resize = {
+          binding = {
+            "cmd-shift-w" = "mode main";
+            "h" = "resize width -50";
+            "l" = "resize width +50";
+            "j" = "resize height -50";
+            "k" = "resize height +50";
           };
         };
       };
