@@ -31,6 +31,7 @@
       scalafmt
 
       graphqurl
+      opentofu
     ];
 
     # For env var
