@@ -31,11 +31,3 @@ resource "aws_s3_bucket" "glacier_bucket" {
 	}
 }
 
-resource "aws_s3_bucket" "state_bucket" {
-  bucket = "tp-terraform-state-backend-bucket"
-  acl    = "private"
-
-  tags = {
-    Name = "Terraform State Bucket"
-  }
-}
