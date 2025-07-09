@@ -3,41 +3,25 @@ _: {
   imports = [
     (builtins.fetchTarball {
       # Pick a release version you are interested in and set its hash, e.g.
-      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/da66510f688b7eac54e3cac7c75be4b8dd78ce8b/nixos-mailserver-da66510f688b7eac54e3cac7c75be4b8dd78ce8b.tar.gz";
+      url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/master/nixos-mailserver-master.tar.gz";
       # To get the sha256 of the nixos-mailserver tarball, we can use the nix-prefetch-url command:
       # release="nixos-23.05"; nix-prefetch-url "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/${release}/nixos-mailserver-${release}.tar.gz" --unpack
-      sha256 = "sha256:0imxmdbx8z0hn0yvgrhazs0qx788a92w8hgysr1vlqfxwd4qc3gf";
+      # sha256 = "sha256:0jpp086m839dz6xh6kw5r8iq0cm4nd691zixzy6z11c4z2vf8v85";
+      # sha256 = "sha256:0000000000000000000000000000000000000000000000000000";
+      sha256 = "sha256:1fx2rmcmzgqsvgp91zv1gg3va5qdanwr6l2sdx38aczyl9ha85qb";
     })
   ];
 
   services.nginx.virtualHosts."mail.justalternate.fr" = {
     enableACME = true;
     forceSSL = true;
-    listen = [
-      {
-        addr = "0.0.0.0";
-        port = 80;
-      }
-      {
-        addr = "0.0.0.0";
-        port = 995;
-      }
-      {
-        addr = "0.0.0.0";
-        port = 8443;
-        ssl = true;
-      }
-    ];
   };
 
   services.dovecot2.sieve.extensions = [ "fileinto" ];
 
   mailserver = {
+    stateVersion = 3;
     enable = true;
-    enableImap = false;
-    enableImapSsl = true;
-    enableSubmission = true;
-    enableSubmissionSsl = false;
     fqdn = "mail.justalternate.fr";
     domains = [
       "justalternate.fr"
