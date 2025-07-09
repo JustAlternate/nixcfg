@@ -21,6 +21,12 @@
       postgresql
       # go
       go_1_23
+      htop
+      btop
+      grpcurl
+      golangci-lint
+      codex
+      goreleaser
 
       mysql80
 
