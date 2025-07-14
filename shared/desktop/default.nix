@@ -27,7 +27,6 @@
     yubioath-flutter
     yubikey-manager
     yubikey-agent
-    yubikey-personalization-gui
   ];
 
   home.pointerCursor = {
