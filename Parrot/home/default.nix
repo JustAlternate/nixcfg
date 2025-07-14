@@ -92,6 +92,7 @@
         steam-run-free
         steam
         mgba
+        ryujinx
 
         ## Drivers/Requirements
         ckb-next
