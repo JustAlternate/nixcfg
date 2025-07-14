@@ -1,10 +1,15 @@
 terraform {
-	required_version = ">= 1.9.8"
+	required_version = ">= 1.9.1"
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = ">= 5.0"
     }
+  }
+  backend "s3" {
+    bucket = "nixcfg-s3-state-bucket"
+    key = "nameserver"
+    region = "eu-west-3"
   }
 }
 
@@ -38,15 +43,6 @@ resource "cloudflare_dns_record" "JustAlternate-default" {
 resource "cloudflare_dns_record" "JustAlternate-planka" {
   zone_id  = cloudflare_zone.justalternate_zone.id
   name     = "planka"
-  type     = "A"
-  content  = "195.201.116.51"
-  ttl      = 120
-  proxied  = false
-}
-
-resource "cloudflare_dns_record" "JustAlternate-pareto" {
-  zone_id  = cloudflare_zone.justalternate_zone.id
-  name     = "pareto"
   type     = "A"
   content  = "195.201.116.51"
   ttl      = 120
