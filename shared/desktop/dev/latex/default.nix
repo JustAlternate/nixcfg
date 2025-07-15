@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+_:
 # let
 #   tex = pkgs.texlive.combine {
 #     inherit (pkgs.texlive)
@@ -22,6 +22,6 @@
 {
   home.packages = [
     #tex
-    pkgs.texliveFull
+    # pkgs.texliveFull
   ];
 }
