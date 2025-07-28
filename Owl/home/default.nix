@@ -38,6 +38,8 @@
 
       graphqurl
       opentofu
+
+      devenv
     ];
 
     # For env var
