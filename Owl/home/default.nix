@@ -19,8 +19,7 @@
   home = {
     packages = with pkgs; [
       postgresql
-      # go
-      go_1_23
+      go
       htop
       btop
       grpcurl
