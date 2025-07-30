@@ -84,7 +84,8 @@
       mode = {
         main = {
           binding = {
-            "cmd-t" = "exec-and-forget open -n /Applications/kitty.app/";
+            # "cmd-t" = "exec-and-forget open -n /Applications/kitty.app/";
+            "cmd-t" = "exec-and-forget open -n /Applications/Alacritty.app/";
 
             # Layout commands
             # "cmd-period" = "layout tiles horizontal vertical";
