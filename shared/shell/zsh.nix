@@ -22,6 +22,7 @@ with lib;
       programs.zsh = {
         shellAliases = {
           db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
+          tdm_secret = "vault read postgresql/creds/shared-main-system-postgresql-db-dev-technical-debt -format=json | jq .data";
         };
       };
     })
