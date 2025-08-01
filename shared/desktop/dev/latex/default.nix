@@ -22,6 +22,6 @@ _:
 {
   home.packages = [
     #tex
-    # pkgs.texliveFull
+    #pkgs.texliveFull
   ];
 }
