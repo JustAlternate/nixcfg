@@ -11,6 +11,9 @@
         8443
         9111
       ];
+      allowedUDPPorts = [
+        24454
+      ];
     };
     nameservers = [ "8.8.8.8" ];
     defaultGateway = "172.31.1.1";
