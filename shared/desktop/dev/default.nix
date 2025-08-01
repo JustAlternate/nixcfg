@@ -7,6 +7,7 @@
     ./latex
     ./java
     ./database
+    ./js
   ];
 
   home = {
@@ -81,8 +82,13 @@
       # Text editors
       vim
       inputs.justnixvim.packages.${system}.default
-      claude-code
-
+      (import ./qwen-code.nix {
+        inherit lib;
+        buildNpmPackage = pkgs.buildNpmPackage;
+        fetchFromGitHub = pkgs.fetchFromGitHub;
+        fetchNpmDeps = pkgs.fetchNpmDeps;
+        nix-update-script = pkgs.nix-update-script;
+      })
     ];
   };
 }
