@@ -42,12 +42,16 @@ _click the image to go to the video_
 
 #### VPS (Beaver)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
+- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana)
+- Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
+- Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
 - Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
 - Kanban: [Planka](https://github.com/plankanban/planka)
 - Cloud storage server: [Owncloud](https://owncloud.com/)
-- Sharing gps location service: [Hauk](https://github.com/bilde2910/Hauk)
-- Selfhosted CI/CD runner: [github-runners](https://github.com/actions/runner)
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+- AI frontend : [openwebui](https://github.com/open-webui/open-webui)
+- Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
+- Selfhosted CI/CD runner: [github-runners](https://github.com/actions/runner)
 - Minecraft server: [docker-minecraft](https://github.com/itzg/docker-minecraft-server)
 - S3 auto backup service: made by myself
 
