@@ -92,7 +92,7 @@
         appimage-run
         pokemmo-installer
         osu-lazer-bin
-        hmcl
+        prismlauncher
         mgba
 
         ## Drivers/Requirements
