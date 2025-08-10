@@ -89,6 +89,10 @@
         fetchNpmDeps = pkgs.fetchNpmDeps;
         nix-update-script = pkgs.nix-update-script;
       })
+      minikube
+      kubectl
+      kubernetes-helm
+      k9s
     ];
   };
 }
