@@ -4,6 +4,9 @@
   lib,
   ...
 }:
+let
+  llm-mlx = import ./llm-mlx.nix;
+in
 with lib;
 {
   options.desktop.enable = mkEnableOption "desktop";
@@ -30,7 +33,7 @@ with lib;
     {
       home.packages = with pkgs; [
         zoxide
-        tgpt
+        llm
         eza
         lazygit
       ];
