@@ -57,7 +57,6 @@ with lib;
           cd = "z";
           neofetch = "fastfetch";
           ssh = "kitten ssh";
-          ai = "tgpt --provider openai --url https://openrouter.ai/api/v1/chat/completions --model qwen/qwen3-30b-a3b-instruct-2507 --preprompt 'The user is using Linux, if the question is about a linux command or a line of code, please answer with only one or 2 examples and do not give explanation unless the user asked for it. If the question is not specificly about a command or a line of code explain but make sure to be straight to the point. /nothink'";
         };
         history = {
           size = 10000;
