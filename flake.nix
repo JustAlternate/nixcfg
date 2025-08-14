@@ -5,6 +5,8 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
+    unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     justnixvim.url = "github:JustAlternate/justnixvim";
 
     # home-manager
@@ -30,6 +32,7 @@
     {
       self,
       nixpkgs,
+      unstable-nixpkgs,
       home-manager,
       nix-darwin,
       ...
@@ -38,6 +41,16 @@
       system = "x86_64-linux";
       systemMac = "aarch64-darwin";
       systemArm = "aarch64-linux";
+
+      nixos-overlays = [
+        # Allow configurations to use pkgs.unstable.<package-name>.
+        (_: prev: {
+          unstable = import unstable-nixpkgs {
+            inherit (prev) system;
+            config.allowUnfree = true;
+          };
+        })
+      ];
     in
     {
       # NixOS configurations
@@ -48,6 +61,7 @@
             ./Parrot/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -66,6 +80,7 @@
             ./Swordfish/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -84,6 +99,7 @@
             ./Beaver/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -121,6 +137,7 @@
         modules = [
           home-manager.darwinModules.home-manager
           ./Owl/configuration.nix
+          { nixpkgs.overlays = nixos-overlays; }
           {
             home-manager = {
               useGlobalPkgs = true;
