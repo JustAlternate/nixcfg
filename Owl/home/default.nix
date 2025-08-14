@@ -10,7 +10,6 @@
     ../../shared/git.nix
     ../../shared/fastfetch.nix
     ../../shared/desktop/dev/python
-    ../../shared/desktop/kitty.nix
   ];
 
   git.work.enable = true;
@@ -58,19 +57,4 @@
   };
 
   xdg.enable = true;
-
-  programs.kitty = {
-    enable = true;
-    settings = {
-      hide_window_decorations = "titlebar-only";
-    };
-  };
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window.decorations = "None";
-      window.title = "Terminal";
-      font.size = 20;
-    };
-  };
 }
