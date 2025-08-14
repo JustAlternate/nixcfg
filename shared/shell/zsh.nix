@@ -4,9 +4,6 @@
   lib,
   ...
 }:
-let
-  llm-mlx = import ./llm-mlx.nix;
-in
 with lib;
 {
   options.desktop.enable = mkEnableOption "desktop";
@@ -74,7 +71,6 @@ with lib;
           while IFS='=' read -r name value; do
             [[ $name != \#* ]] && export "$name=$value"
           done < ~/env-var/.env
-          fastfetch
           eval "$(zoxide init zsh)"
           bindkey '^J' history-incremental-search-backward
           bindkey '^K' history-incremental-search-forward
