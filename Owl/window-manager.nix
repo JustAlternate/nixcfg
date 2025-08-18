@@ -69,7 +69,6 @@
           right = 5;
         };
       };
-
       on-window-detected = [
         {
           "if".app-name-regex-substring = "Finder";
@@ -80,7 +79,6 @@
           run = "layout floating";
         }
       ];
-
       mode = {
         main = {
           binding = {
@@ -132,6 +130,11 @@
             # Workspace back and forth and moving workspace between monitors
             "cmd-tab" = "workspace-back-and-forth";
             "cmd-shift-tab" = "move-workspace-to-monitor --wrap-around next";
+
+            # Volume command
+            "f2" = "volume up";
+            "f1" = "volume down";
+
           };
         };
         resize = {
