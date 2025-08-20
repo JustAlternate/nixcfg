@@ -21,7 +21,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # For nix-darwin for Owl
+    # For nix-darwin for owl
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,10 +55,10 @@
     {
       # NixOS configurations
       nixosConfigurations = {
-        ParrotNixos = nixpkgs.lib.nixosSystem {
+        parrotNixos = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./Parrot/configuration.nix
+            ./parrot/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
@@ -66,7 +66,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.justalternate = import ./Parrot/home;
+                users.justalternate = import ./parrot/home;
                 extraSpecialArgs = {
                   inherit inputs;
                 };
@@ -74,10 +74,10 @@
             }
           ];
         };
-        SwordfishNixos = nixpkgs.lib.nixosSystem {
+        swordfishNixos = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./Swordfish/configuration.nix
+            ./swordfish/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
@@ -85,7 +85,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.justalternate = import ./Swordfish/home;
+                users.justalternate = import ./swordfish/home;
                 extraSpecialArgs = {
                   inherit inputs;
                 };
@@ -93,10 +93,10 @@
             }
           ];
         };
-        BeaverNixos = nixpkgs.lib.nixosSystem {
+        beaverNixos = nixpkgs.lib.nixosSystem {
           system = systemArm;
           modules = [
-            ./Beaver/configuration.nix
+            ./beaver/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
@@ -104,7 +104,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.root = import ./Beaver/home;
+                users.root = import ./beaver/home;
                 extraSpecialArgs = {
                   inherit inputs;
                 };
@@ -112,37 +112,37 @@
             }
           ];
         };
-        GeckoNixos1 = nixpkgs.lib.nixosSystem {
+        geckoNixos1 = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./Gecko/hardware-configuration-pi3b+.nix ];
+          modules = [ ./gecko/hardware-configuration-pi3b+.nix ];
         };
-        GeckoNixos2 = nixpkgs.lib.nixosSystem {
+        geckoNixos2 = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./Gecko/hardware-configuration-pi4.nix ];
+          modules = [ ./gecko/hardware-configuration-pi4.nix ];
         };
       };
 
       # Nix-darwin configurations
-      darwinConfigurations."Owl" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."owl" = nix-darwin.lib.darwinSystem {
         system = systemMac;
         specialArgs = {
           inherit inputs self;
         };
         modules = [
           home-manager.darwinModules.home-manager
-          ./Owl/configuration.nix
+          ./owl/configuration.nix
           { nixpkgs.overlays = nixos-overlays; }
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.loicweber = import ./Owl/home;
+              users.loicweber = import ./owl/home;
               extraSpecialArgs = {
                 inherit inputs;
               };
