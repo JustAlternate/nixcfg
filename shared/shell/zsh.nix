@@ -32,6 +32,7 @@ with lib;
         zoxide
         llm
         eza
+        fzf
         lazygit
       ];
 
