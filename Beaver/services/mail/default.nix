@@ -7,11 +7,16 @@ _: {
       # To get the sha256 of the nixos-mailserver tarball, we can use the nix-prefetch-url command:
       # release="nixos-23.05"; nix-prefetch-url "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/${release}/nixos-mailserver-${release}.tar.gz" --unpack
       # sha256 = "sha256:0000000000000000000000000000000000000000000000000000";
-      sha256 = "sha256:0jpp086m839dz6xh6kw5r8iq0cm4nd691zixzy6z11c4z2vf8v85";
+      sha256 = "sha256:1qn5fg0h62r82q7xw54ib9wcpflakix2db2mahbicx540562la1y";
     })
   ];
 
   services.nginx.virtualHosts."mail.justalternate.fr" = {
+    enableACME = true;
+    forceSSL = true;
+  };
+
+  services.nginx.virtualHosts."mail.justalternate.com" = {
     enableACME = true;
     forceSSL = true;
   };
@@ -21,7 +26,7 @@ _: {
   mailserver = {
     # stateVersion = 3;
     enable = true;
-    fqdn = "mail.justalternate.fr";
+    fqdn = "mail.justalternate.com";
     domains = [
       "justalternate.fr"
       "justalternate.com"
@@ -31,6 +36,10 @@ _: {
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
       "loicw@justalternate.fr" = {
+        hashedPasswordFile = /run/secrets/HASHED_PASSWORD;
+        aliases = [ "postmaster@example.com" ];
+      };
+      "loicw@justalternate.com" = {
         hashedPasswordFile = /run/secrets/HASHED_PASSWORD;
         aliases = [ "postmaster@example.com" ];
       };
