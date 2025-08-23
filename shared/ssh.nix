@@ -15,14 +15,14 @@ with lib;
             user = "root";
             identityFile = "~/.ssh/id_ed25519";
           };
-          "GeckoNixos1" = {
+          "geckoNixos1" = {
             # RPI3b+
             hostname = "192.168.1.248";
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
           };
-          "GeckoNixos2" = {
+          "geckoNixos2" = {
             # RPI4B
             hostname = "192.168.1.247";
             user = "root";

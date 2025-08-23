@@ -13,7 +13,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  networking.hostName = "GeckoNixos1";
+  networking.hostName = "geckoNixos1";
 
   environment.systemPackages = with pkgs; [
     libraspberrypi
