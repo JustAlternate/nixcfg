@@ -2,15 +2,15 @@
 
 This repository contains the declaration of my systems running [Nix/NixOS](https://nixos.org/)
 
-- Beaver: My VPS running NixOS and selfhosting services
-- Swordfish: My NixOS desktop gaming station which I also use for intensive computation.
-- Parrot: My NixOS semi gaming laptop which I mainly use for study and abroad.
-- Owl: My arm processor Mac M1.
-- Gecko: My raspberry py configs (WIP)
+- beaver: My VPS running NixOS and selfhosting services
+- swordfish: My NixOS desktop gaming station which I also use for intensive computation.
+- parrot: My NixOS semi gaming laptop which I mainly use for study and abroad.
+- owl: My arm processor Mac M1.
+- gecko: My raspberry py configs (WIP)
 
 ## My very pywal centric NixOS Hyprland rice
 
-(For both Swordfish and Parrot)
+(For both swordfish and parrot)
 
 ![](./assets/20250508-11:52:59.png)
 
@@ -25,7 +25,7 @@ _click the image to go to the video_
 
 ### Features
 
-#### Desktop (Swordfish and Parrot)
+#### Desktop (swordfish and parrot)
 - DE: [Hyprland](https://hyprland.org/)
 - Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/)
 - Bar: [Waybar](https://github.com/Alexays/Waybar)
@@ -40,7 +40,7 @@ _click the image to go to the video_
 - Music Visualizer: [cava](https://github.com/karlstav/cava)
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 
-#### VPS (Beaver)
+#### VPS (beaver)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
 - Monitoring (observability) : [Grafana](https://github.com/grafana/grafana)
 - Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
