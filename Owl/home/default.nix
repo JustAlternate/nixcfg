@@ -23,7 +23,7 @@
       btop
       grpcurl
       golangci-lint
-      codex
+      unstable.codex
       goreleaser
 
       mysql80
