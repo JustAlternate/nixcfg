@@ -1,5 +1,5 @@
 _: {
-  imports = [ ./docker-compose.nix ];
+  # imports = [ ./docker-compose.nix ];
 
   services = {
     nginx.virtualHosts."ai.justalternate.com" = {
