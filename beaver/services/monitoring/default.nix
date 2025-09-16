@@ -89,11 +89,8 @@
         limits_config = {
           reject_old_samples = true;
           reject_old_samples_max_age = "168h";
-        };
-
-        table_manager = {
-          retention_deletes_enabled = false;
-          retention_period = "0s";
+          max_query_lookback = "168h";
+          retention_period = "168h";
         };
 
         compactor = {
