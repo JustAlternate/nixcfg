@@ -25,6 +25,8 @@
       golangci-lint
       unstable.codex
       goreleaser
+      docker
+      docker-compose
 
       mysql80
 

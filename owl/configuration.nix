@@ -1,5 +1,6 @@
 {
   self,
+  pkgs,
   inputs,
   lib,
   ...
@@ -27,6 +28,7 @@
 
   environment.systemPackages = [
     inputs.justnixvim.packages."aarch64-darwin".default
+    pkgs.colima
   ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
