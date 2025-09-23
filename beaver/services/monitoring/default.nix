@@ -5,6 +5,7 @@
       enable = true;
       configuration = {
         server = {
+          log_level = "warn";
           http_listen_port = 9003;
           grpc_listen_port = 0;
         };
