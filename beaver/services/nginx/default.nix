@@ -17,14 +17,7 @@
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            root = "/var/www/justalternate/";
-          };
-        };
-        "justalternate.fr" = {
-          enableACME = true;
-          forceSSL = true;
-          locations."/" = {
-            root = "/var/www/justalternate/";
+            root = "/var/www/justalternate.com/";
           };
         };
       };
