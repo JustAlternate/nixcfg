@@ -55,7 +55,6 @@ with lib;
           cd = "z";
           neofetch = "fastfetch";
           ssh = "kitten ssh";
-          howto = "llm -s \"Explain how to do the specified task in the terminal, if the user dont specify anything else, it means that he is looking for a short form answer that go straight to the point with 1 or 2 relevant examples. Also keep in mind that the user is using a Nix system (either NixOS or NixDarwin) make sure your answer is according to this criteria if possible.\"";
           nvimf = "nvim $(fzf)";
         };
         history = {

@@ -3,7 +3,7 @@
   users = {
     defaultUserShell = pkgs.zsh;
     users.justalternate = {
-      home = "/home/justalternate/";
+      home = "/home/justalternate";
       isNormalUser = true;
       description = "justalternate";
       extraGroups = [
