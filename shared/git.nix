@@ -36,7 +36,7 @@ with lib;
     (mkIf (!config.git.work.enable) {
       programs.git = {
         userName = "JustAlternate";
-        userEmail = "loicw@justalternate.fr";
+        userEmail = "loicw@justalternate.com";
       };
     })
   ];
