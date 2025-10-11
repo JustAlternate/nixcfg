@@ -27,6 +27,7 @@
       terraform
       awscli2
       compose2nix
+      unstable.qwen-code
 
       inputs.justnixvim.packages.${system}.default
 
