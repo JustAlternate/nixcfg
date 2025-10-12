@@ -43,10 +43,7 @@
 
         # Networking
         networkmanagerapplet
-        networkmanager-openconnect
         networkmanager
-        wireguard-tools
-        wg-netmanager
 
         # File managers
         xfce.thunar
