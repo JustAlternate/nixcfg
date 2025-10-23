@@ -103,6 +103,9 @@
         cpu-x
         marp-cli
         upower
+
+        texliveFull
+        wkhtmltopdf
       ]
       ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 
