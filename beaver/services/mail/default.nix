@@ -35,13 +35,12 @@ _: {
     # A list of all login accounts. To create the password hashes, use
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
-      "loicw@justalternate.fr" = {
-        hashedPasswordFile = /run/secrets/HASHED_PASSWORD;
-        aliases = [ "postmaster@example.com" ];
-      };
       "loicw@justalternate.com" = {
         hashedPasswordFile = /run/secrets/HASHED_PASSWORD;
-        aliases = [ "postmaster@example.com" ];
+        aliases = [
+          "loicw@justalternate.fr"
+          "postmaster@justalternate.com"
+        ];
       };
     };
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
