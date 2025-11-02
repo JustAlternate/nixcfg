@@ -34,10 +34,10 @@
 
       gh
 
-      typst
-      typstyle
-      typstfmt
-      typst-live
+      #typst
+      #typstyle
+      #typstfmt
+      #typst-live
 
       ## Monitoring
       nvtopPackages.full
@@ -65,7 +65,6 @@
       ani-cli
       sshfs
       pandoc
-      texlive.combined.scheme-small
       lazygit
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
