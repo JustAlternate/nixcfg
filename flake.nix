@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
     unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    master-nixpkgs.url = "github:nixos/nixpkgs/master";
 
     justnixvim.url = "github:JustAlternate/justnixvim";
 
@@ -33,6 +34,7 @@
       self,
       nixpkgs,
       unstable-nixpkgs,
+      master-nixpkgs,
       home-manager,
       nix-darwin,
       ...
@@ -46,6 +48,10 @@
         # Allow configurations to use pkgs.unstable.<package-name>.
         (_: prev: {
           unstable = import unstable-nixpkgs {
+            inherit (prev) system;
+            config.allowUnfree = true;
+          };
+          master = import master-nixpkgs {
             inherit (prev) system;
             config.allowUnfree = true;
           };
