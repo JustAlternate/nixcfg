@@ -12,32 +12,28 @@
   home = {
     packages = with pkgs; [
       # Development
-      # nodePackages.node2nix
       openssh
-      # scdoc
       git
       gcc
       lua
       go
       cmake
       gnumake
-      # duckdb
-      # dbt
-      # framac
-      terraform
       opentofu
       awscli2
       github-markdown-toc-go
-
       devenv
       pre-commit
-
       gh
-
-      #typst
-      #typstyle
-      #typstfmt
-      #typst-live
+      lazygit
+      statix # Lints and suggestions for the nix programming language
+      deadnix # Find and remove unused code in .nix source files
+      nixfmt-rfc-style # Nix Code Formatter
+      minikube
+      kubectl
+      kubernetes-helm
+      k9s
+      posting
 
       ## Monitoring
       nvtopPackages.full
@@ -65,13 +61,8 @@
       ani-cli
       sshfs
       pandoc
-      lazygit
-      statix # Lints and suggestions for the nix programming language
-      deadnix # Find and remove unused code in .nix source files
-      nixfmt-rfc-style # Nix Code Formatter
       asciinema-agg
       asciinema
-      deploy-rs
 
       ## Show-off
       cmatrix
@@ -81,17 +72,7 @@
       # Text editors
       vim
       inputs.justnixvim.packages.${system}.default
-      (import ./qwen-code.nix {
-        inherit lib;
-        buildNpmPackage = pkgs.buildNpmPackage;
-        fetchFromGitHub = pkgs.fetchFromGitHub;
-        fetchNpmDeps = pkgs.fetchNpmDeps;
-        nix-update-script = pkgs.nix-update-script;
-      })
-      minikube
-      kubectl
-      kubernetes-helm
-      k9s
+      unstable.opencode
     ];
   };
 }
