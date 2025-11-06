@@ -43,10 +43,7 @@
 
         # Networking
         networkmanagerapplet
-        networkmanager-openconnect
         networkmanager
-        wireguard-tools
-        wg-netmanager
 
         # File managers
         xfce.thunar
@@ -106,6 +103,9 @@
         cpu-x
         marp-cli
         upower
+
+        texliveFull
+        wkhtmltopdf
       ]
       ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 

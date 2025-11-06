@@ -92,7 +92,7 @@
         steam
         appimage-run
         pokemmo-installer
-        osu-lazer-bin
+        master.osu-lazer-bin
         prismlauncher
         mgba
 
