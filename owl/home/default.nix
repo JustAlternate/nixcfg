@@ -24,9 +24,13 @@
       grpcurl
       unstable.golangci-lint
       unstable.codex
+      unstable.opencode
       goreleaser
       docker
       docker-compose
+
+      k9s
+      posting
 
       mysql80
 
