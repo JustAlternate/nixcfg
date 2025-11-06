@@ -9,7 +9,6 @@
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
-
       proxyTimeout = "1000s";
 
       virtualHosts = {
@@ -19,13 +18,16 @@
           locations."/" = {
             root = "/var/www/justalternate.com/";
           };
+          locations."/homepage" = {
+            root = "/var/www/";
+          };
         };
       };
     };
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = "loicw@justalternate.fr";
+    defaults.email = "loicw@justalternate.com";
     useRoot = true;
   };
 }
