@@ -27,7 +27,15 @@
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = "loicw@justalternate.com";
     useRoot = true;
+    defaults = {
+      email = "loicw@justalternate.com";
+      reloadServices = [
+        "nginx.service"
+        "dovecot2.service"
+        "postfix.service"
+      ];
+      extraLegoRenewFlags = [ "--no-ari" ];
+    };
   };
 }
