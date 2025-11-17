@@ -20,7 +20,7 @@
         ];
         modules-right = [
           "tray"
-          "custom/yubilock"
+          # "custom/yubilock"
           "pulseaudio"
           "cpu"
           "memory"
@@ -132,18 +132,18 @@
           on-click = "";
           tooltip = true;
         };
-        "custom/yubilock" = {
-          return-type = "json";
-          interval = 5;
-          exec = "/home/justalternate/nixcfg/shared/desktop/waybar/yubikey-status.sh";
-          on-click = "/home/justalternate/nixcfg/shared/desktop/waybar/yubilock-toggle.sh";
-          tooltip = true;
-          format = "{icon}";
-          format-icons = {
-            active = "";
-            inactive = "";
-          };
-        };
+        # "custom/yubilock" = {
+        #   return-type = "json";
+        #   interval = 5;
+        #   exec = "/home/justalternate/nixcfg/shared/desktop/waybar/yubikey-status.sh";
+        #   on-click = "/home/justalternate/nixcfg/shared/desktop/waybar/yubilock-toggle.sh";
+        #   tooltip = true;
+        #   format = "{icon}";
+        #   format-icons = {
+        #     active = "";
+        #     inactive = "";
+        #   };
+        # };
       }
     ];
   };
