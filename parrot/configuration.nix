@@ -9,6 +9,10 @@
     ../shared/security.nix
   ];
 
+  services.ollama = {
+    enable = true;
+  };
+
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
