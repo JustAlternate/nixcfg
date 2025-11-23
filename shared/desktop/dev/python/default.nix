@@ -8,7 +8,11 @@
       SDL2_gfx
       (python3.withPackages (
         ps: with ps; [
+          jupytext
+          notebook
           flask
+          patool
+          einops
           requests
           mysql-connector
           hypothesis
