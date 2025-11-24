@@ -102,6 +102,7 @@
           ];
         };
         beaverNixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           system = systemArm;
           modules = [
             ./beaver/configuration.nix
