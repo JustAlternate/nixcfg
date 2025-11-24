@@ -3,14 +3,15 @@ _: {
     ./nginx # Web server, reverse proxy
     ./planka # selfhosted Kanban
     ./vaultwarden
+    # ./wireguard
     ./openwebui # My personal llm ui
     ./owncloud # selhosted google drive equivalent
     ./mail
-    ./minecraft
+    # ./minecraft
     ./monitoring
     # ./action-runner
-    ./JustVPN
-    ./gh-explorer
+    # ./JustVPN
+    # ./gh-explorer
     ./dawarich
   ];
 }
