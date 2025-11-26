@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   home = {
+
+    sessionVariables = {
+      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib/"; # fix the problem of dynamic link in python package
+    };
+
     packages = with pkgs; [
       poetry
       SDL2
@@ -10,7 +15,10 @@
         ps: with ps; [
           jupytext
           notebook
+          sentencepiece
           flask
+          sklearn-compat
+          accelerate
           patool
           einops
           requests
@@ -28,7 +36,6 @@
           pip
           pipenv
           plotly
-          pytorch
           requests
           scipy
           seaborn
