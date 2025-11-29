@@ -15,6 +15,7 @@
       allowedUDPPorts = [
         24454
       ];
+      trustedInterfaces = [ "docker0" ];
     };
     nameservers = [ "8.8.8.8" ];
     defaultGateway = "172.31.1.1";

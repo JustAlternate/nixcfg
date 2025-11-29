@@ -5,6 +5,8 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
+    nixpkgs-dawarich-pr.url = "github:diogotcorreia/nixpkgs/dawarich-init";
+
     unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     master-nixpkgs.url = "github:nixos/nixpkgs/master";
 
@@ -100,6 +102,7 @@
           ];
         };
         beaverNixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           system = systemArm;
           modules = [
             ./beaver/configuration.nix
