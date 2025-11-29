@@ -63,6 +63,7 @@
       pandoc
       asciinema-agg
       asciinema
+      asciiquarium
 
       ## Show-off
       cmatrix
