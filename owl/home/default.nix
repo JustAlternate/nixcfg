@@ -22,7 +22,7 @@
       htop
       btop
       grpcurl
-      golangci-lint
+      unstable.golangci-lint
       unstable.codex
       unstable.opencode
       goreleaser

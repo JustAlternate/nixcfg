@@ -1,6 +1,4 @@
 _: {
-  # imports = [ ./docker-compose.nix ];
-
   services = {
     nginx.virtualHosts."geo.justalternate.com" = {
       enableACME = true;
