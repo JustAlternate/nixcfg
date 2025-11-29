@@ -15,6 +15,12 @@
     monitor=DP-3, 2560x1440@165, 1920x0, 1
     monitor=DP-1, 2560x1440@165, 1920x0, 1
     monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
+
+    # Force osu! to float, resize to 1080p, and center it
+    windowrulev2 = float, class:^(osu!)$
+    windowrulev2 = size 1920 1080, class:^(osu!)$
+    windowrulev2 = center, class:^(osu!)$
+
   '';
 
   home = {
@@ -112,6 +118,8 @@
         # Miscs
         cpu-x
         marp-cli
+
+        texliveFull
       ]
       ## Install my custom scripts
       ++ (import ./../../shared/desktop/bin { inherit pkgs; });
