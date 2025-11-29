@@ -9,6 +9,8 @@
       (python3.withPackages (
         ps: with ps; [
           flask
+          keyboard
+          pyautogui
           requests
           mysql-connector
           hypothesis
