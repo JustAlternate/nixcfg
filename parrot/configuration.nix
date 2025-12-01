@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
@@ -10,6 +10,12 @@
 
     inputs.hyprland.nixosModules.default
   ];
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 
   services.ollama = {
     enable = true;
@@ -61,6 +67,7 @@
   # Enable networking
   networking = {
     networkmanager.enable = true;
+    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -69,10 +76,12 @@
         443
       ];
       allowedUDPPorts = [
-        53
-        67
-        68
+        53 67 68
+        51820   # WireGuard default
+        1194    # OpenVPN default
+        443     # Some eduVPN setups use 443/UDP or 443/TCP
       ];
+      checkReversePath = "loose";
     };
   };
 
@@ -143,7 +152,7 @@
       enable32Bit = true;
 
       extraPackages = with pkgs; [
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };

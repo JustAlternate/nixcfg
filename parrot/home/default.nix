@@ -91,7 +91,6 @@
         steam-run-free
         steam
         mgba
-        ryujinx
 
         ## Drivers/Requirements
         meson
