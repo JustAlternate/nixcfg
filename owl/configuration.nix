@@ -11,7 +11,7 @@
   ];
 
   # TEMP FIX
-  system.primaryUser = "loicweber";
+  stdenv.hostPlatform.system.primaryUser = "loicweber";
 
   ids.gids.nixbld = lib.mkForce 350;
 

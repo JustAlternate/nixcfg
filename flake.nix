@@ -3,9 +3,7 @@
 
   inputs = {
     # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-
-    nixpkgs-dawarich-pr.url = "github:diogotcorreia/nixpkgs/dawarich-init";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
     unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     master-nixpkgs.url = "github:nixos/nixpkgs/master";
@@ -14,7 +12,12 @@
 
     # home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -64,6 +67,7 @@
       # NixOS configurations
       nixosConfigurations = {
         parrotNixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           inherit system;
           modules = [
             ./parrot/configuration.nix
@@ -83,6 +87,7 @@
           ];
         };
         swordfishNixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           inherit system;
           modules = [
             ./swordfish/configuration.nix

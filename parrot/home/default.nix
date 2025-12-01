@@ -52,7 +52,7 @@
 
         # Browser
         chromium
-        firefox-wayland
+        firefox
 
         # Other gui apps
         thunderbird
@@ -92,7 +92,6 @@
         ryujinx
 
         ## Drivers/Requirements
-        ckb-next
         meson
         wine
         winetricks
