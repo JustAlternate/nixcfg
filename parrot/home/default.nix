@@ -37,6 +37,8 @@
         brightnessctl
         grimblast
 
+        unstable.eduvpn-client
+
         # Sound
         pwvucontrol
         pulseaudio
