@@ -7,6 +7,8 @@
     ../shared/desktop/dev/docker/default.nix
     ../shared/optimise.nix
     ../shared/security.nix
+
+    inputs.hyprland.nixosModules.default
   ];
 
   services.ollama = {
@@ -99,7 +101,7 @@
       # Load nvidia driver for Xorg and Wayland
       videoDrivers = [
         # "nvidia"
-        "amdvlk"
+        "amdgpu"
       ];
     };
 
@@ -141,7 +143,6 @@
       enable32Bit = true;
 
       extraPackages = with pkgs; [
-        amdvlk
         vaapiVdpau
         libvdpau-va-gl
       ];
@@ -191,18 +192,32 @@
     enable = true;
     wlr.enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
   };
 
   programs = {
     zsh.enable = true;
+
     hyprland = {
       enable = true;
-      xwayland.enable = true;
+      settings = {
+        env = [ 
+          "ELECTRON_OZONE_PLATFORM_HINT, auto"
+          "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
+        ];
+        cursor = {
+          enable_hyprcursor = true;
+          no_hardware_cursors = true;
+        };
+      };
+      extraConfig = ''
+        # Monitor settings
+        monitor=eDP-1,1920x1080,0x1080,1
+        monitor=HDMI-A-1,1920x1080,0x0,1
+        ${builtins.readFile ../shared/desktop/hyprland/hyprland.conf}
+      '';
     };
-
   };
 
   # This value determines the NixOS release from which the default

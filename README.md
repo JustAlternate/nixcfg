@@ -33,7 +33,7 @@ _click the image to go to the video_
 - Editor: Neovim [justnixvim](https://github.com/JustAlternate/justnixvim)
 - Fetcher: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - Font: [nerdfonts](https://www.nerdfonts.com/)
-- Launcher: [rofi-wayland](https://github.com/A417ya/rofi-wayland)
+- Launcher: [rofi](https://github.com/A417ya/rofi-wayland)
 - Browser: [firefox](https://www.mozilla.org/en-US/firefox/)
 - Discord: [Vesktop](https://github.com/Vencord/Vesktop)
 - Emoji wheel: rofi + [bemoji](https://github.com/marty-oehme/bemoji)
