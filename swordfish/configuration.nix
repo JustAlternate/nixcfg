@@ -152,6 +152,22 @@
     interfaces."enp4s0".wakeOnLan.enable = true;
     # Enable networking
     networkmanager.enable = true;
+    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22
+        80
+        443
+      ];
+      allowedUDPPorts = [
+        53 67 68
+        51820   # WireGuard default
+        1194    # OpenVPN default
+        443     # Some eduVPN setups use 443/UDP or 443/TCP
+      ];
+      checkReversePath = "loose";
+    };
   };
 
 
