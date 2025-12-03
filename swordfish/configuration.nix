@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   # CONFIGURATION FOR A HOMEMADE GAMING RIG FEATURING
   # Motherboard: B550 GAMING X
@@ -12,7 +12,15 @@
     ../shared/sops.nix
     ../shared/optimise.nix
     ../shared/security.nix
+
+    inputs.hyprland.nixosModules.default
   ];
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 
   environment = {
     shells = with pkgs; [ zsh ];
@@ -27,14 +35,15 @@
     };
   };
 
-  xdg.portal = {
-    config.common.default = "*";
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
+  xdg = {
+    portal = {
+      config.common.default = "*";
+      enable = true;
+      wlr.enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+    };
   };
 
   # Allow unfree packages
@@ -69,6 +78,8 @@
   };
 
   services = {
+    openssh.enable = true;
+
     xserver = {
       videoDrivers = [ "amdgpu" ];
       wacom.enable = true;
@@ -94,10 +105,6 @@
         HSA_OVERRIDE_GFX_VERSION = "10.3.0";
       };
     };
-    # open-webui.enable = true;
-
-    # Enable automatic login for the user.
-    # getty.autologinUser = "justalternate";
   };
 
   # Configure console keymap
@@ -108,14 +115,61 @@
       enable = true;
       enable32Bit = true;
     };
-    opengl.extraPackages = with pkgs; [
-      amdvlk
-    ];
-    # For 32 bit applications
-    opengl.extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
+    # ckb-next.enable = true;
+    opentabletdriver = {
+      enable = true;
+      daemon.enable = true;
+    };
   };
+
+  programs = {
+    zsh.enable = true;
+
+    hyprland = {
+      enable = true;
+      settings = {
+        env = [ 
+          "ELECTRON_OZONE_PLATFORM_HINT, auto"
+        ];
+        cursor = {
+          enable_hyprcursor = true;
+          no_hardware_cursors = true;
+        };
+      };
+      extraConfig = ''
+        # Monitor settings
+        monitor=DP-3, 2560x1440@165, 1920x0, 1
+        monitor=DP-1, 2560x1440@165, 1920x0, 1
+        monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
+
+        ${builtins.readFile ../shared/desktop/hyprland/hyprland.conf}
+      '';
+    };
+  };
+
+  networking = {
+    hostName = "nixos"; # Define your hostname.
+    interfaces."enp4s0".wakeOnLan.enable = true;
+    # Enable networking
+    networkmanager.enable = true;
+    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22
+        80
+        443
+      ];
+      allowedUDPPorts = [
+        53 67 68
+        51820   # WireGuard default
+        1194    # OpenVPN default
+        443     # Some eduVPN setups use 443/UDP or 443/TCP
+      ];
+      checkReversePath = "loose";
+    };
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -124,24 +178,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11";
-
-  programs = {
-    zsh.enable = true;
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-  };
-
-  hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = true;
-
-  services.openssh.enable = true;
-
-  networking = {
-    hostName = "nixos"; # Define your hostname.
-    interfaces."enp4s0".wakeOnLan.enable = true;
-    # Enable networking
-    networkmanager.enable = true;
-  };
 }

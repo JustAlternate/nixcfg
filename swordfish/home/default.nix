@@ -10,12 +10,7 @@
 
   desktop.enable = true;
 
-  wayland.windowManager.hyprland.extraConfig = ''
-    # Monitor settings
-    monitor=DP-3, 2560x1440@165, 1920x0, 1
-    monitor=DP-1, 2560x1440@165, 1920x0, 1
-    monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
-  '';
+  xdg.configFile."hypr/pyprland.json".source = ../../shared/desktop/hyprland/pyprland.json;
 
   home = {
     # This value determines the Home Manager release that your configuration is
@@ -36,6 +31,9 @@
         libnotify
         brightnessctl
         grimblast
+        pyprland
+        hyprland-protocols
+        hyprcursor
 
         # Sound
         pwvucontrol
@@ -53,11 +51,12 @@
 
         # Browser
         chromium
-        firefox-wayland
+        firefox
 
         # Other gui apps
         thunderbird
         bitwarden-desktop
+        eduvpn-client
 
         # Music
         mpv
@@ -97,21 +96,19 @@
         mgba
 
         ## Drivers/Requirements
-        wacomtablet
         opentabletdriver
-        ckb-next
         meson
         wine
         winetricks
         wine-wayland
         zlib
         lego
-        android-udev-rules
-        android-studio
 
         # Miscs
         cpu-x
         marp-cli
+
+        texliveFull
       ]
       ## Install my custom scripts
       ++ (import ./../../shared/desktop/bin { inherit pkgs; });
