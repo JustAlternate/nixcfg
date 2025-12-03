@@ -34,6 +34,8 @@
         pyprland
         hyprland-protocols
         hyprcursor
+        grim
+        slurp
 
         # Sound
         pwvucontrol
