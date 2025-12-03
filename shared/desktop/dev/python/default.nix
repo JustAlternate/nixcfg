@@ -10,7 +10,12 @@
         ps: with ps; [
           jupytext
           notebook
+          sentencepiece
           flask
+          keyboard
+          pyautogui
+          sklearn-compat
+          accelerate
           patool
           einops
           requests
@@ -28,7 +33,6 @@
           pip
           pipenv
           plotly
-          pytorch
           requests
           scipy
           seaborn
