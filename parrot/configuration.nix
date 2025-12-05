@@ -48,6 +48,12 @@
 
   # Bootloader.
   boot = {
+    extraModprobeConfig = ''
+      # Avoid PCIe power‑save on MediaTek Wi‑Fi (prevents driver‑own‑failed loops)
+      options mt7921e disable_aspm=1
+      options mt76 disable_runtime_pm=1
+    '';
+
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       grub = {
@@ -62,10 +68,9 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-
   # Enable networking
   networking = {
+    hostName = "nixos";
     networkmanager.enable = true;
     networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
     firewall = {
@@ -135,6 +140,7 @@
         #Optional helps save long term battery health
         START_CHARGE_THRESH_BAT0 = 75; # and bellow it starts to charge
         STOP_CHARGE_THRESH_BAT0 = 90; # and above it stops charging
+        RUNTIME_PM_BLACKLIST = "03:00.0";
       };
     };
   };
@@ -206,6 +212,7 @@
   };
 
   programs = {
+    dconf.enable = true;
     zsh.enable = true;
 
     hyprland = {
