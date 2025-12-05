@@ -32,6 +32,9 @@
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dawarich-pr.url = "github:diogotcorreia/nixpkgs/dawarich-init";
+
   };
 
   outputs =
@@ -42,6 +45,7 @@
       master-nixpkgs,
       home-manager,
       nix-darwin,
+      dawarich-pr,
       ...
     }@inputs:
     let
@@ -62,6 +66,10 @@
           };
         })
       ];
+      dawarichOverlay = _: prev: {
+        inherit (dawarich-pr.legacyPackages.${prev.system}) dawarich;
+      };
+
     in
     {
       # NixOS configurations
@@ -113,7 +121,7 @@
             ./beaver/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays; }
+            { nixpkgs.overlays = nixos-overlays ++ [ dawarichOverlay ]; }
             {
               home-manager = {
                 useGlobalPkgs = true;

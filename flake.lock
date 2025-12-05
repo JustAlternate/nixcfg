@@ -33,6 +33,22 @@
         "type": "github"
       }
     },
+    "dawarich-pr": {
+      "locked": {
+        "lastModified": 1764601710,
+        "narHash": "sha256-wvKrkXSRg74Ezq2b5dn4zAZ/F3cgXRbjRn9HJDQOIUE=",
+        "owner": "diogotcorreia",
+        "repo": "nixpkgs",
+        "rev": "b21622433a4691631010665f634cdcbce6b75f0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "diogotcorreia",
+        "ref": "dawarich-init",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -647,6 +663,7 @@
     },
     "root": {
       "inputs": {
+        "dawarich-pr": "dawarich-pr",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "justnixvim": "justnixvim",
