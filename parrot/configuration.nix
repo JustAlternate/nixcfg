@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
@@ -10,6 +10,12 @@
 
     inputs.hyprland.nixosModules.default
   ];
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 
   services.ollama = {
     enable = true;
@@ -42,6 +48,12 @@
 
   # Bootloader.
   boot = {
+    extraModprobeConfig = ''
+      # Avoid PCIe power‑save on MediaTek Wi‑Fi (prevents driver‑own‑failed loops)
+      options mt7921e disable_aspm=1
+      options mt76 disable_runtime_pm=1
+    '';
+
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     loader = {
       grub = {
@@ -56,11 +68,11 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-
   # Enable networking
   networking = {
+    hostName = "nixos";
     networkmanager.enable = true;
+    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -69,10 +81,12 @@
         443
       ];
       allowedUDPPorts = [
-        53
-        67
-        68
+        53 67 68
+        51820   # WireGuard default
+        1194    # OpenVPN default
+        443     # Some eduVPN setups use 443/UDP or 443/TCP
       ];
+      checkReversePath = "loose";
     };
   };
 
@@ -126,6 +140,7 @@
         #Optional helps save long term battery health
         START_CHARGE_THRESH_BAT0 = 75; # and bellow it starts to charge
         STOP_CHARGE_THRESH_BAT0 = 90; # and above it stops charging
+        RUNTIME_PM_BLACKLIST = "03:00.0";
       };
     };
   };
@@ -143,7 +158,7 @@
       enable32Bit = true;
 
       extraPackages = with pkgs; [
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };
@@ -197,6 +212,7 @@
   };
 
   programs = {
+    dconf.enable = true;
     zsh.enable = true;
 
     hyprland = {

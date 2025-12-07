@@ -10,12 +10,9 @@
 
   desktop.enable = true;
 
-  wayland.windowManager.hyprland.extraConfig = ''
-    env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
-    # Monitor settings
-    monitor=eDP-1, 1920x1080, 0x1080, 1
-    monitor=HDMI-A-1, 1920x1080, 0x0, 1
-  '';
+  dconf.enable = true;
+
+  xdg.configFile."hypr/pyprland.json".source = ../../shared/desktop/hyprland/pyprland.json;
 
   home = {
     # This value determines the Home Manager release that your configuration is
@@ -35,9 +32,11 @@
         dunst
         libnotify
         brightnessctl
-        grimblast
-
-        unstable.eduvpn-client
+        grim
+        slurp
+        pyprland
+        hyprland-protocols
+        hyprcursor
 
         # Sound
         pwvucontrol
@@ -60,6 +59,7 @@
         thunderbird
         mousam
         bitwarden-desktop
+        eduvpn-client
 
         # Music
         mpv
@@ -75,7 +75,6 @@
         mupdf
         feh
         gimp
-        satty
 
         # Social media
         vesktop
@@ -91,7 +90,7 @@
         steam-run-free
         steam
         mgba
-        ryujinx
+        prismlauncher
 
         ## Drivers/Requirements
         meson

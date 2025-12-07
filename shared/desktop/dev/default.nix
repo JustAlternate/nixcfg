@@ -73,7 +73,7 @@
       # Text editors
       vim
       inputs.justnixvim.packages.${system}.default
-      unstable.opencode
+      master.opencode
     ];
   };
 }
