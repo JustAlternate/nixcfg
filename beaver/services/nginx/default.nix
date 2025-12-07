@@ -3,8 +3,6 @@
   services = {
     nginx = {
       enable = true;
-      package = pkgs.nginxStable.override { openssl = pkgs.libressl; };
-
       recommendedProxySettings = true;
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
