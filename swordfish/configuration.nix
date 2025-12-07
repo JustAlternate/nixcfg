@@ -148,8 +148,7 @@
   };
 
   networking = {
-    hostName = "nixos"; # Define your hostname.
-    interfaces."enp4s0".wakeOnLan.enable = true;
+    hostName = "nixos";
     # Enable networking
     networkmanager.enable = true;
     networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
