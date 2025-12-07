@@ -21,8 +21,6 @@ _click the image to go to the video_
 
 (Im no longer using eww nor pywalfox nor conky for my rice)
 
-
-
 ### Features
 
 #### Desktop (swordfish and parrot)
