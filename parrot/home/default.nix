@@ -105,6 +105,7 @@
         upower
         zip
         unzip
+        sshpass
 
         texliveFull
         wkhtmltopdf
