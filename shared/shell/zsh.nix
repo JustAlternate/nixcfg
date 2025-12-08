@@ -30,10 +30,13 @@ with lib;
     {
       home.packages = with pkgs; [
         zoxide
-        llm
         eza
         fzf
         lazygit
+        (llm.withPlugins {
+          llm-openrouter = true;
+          llm-cmd = true;
+        })
       ];
 
       programs.direnv = {
@@ -41,6 +44,7 @@ with lib;
       };
 
       xdg.configFile."direnv/direnv.toml".source = ./direnv.toml;
+      xdg.configFile."io.datasette.llm/aliases.json".source = ./aliases.json;
 
       programs.zsh = {
         enable = true;
@@ -54,7 +58,6 @@ with lib;
           ls = "eza --color=auto --icons=always";
           cd = "z";
           neofetch = "fastfetch";
-          howto = "llm -s \"Explain how to do the specified task in the terminal, if the user dont specify anything else, it means that he is looking for a short form answer that go straight to the point with 1 or 2 relevant examples. Also keep in mind that the user is using a Nix system (either NixOS or NixDarwin) make sure your answer is according to this criteria if possible.\"";
           ssh = "kitten ssh";
           nvimf = "nvim $(fzf)";
         };

@@ -1,11 +1,6 @@
 { lib, config, ... }:
 with lib;
 {
-
-  environment = {
-    systemPackages = with pkgs; [ sshpass ];
-  };
-
   options.ssh.work.enable = mkEnableOption "work ssh profile";
   config = mkMerge [
     {
