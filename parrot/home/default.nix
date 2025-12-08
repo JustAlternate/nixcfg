@@ -103,6 +103,8 @@
         cpu-x
         marp-cli
         upower
+        zip
+        unzip
 
         texliveFull
         wkhtmltopdf

@@ -109,6 +109,8 @@
         # Miscs
         cpu-x
         marp-cli
+        zip
+        unzip
 
         texliveFull
       ]
