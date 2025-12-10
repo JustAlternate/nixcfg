@@ -9,6 +9,7 @@
     master-nixpkgs.url = "github:nixos/nixpkgs/master";
 
     justnixvim.url = "github:JustAlternate/justnixvim";
+    mistralai-vibe.url = "github:mistralai/mistral-vibe";
 
     # home-manager
     home-manager = {
@@ -46,6 +47,7 @@
       home-manager,
       nix-darwin,
       dawarich-pr,
+      mistralai-vibe,
       ...
     }@inputs:
     let
