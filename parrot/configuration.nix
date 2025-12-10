@@ -1,4 +1,9 @@
-{ config, inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
@@ -12,9 +17,9 @@
   ];
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   services.ollama = {
@@ -27,6 +32,7 @@
       busybox
       git
       vim
+      inputs.mistralai-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     sessionVariables = {
@@ -72,7 +78,7 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
+    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -81,10 +87,12 @@
         443
       ];
       allowedUDPPorts = [
-        53 67 68
-        51820   # WireGuard default
-        1194    # OpenVPN default
-        443     # Some eduVPN setups use 443/UDP or 443/TCP
+        53
+        67
+        68
+        51820 # WireGuard default
+        1194 # OpenVPN default
+        443 # Some eduVPN setups use 443/UDP or 443/TCP
       ];
       checkReversePath = "loose";
     };
@@ -218,7 +226,7 @@
     hyprland = {
       enable = true;
       settings = {
-        env = [ 
+        env = [
           "ELECTRON_OZONE_PLATFORM_HINT, auto"
           "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
         ];
