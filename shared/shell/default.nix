@@ -8,7 +8,6 @@
     unrar
     mpv
     ffmpeg
-    imagemagick
     bemoji
     yazi
     cpu-x
@@ -42,11 +41,9 @@
     statix # Lints and suggestions for the nix programming language
     deadnix # Find and remove unused code in .nix source files
     nixfmt-rfc-style # Nix Code Formatter
-    minikube
     kubectl
     kubernetes-helm
     k9s
-    posting
 
     ## Monitoring
     nvtopPackages.full
