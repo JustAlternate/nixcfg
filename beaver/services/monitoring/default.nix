@@ -33,6 +33,20 @@
                 target_label = "unit";
               }
             ];
+            pipeline_stages = [
+              {
+                drop = {
+                  source = "message";
+                  expression = ".*(open\\(\\).*).*";
+                };
+              }
+              {
+                drop = {
+                  source = "message";
+                  expression = ".*SSL_read\\(\\) failed.*";
+                };
+              }
+            ];
           }
         ];
       };

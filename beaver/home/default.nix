@@ -13,28 +13,6 @@
 
     stateVersion = "24.05";
 
-    packages = with pkgs; [
-      # Cli tools
-      ## Utility
-      unzip
-      wget
-      ripgrep
-      socat
-      jq
-      lazygit
-      sops
-      zip
-      terraform
-      awscli2
-      compose2nix
-      unstable.qwen-code
-
-      inputs.justnixvim.packages.${system}.default
-
-      ## Monitoring
-      htop
-    ];
-
     # For env var
     sessionVariables = {
       EDITOR = "nvim";
