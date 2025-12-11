@@ -6,16 +6,14 @@
 
   home.packages = with pkgs; [
     unrar
-    mpv
     ffmpeg
     imagemagick
     bemoji
     yazi
-    cpu-x
     marp-cli
     zip
-    unzip
     sshpass
+    compose2nix
 
     zoxide
     eza
@@ -49,7 +47,6 @@
     posting
 
     ## Monitoring
-    nvtopPackages.full
     htop
     powertop
     lshw
@@ -71,6 +68,7 @@
     jq
     ani-cli
     sshfs
+    sops
     pandoc
     asciiquarium
 
@@ -81,7 +79,8 @@
 
     # Text editors
     vim
-    inputs.justnixvim.packages.${system}.default
+    inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.mistralai-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   xdg.configFile."io.datasette.llm/aliases.json".source = ./aliases.json;
