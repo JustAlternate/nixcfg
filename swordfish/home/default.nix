@@ -48,7 +48,6 @@
         # File managers
         xfce.thunar
         xfce.thunar-volman
-        yazi
         gparted
 
         # Browser
@@ -68,9 +67,6 @@
         ffmpeg
         vlc
         obs-studio
-
-        ## Video editing
-        #kdePackages.kdenlive
 
         # Image
         imagemagick
@@ -105,12 +101,6 @@
         wine-wayland
         zlib
         lego
-
-        # Miscs
-        cpu-x
-        marp-cli
-        zip
-        unzip
 
         texliveFull
       ]

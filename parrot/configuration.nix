@@ -32,7 +32,6 @@
       busybox
       git
       vim
-      inputs.mistralai-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     sessionVariables = {
