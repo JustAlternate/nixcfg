@@ -8,5 +8,6 @@ _: {
     ./mail
     ./monitoring
     ./dawarich
+    ./minecraft
   ];
 }
