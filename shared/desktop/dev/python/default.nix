@@ -41,7 +41,12 @@
           jupyterlab
           scikit-image
           ipympl
+          scikit-learn
+          networkx
+          ollama
           boto3
+          pyvis
+          nltk
           psycopg2
           pymysql
           rdflib
