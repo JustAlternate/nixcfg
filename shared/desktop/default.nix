@@ -12,9 +12,6 @@
   home.packages = with pkgs; [
     birdtray
     patray
-    unrar
-    bc
-    spacedrive
     fractal
 
     # Theming

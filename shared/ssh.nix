@@ -2,7 +2,6 @@
 with lib;
 {
   options.ssh.work.enable = mkEnableOption "work ssh profile";
-
   config = mkMerge [
     {
       programs.ssh = {

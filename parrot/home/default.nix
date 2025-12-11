@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
-    ../../shared/shell/zsh.nix
+    ../../shared/shell
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/desktop/dev
@@ -49,7 +49,6 @@
         # File managers
         xfce.thunar
         xfce.thunar-volman
-        yazi
 
         # Browser
         chromium
@@ -60,25 +59,14 @@
         mousam
         bitwarden-desktop
         eduvpn-client
-
-        # Music
-        mpv
-        youtube-music
-
-        # Video
-        ffmpeg
+        gimp
         vlc
         obs-studio
-
-        # Image
-        imagemagick
         mupdf
         feh
-        gimp
 
         # Social media
         vesktop
-        bemoji
 
         # Bluetooth
         bluez
@@ -100,10 +88,7 @@
         zlib
 
         # Miscs
-        cpu-x
-        marp-cli
         upower
-
         texliveFull
         wkhtmltopdf
       ]

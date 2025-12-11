@@ -33,8 +33,6 @@ _: {
       "justalternate.com"
     ];
 
-    # A list of all login accounts. To create the password hashes, use
-    # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
       "loicw@justalternate.com" = {
         hashedPasswordFile = /run/secrets/HASHED_PASSWORD;
@@ -44,8 +42,6 @@ _: {
         ];
       };
     };
-    # Use Let's Encrypt certificates. Note that this needs to set up a stripped
-    # down nginx and opens port 80.
     certificateScheme = "acme-nginx";
   };
 }
