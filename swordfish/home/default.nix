@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../shared/shell/zsh.nix
+    ../../shared/shell
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/desktop/dev
@@ -109,6 +109,8 @@
         # Miscs
         cpu-x
         marp-cli
+        zip
+        unzip
 
         texliveFull
       ]
