@@ -5,17 +5,12 @@
     defaultSopsFormat = "yaml";
     age.keyFile = "/nix/sops/age/keys.txt";
     secrets = {
+      "MISTRAL_API_KEY" = { };
+      "OPENROUTER_API_KEY" = { };
       "HASHED_PASSWORD" = { };
       "PASSWORD" = { };
       "EMAIL" = { };
-      "OWNCLOUD/OWNCLOUD_ADMIN_PASSWORD" = { };
-      "PLANKA/SECRET_KEY" = { };
       "VAULTWARDEN/ENV" = { };
-      "TIANJI/POSTGRES_PASSWORD" = { };
-      "TIANJI/JWT_SECRET" = { };
-      "ACTION_RUNNER/NIXCFG_TOKEN" = { };
-      "DEEPINFRA_API_KEY" = { };
-      "GROQ_API_KEY" = { };
     };
   };
 

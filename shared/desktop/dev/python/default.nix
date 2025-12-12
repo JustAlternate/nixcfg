@@ -3,9 +3,9 @@
   home = {
     packages = with pkgs; [
       poetry
-      SDL2
-      SDL2_image
-      SDL2_gfx
+      # SDL2
+      # SDL2_image
+      # SDL2_gfx
       (python3.withPackages (
         ps: with ps; [
           jupytext
@@ -13,43 +13,42 @@
           sentencepiece
           flask
           keyboard
-          pyautogui
-          sklearn-compat
+          # pyautogui
+          # sklearn-compat
           accelerate
           patool
           einops
           requests
           mysql-connector
           hypothesis
-          pygame
+          ollama
+          # jupyterlab
+          # pygame
           psutil
-          pygame-sdl2
-          psutil
+          # pygame-sdl2
           matplotlib
           numpy
-          opencv4
+          # opencv4
           pandas
           pillow
           pip
           pipenv
-          plotly
+          # plotly
           requests
-          scipy
-          seaborn
+          # scipy
+          # seaborn
           transformers
           virtualenv
-          jupyterlab
-          scikit-image
-          ipympl
-          scikit-learn
-          networkx
-          ollama
+          # scikit-image
+          # ipympl
+          # scikit-learn
+          # networkx
           boto3
-          pyvis
-          nltk
+          # pyvis
+          # nltk
           psycopg2
           pymysql
-          rdflib
+          # rdflib
         ]
       ))
     ];
