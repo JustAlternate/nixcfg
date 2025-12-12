@@ -48,7 +48,6 @@ with lib;
           plugins = [
             "git"
             "vi-mode"
-            "fast-syntax-highlighting"
           ];
           theme = "edvardm";
         };
