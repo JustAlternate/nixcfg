@@ -12,15 +12,7 @@
     ../shared/sops.nix
     ../shared/optimise.nix
     ../shared/security.nix
-
-    inputs.hyprland.nixosModules.default
   ];
-
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
 
   environment = {
     shells = with pkgs; [ zsh ];
@@ -78,6 +70,8 @@
   };
 
   services = {
+    getty.autologinOnce = "justalternate";
+
     openssh.enable = true;
 
     xserver = {
@@ -126,23 +120,13 @@
     zsh.enable = true;
 
     hyprland = {
-      enable = true;
       settings = {
-        env = [ 
-          "ELECTRON_OZONE_PLATFORM_HINT, auto"
-        ];
-        cursor = {
-          enable_hyprcursor = true;
-          no_hardware_cursors = true;
-        };
       };
       extraConfig = ''
         # Monitor settings
         monitor=DP-3, 2560x1440@165, 1920x0, 1
         monitor=DP-1, 2560x1440@165, 1920x0, 1
         monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
-
-        ${builtins.readFile ../shared/desktop/hyprland/hyprland.conf}
       '';
     };
   };
@@ -151,7 +135,7 @@
     hostName = "nixos";
     # Enable networking
     networkmanager.enable = true;
-    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];  
+    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -160,15 +144,16 @@
         443
       ];
       allowedUDPPorts = [
-        53 67 68
-        51820   # WireGuard default
-        1194    # OpenVPN default
-        443     # Some eduVPN setups use 443/UDP or 443/TCP
+        53
+        67
+        68
+        51820 # WireGuard default
+        1194 # OpenVPN default
+        443 # Some eduVPN setups use 443/UDP or 443/TCP
       ];
       checkReversePath = "loose";
     };
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
