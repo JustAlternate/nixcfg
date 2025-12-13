@@ -91,7 +91,6 @@
   };
   sops.templates."vibe-env" = {
     path = "${config.home.homeDirectory}/.vibe/.env";
-    mode = "600";
     content = ''
       			MISTRAL_API_KEY='${config.sops.placeholder.MISTRAL_API_KEY}'
       			OPENROUTER_API_KEY='${config.sops.placeholder.OPENROUTER_API_KEY}'
