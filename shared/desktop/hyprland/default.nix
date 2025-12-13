@@ -1,4 +1,5 @@
-{ lib, inputs, ... }: {
+{ lib, inputs, ... }:
+{
 
   imports = [
     inputs.hyprland.nixosModules.default
@@ -22,14 +23,9 @@
           no_hardware_cursors = true;
         };
       };
-      extraConfig = lib.mkMerge ''
-        ${builtins.readFile ../shared/desktop/hyprland/hyprland.conf}
+      extraConfig = ''
+        ${builtins.readFile ./hyprland.conf}
       '';
     };
-
-		zsh.profileExtra = ''
-			[[ $(tty) == /dev/tty1 ]] && exec Hyprland
-		'';
-
-	}
+  };
 }
