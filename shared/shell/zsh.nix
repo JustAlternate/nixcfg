@@ -17,6 +17,11 @@ with lib;
         };
       };
     })
+    (mkIf config.desktop.enable {
+      programs.zsh.profileExtra = ''
+        				[[ $(tty) == /dev/tty1 ]] && exec Hyprland
+        			'';
+    })
 
     {
       programs.direnv = {
@@ -35,9 +40,9 @@ with lib;
           nixcfg = "cd ~/nixcfg";
           ls = "eza --color=auto --icons=always";
           cd = "z";
-          neofetch = "fastfetch";
           ssh = "kitten ssh";
           nvimf = "nvim $(fzf)";
+          vibe = "nix run github:mistralai/mistral-vibe";
         };
         history = {
           size = 10000;
@@ -48,29 +53,25 @@ with lib;
           plugins = [
             "git"
             "vi-mode"
-            "fast-syntax-highlighting"
           ];
           theme = "edvardm";
         };
         initContent = ''
-          # Skip if file doesn't exist
-          [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
-            cat "${config.home.homeDirectory}/.cache/wal/sequences"
+                    # Skip if file doesn't exist
+                    [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
+                      cat "${config.home.homeDirectory}/.cache/wal/sequences"
 
-          # Load env vars only when needed (lazy-loading)
-          function load_env() {
-            while IFS='=' read -r name value; do
-              [[ $name != \#* ]] && export "$name=$value"
-            done < ~/env-var/.env
-          }
+          					while IFS='=' read -r name value; do
+          						[[ $name != \#* ]] && export "$name=$value"
+          					done < ~/env-var/.env
 
-          # Initialize zoxide (fast)
-          eval "$(zoxide init zsh)"
+                    # Initialize zoxide (fast)
+                    eval "$(zoxide init zsh)"
 
-          # Keybindings (minimal)
-          bindkey '^J' history-incremental-search-backward
-          bindkey '^K' history-incremental-search-forward
-          bindkey '^O' autosuggest-accept
+                    # Keybindings (minimal)
+                    bindkey '^J' history-incremental-search-backward
+                    bindkey '^K' history-incremental-search-forward
+                    bindkey '^O' autosuggest-accept
         '';
       };
     }
