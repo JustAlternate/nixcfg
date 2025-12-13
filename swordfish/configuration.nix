@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 {
   # CONFIGURATION FOR A HOMEMADE GAMING RIG FEATURING
   # Motherboard: B550 GAMING X
@@ -8,6 +13,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+
+    ../shared/desktop/hyprland
     ../shared/desktop/dev/docker/default.nix
     ../shared/sops.nix
     ../shared/optimise.nix
@@ -70,8 +77,6 @@
   };
 
   services = {
-    getty.autologinOnce = "justalternate";
-
     openssh.enable = true;
 
     xserver = {
@@ -118,10 +123,7 @@
 
   programs = {
     zsh.enable = true;
-
     hyprland = {
-      settings = {
-      };
       extraConfig = ''
         # Monitor settings
         monitor=DP-3, 2560x1440@165, 1920x0, 1
