@@ -17,6 +17,11 @@ with lib;
         };
       };
     })
+    (mkIf config.desktop.enable {
+      programs.zsh.profileExtra = ''
+        				[[ $(tty) == /dev/tty1 ]] && exec Hyprland
+        			'';
+    })
 
     {
       programs.direnv = {
