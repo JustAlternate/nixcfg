@@ -12,15 +12,7 @@
     ../shared/desktop/dev/docker/default.nix
     ../shared/optimise.nix
     ../shared/security.nix
-
-    inputs.hyprland.nixosModules.default
   ];
-
-  nix.settings = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-  };
 
   services.ollama = {
     enable = true;
@@ -223,22 +215,15 @@
     zsh.enable = true;
 
     hyprland = {
-      enable = true;
       settings = {
         env = [
-          "ELECTRON_OZONE_PLATFORM_HINT, auto"
           "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
         ];
-        cursor = {
-          enable_hyprcursor = true;
-          no_hardware_cursors = true;
-        };
       };
       extraConfig = ''
         # Monitor settings
         monitor=eDP-1,1920x1080,0x1080,1
         monitor=HDMI-A-1,1920x1080,0x0,1
-        ${builtins.readFile ../shared/desktop/hyprland/hyprland.conf}
       '';
     };
   };
