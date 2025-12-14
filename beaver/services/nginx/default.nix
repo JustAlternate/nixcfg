@@ -22,17 +22,17 @@
         };
       };
 
-    #   virtualHosts = {
-    #     "cloud.justalternate.com" = {
-    #       enableACME = true;
-    #       forceSSL = true;
-    #       locations."/" = {
-    #         proxyPass = "http://127.0.0.1:8888";
-    #         extraConfig = "proxy_pass_header Authorization;";
-    #       };
-    #     };
-    #   };
-    # };
+      #   virtualHosts = {
+      #     "cloud.justalternate.com" = {
+      #       enableACME = true;
+      #       forceSSL = true;
+      #       locations."/" = {
+      #         proxyPass = "http://127.0.0.1:8888";
+      #         extraConfig = "proxy_pass_header Authorization;";
+      #       };
+      #     };
+      #   };
+    };
   };
   security.acme = {
     acceptTerms = true;

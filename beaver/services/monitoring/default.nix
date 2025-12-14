@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   services = {
     promtail = {
@@ -123,12 +123,31 @@
       enable = true;
       settings = {
         analytics.reporting_enabled = false;
+        auth = {
+          disable_login_form = true;
+        };
         server = {
           http_addr = "127.0.0.1";
           http_port = 3060;
           domain = "monitoring.justalternate.com";
           serve_from_sub_path = true;
+          root_url = "https://monitoring.justalternate.com";
         };
+        "auth.generic_oauth" = lib.mkForce {
+          enabled = true;
+          name = "Keycloak-OAuth";
+          allow_sign_up = true;
+          client_id = "grafana";
+          client_secret = "nZZa7y23tLZP5YRHqJLzzVwGDsg6K96G";
+          auth_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/auth";
+          token_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/token";
+          role_attribute_path = "\"'Admin'\"";
+          scopes = "openid email profile";
+        };
+        users = {
+          allow_sign_up = false;
+        };
+        security.disable_initial_admin_creation = true;
       };
     };
     prometheus = {

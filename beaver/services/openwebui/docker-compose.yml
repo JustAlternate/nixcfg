@@ -1,8 +1,10 @@
 services:
   openwebui:
-    image: ghcr.io/open-webui/open-webui:0.6.38
+    image: ghcr.io/open-webui/open-webui:0.6.41
     ports:
       - "3040:8080"
+    env_file:
+      - .env
     volumes:
       - open-webui_open-webui:/app/backend/data
 volumes:

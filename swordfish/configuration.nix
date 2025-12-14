@@ -77,9 +77,6 @@
   };
 
   services = {
-    getty.autologinUser = "justalternate";
-    getty.autologinOnce = true;
-
     openssh.enable = true;
 
     xserver = {

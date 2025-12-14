@@ -11,6 +11,7 @@
       "PASSWORD" = { };
       "EMAIL" = { };
       "VAULTWARDEN/ENV" = { };
+      "PLANKA/SECRET_KEY" = { };
     };
   };
 
