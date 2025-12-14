@@ -8,13 +8,19 @@
     ./services
   ];
 
+  virtualisation.podman = {
+    enable = true;
+    autoPrune.enable = true;
+    dockerCompat = true;
+  };
+
   environment = {
     systemPackages = with pkgs; [
       busybox
       git
       home-manager
-      docker-client
-      docker-compose
+      podman
+      podman-compose
       lego
     ];
   };
