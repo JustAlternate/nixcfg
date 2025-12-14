@@ -138,7 +138,7 @@
           name = "Keycloak-OAuth";
           allow_sign_up = true;
           client_id = "grafana";
-          client_secret = "nZZa7y23tLZP5YRHqJLzzVwGDsg6K96G";
+          client_secret = builtins.readFile config.sops.secrets."SSO/GRAFANA_CLIENT_SECRET".path;
           auth_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/auth";
           token_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/token";
           role_attribute_path = "\"'Admin'\"";

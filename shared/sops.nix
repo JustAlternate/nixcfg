@@ -10,6 +10,7 @@
       "HASHED_PASSWORD" = { };
       "PASSWORD" = { };
       "EMAIL" = { };
+      "SSO/GRAFANA_CLIENT_SECRET" = { };
       "VAULTWARDEN/ENV" = { };
       "PLANKA/SECRET_KEY" = { };
     };
