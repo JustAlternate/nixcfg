@@ -15,7 +15,7 @@
     hyprland = {
       enable = true;
       settings = {
-        env = lib.mkMerge [
+        env = [
           "ELECTRON_OZONE_PLATFORM_HINT, auto"
         ];
         cursor = {
