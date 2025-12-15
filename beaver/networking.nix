@@ -15,7 +15,7 @@
       allowedUDPPorts = [
         24454
       ];
-      trustedInterfaces = [ "docker0" ];
+      trustedInterfaces = [ "podman1" ];
     };
     nameservers = [ "8.8.8.8" ];
     defaultGateway = "172.31.1.1";

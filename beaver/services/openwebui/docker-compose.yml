@@ -1,6 +1,7 @@
 services:
   openwebui:
     image: ghcr.io/open-webui/open-webui:0.6.41
+    network_mode: bridge
     ports:
       - "3040:8080"
     env_file:
