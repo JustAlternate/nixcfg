@@ -10,7 +10,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    ./shared/desktop/hyprland
+    ../shared/desktop/hyprland
     ../shared/sops.nix
     ../shared/desktop/dev/docker/default.nix
     ../shared/optimise.nix
@@ -223,7 +223,7 @@
           "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
         ];
       };
-      extraConfig = lib.mkMerge ''
+      extraConfig = ''
         # Monitor settings
         monitor=eDP-1,1920x1080,0x1080,1
         monitor=HDMI-A-1,1920x1080,0x0,1
