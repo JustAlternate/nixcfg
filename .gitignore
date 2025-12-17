@@ -1,11 +1,11 @@
 # Compiled files
 .terraform/
 secrets.tfvars
+secrets.auto.tfvars
 .terraform.*
 .terraform./**
 *.tfstate*
 *.tfstate.backup
 *.tfstate.lock.info
 terraform.tfvars
-main.tf
 .env

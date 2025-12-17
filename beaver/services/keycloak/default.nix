@@ -17,6 +17,7 @@ _: {
       forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:3127";
+        proxyWebsockets = true;
       };
     };
   };
