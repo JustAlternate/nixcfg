@@ -42,7 +42,6 @@ with lib;
           cd = "z";
           ssh = "kitten ssh";
           nvimf = "nvim $(fzf)";
-          vibe = "nix run github:mistralai/mistral-vibe";
         };
         history = {
           size = 10000;
