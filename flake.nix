@@ -33,6 +33,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mistral-vibe.url = "github:JustAlternate/mistral-vibe";
+
     dawarich-pr.url = "github:diogotcorreia/nixpkgs/dawarich-init";
 
   };
@@ -46,6 +48,7 @@
       home-manager,
       nix-darwin,
       dawarich-pr,
+      mistral-vibe,
       ...
     }@inputs:
     let

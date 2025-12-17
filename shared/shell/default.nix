@@ -83,6 +83,7 @@
     # Text editors
     vim
     inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   xdg.configFile."io.datasette.llm/aliases.json".source = ./aliases.json;
