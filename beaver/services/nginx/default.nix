@@ -7,7 +7,6 @@
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
-      proxyTimeout = "1000s";
 
       virtualHosts = {
         "justalternate.com" = {
