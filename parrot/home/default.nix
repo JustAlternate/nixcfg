@@ -100,20 +100,6 @@
     };
   };
 
-  services = {
-    activitywatch = {
-      enable = true;
-      package = pkgs.aw-server-rust;
-      watchers = {
-        awatcher = {
-          package = pkgs.awatcher;
-          settings = {
-            poll_time = 3;
-          };
-        };
-      };
-    };
-  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
