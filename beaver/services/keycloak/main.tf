@@ -35,11 +35,11 @@ resource "keycloak_oidc_identity_provider" "github_sso" {
   authorization_url                       = "https://github.com/login/oauth/authorize"
   token_url                               = "https://github.com/login/oauth/access_token"
   backchannel_supported                   = false
-  trust_email                             = true
+  trust_email                             = false
   store_token                             = false
   sync_mode                               = "IMPORT"
   first_broker_login_flow_alias           = keycloak_authentication_flow.no_signup_social_sso.alias
-  default_scopes                          = "openid"
+  default_scopes                          = ""
   accepts_prompt_none_forward_from_client = false
 }
 
@@ -53,6 +53,18 @@ resource "keycloak_openid_client" "open_webui" {
   standard_flow_enabled = true
   valid_redirect_uris   = ["https://ai.justalternate.com/oauth/oidc/callback"]
   web_origins           = ["https://ai.justalternate.com"]
+}
+
+resource "keycloak_openid_client" "opencloud" {
+  realm_id    = keycloak_realm.sso.id
+  client_id   = var.opencloud_client_id
+  name        = "opencloud"
+  enabled     = true
+  access_type = "CONFIDENTIAL"
+  # client_secret         = var.open_webui_client_secret
+  standard_flow_enabled = true
+  valid_redirect_uris   = ["https://cloud.justalternate.com/oauth/oidc/callback"]
+  web_origins           = ["https://cloud.justalternate.com"]
 }
 
 resource "keycloak_openid_client" "grafana" {
@@ -81,7 +93,7 @@ resource "keycloak_oidc_identity_provider" "github_master" {
   store_token                             = false
   sync_mode                               = "IMPORT"
   first_broker_login_flow_alias           = keycloak_authentication_flow.no_signup_social_master.alias
-  default_scopes                          = "openid"
+  default_scopes                          = ""
   accepts_prompt_none_forward_from_client = false
 }
 
@@ -128,6 +140,11 @@ variable "github_sso_client_secret" {
 
 variable "open_webui_client_id" {
   description = "Client ID for open-webui"
+  type        = string
+}
+
+variable "opencloud_client_id" {
+  description = "Client ID for opencloud"
   type        = string
 }
 
