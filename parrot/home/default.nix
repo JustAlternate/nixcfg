@@ -51,8 +51,7 @@
         xfce.thunar-volman
 
         # Browser
-        chromium
-        firefox
+        librewolf
 
         # Other gui apps
         thunderbird

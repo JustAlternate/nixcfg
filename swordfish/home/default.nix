@@ -51,8 +51,8 @@
         gparted
 
         # Browser
-        chromium
         firefox
+        librewolf
 
         # Other gui apps
         thunderbird
