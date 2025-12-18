@@ -7,6 +7,7 @@
     ./kitty.nix
     ../fastfetch.nix
     ./dunst.nix
+    ./activitywatch.nix
   ];
 
   home.packages = with pkgs; [
