@@ -52,6 +52,7 @@
 
         # Browser
         librewolf
+        chromium
 
         # Other gui apps
         thunderbird
@@ -78,6 +79,7 @@
         steam
         mgba
         prismlauncher
+        master.osu-lazer-bin
 
         ## Drivers/Requirements
         meson
@@ -90,6 +92,7 @@
         upower
         texliveFull
         wkhtmltopdf
+        libreoffice-qt-fresh
       ]
       ++ (import ./../../shared/desktop/bin { inherit pkgs; });
 
