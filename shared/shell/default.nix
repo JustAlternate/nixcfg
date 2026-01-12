@@ -73,6 +73,8 @@
     sshfs
     sops
     pandoc
+    mermaid-filter
+    pandoc-katex
     asciiquarium
 
     ## Show-off
