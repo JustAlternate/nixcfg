@@ -53,6 +53,7 @@
         # Browser
         firefox
         librewolf
+        libreoffice-qt-fresh
 
         # Other gui apps
         thunderbird
@@ -84,6 +85,7 @@
         blueman
 
         # Games
+        ultrastardx
         lutris
         godot3
         steam
