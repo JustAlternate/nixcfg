@@ -3,9 +3,9 @@
   home = {
     packages = with pkgs; [
       poetry
-      # SDL2
-      # SDL2_image
-      # SDL2_gfx
+      SDL2
+      SDL2_image
+      SDL2_gfx
       (python3.withPackages (
         ps: with ps; [
           jupytext
@@ -23,9 +23,9 @@
           hypothesis
           ollama
           # jupyterlab
-          # pygame
+          pygame
           psutil
-          # pygame-sdl2
+          pygame-sdl2
           matplotlib
           numpy
           # opencv4
@@ -33,7 +33,7 @@
           pillow
           pip
           pipenv
-          # plotly
+          plotly
           requests
           # scipy
           # seaborn
@@ -49,6 +49,7 @@
           psycopg2
           pymysql
           # rdflib
+          tkinter
         ]
       ))
     ];
