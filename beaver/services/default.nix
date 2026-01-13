@@ -1,10 +1,9 @@
 _: {
   imports = [
     ./nginx # Web server, reverse proxy
-    # ./planka # selfhosted Kanban
     ./vaultwarden
-    # ./wireguard
-    ./openwebui # My personal llm ui
+    ./openwebui
+    ./opencloud
     ./mail
     ./monitoring
     ./dawarich
