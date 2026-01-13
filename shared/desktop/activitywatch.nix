@@ -2,7 +2,6 @@
 {
   services.activitywatch = {
     enable = true;
-    package = pkgs.aw-server-rust;
     watchers = {
       aw-watcher-afk = {
         package = pkgs.activitywatch;
@@ -11,8 +10,8 @@
           poll_time = 2;
         };
       };
-      aw-watcher-window-wayland = {
-        package = pkgs.aw-watcher-window-wayland;
+      aw-watcher-window = {
+        package = pkgs.aw-watcher-window;
         settings = {
           poll_time = 1;
         };
