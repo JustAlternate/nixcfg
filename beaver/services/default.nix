@@ -9,5 +9,6 @@ _: {
     ./dawarich
     ./minecraft
     ./keycloak
+    ./headscale
   ];
 }
