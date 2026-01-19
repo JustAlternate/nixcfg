@@ -15,15 +15,4 @@ nix shell nixpkgs#gnumake --command sh -c "cd src && make"
 **Testing & Validation**
 - **Never run scripts or application or long commands autonomously.**
 - **Ask the user to execute and provide feedback** (e.g., error logs, recommendations).
-
-# **Planning Phase**
-**Activation**
-- **Only proceed to planning if the user explicitly requests it** (e.g., by typing `plan`, `brainstorm`).
-- **Do not write code during planning.** Focus on:
-1. **Exploring the codebase** (e.g., `ls`, `cat`, `tree`).
-2. **Imagining ideas based on the subject and seen code (the user want to brainstorm with you before writing code)**
-3. **Generating a structured plan**
-
-**User Approval**
-- **Present the plan as a numbered list**
-- **Ask user if you can proceed the implementation for next prompt**
+- dont feel obligated to run tests, I will do it
