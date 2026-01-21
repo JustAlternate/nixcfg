@@ -47,7 +47,7 @@
     xserver = {
       # Load nvidia driver for Xorg and Wayland
       videoDrivers = [
-        # "nvidia"
+        # "nvidia" #disable nvidia here to save on battery
         "amdgpu"
       ];
     };
