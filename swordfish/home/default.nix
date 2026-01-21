@@ -15,20 +15,8 @@
     stateVersion = "24.11";
 
     packages = with pkgs; [
-      grimblast
       gparted
-      firefox
-      mpv
-      youtube-music
-      ffmpeg
-      imagemagick
-      satty
-      bemoji
-      ultrastardx
-      lutris
-      godot3
       appimage-run
-      pokemmo-installer
       opentabletdriver
       lego
     ];

@@ -11,7 +11,7 @@
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
-      busybox
+      coreutils-full
       git
       vim
     ];

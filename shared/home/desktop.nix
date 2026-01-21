@@ -1,7 +1,6 @@
 { pkgs, ... }:
 let
   desktopCore = import ../packages/desktop-core.nix { inherit pkgs; };
-  browsers = import ../packages/browsers.nix { inherit pkgs; };
   productivity = import ../packages/productivity.nix { inherit pkgs; };
   media = import ../packages/media.nix { inherit pkgs; };
   gaming = import ../packages/gaming.nix { inherit pkgs; };
@@ -20,12 +19,7 @@ in
   xdg.configFile."hypr/pyprland.json".source = ../desktop/hyprland/pyprland.json;
 
   home.packages =
-    desktopCore
-    ++ browsers
-    ++ productivity
-    ++ media
-    ++ gaming
-    ++ (import ../desktop/bin { inherit pkgs; });
+    desktopCore ++ productivity ++ media ++ gaming ++ (import ../desktop/bin { inherit pkgs; });
 
   home.sessionVariables = {
     EDITOR = "nvim";
