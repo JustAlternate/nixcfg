@@ -5,5 +5,8 @@ with pkgs;
   vlc
   obs-studio
   mupdf
+  mpv
+  imagemagick
+  satty
   feh
 ]

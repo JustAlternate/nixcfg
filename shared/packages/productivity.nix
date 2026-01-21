@@ -7,4 +7,5 @@ with pkgs;
   libreoffice-qt-fresh
   texliveFull
   vesktop
+  librewolf
 ]

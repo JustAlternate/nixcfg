@@ -19,9 +19,6 @@
     packages = with pkgs; [
       chromium
       mousam
-      wkhtmltopdf
-      godot_4
-      gdtoolkit_4
       steam-run-free
       upower
     ];
