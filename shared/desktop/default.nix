@@ -7,13 +7,15 @@
     ./kitty.nix
     ../fastfetch.nix
     ./dunst.nix
-    ./activitywatch.nix
   ];
 
   home.packages = with pkgs; [
     birdtray
     patray
     fractal
+    wireguard-ui
+    wg-netmanager
+    wireguard-tools
 
     # Theming
     numix-icon-theme-circle

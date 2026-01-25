@@ -16,7 +16,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      busybox
+      coreutils-full
       git
       home-manager
       podman
