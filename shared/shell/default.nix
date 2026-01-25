@@ -86,6 +86,7 @@
     vim
     inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
+    master.opencode
   ];
 
   xdg.configFile."io.datasette.llm/aliases.json".source = ./aliases.json;
