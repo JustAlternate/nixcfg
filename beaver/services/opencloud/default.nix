@@ -3,7 +3,6 @@
   services = {
     opencloud = {
       enable = true;
-      user = "JustAlternate";
       url = "https://cloud.justalternate.com";
       stateDir = "/var/lib/opencloud/";
       port = 9200;
