@@ -34,9 +34,6 @@
     };
 
     mistral-vibe.url = "github:mistralai/mistral-vibe";
-
-    dawarich-pr.url = "github:diogotcorreia/nixpkgs/dawarich-init";
-
   };
 
   outputs =
@@ -47,7 +44,6 @@
       master-nixpkgs,
       home-manager,
       nix-darwin,
-      dawarich-pr,
       mistral-vibe,
       ...
     }@inputs:
@@ -69,10 +65,6 @@
           };
         })
       ];
-      dawarichOverlay = _: prev: {
-        inherit (dawarich-pr.legacyPackages.${prev.system}) dawarich;
-      };
-
     in
     {
       # NixOS configurations
@@ -124,7 +116,7 @@
             ./beaver/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays ++ [ dawarichOverlay ]; }
+            { nixpkgs.overlays = nixos-overlays ++ [ ]; }
             {
               home-manager = {
                 useGlobalPkgs = true;
