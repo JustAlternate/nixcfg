@@ -33,7 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mistral-vibe.url = "github:JustAlternate/mistral-vibe";
+    mistral-vibe.url = "github:mistralai/mistral-vibe";
 
     dawarich-pr.url = "github:diogotcorreia/nixpkgs/dawarich-init";
 
