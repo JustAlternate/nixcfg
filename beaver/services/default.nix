@@ -3,11 +3,11 @@ _: {
     ./nginx # Web server, reverse proxy
     ./vaultwarden
     ./openwebui
-    ./opencloud
+    # ./opencloud
     ./mail
     ./monitoring
     ./dawarich
-    ./minecraft
+    # ./minecraft
     ./keycloak
     ./headscale
   ];
