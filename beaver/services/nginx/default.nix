@@ -19,13 +19,13 @@
             root = "/var/www/";
           };
         };
-      };
-      "polynovel.justalternate.com" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:3333";
-          extraConfig = "proxy_pass_header Authorization;";
+        "polynovel.justalternate.com" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3333";
+            extraConfig = "proxy_pass_header Authorization;";
+          };
         };
       };
     };
