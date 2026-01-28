@@ -13,6 +13,9 @@
     birdtray
     patray
     fractal
+    wireguard-ui
+    wg-netmanager
+    wireguard-tools
 
     # Theming
     numix-icon-theme-circle

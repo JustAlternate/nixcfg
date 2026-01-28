@@ -1,18 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    ../../shared/shell
-    ../../shared/ssh.nix
-    ../../shared/git.nix
-    ../../shared/desktop/dev
-    ../../shared/desktop
+    ../../shared/home/desktop.nix
   ];
 
-  desktop.enable = true;
-
   dconf.enable = true;
-
-  xdg.configFile."hypr/pyprland.json".source = ../../shared/desktop/hyprland/pyprland.json;
 
   home = {
     # This value determines the Home Manager release that your configuration is
@@ -24,85 +16,11 @@
     # release notes.
     stateVersion = "24.05";
 
-    packages =
-      with pkgs;
-      [
-        # Desktop
-        swww
-        dunst
-        libnotify
-        brightnessctl
-        grim
-        slurp
-        pyprland
-        hyprland-protocols
-        hyprcursor
-
-        # Sound
-        pwvucontrol
-        pulseaudio
-
-        # Networking
-        networkmanagerapplet
-        networkmanager
-
-        # File managers
-        xfce.thunar
-        xfce.thunar-volman
-
-        # Browser
-        librewolf
-        chromium
-
-        # Other gui apps
-        thunderbird
-        mousam
-        bitwarden-desktop
-        eduvpn-client
-        gimp
-        vlc
-        obs-studio
-        mupdf
-        feh
-
-        # Social media
-        vesktop
-
-        # Bluetooth
-        bluez
-        blueman
-
-        # Games
-        godot_4
-        gdtoolkit_4
-        steam-run-free
-        steam
-        mgba
-        prismlauncher
-        master.osu-lazer-bin
-
-        ## Drivers/Requirements
-        meson
-        wine
-        winetricks
-        wine-wayland
-        zlib
-
-        # Miscs
-        upower
-        texliveFull
-        wkhtmltopdf
-        libreoffice-qt-fresh
-      ]
-      ++ (import ./../../shared/desktop/bin { inherit pkgs; });
-
-    # For env var
-    sessionVariables = {
-      EDITOR = "nvim";
-      NIX_AUTO_RUN = 1;
-    };
+    packages = with pkgs; [
+      chromium
+      mousam
+      steam-run-free
+      upower
+    ];
   };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
