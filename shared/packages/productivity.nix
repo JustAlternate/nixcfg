@@ -8,4 +8,5 @@ with pkgs;
   texliveFull
   vesktop
   librewolf
+  chromium
 ]

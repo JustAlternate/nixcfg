@@ -9,4 +9,5 @@ with pkgs;
   imagemagick
   satty
   feh
+  audacity
 ]
