@@ -10,9 +10,14 @@ _: {
       dynamic_background_opacity = true;
       enable_audio_bell = false;
       background_opacity = "0.98";
+      clipboard_control = true;
+      write-clipboard = true;
+      write-primary = true;
+      read-clipboard = true;
+      read-primary = true;
     };
     extraConfig = ''
-      map ctrl+alt+n switch_tab_next
+      			map ctrl+alt+n switch_tab_next
     '';
   };
   programs.tmux = {
