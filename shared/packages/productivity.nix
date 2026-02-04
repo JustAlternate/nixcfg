@@ -6,7 +6,7 @@ with pkgs;
   eduvpn-client
   libreoffice-qt-fresh
   texliveFull
-  vesktop
+  unstable.vesktop
   librewolf
   chromium
 ]
