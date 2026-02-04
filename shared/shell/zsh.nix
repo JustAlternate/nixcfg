@@ -40,7 +40,6 @@ with lib;
           nixcfg = "cd ~/nixcfg";
           ls = "eza --color=auto --icons=always";
           cd = "z";
-          ssh = "kitten ssh";
           nvimf = "nvim $(fzf)";
         };
         history = {
