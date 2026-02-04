@@ -22,6 +22,7 @@
       podman
       podman-compose
       lego
+      ghostty.terminfo
     ];
   };
 
