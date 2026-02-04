@@ -52,6 +52,13 @@
           pymysql
           # rdflib
           tkinter
+          marimo
+          duckdb
+          altair
+          polars
+          pyarrow
+          sqlglot
+          nbformat
         ]
       ))
     ];

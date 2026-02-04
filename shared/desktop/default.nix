@@ -4,7 +4,7 @@
     ./rofi
     ./waybar
     ./pywal
-    ./kitty.nix
+    ./ghostty.nix
     ../fastfetch.nix
     ./dunst.nix
   ];
