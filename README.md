@@ -25,7 +25,7 @@ _click the image to go to the video_
 
 #### Desktop (swordfish and parrot)
 - DE: [Hyprland](https://hyprland.org/)
-- Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/)
+- Terminal: [Ghostty](https://ghostty.org/)
 - Bar: [Waybar](https://github.com/Alexays/Waybar)
 - File Manager: [yazi](https://yazi-rs.github.io/)
 - Editor: Neovim [justnixvim](https://github.com/JustAlternate/justnixvim)
