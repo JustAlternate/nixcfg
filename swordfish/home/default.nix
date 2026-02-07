@@ -19,6 +19,7 @@
       appimage-run
       opentabletdriver
       lego
+      nvtopPackages.amd
     ];
   };
 }
