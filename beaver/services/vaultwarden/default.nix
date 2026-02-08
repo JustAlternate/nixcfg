@@ -2,6 +2,8 @@
 {
   services = {
     vaultwarden = {
+      package = pkgs.unstable.vaultwarden;
+      webVaultPackage = pkgs.unstable.vaultwarden.webvault;
       enable = true;
       # backupDir = "/root/backup/vaultwarden";
       config = {
