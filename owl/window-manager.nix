@@ -1,19 +1,6 @@
 { pkgs, ... }:
 {
 
-  #TODO: implements aerospace-scratchpad
-  # environment.systemPackages = with pkgs; [
-  #   # Requires custom packages
-  #   copkgs.aerospace-scratchpad
-  # ];
-
-  services.jankyborders = {
-    enable = true;
-    width = 3.0;
-    active_color = "#FF0000"; # Red border for focused windows
-    inactive_color = "#CCCCCC"; # Gray border for unfocused windows
-  };
-
   services.aerospace = {
     enable = true;
     package = pkgs.aerospace;
