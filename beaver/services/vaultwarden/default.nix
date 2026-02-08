@@ -1,4 +1,5 @@
-_: {
+{ config, pkgs, ... }:
+{
   services = {
     vaultwarden = {
       enable = true;
@@ -8,6 +9,13 @@ _: {
         rocketAddress = "127.0.0.1";
         rocketPort = 8222;
         signupsAllowed = false; # Never put this to true
+        ssoEnabled = true;
+        ssoAuthority = "https://auth.justalternate.com/realms/sso";
+        ssoScopes = "email profile";
+        ssoPkce = true;
+        ssoClientId = "vaultwarden";
+        ssoSignupsMatchEmail = true;
+        ssoOnly = true;
       };
       environmentFile = "/run/secrets/VAULTWARDEN/ENV";
     };
