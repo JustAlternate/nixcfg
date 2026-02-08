@@ -37,58 +37,10 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
 
-**Firewall Configuration:**
-| Port | Protocol | Purpose |
-|------|----------|---------|
-| 80 | TCP | HTTP → redirects to HTTPS |
-| 443 | TCP | HTTPS (Nginx reverse proxy for all web services) |
-| 8443 | TCP | SSH (custom port beacause school is blocking port 22 lol) |
-| 9111 | TCP | Prometheus Node Exporter (metrics collection) |
-
-## Installation
-
-Enter a shell with git and vim.
-```
-nix-shell -p git vim
-```
-
-Clone the repository and enter it
-```
-git clone https://github.com/JustAlternate/nixcfg
-cd nixcfg
-```
-
-Create your very own host folder
-```
-mkdir <myMachineName>
-```
-
-Create your hardware config
-```
-nixos-generate-config --show-hardware-config > <myMachineName>/hardware-configuration.nix
-```
-
-Modify your host configuration by importing different modules
-```
-vim <myMachineName>/configuration.nix
-```
-
-Modify the flake.nix to add your machine
-```
-vim flake.nix
-```
-
-Temporary activate flakes experimental features and rebuild switch
-```
-NIX_CONFIG="experimental-features = nix-command flakes"
-sudo nixos-rebuild switch --flake .#<myMachineName>Nixos
-```
-
-## Architecture
-
-### Infrastructure Overview (Beaver VPS)
+##### Infrastructure Overview (Beaver VPS)
 
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph Internet["🌐 Internet"]
         Users["Users"]
@@ -148,6 +100,44 @@ flowchart LR
     Sops -->|"Secrets"| Mail
     Sops -->|"Secrets"| Keycloak
     Sops -->|"Secrets"| Grafana
+```
+## Installation
+
+Enter a shell with git and vim.
+```
+nix-shell -p git vim
+```
+
+Clone the repository and enter it
+```
+git clone https://github.com/JustAlternate/nixcfg
+cd nixcfg
+```
+
+Create your very own host folder
+```
+mkdir <myMachineName>
+```
+
+Create your hardware config
+```
+nixos-generate-config --show-hardware-config > <myMachineName>/hardware-configuration.nix
+```
+
+Modify your host configuration by importing different modules
+```
+vim <myMachineName>/configuration.nix
+```
+
+Modify the flake.nix to add your machine
+```
+vim flake.nix
+```
+
+Temporary activate flakes experimental features and rebuild switch
+```
+NIX_CONFIG="experimental-features = nix-command flakes"
+sudo nixos-rebuild switch --flake .#<myMachineName>Nixos
 ```
 
 ## Advanced Install process (optional)
