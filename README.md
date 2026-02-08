@@ -21,19 +21,17 @@ _click the image to go to the video_
 
 (Im no longer using eww nor pywalfox nor conky for my rice)
 
-
-
 ### Features
 
 #### Desktop (swordfish and parrot)
 - DE: [Hyprland](https://hyprland.org/)
-- Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/)
+- Terminal: [Ghostty](https://ghostty.org/)
 - Bar: [Waybar](https://github.com/Alexays/Waybar)
 - File Manager: [yazi](https://yazi-rs.github.io/)
 - Editor: Neovim [justnixvim](https://github.com/JustAlternate/justnixvim)
 - Fetcher: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - Font: [nerdfonts](https://www.nerdfonts.com/)
-- Launcher: [rofi-wayland](https://github.com/A417ya/rofi-wayland)
+- Launcher: [rofi](https://github.com/A417ya/rofi-wayland)
 - Browser: [firefox](https://www.mozilla.org/en-US/firefox/)
 - Discord: [Vesktop](https://github.com/Vencord/Vesktop)
 - Emoji wheel: rofi + [bemoji](https://github.com/marty-oehme/bemoji)
@@ -41,17 +39,15 @@ _click the image to go to the video_
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 
 #### VPS (beaver)
+- Identity management : [keycloak](https://keycloak.org)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
-- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana)
+- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
 - Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
 - Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
 - Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
-- Kanban: [Planka](https://github.com/plankanban/planka)
-- Cloud storage server: [Owncloud](https://owncloud.com/)
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
-- AI frontend : [openwebui](https://github.com/open-webui/open-webui)
+- AI frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
-- Selfhosted CI/CD runner: [github-runners](https://github.com/actions/runner)
 - Minecraft server: [docker-minecraft](https://github.com/itzg/docker-minecraft-server)
 - S3 auto backup service: made by myself
 

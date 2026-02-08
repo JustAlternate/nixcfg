@@ -1,21 +1,10 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../shared/shell/zsh.nix
-    ../../shared/ssh.nix
-    ../../shared/git.nix
-    ../../shared/desktop/dev
-    ../../shared/desktop
+    ../../shared/home/desktop.nix
   ];
 
-  desktop.enable = true;
-
-  wayland.windowManager.hyprland.extraConfig = ''
-    env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
-    # Monitor settings
-    monitor=eDP-1, 1920x1080, 0x1080, 1
-    monitor=HDMI-A-1, 1920x1080, 0x0, 1
-  '';
+  dconf.enable = true;
 
   home = {
     # This value determines the Home Manager release that your configuration is
@@ -27,95 +16,11 @@
     # release notes.
     stateVersion = "24.05";
 
-    packages =
-      with pkgs;
-      [
-        # Desktop
-        swww
-        dunst
-        libnotify
-        brightnessctl
-        grimblast
-
-        # Sound
-        pwvucontrol
-        pulseaudio
-
-        # Networking
-        networkmanagerapplet
-        networkmanager
-
-        # File managers
-        xfce.thunar
-        xfce.thunar-volman
-        yazi
-
-        # Browser
-        chromium
-        firefox-wayland
-
-        # Other gui apps
-        thunderbird
-        mousam
-        bitwarden-desktop
-
-        # Music
-        mpv
-        youtube-music
-
-        # Video
-        ffmpeg
-        vlc
-        obs-studio
-
-        # Image
-        imagemagick
-        mupdf
-        feh
-        gimp
-        satty
-
-        # Social media
-        vesktop
-        bemoji
-
-        # Bluetooth
-        bluez
-        blueman
-
-        # Games
-        godot_4
-        gdtoolkit_4
-        steam-run-free
-        steam
-        mgba
-        ryujinx
-
-        ## Drivers/Requirements
-        ckb-next
-        meson
-        wine
-        winetricks
-        wine-wayland
-        zlib
-
-        # Miscs
-        cpu-x
-        marp-cli
-        upower
-
-        texliveFull
-        wkhtmltopdf
-      ]
-      ++ (import ./../../shared/desktop/bin { inherit pkgs; });
-
-    # For env var
-    sessionVariables = {
-      EDITOR = "nvim";
-      NIX_AUTO_RUN = 1;
-    };
+    packages = with pkgs; [
+      chromium
+      mousam
+      steam-run-free
+      upower
+    ];
   };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

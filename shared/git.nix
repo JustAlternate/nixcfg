@@ -13,7 +13,7 @@ with lib;
     {
       programs.git = {
         enable = true;
-        extraConfig = {
+        settings = {
           branch = {
             autoSetupMerge = "simple";
             autoSetupRebase = "always";
@@ -28,15 +28,23 @@ with lib;
 
     (mkIf config.git.work.enable {
       programs.git = {
-        userName = "JustAlternateIDZ";
-        userEmail = "loic.weber@iadvize.com";
+        settings = {
+          user = {
+            name = "JustAlternateIDZ";
+            email = "loic.weber@iadvize.com";
+          };
+        };
       };
     })
 
     (mkIf (!config.git.work.enable) {
       programs.git = {
-        userName = "JustAlternate";
-        userEmail = "loicw@justalternate.com";
+        settings = {
+          user = {
+            name = "JustAlternate";
+            email = "loicw@justalternate.com";
+          };
+        };
       };
     })
   ];

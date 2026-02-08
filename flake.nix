@@ -3,7 +3,7 @@
 
   inputs = {
     # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
     unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     master-nixpkgs.url = "github:nixos/nixpkgs/master";
@@ -12,7 +12,12 @@
 
     # home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,6 +32,8 @@
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mistral-vibe.url = "github:mistralai/mistral-vibe";
   };
 
   outputs =
@@ -37,6 +44,7 @@
       master-nixpkgs,
       home-manager,
       nix-darwin,
+      mistral-vibe,
       ...
     }@inputs:
     let
@@ -62,6 +70,7 @@
       # NixOS configurations
       nixosConfigurations = {
         parrotNixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           inherit system;
           modules = [
             ./parrot/configuration.nix
@@ -81,6 +90,7 @@
           ];
         };
         swordfishNixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           inherit system;
           modules = [
             ./swordfish/configuration.nix
@@ -100,12 +110,13 @@
           ];
         };
         beaverNixos = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           system = systemArm;
           modules = [
             ./beaver/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays; }
+            { nixpkgs.overlays = nixos-overlays ++ [ ]; }
             {
               home-manager = {
                 useGlobalPkgs = true;

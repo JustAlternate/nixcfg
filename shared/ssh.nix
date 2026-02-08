@@ -2,18 +2,17 @@
 with lib;
 {
   options.ssh.work.enable = mkEnableOption "work ssh profile";
-
   config = mkMerge [
     {
       programs.ssh = {
         enable = true;
-        addKeysToAgent = "yes";
         matchBlocks = {
           "beaver" = {
             # justalternate.com
             hostname = "195.201.116.51";
             user = "root";
             identityFile = "~/.ssh/id_ed25519";
+            addKeysToAgent = "yes";
           };
           "geckoNixos1" = {
             # RPI3b+
@@ -21,6 +20,7 @@ with lib;
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
+            addKeysToAgent = "yes";
           };
           "geckoNixos2" = {
             # RPI4B
@@ -28,6 +28,7 @@ with lib;
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
+            addKeysToAgent = "yes";
           };
           "ocelot" = {
             #batocera
@@ -35,11 +36,13 @@ with lib;
             user = "root";
             identityFile = "~/.ssh/id_ed25519";
             port = 22;
+            addKeysToAgent = "yes";
           };
           "github.com" = {
             user = "git";
             identityFile = "~/.ssh/id_ed25519";
             forwardAgent = true;
+            addKeysToAgent = "yes";
           };
         };
       };
