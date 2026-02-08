@@ -10,10 +10,8 @@
         443
         8443
         9111
-        3030
       ];
       allowedUDPPorts = [
-        24454
       ];
       trustedInterfaces = [ "podman1" ];
     };
