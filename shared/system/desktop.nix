@@ -80,8 +80,6 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-
-    ollama.enable = true;
   };
 
   console.keyMap = "fr";

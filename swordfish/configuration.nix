@@ -32,11 +32,8 @@
 
     ollama = {
       enable = true;
-      acceleration = "rocm";
-      package = pkgs.ollama;
-      environmentVariables = {
-        HSA_OVERRIDE_GFX_VERSION = "10.3.0";
-      };
+      package = pkgs.ollama-rocm;
+      rocmOverrideGfx = "10.3.0";
     };
   };
 
