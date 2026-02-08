@@ -31,6 +31,13 @@
     pkgs.colima
   ];
 
+  homebrew.enable = false;
+
+  environment.systemPath = [
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+  ];
+
   # Create /etc/zshrc that loads the nix-darwin environment.
   # programs.zsh.enable = true;
 
