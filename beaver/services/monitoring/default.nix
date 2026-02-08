@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   services = {
     promtail = {
@@ -31,6 +31,20 @@
               {
                 source_labels = [ "__journal__systemd_unit" ];
                 target_label = "unit";
+              }
+            ];
+            pipeline_stages = [
+              {
+                drop = {
+                  source = "message";
+                  expression = ".*(open\\(\\).*).*";
+                };
+              }
+              {
+                drop = {
+                  source = "message";
+                  expression = ".*SSL_read\\(\\) failed.*";
+                };
               }
             ];
           }
@@ -109,12 +123,31 @@
       enable = true;
       settings = {
         analytics.reporting_enabled = false;
+        auth = {
+          disable_login_form = true;
+        };
         server = {
           http_addr = "127.0.0.1";
           http_port = 3060;
           domain = "monitoring.justalternate.com";
           serve_from_sub_path = true;
+          root_url = "https://monitoring.justalternate.com";
         };
+        "auth.generic_oauth" = lib.mkForce {
+          enabled = true;
+          name = "Keycloak-OAuth";
+          allow_sign_up = true;
+          client_id = "grafana";
+          client_secret = builtins.readFile config.sops.secrets."SSO/GRAFANA_CLIENT_SECRET".path;
+          auth_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/auth";
+          token_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/token";
+          role_attribute_path = "\"'Admin'\"";
+          scopes = "openid email profile";
+        };
+        users = {
+          allow_sign_up = false;
+        };
+        security.disable_initial_admin_creation = true;
       };
     };
     prometheus = {
@@ -135,6 +168,17 @@
           static_configs = [
             {
               targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+            }
+          ];
+        }
+        {
+          job_name = "minecraft";
+          static_configs = [
+            {
+              targets = [ "localhost:9940" ];
+              labels = {
+                server_name = "polytech";
+              };
             }
           ];
         }

@@ -8,35 +8,57 @@
       SDL2_gfx
       (python3.withPackages (
         ps: with ps; [
+          jupytext
+          notebook
+          sentencepiece
           flask
+          keyboard
+          # pyautogui
+          python313Packages.torchWithRocm
+          python313Packages.torchvision
+          # sklearn-compat
+          accelerate
+          patool
+          einops
           requests
           mysql-connector
           hypothesis
+          ollama
+          # jupyterlab
           pygame
           psutil
           pygame-sdl2
-          psutil
           matplotlib
           numpy
-          opencv4
+          # opencv4
           pandas
           pillow
           pip
           pipenv
           plotly
-          pytorch
           requests
-          scipy
-          seaborn
+          # scipy
+          # seaborn
           transformers
           virtualenv
-          jupyterlab
-          scikit-image
-          ipympl
+          # scikit-image
+          # ipympl
+          # scikit-learn
+          # networkx
           boto3
+          # pyvis
+          # nltk
           psycopg2
           pymysql
-          rdflib
+          # rdflib
+          tkinter
+          marimo
+          duckdb
+          altair
+          polars
+          pyarrow
+          sqlglot
+          nbformat
         ]
       ))
     ];

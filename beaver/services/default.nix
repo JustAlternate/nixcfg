@@ -1,16 +1,14 @@
 _: {
   imports = [
     ./nginx # Web server, reverse proxy
-    ./planka # selfhosted Kanban
     ./vaultwarden
-    ./openwebui # My personal llm ui
-    ./owncloud # selhosted google drive equivalent
+    ./openwebui
+    # ./opencloud
     ./mail
-    ./minecraft
     ./monitoring
-    # ./action-runner
-    ./JustVPN
-    ./gh-explorer
     ./dawarich
+    # ./minecraft
+    ./keycloak
+    ./headscale
   ];
 }
