@@ -8,19 +8,6 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - owl: My arm processor Mac M1.
 - gecko: My raspberry py configs (WIP)
 
-## My very pywal centric NixOS Hyprland rice
-
-(For both swordfish and parrot)
-
-![](./assets/20250508-11:52:59.png)
-
-### Video Showcase [11 Aug 2024] (slightly outdated)
-
-[![video showcase](https://img.youtube.com/vi/M6VRL6bqdks/0.jpg)](https://www.youtube.com/watch?v=M6VRL6bqdks)
-_click the image to go to the video_
-
-(Im no longer using eww nor pywalfox nor conky for my rice)
-
 ### Features
 
 #### Desktop (swordfish and parrot)
@@ -39,17 +26,24 @@ _click the image to go to the video_
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 
 #### VPS (beaver)
-- Identity management : [keycloak](https://keycloak.org)
+- Identity management : [keycloak](https://keycloak.org) (with github provider)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
 - Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
 - Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
 - Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
 - Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
-- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
 - AI frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
-- Minecraft server: [docker-minecraft](https://github.com/itzg/docker-minecraft-server)
-- S3 auto backup service: made by myself
+- Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
+
+**Firewall Configuration:**
+| Port | Protocol | Purpose |
+|------|----------|---------|
+| 80 | TCP | HTTP → redirects to HTTPS |
+| 443 | TCP | HTTPS (Nginx reverse proxy for all web services) |
+| 8443 | TCP | SSH (custom port beacause school is blocking port 22 lol) |
+| 9111 | TCP | Prometheus Node Exporter (metrics collection) |
 
 ## Installation
 
@@ -88,6 +82,72 @@ Temporary activate flakes experimental features and rebuild switch
 ```
 NIX_CONFIG="experimental-features = nix-command flakes"
 sudo nixos-rebuild switch --flake .#<myMachineName>Nixos
+```
+
+## Architecture
+
+### Infrastructure Overview (Beaver VPS)
+
+```mermaid
+flowchart LR
+    subgraph Internet["🌐 Internet"]
+        Users["Users"]
+    end
+
+    subgraph Beaver["🖥️ Beaver VPS "]
+        subgraph Network["🕸️ Network Layer"]
+            Firewall["🔥 UFW Firewall<br/>TCP: 80, 443, 8443, 9111"]
+            Nginx["🌐 Nginx<br/>Reverse Proxy + SSL"]
+        end
+
+        subgraph Auth["🔐 Identity Layer"]
+            Keycloak["Keycloak SSO<br/>(auth.justalternate.com)"]
+        end
+
+        subgraph Monitoring["📊 Observability Stack"]
+            Promtail["Promtail (Log Agent)"]
+            Loki["Loki (Log Aggregation)"]
+            Prometheus["Prometheus (Metrics)"]
+            NodeExporter["Node Exporter"]
+            Grafana["Grafana<br/>(monitoring.justalternate.com)"]
+        end
+
+        subgraph Services["🚀 Self-Hosted Services"]
+            Vaultwarden["Vaultwarden<br/>(Password Manager)"]
+            OpenWebUI["OpenWebUI<br/>(AI Frontend)"]
+            Mail["Simple NixOS Mail<br/>(Postfix + Dovecot)"]
+            Dawarich["Dawarich<br/>(GPS Tracking)"]
+            Static["Static Website"]
+        end
+
+        subgraph Security["🔒 Security Layer"]
+            Sops["SOPS<br/>(Secrets Management)"]
+            Fail2Ban["Fail2Ban<br/>(Intrusion Prevention)"]
+        end
+    end
+
+    Users -->|"HTTPS (443)"| Firewall
+    Users -->|"SSH (8443)"| Firewall
+    Firewall --> Nginx
+
+    Nginx -->|"SSO Auth"| Keycloak
+    Keycloak -->|"Protects"| Grafana
+    Keycloak -->|"Protects"| OpenWebUI
+    Keycloak -->|"Protects"| Vaultwarden
+
+    Nginx -->|"Proxy"| Mail
+    Nginx -->|"Proxy"| Dawarich
+    Nginx -->|"Proxy"| Static
+
+    Promtail -->|"Logs"| Loki
+    NodeExporter -->|"Metrics"| Prometheus
+    Loki --> Grafana
+    Prometheus --> Grafana
+
+    Sops -->|"Secrets"| Vaultwarden
+    Sops -->|"Secrets"| Mail
+    Sops -->|"Secrets"| Keycloak
+    Sops -->|"Secrets"| Grafana
 ```
 
 ## Advanced Install process (optional)
