@@ -25,6 +25,7 @@
       unstable.golangci-lint
       unstable.codex
       unstable.opencode
+      unstable.gh
       goreleaser
       docker
       docker-compose
@@ -52,8 +53,6 @@
     };
 
     sessionPath = [
-      "/opt/homebrew/bin"
-      "/opt/homebrew/sbin"
       "/opt/homebrew/opt/php@7.4/bin"
       "/opt/homebrew/opt/openjdk/bin"
       "$HOME/go/bin"
