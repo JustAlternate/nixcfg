@@ -8,47 +8,29 @@
     ./services
   ];
 
+  virtualisation.podman = {
+    enable = true;
+    autoPrune.enable = true;
+    dockerCompat = true;
+  };
+
   environment = {
     systemPackages = with pkgs; [
-      busybox
+      coreutils-full
       git
       home-manager
-      docker-client
-      docker-compose
+      podman
+      podman-compose
       lego
+      ghostty.terminfo
     ];
   };
 
   services = {
     fail2ban.enable = true;
-
-    # # sslh for ssh through https in order to get around school wifi ssh port 22 firewall
-    # sslh = {
-    #   enable = true;
-    #   listenAddresses = "0.0.0.0";
-    #   settings = {
-    #     protocols = [
-    #       {
-    #         host = "localhost";
-    #         name = "http";
-    #         port = "80";
-    #       }
-    #       # Redirect 443 https to 8443
-    #       {
-    #         host = "localhost";
-    #         name = "tls";
-    #         port = "8443";
-    #       }
-    #       {
-    #         host = "localhost";
-    #         name = "ssh";
-    #         port = "22";
-    #       }
-    #     ];
-    #   };
-    # };
     openssh.enable = true;
     openssh.settings = {
+      Port = 8443;
       PasswordAuthentication = false;
     };
   };

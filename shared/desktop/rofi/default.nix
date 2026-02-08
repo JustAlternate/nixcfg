@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     # Launchers
-    rofi-wayland
+    rofi
   ];
   xdg = {
     configFile = {

@@ -1,42 +1,35 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     ./hardware-configuration.nix
-    ../shared/sops.nix
-    ../shared/desktop/dev/docker/default.nix
-    ../shared/optimise.nix
-    ../shared/security.nix
+    ../shared/system/desktop.nix
   ];
 
-  environment = {
-    shells = with pkgs; [ zsh ];
-    systemPackages = with pkgs; [
-      busybox
-      git
-      vim
-    ];
-
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      GBM_BACKEND = "nvidia_drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      WLR_NO_HARDWARE_CURSORS = "1";
-      LIBVA_DRIVER_NAME = "nvidia";
-      XDG_SESSION_TYPE = "wayland";
-      __NV_PRIME_RENDER_OFFLOAD = "1";
-    };
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    GBM_BACKEND = "nvidia_drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    __NV_PRIME_RENDER_OFFLOAD = "1";
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # fonts:
-  fonts.packages = with pkgs; [ nerd-fonts.hack ];
 
   # Bootloader.
   boot = {
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    extraModprobeConfig = ''
+      # Avoid PCIe power‑save on MediaTek Wi‑Fi (prevents driver‑own‑failed loops)
+      options mt7921e disable_aspm=1
+      options mt76 disable_runtime_pm=1
+    '';
+
     loader = {
       grub = {
         enable = true;
@@ -50,65 +43,17 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-
-  # Enable networking
-  networking = {
-    networkmanager.enable = true;
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [
-        22
-        80
-        443
-      ];
-      allowedUDPPorts = [
-        53
-        67
-        68
-      ];
-    };
-  };
-
-  time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
   services = {
     xserver = {
-      xkb.layout = "fr";
-      xkb.variant = "";
-
       # Load nvidia driver for Xorg and Wayland
       videoDrivers = [
-        # "nvidia"
-        "amdvlk"
+        # "nvidia" #disable nvidia here to save on battery
+        "amdgpu"
       ];
     };
 
-    # sound using pipewire:
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-
-    dbus.enable = true;
     upower.enable = true;
+
     tlp = {
       enable = true;
       settings = {
@@ -118,14 +63,12 @@
         CPU_HWP_DYN_BOOST_ON_BAT = 0;
         AMDGPU_ABM_LEVEL_ON_BAT = 3;
         #Optional helps save long term battery health
-        START_CHARGE_THRESH_BAT0 = 70; # and bellow it starts to charge
+        START_CHARGE_THRESH_BAT0 = 75; # and bellow it starts to charge
         STOP_CHARGE_THRESH_BAT0 = 90; # and above it stops charging
+        RUNTIME_PM_BLACKLIST = "03:00.0";
       };
     };
   };
-
-  # Configure console keymap
-  console.keyMap = "fr";
 
   hardware = {
     # bluetooth:
@@ -133,12 +76,8 @@
 
     # Enable OpenGL
     graphics = {
-      enable = true;
-      enable32Bit = true;
-
       extraPackages = with pkgs; [
-        amdvlk
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };
@@ -182,23 +121,21 @@
     };
   };
 
-  xdg.portal = {
-    config.common.default = "*";
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
   programs = {
-    zsh.enable = true;
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
+    dconf.enable = true;
 
+    hyprland = {
+      settings = {
+        env = [
+          "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
+        ];
+      };
+      extraConfig = ''
+        # Monitor settings
+        monitor=eDP-1,1920x1080,0x1080,1
+        monitor=HDMI-A-1,1920x1080,0x0,1
+      '';
+    };
   };
 
   # This value determines the NixOS release from which the default

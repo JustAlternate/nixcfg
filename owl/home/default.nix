@@ -5,7 +5,7 @@
 {
   imports = [
     ../../shared/desktop/dev/database
-    ../../shared/shell/zsh.nix
+    ../../shared/shell
     ../../shared/ssh.nix
     ../../shared/git.nix
     ../../shared/fastfetch.nix
