@@ -14,8 +14,6 @@
           flask
           keyboard
           # pyautogui
-          python313Packages.torchWithRocm
-          python313Packages.torchvision
           # sklearn-compat
           accelerate
           patool
