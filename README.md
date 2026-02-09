@@ -3,12 +3,97 @@
 This repository contains the declaration of my systems running [Nix/NixOS](https://nixos.org/)
 
 - beaver: My VPS running NixOS and selfhosting services
-- swordfish: My NixOS desktop gaming station which I also use for intensive computation.
-- parrot: My NixOS semi gaming laptop which I mainly use for study and abroad.
-- owl: My arm processor Mac M1.
+- swordfish: My Desktop running NixOS desktop.
+- parrot: My Laptop running NixOS.
+- owl: My arm processor Mac M1 running [nix-darwin](https://github.com/nix-darwin/nix-darwin).
 - gecko: My raspberry py configs (WIP)
 
 ### Features
+
+#### VPS (beaver)
+- Identity management : [keycloak](https://keycloak.org) (with github provider)
+- Reverse proxy & web server: [nginx](https://nginx.org/en/)
+- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
+- Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
+- Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
+- Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
+- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
+- LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
+- Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
+- Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
+
+##### Infrastructure Overview (Beaver VPS)
+
+```mermaid
+flowchart LR
+    subgraph Internet["🌐 Internet"]
+        Users["Users"]
+        GitHub["GitHub"]
+        Cloudflare["Cloudflare<br/>(DNS)"]
+    end
+
+    subgraph Beaver["🖥️ Beaver VPS"]
+        
+        subgraph Network["🕸️ Network Layer"]
+            Firewall["🔥 UFW Firewall<br/>TCP: 443, 8443, 9111<br/>Mail: 25, 465, 587, 993"]
+            Nginx["🌐 Nginx<br/>Reverse Proxy + SSL"]
+        end
+
+        subgraph Security["🔒 Security Layer"]
+            Sops["SOPS<br/>(Secrets Management)"]
+        end
+
+        subgraph Services["🚀 Self-Hosted Services"]
+            Vaultwarden["Vaultwarden<br/>(Passwords)"]
+            OpenWebUI["OpenWebUI<br/>(LLM Frontend)"]
+            Mail["Simple NixOS Mail<br/>(Postfix/Dovecot)"]
+            Dawarich["Dawarich<br/>(GPS Tracking)"]
+
+            subgraph Monitoring["🔍 Monitoring"]
+                Promtail["Promtail (Logs)"]
+                Loki["Loki (Logs)"]
+                Prometheus["Prometheus (Metrics)"]
+                Grafana["Grafana<br/>"]
+            end
+
+            subgraph Auth["🔐 Identity Layer"]
+                Keycloak["Keycloak SSO<br/>"]
+            end
+        end
+    end
+
+    %% External Traffic
+    Users --> Cloudflare
+    Cloudflare -->|"HTTPS (443)"| Firewall
+    Users -->|"SSH (8443)"| Firewall
+    GitHub -->|"IdP"| Keycloak
+
+    %% Internal Routing
+    Firewall -->|"Proxy"| Nginx
+    Nginx -->|"Forward"| Services
+
+    Keycloak -->|"OIDC"| Grafana
+
+    %% Secrets Management
+    Sops -->|"Secret"| Vaultwarden
+    Sops -->|"Secret"| Mail
+    Sops -->|"Secret"| Keycloak
+    Sops -->|"Secret"| Grafana
+
+
+    %% Auth Flow
+    Keycloak -->|"OIDC"| OpenWebUI
+    Keycloak -->|"OIDC"| Dawarich
+    Keycloak -->|"OIDC"| Vaultwarden
+
+    Sops -->|"Secret"| Dawarich
+
+    %% Monitoring Flow
+    Promtail --> Loki
+    Loki --> Grafana
+    Prometheus --> Grafana
+
+```
 
 #### Desktop (swordfish and parrot)
 - DE: [Hyprland](https://hyprland.org/)
@@ -25,82 +110,6 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Music Visualizer: [cava](https://github.com/karlstav/cava)
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 
-#### VPS (beaver)
-- Identity management : [keycloak](https://keycloak.org) (with github provider)
-- Reverse proxy & web server: [nginx](https://nginx.org/en/)
-- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
-- Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
-- Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
-- Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
-- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
-- AI frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
-- Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
-- Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
-
-##### Infrastructure Overview (Beaver VPS)
-
-```mermaid
-%%{init: {'theme': 'dark'}}%%
-flowchart LR
-    subgraph Internet["🌐 Internet"]
-        Users["Users"]
-    end
-
-    subgraph Beaver["🖥️ Beaver VPS "]
-        subgraph Network["🕸️ Network Layer"]
-            Firewall["🔥 UFW Firewall<br/>TCP: 80, 443, 8443, 9111"]
-            Nginx["🌐 Nginx<br/>Reverse Proxy + SSL"]
-        end
-
-        subgraph Auth["🔐 Identity Layer"]
-            Keycloak["Keycloak SSO<br/>(auth.justalternate.com)"]
-        end
-
-        subgraph Monitoring["📊 Observability Stack"]
-            Promtail["Promtail (Log Agent)"]
-            Loki["Loki (Log Aggregation)"]
-            Prometheus["Prometheus (Metrics)"]
-            NodeExporter["Node Exporter"]
-            Grafana["Grafana<br/>(monitoring.justalternate.com)"]
-        end
-
-        subgraph Services["🚀 Self-Hosted Services"]
-            Vaultwarden["Vaultwarden<br/>(Password Manager)"]
-            OpenWebUI["OpenWebUI<br/>(AI Frontend)"]
-            Mail["Simple NixOS Mail<br/>(Postfix + Dovecot)"]
-            Dawarich["Dawarich<br/>(GPS Tracking)"]
-            Static["Static Website"]
-        end
-
-        subgraph Security["🔒 Security Layer"]
-            Sops["SOPS<br/>(Secrets Management)"]
-            Fail2Ban["Fail2Ban<br/>(Intrusion Prevention)"]
-        end
-    end
-
-    Users -->|"HTTPS (443)"| Firewall
-    Users -->|"SSH (8443)"| Firewall
-    Firewall --> Nginx
-
-    Nginx -->|"SSO Auth"| Keycloak
-    Keycloak -->|"Protects"| Grafana
-    Keycloak -->|"Protects"| OpenWebUI
-    Keycloak -->|"Protects"| Vaultwarden
-
-    Nginx -->|"Proxy"| Mail
-    Nginx -->|"Proxy"| Dawarich
-    Nginx -->|"Proxy"| Static
-
-    Promtail -->|"Logs"| Loki
-    NodeExporter -->|"Metrics"| Prometheus
-    Loki --> Grafana
-    Prometheus --> Grafana
-
-    Sops -->|"Secrets"| Vaultwarden
-    Sops -->|"Secrets"| Mail
-    Sops -->|"Secrets"| Keycloak
-    Sops -->|"Secrets"| Grafana
-```
 ## Installation
 
 Enter a shell with git and vim.
