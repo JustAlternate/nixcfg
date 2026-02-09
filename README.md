@@ -40,6 +40,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 ##### Infrastructure Overview (Beaver VPS)
 
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph Internet["🌐 Internet"]
         Users["Users"]
