@@ -66,20 +66,25 @@ flowchart LR
     Users --> Cloudflare
     Cloudflare -->|"HTTPS (443)"| Firewall
     Users -->|"SSH (8443)"| Firewall
-    GitHub -->|"IdP"| Keycloak
 
     %% Internal Routing
     Firewall -->|"Proxy"| Nginx
-    Nginx -->|"Forward"| Services
+
+    %% Monitoring Flow
+    Promtail --> Loki
+    Loki --> Grafana
+
+    Prometheus --> Grafana
+
+    Sops -->|"Secret"| Grafana
 
     Keycloak -->|"OIDC"| Grafana
 
-    %% Secrets Management
     Sops -->|"Secret"| Vaultwarden
     Sops -->|"Secret"| Mail
     Sops -->|"Secret"| Keycloak
-    Sops -->|"Secret"| Grafana
 
+    GitHub -->|"IdP"| Keycloak
 
     %% Auth Flow
     Keycloak -->|"OIDC"| OpenWebUI
@@ -87,11 +92,6 @@ flowchart LR
     Keycloak -->|"OIDC"| Vaultwarden
 
     Sops -->|"Secret"| Dawarich
-
-    %% Monitoring Flow
-    Promtail --> Loki
-    Loki --> Grafana
-    Prometheus --> Grafana
 
 ```
 
