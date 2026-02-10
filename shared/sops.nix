@@ -14,6 +14,7 @@
       "VAULTWARDEN/ENV" = { };
       "OPENCLOUD/ENV" = { };
       "ROOT_SSH_AUTHORIZED_KEY" = { };
+      "OPENWEBUI/ENV" = { };
     };
   };
 
