@@ -7,6 +7,7 @@
 }:
 {
   imports = [
+    ../shared/machine-name.nix
     ./window-manager.nix
   ];
 
@@ -53,4 +54,6 @@
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  machineName = "owl";
 }
