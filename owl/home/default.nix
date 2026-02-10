@@ -45,18 +45,22 @@
       theme = "edvardm";
     };
     initContent = ''
-      # Skip if file doesn't exist
-      [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
-        cat "${config.home.homeDirectory}/.cache/wal/sequences"
-      while IFS='=' read -r name value; do
-        [[ $name != \#* ]] && export "$name=$value"
-      done < ~/env-var/.env
-      # Initialize zoxide (fast)
-      eval "$(zoxide init zsh)"
-      # Keybindings (minimal)
-      bindkey '^J' history-incremental-search-backward
-      bindkey '^K' history-incremental-search-forward
-      bindkey '^O' autosuggest-accept
+      			DISABLE_AUTO_UPDATE="true"
+      			DISABLE_MAGIC_FUNCTIONS="true"
+      			DISABLE_COMPFIX="true"
+            source <(kubectl completion zsh)
+            # Skip if file doesn't exist
+            [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
+              cat "${config.home.homeDirectory}/.cache/wal/sequences"
+            while IFS='=' read -r name value; do
+              [[ $name != \#* ]] && export "$name=$value"
+            done < ~/env-var/.env
+            # Initialize zoxide (fast)
+            eval "$(zoxide init zsh)"
+            # Keybindings (minimal)
+            bindkey '^J' history-incremental-search-backward
+            bindkey '^K' history-incremental-search-forward
+            bindkey '^O' autosuggest-accept
     '';
   };
 
@@ -111,6 +115,7 @@
       kubectl
       eksctl
       k9s
+      kubernetes-helm
       # Monitoring
       htop
       # Cli tools, Utility -- mac safe subset
