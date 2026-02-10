@@ -160,7 +160,12 @@
             "systemd"
           ];
           port = 9002;
+          listenAddress = "127.0.0.1";
         };
+      };
+      globalConfig = {
+        scrape_interval = "60s";
+        evaluation_interval = "60s";
       };
       scrapeConfigs = [
         {
