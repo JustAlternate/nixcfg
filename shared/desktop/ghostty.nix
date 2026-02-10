@@ -2,7 +2,8 @@
 {
   programs.ghostty = {
     enable = true;
-    package = null;
+    # package = null;
+    package = pkgs.unstable.ghostty;
     settings = {
       clipboard-read = "allow";
       clipboard-write = "allow";
@@ -13,7 +14,7 @@
       font-family = "Hack Nerd Font Mono";
       macos-titlebar-proxy-icon = "hidden";
       title = "Terminal";
-      font-size = 20;
+      font-size = 25;
       quit-after-last-window-closed = true;
       quick-terminal-screen = "mouse";
       quick-terminal-autohide = true;
