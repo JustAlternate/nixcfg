@@ -15,7 +15,10 @@
       ];
       trustedInterfaces = [ "podman1" ];
     };
-    nameservers = [ "8.8.8.8" ];
+    nameservers = [
+      "86.54.11.13" # dns4eu
+      "1.1.1.1" # cloudflare fallback
+    ];
     defaultGateway = "172.31.1.1";
     defaultGateway6 = {
       address = "fe80::1";

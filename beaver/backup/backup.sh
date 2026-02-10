@@ -19,16 +19,4 @@ for i in "${!OBJECTS_PATH[@]}"; do
 	echo "Done"
 done
 
-echo "Backup planka ..."
-/root/nixcfg/beaver/services/planka/backup/./backup.sh
-if [ ! -f ./planka-backup.tgz ]; then
-	echo "Error planka file is not here !!"
-	touch /root/ERROR_WHEN_EXECUTING_BACKUP #TODO:IMPLEMENT proper alerting system
-	exit 1
-fi
-aws s3 rm s3://my-beaver-backup/planka-backup.tgz
-aws s3 cp planka-backup.tgz s3://my-beaver-backup/planka-backup.tgz --storage-class GLACIER
-rm planka-backup.tgz
-echo "Done"
-
 aws s3 ls s3://my-beaver-backup
