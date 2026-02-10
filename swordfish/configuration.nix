@@ -14,7 +14,10 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../shared/system/desktop.nix
+    ../shared/machine-name.nix
   ];
+
+  machineName = "swordfish";
 
   boot = {
     loader.systemd-boot.enable = true;

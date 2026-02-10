@@ -77,16 +77,20 @@
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.justalternate = import ./parrot/home;
-                extraSpecialArgs = {
-                  inherit inputs;
+            (
+              { config, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.justalternate = import ./parrot/home;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    machineName = config.machineName or "parrot";
+                  };
                 };
-              };
-            }
+              }
+            )
           ];
         };
         swordfishNixos = nixpkgs.lib.nixosSystem {
@@ -97,17 +101,21 @@
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                backupFileExtension = "backup";
-                users.justalternate = import ./swordfish/home;
-                extraSpecialArgs = {
-                  inherit inputs;
+            (
+              { config, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "backup";
+                  users.justalternate = import ./swordfish/home;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    machineName = config.machineName or "swordfish";
+                  };
                 };
-              };
-            }
+              }
+            )
           ];
         };
         beaverNixos = nixpkgs.lib.nixosSystem {
@@ -118,16 +126,20 @@
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays ++ [ ]; }
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.root = import ./beaver/home;
-                extraSpecialArgs = {
-                  inherit inputs;
+            (
+              { config, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.root = import ./beaver/home;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    machineName = config.machineName or "beaver";
+                  };
                 };
-              };
-            }
+              }
+            )
           ];
         };
         geckoNixos1 = nixpkgs.lib.nixosSystem {
@@ -156,16 +168,20 @@
           home-manager.darwinModules.home-manager
           ./owl/configuration.nix
           { nixpkgs.overlays = nixos-overlays; }
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.loicweber = import ./owl/home;
-              extraSpecialArgs = {
-                inherit inputs;
+          (
+            { config, ... }:
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.loicweber = import ./owl/home;
+                extraSpecialArgs = {
+                  inherit inputs;
+                  machineName = config.machineName or "owl";
+                };
               };
-            };
-          }
+            }
+          )
         ];
       };
     };

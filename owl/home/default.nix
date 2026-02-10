@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  machineName ? "owl",
   ...
 }:
 {
@@ -61,6 +62,10 @@
             bindkey '^J' history-incremental-search-backward
             bindkey '^K' history-incremental-search-forward
             bindkey '^O' autosuggest-accept
+            # Add machine name to prompt
+            MACHINE_NAME="${machineName}"
+            # Remove leading space from original prompt to avoid double spacing
+            PROMPT="%{$fg[green]%}[$MACHINE_NAME]%{$reset_color%} ''${PROMPT# }"
     '';
   };
 
