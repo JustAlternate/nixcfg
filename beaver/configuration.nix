@@ -1,5 +1,11 @@
 { pkgs, config, ... }:
+let
+  machineName = "beaver";
+in
 {
+  # Expose machineName to other modules
+  machineName = machineName;
+
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
