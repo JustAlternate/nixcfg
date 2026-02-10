@@ -11,7 +11,6 @@
   ];
 
   home.packages = with pkgs; [
-    unrar
     ffmpeg
     bemoji
     yazi
@@ -19,7 +18,6 @@
     zip
     sshpass
     compose2nix
-
     zoxide
     eza
     fzf
@@ -28,7 +26,6 @@
       llm-openrouter = true;
       llm-cmd = true;
     })
-
     # Development
     openssh
     git
@@ -48,17 +45,11 @@
     kubectl
     kubernetes-helm
     k9s
-
-    ## Monitoring
+    # Monitoring
     htop
-    powertop
-    lshw
-    acpi
-
     # Cli tools
     ## Utility
     xdg-utils
-    playerctl
     unzip
     wget
     wl-clipboard
@@ -76,12 +67,10 @@
     mermaid-filter
     pandoc-katex
     asciiquarium
-
     ## Show-off
     cmatrix
     cava
     cbonsai
-
     # Text editors
     vim
     inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
