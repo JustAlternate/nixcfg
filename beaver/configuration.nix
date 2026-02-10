@@ -1,12 +1,7 @@
 { pkgs, config, ... }:
-let
-  machineName = "beaver";
-in
 {
-  # Expose machineName to other modules
-  machineName = machineName;
-
   imports = [
+    ../shared/machine-name.nix
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
     ../shared/sops.nix # Secrets management using ssh key
@@ -57,6 +52,8 @@ in
   zramSwap.enable = true;
   networking.hostName = "nixos-beaver-8gb-nbg1-3";
   networking.domain = "";
+
+  machineName = "beaver";
 
   system.stateVersion = "23.11";
 }

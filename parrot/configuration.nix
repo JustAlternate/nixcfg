@@ -10,7 +10,10 @@
   imports = [
     ./hardware-configuration.nix
     ../shared/system/desktop.nix
+    ../shared/machine-name.nix
   ];
+
+  machineName = "parrot";
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
