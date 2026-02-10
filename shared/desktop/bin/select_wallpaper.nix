@@ -10,7 +10,7 @@ pkgs.writeShellScriptBin "select_wallpaper" ''
     mkdir -p "$cacheDir"
   fi
 
-  physical_monitor_size=24
+  physical_monitor_size=10
   monitor_res=$(hyprctl monitors | grep -A2 Monitor | head -n 2 | awk '{print $1}' | grep -oE '^[0-9]+')
   dotsperinch=$(echo "scale=2; $monitor_res / $physical_monitor_size" | bc | xargs printf "%.0f")
   monitor_res=$(($monitor_res * $physical_monitor_size / $dotsperinch))
@@ -40,7 +40,7 @@ pkgs.writeShellScriptBin "select_wallpaper" ''
   swww img $wall_dir/$wall_selection --transition-step 10 --transition-fps 30 --transition-type center &
   wal -i $wall_dir/$wall_selection &
   sleep 0.2
-  killall waybar
+  pkill waybar
   waybar &
   # pywalfox update &
   cp $HOME/.cache/wal/cava_conf $HOME/.config/cava/config &
