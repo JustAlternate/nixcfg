@@ -3,7 +3,6 @@ _: {
     keycloak = {
       enable = true;
       database.passwordFile = "/run/secrets/PASSWORD";
-      initialAdminPassword = "changeme";
       settings = {
         hostname = "https://auth.justalternate.com";
         hostname-backchannel-dynamic = true; # Allow application hosted on the same local network as keycloak to enable internal communication

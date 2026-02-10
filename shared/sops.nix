@@ -3,7 +3,7 @@
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/nix/sops/age/keys.txt";
+    age.keyFile = "/root/.config/sops/age/keys.txt";
     secrets = {
       "MISTRAL_API_KEY" = { };
       "OPENROUTER_API_KEY" = { };
@@ -13,6 +13,8 @@
       "SSO/GRAFANA_CLIENT_SECRET" = { };
       "VAULTWARDEN/ENV" = { };
       "OPENCLOUD/ENV" = { };
+      "KEYCLOAK_ADMIN_PASSWORD" = { };
+      "ROOT_SSH_AUTHORIZED_KEY" = { };
     };
   };
 
