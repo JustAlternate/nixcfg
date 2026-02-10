@@ -11,7 +11,7 @@
   ];
 
   # TEMP FIX
-  stdenv.hostPlatform.system.primaryUser = "loicweber";
+  system.primaryUser = "loicweber";
 
   ids.gids.nixbld = lib.mkForce 350;
 
@@ -38,9 +38,6 @@
     "/opt/homebrew/sbin"
   ];
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  # programs.zsh.enable = true;
-
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -48,8 +45,10 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
-  users.users.loicweber = {
-    home = "/Users/loicweber/";
+  users = {
+    users.loicweber = {
+      home = "/Users/loicweber/";
+    };
   };
 
   # The platform the configuration will be used on.
