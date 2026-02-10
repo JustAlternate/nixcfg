@@ -48,6 +48,7 @@
     # Monitoring
     htop
     # Cli tools
+    direnv
     ## Utility
     xdg-utils
     unzip

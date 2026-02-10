@@ -53,8 +53,7 @@
   swapDevices = [
     {
       device = "/swapfile";
-      size = 8192;
-      activate = true;
+      size = 4096;
     }
   ];
   networking.hostName = "nixos-beaver-8gb-nbg1-3";

@@ -2,7 +2,7 @@
 {
   services = {
     open-webui = {
-      enable = false;
+      enable = true;
       package = pkgs.unstable.open-webui;
       port = 3040;
       host = "127.0.0.1";
