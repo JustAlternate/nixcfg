@@ -38,8 +38,7 @@
     # set Zsh as the default user shell for all users
     defaultUserShell = pkgs.zsh;
     users.root.openssh.authorizedKeys.keyFiles = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21 justalternate@archlinux";
-      # config.sops.secrets."ROOT_SSH_AUTHORIZED_KEY".path
+      config.sops.secrets."ROOT_SSH_AUTHORIZED_KEY".path
     ];
   };
 
