@@ -149,6 +149,17 @@
         };
         security.disable_initial_admin_creation = true;
       };
+      provision = {
+        enable = true;
+        datasources.settings.datasources = [
+          {
+            name = "Loki";
+            type = "loki";
+            url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
+            isDefault = false;
+          }
+        ];
+      };
     };
     prometheus = {
       enable = true;
