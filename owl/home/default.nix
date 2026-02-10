@@ -14,6 +14,10 @@
     # ../../shared/desktop/dev/python
   ];
 
+  # Copy custom theme file
+  home.file.".config/zsh/themes/edvardm-custom.zsh-theme".source =
+    ../../shared/shell/edvardm-custom.zsh-theme;
+
   git.work.enable = true;
   ssh.work.enable = true;
 
@@ -43,7 +47,6 @@
         "git"
         "vi-mode"
       ];
-      theme = "edvardm";
     };
     initContent = ''
       			DISABLE_AUTO_UPDATE="true"
@@ -62,10 +65,10 @@
             bindkey '^J' history-incremental-search-backward
             bindkey '^K' history-incremental-search-forward
             bindkey '^O' autosuggest-accept
+            # Load custom theme with single spaces
+            source "${config.home.homeDirectory}/.config/zsh/themes/edvardm-custom.zsh-theme"
             # Add machine name to prompt
-            MACHINE_NAME="${machineName}"
-            # Remove leading space from original prompt to avoid double spacing
-            PROMPT="%{$fg[green]%}[$MACHINE_NAME]%{$reset_color%} ''${PROMPT# }"
+            PROMPT="%{$fg[green]%}[${machineName}]%{$reset_color%} $PROMPT"
     '';
   };
 
