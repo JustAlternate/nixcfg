@@ -15,6 +15,7 @@
       "OPENCLOUD/ENV" = { };
       "KEYCLOAK_ADMIN_PASSWORD" = { };
       "ROOT_SSH_AUTHORIZED_KEY" = { };
+      "OPENWEBUI/ENV" = { };
     };
   };
 
