@@ -3,25 +3,97 @@
 This repository contains the declaration of my systems running [Nix/NixOS](https://nixos.org/)
 
 - beaver: My VPS running NixOS and selfhosting services
-- swordfish: My NixOS desktop gaming station which I also use for intensive computation.
-- parrot: My NixOS semi gaming laptop which I mainly use for study and abroad.
-- owl: My arm processor Mac M1.
+- swordfish: My Desktop running NixOS desktop.
+- parrot: My Laptop running NixOS.
+- owl: My arm processor Mac M1 running [nix-darwin](https://github.com/nix-darwin/nix-darwin).
 - gecko: My raspberry py configs (WIP)
 
-## My very pywal centric NixOS Hyprland rice
-
-(For both swordfish and parrot)
-
-![](./assets/20250508-11:52:59.png)
-
-### Video Showcase [11 Aug 2024] (slightly outdated)
-
-[![video showcase](https://img.youtube.com/vi/M6VRL6bqdks/0.jpg)](https://www.youtube.com/watch?v=M6VRL6bqdks)
-_click the image to go to the video_
-
-(Im no longer using eww nor pywalfox nor conky for my rice)
-
 ### Features
+
+#### VPS (beaver)
+- Identity management : [keycloak](https://keycloak.org) (with github provider)
+- Reverse proxy & web server: [nginx](https://nginx.org/en/)
+- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
+- Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
+- Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
+- Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
+- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
+- LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
+- Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
+- Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
+
+##### Infrastructure Overview (Beaver VPS)
+
+```mermaid
+flowchart LR
+    subgraph Internet["🌐 Internet"]
+        Users["Users"]
+        GitHub["GitHub"]
+        Cloudflare["Cloudflare<br/>(DNS)"]
+    end
+
+    subgraph Beaver["🖥️ Beaver VPS"]
+        
+        subgraph Network["🕸️ Network Layer"]
+            Firewall["🔥 UFW Firewall<br/>TCP: 443, 8443, 9111<br/>Mail: 25, 465, 587, 993"]
+            Nginx["🌐 Nginx<br/>Reverse Proxy + SSL"]
+        end
+
+        subgraph Security["🔒 Security Layer"]
+            Sops["SOPS<br/>(Secrets Management)"]
+        end
+
+        subgraph Services["🚀 Self-Hosted Services"]
+            Vaultwarden["Vaultwarden<br/>(Passwords)"]
+            OpenWebUI["OpenWebUI<br/>(LLM Frontend)"]
+            Mail["Simple NixOS Mail<br/>(Postfix/Dovecot)"]
+            Dawarich["Dawarich<br/>(GPS Tracking)"]
+
+            subgraph Monitoring["🔍 Monitoring"]
+                Promtail["Promtail (Logs)"]
+                Loki["Loki (Logs)"]
+                Prometheus["Prometheus (Metrics)"]
+                Grafana["Grafana<br/>"]
+            end
+
+            subgraph Auth["🔐 Identity Layer"]
+                Keycloak["Keycloak SSO<br/>"]
+            end
+        end
+    end
+
+    %% External Traffic
+    Users --> Cloudflare
+    Cloudflare -->|"HTTPS (443)"| Firewall
+    Users -->|"SSH (8443)"| Firewall
+
+    %% Internal Routing
+    Firewall -->|"Proxy"| Nginx
+
+    %% Monitoring Flow
+    Promtail --> Loki
+    Loki --> Grafana
+
+    Prometheus --> Grafana
+
+    Sops -->|"Secret"| Grafana
+
+    Keycloak -->|"OIDC"| Grafana
+
+    Sops -->|"Secret"| Vaultwarden
+    Sops -->|"Secret"| Mail
+    Sops -->|"Secret"| Keycloak
+
+    GitHub -->|"IdP"| Keycloak
+
+    %% Auth Flow
+    Keycloak -->|"OIDC"| OpenWebUI
+    Keycloak -->|"OIDC"| Dawarich
+    Keycloak -->|"OIDC"| Vaultwarden
+
+    Sops -->|"Secret"| Dawarich
+
+```
 
 #### Desktop (swordfish and parrot)
 - DE: [Hyprland](https://hyprland.org/)
@@ -37,19 +109,6 @@ _click the image to go to the video_
 - Emoji wheel: rofi + [bemoji](https://github.com/marty-oehme/bemoji)
 - Music Visualizer: [cava](https://github.com/karlstav/cava)
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
-
-#### VPS (beaver)
-- Identity management : [keycloak](https://keycloak.org)
-- Reverse proxy & web server: [nginx](https://nginx.org/en/)
-- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
-- Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
-- Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
-- Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
-- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
-- AI frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
-- Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
-- Minecraft server: [docker-minecraft](https://github.com/itzg/docker-minecraft-server)
-- S3 auto backup service: made by myself
 
 ## Installation
 
