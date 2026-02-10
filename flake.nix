@@ -101,6 +101,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "backup";
                 users.justalternate = import ./swordfish/home;
                 extraSpecialArgs = {
                   inherit inputs;

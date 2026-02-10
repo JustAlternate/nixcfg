@@ -14,8 +14,6 @@ in
     ../desktop
   ];
 
-  desktop.enable = true;
-
   xdg.configFile."hypr/pyprland.json".source = ../desktop/hyprland/pyprland.json;
 
   home.packages =
