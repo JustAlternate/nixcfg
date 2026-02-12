@@ -55,7 +55,10 @@
     loki = {
       enable = true;
       configuration = {
-        server.http_listen_port = 9004;
+        server = {
+          http_listen_port = 9004;
+          http_listen_address = "127.0.0.1";
+        };
         auth_enabled = false;
 
         ingester = {
