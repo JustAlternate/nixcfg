@@ -28,6 +28,10 @@
   services = {
     openssh.enable = true;
 
+    getty = {
+      autologinUser = "justalternate";
+    };
+
     xserver = {
       videoDrivers = [ "amdgpu" ];
       wacom.enable = true;
