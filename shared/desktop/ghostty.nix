@@ -14,6 +14,7 @@
       title = "Terminal";
       font-size = 18;
       quit-after-last-window-closed = true;
+      confirm-close-surface = false;
       quick-terminal-screen = "mouse";
       quick-terminal-autohide = true;
       window-decoration = "none";
