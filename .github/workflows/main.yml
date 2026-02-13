@@ -50,6 +50,9 @@ jobs:
     runs-on: [self-hosted, beaver]
     # Only run on main branch, not on PRs
     if: github.ref == 'refs/heads/main'
+    env:
+      HOME: /tmp
+      XDG_CACHE_HOME: /tmp/.cache
 
     steps:
       - name: Checkout repository
