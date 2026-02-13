@@ -7,7 +7,7 @@
       port = 3040;
       host = "127.0.0.1";
       openFirewall = false;
-      environmentFile = "/run/secrets/OPENWEBUI/ENV";
+      environmentFile = config.sops.secrets."OPENWEBUI/ENV".path;
     };
 
     nginx.virtualHosts."ai.justalternate.com" = {

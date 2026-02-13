@@ -12,7 +12,6 @@
         "input"
         "uinput"
       ];
-      # hashedPasswordFile = "/run/secrets/HASHED_PASSWORD"; # DECOMENT THIS LINE IF YOU ARE NOT USING PAM FOR ANOTHER MULTI FACTOR LOGIN
     };
     users.justalternate.openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''

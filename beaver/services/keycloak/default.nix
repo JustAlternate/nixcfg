@@ -1,8 +1,9 @@
-_: {
+{ config, ... }:
+{
   services = {
     keycloak = {
       enable = true;
-      database.passwordFile = "/run/secrets/PASSWORD";
+      database.passwordFile = config.sops.secrets."PASSWORD".path;
       settings = {
         hostname = "https://auth.justalternate.com";
         hostname-backchannel-dynamic = true; # Allow application hosted on the same local network as keycloak to enable internal communication
