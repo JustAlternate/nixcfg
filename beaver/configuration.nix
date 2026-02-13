@@ -48,6 +48,17 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Cachix cache configuration
+  nix.settings = {
+    substituters = [
+      "https://cache.nixos.org/"
+      "https://justalternate-nixcfg.cachix.org"
+    ];
+    trusted-public-keys = [
+      "justalternate-nixcfg.cachix.org-1:Bzqq/ByZOKxWH3ByZ0EWs2e+U7sP15yC0/15auvsR2k="
+    ];
+  };
+
   boot.tmp.cleanOnBoot = true;
 
   # Mount 40GB Hetzner volume for GitHub Actions runner
