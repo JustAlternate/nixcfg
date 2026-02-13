@@ -34,6 +34,11 @@
     };
 
     mistral-vibe.url = "github:mistralai/mistral-vibe";
+
+    nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +50,7 @@
       home-manager,
       nix-darwin,
       mistral-vibe,
+      nixos-mailserver,
       ...
     }@inputs:
     let
