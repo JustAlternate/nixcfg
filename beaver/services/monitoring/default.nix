@@ -141,7 +141,7 @@
           name = "Keycloak-OAuth";
           allow_sign_up = true;
           client_id = "grafana";
-          client_secret = builtins.readFile config.sops.secrets."SSO/GRAFANA_CLIENT_SECRET".path;
+          client_secret = "";
           auth_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/auth";
           token_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/token";
           role_attribute_path = "\"'Admin'\"";
@@ -204,6 +204,8 @@
       ];
     };
   };
+
+  systemd.services.grafana.serviceConfig.EnvironmentFile = config.sops.secrets."GRAFANA/ENV".path;
 
   services.nginx.virtualHosts."monitoring.justalternate.com" = {
     enableACME = true;
