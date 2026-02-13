@@ -26,13 +26,13 @@ jobs:
             experimental-features = nix-command flakes
 
       - name: Format Check (nixfmt)
-        run: nixfmt . -c
+        run: nix run nixpkgs#nixfmt-rfc-style -- . -c
 
       - name: Lint (statix)
-        run: statix check . -i docker-compose.nix
+        run: nix run nixpkgs#statix -- check . -i docker-compose.nix
 
       - name: Dead Code Detection (deadnix)
-        run: deadnix . -f
+        run: nix run nixpkgs#deadnix -- . -f
 
       - name: SOPS Secrets Validation
         run: |
