@@ -11,6 +11,8 @@
       "PASSWORD" = { };
       "EMAIL" = { };
       "SSO/GRAFANA_CLIENT_SECRET" = { };
+      "SSO/DAWARICH_CLIENT_SECRET" = { };
+      "GRAFANA/ENV" = { };
       "VAULTWARDEN/ENV" = { };
       "OPENCLOUD/ENV" = { };
       "ROOT_SSH_AUTHORIZED_KEY" = { };
