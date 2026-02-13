@@ -19,7 +19,7 @@
         ssoSignupsMatchEmail = true;
         ssoOnly = true;
       };
-      environmentFile = "/run/secrets/VAULTWARDEN/ENV";
+      environmentFile = config.sops.secrets."VAULTWARDEN/ENV".path;
     };
 
     nginx.virtualHosts."vaultwarden.justalternate.com" = {
