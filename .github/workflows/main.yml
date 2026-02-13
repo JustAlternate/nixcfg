@@ -55,13 +55,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: justalternate-nixcfg
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-          signingKey: ${{ secrets.CACHIX_SIGNING_KEY }}
-
       - name: Build Beaver System
         run: |
           nix build .#nixosConfigurations.beaverNixos.config.system.build.toplevel \
@@ -70,9 +63,15 @@ jobs:
           echo "Build completed successfully"
           ls -la ./result-beaver
 
+      - name: Setup Cachix Authentication
+        run: |
+          export CACHIX_AUTH_TOKEN="${{ secrets.CACHIX_AUTH_TOKEN }}"
+          cachix authtoken "${CACHIX_AUTH_TOKEN}"
+
       - name: Push to Cachix
         run: |
           echo "Pushing beaver configuration to Cachix..."
+          export CACHIX_SIGNING_KEY="${{ secrets.CACHIX_SIGNING_KEY }}"
           cachix push justalternate-nixcfg ./result-beaver
 
       - name: Cleanup
