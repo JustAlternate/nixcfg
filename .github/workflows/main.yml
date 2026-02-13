@@ -36,7 +36,7 @@ jobs:
 
       - name: SOPS Secrets Validation
         run: |
-          nix run nixpkgs#sops -- --validate secrets/secrets.yaml
+          nix run nixpkgs#sops -- filestatus secrets/secrets.yaml
 
       - name: Flake Check
         run: nix flake check --impure
