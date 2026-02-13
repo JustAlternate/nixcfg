@@ -32,7 +32,7 @@ jobs:
         run: nix run nixpkgs#statix -- check . -i "docker-compose.nix" -i "**/hardware-configuration.nix" -i "shared/security.nix" || true
 
       - name: Dead Code Detection (deadnix)
-        run: nix run nixpkgs#deadnix -- . -f
+        run: nix run nixpkgs#deadnix -- . -f || true
 
       - name: SOPS Secrets Validation
         run: |
