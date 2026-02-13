@@ -43,7 +43,7 @@
           };
         };
         "clock" = {
-          format = ''  {:L%H:%M}'';
+          format = "  {:L%H:%M}";
           tooltip = true;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };
