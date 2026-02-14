@@ -30,26 +30,17 @@ jobs:
 
       - name: Lint (statix)
         run: |
-          # Create statix config to ignore files
-          cat > statix.toml << 'EOF'
-          disabled = []
-          ignore = [
-            "docker-compose.nix",
-            "**/hardware-configuration.nix",
-            "shared/security.nix",
-          ]
-          EOF
-          nix run nixpkgs#statix -- check . || true
+          nix run nixpkgs#statix -- check .
 
       - name: Dead Code Detection (deadnix)
-        run: nix run nixpkgs#deadnix -- . -f || true
+        run: nix run nixpkgs#deadnix -- . -f
 
       - name: SOPS Secrets Validation
         run: |
           nix run nixpkgs#sops -- filestatus secrets/secrets.yaml
 
       - name: Flake Check
-        run: nix flake check --impure
+        run: nix flake check
 
   # ==========================================
   # Job 2: Build Beaver (Self-hosted)
