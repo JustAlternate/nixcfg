@@ -2,8 +2,8 @@
 
 This repository contains the declaration of my systems running [Nix/NixOS](https://nixos.org/)
 
-- beaver: My VPS running NixOS and selfhosting services
-- swordfish: My Desktop running NixOS desktop.
+- beaver: My VPS running NixOS and selfhosting services (login only through yubikey)
+- swordfish: My Desktop running NixOS desktop. (login only through yubikey)
 - parrot: My Laptop running NixOS.
 - owl: My arm processor Mac M1 running [nix-darwin](https://github.com/nix-darwin/nix-darwin).
 - gecko: My raspberry py configs (WIP)
@@ -11,7 +11,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 ### Features
 
 #### VPS (beaver)
-- Identity management : [keycloak](https://keycloak.org) (with github provider)
+- Identity management : [keycloak](https://keycloak.org) (with SSO using github provider or yubikey)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
 - Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
 - Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
@@ -95,6 +95,12 @@ flowchart LR
 
 ```
 
+##### Monitoring Dashboards :
+
+![./assets/node-exporter.png](./assets/node-exporter.png)
+![./assets/logs.png](./assets/logs.png)
+
+
 #### Desktop (swordfish and parrot)
 - DE: [Hyprland](https://hyprland.org/)
 - Terminal: [Ghostty](https://ghostty.org/)
@@ -109,6 +115,7 @@ flowchart LR
 - Emoji wheel: rofi + [bemoji](https://github.com/marty-oehme/bemoji)
 - Music Visualizer: [cava](https://github.com/karlstav/cava)
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
+- Yubikey only login with automatic screen lock when not detected. 
 
 ## Installation
 
