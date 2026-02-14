@@ -35,20 +35,26 @@
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = false;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = false;
+    };
+    ssh.startAgent = true;
+    yubikey-touch-detector = {
+      enable = true;
+      unixSocket = true;
+      libnotify = true;
+      verbose = false;
+    };
   };
 
-  programs.ssh.startAgent = true;
-
-  security.pam.services = {
-    swaylock.u2fAuth = true;
-    swaylock.yubicoAuth = true;
-    swaylock.unixAuth = false;
-    login.u2fAuth = true;
-    # sudo.u2fAuth = true;
+  security.pam.services.swaylock = {
+    u2fAuth = true;
+    yubicoAuth = true;
+    unixAuth = false;
   };
+  security.pam.services.login.u2fAuth = true;
 
   # services.pcscd.enable = true;
 
@@ -61,13 +67,6 @@
       "25802329"
       "25440300"
     ];
-  };
-
-  programs.yubikey-touch-detector = {
-    enable = true;
-    unixSocket = true;
-    libnotify = true;
-    verbose = false;
   };
 
   # Lock screen when YubiKey is removed
