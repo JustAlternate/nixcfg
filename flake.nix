@@ -129,7 +129,7 @@
             ./beaver/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays ++ [ ]; }
+            { nixpkgs.overlays = nixos-overlays; }
             (
               { config, ... }:
               {
