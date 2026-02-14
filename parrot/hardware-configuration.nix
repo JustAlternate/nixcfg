@@ -48,9 +48,11 @@
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
-  hardware.enableRedistributableFirmware = true;
-  hardware.firmware = [ pkgs.linux-firmware ];
+  hardware = {
+    enableRedistributableFirmware = true;
+    firmware = [ pkgs.linux-firmware ];
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
