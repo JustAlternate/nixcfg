@@ -28,6 +28,10 @@
   };
 
   services = {
+    journald.extraConfig = ''
+      SystemMaxUse=800M
+      MaxRetentionSec=1month
+    '';
     fail2ban.enable = true;
     openssh.enable = true;
     openssh.settings = {
