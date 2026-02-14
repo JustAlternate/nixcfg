@@ -49,8 +49,6 @@
       master-nixpkgs,
       home-manager,
       nix-darwin,
-      mistral-vibe,
-      nixos-mailserver,
       ...
     }@inputs:
     let

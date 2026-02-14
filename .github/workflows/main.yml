@@ -29,7 +29,17 @@ jobs:
         run: nix run nixpkgs#nixfmt -- . -c
 
       - name: Lint (statix)
-        run: nix run nixpkgs#statix -- check . -i "docker-compose.nix" -i "**/hardware-configuration.nix" -i "shared/security.nix" || true
+        run: |
+          # Create statix config to ignore files
+          cat > statix.toml << 'EOF'
+          disabled = []
+          ignore = [
+            "docker-compose.nix",
+            "**/hardware-configuration.nix",
+            "shared/security.nix",
+          ]
+          EOF
+          nix run nixpkgs#statix -- check . || true
 
       - name: Dead Code Detection (deadnix)
         run: nix run nixpkgs#deadnix -- . -f || true
