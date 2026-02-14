@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ ... }:
 {
   imports = [
     ../../shared/fastfetch.nix
