@@ -1,0 +1,19 @@
+# Statix configuration
+# Ignores files with intentional repeated keys or auto-generated configs
+
+disabled = []
+
+ignore = [
+  # Auto-generated hardware configurations
+  "**/hardware-configuration.nix",
+  "**/hardware-configuration-*.nix",
+  
+  # Files with intentional repeated attribute patterns
+  "shared/security.nix",
+  
+  # nix-darwin configs that use repeated system keys
+  "owl/configuration.nix",
+  
+  # Docker compose files (not Nix)
+  "docker-compose.nix",
+]
