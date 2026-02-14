@@ -20,6 +20,10 @@
       "justalternate.com"
     ];
 
+    # Nouvelle clé DKIM 2048 bits (changement de sélecteur obligatoire)
+    dkimKeyBits = 2048;
+    dkimSelector = "mail2024";
+
     loginAccounts = {
       "loicw@justalternate.com" = {
         hashedPasswordFile = config.sops.secrets."HASHED_PASSWORD".path;
