@@ -1,7 +1,5 @@
 {
   pkgs,
-  inputs,
-  lib,
   ...
 }:
 {
@@ -27,6 +25,10 @@
 
   services = {
     openssh.enable = true;
+
+    getty = {
+      autologinUser = "justalternate";
+    };
 
     xserver = {
       videoDrivers = [ "amdgpu" ];

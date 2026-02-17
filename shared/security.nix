@@ -12,10 +12,9 @@
         "input"
         "uinput"
       ];
-      # hashedPasswordFile = "/run/secrets/HASHED_PASSWORD"; # DECOMENT THIS LINE IF YOU ARE NOT USING PAM FOR ANOTHER MULTI FACTOR LOGIN
     };
     users.justalternate.openssh.authorizedKeys.keys = [
-      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21''
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21"
     ];
   };
 
@@ -36,20 +35,26 @@
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = false;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = false;
+    };
+    ssh.startAgent = true;
+    yubikey-touch-detector = {
+      enable = true;
+      unixSocket = true;
+      libnotify = true;
+      verbose = false;
+    };
   };
 
-  programs.ssh.startAgent = true;
-
-  security.pam.services = {
-    swaylock.u2fAuth = true;
-    swaylock.yubicoAuth = true;
-    swaylock.unixAuth = false;
-    login.u2fAuth = true;
-    # sudo.u2fAuth = true;
+  security.pam.services.swaylock = {
+    u2fAuth = true;
+    yubicoAuth = true;
+    unixAuth = false;
   };
+  security.pam.services.login.u2fAuth = true;
 
   # services.pcscd.enable = true;
 
@@ -62,13 +67,6 @@
       "25802329"
       "25440300"
     ];
-  };
-
-  programs.yubikey-touch-detector = {
-    enable = true;
-    unixSocket = true;
-    libnotify = true;
-    verbose = false;
   };
 
   # Lock screen when YubiKey is removed

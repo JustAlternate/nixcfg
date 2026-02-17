@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+_: {
   services = {
     nginx = {
       enable = true;
