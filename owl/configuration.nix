@@ -12,7 +12,13 @@
   ];
 
   # TEMP FIX
-  system.primaryUser = "loicweber";
+  system = {
+    primaryUser = "loicweber";
+    configurationRevision = self.rev or self.dirtyRev or null;
+    # Used for backwards compatibility, please read the changelog before changing.
+    # $ darwin-rebuild changelog
+    stateVersion = 4;
+  };
 
   ids.gids.nixbld = lib.mkForce 350;
 
@@ -40,12 +46,7 @@
     "/opt/homebrew/sbin"
   ];
 
-  # Set Git commit hash for darwin-version.
-  system.configurationRevision = self.rev or self.dirtyRev or null;
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
+  # system.configurationRevision and stateVersion are set in the system block above
 
   users = {
     users.loicweber = {
