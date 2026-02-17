@@ -111,6 +111,7 @@
       gcc
       lua
       go
+      go-mockery
       cmake
       gnumake
       awscli2
@@ -134,6 +135,7 @@
       # Text editors
       vim
       master.opencode
+      master.cursor-cli
     ];
 
     # For env var
