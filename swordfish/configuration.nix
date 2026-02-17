@@ -26,10 +26,6 @@
   services = {
     openssh.enable = true;
 
-    getty = {
-      autologinUser = "justalternate";
-    };
-
     xserver = {
       videoDrivers = [ "amdgpu" ];
       wacom.enable = true;
@@ -37,7 +33,7 @@
 
     ollama = {
       enable = true;
-      package = pkgs.ollama-rocm;
+      package = pkgs.unstable.ollama-rocm;
       rocmOverrideGfx = "10.3.0";
     };
   };
