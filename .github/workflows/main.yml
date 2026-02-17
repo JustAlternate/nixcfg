@@ -2,49 +2,83 @@ name: nixcfg CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  CI:
-    name: CI for nixcfg
-    runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
+  # ==========================================
+  # Job 1: Validation (GitHub-hosted)
+  # ==========================================
+  validate:
+    name: Validate Configuration
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Formatting with nixfmt
-        run: nixfmt . -c
+      - name: Install Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
 
-      - name: Antipattern linting for Nix code with statix
-        run: statix check . -i docker-compose.nix
+      - name: Format Check (nixfmt)
+        run: nix run nixpkgs#nixfmt -- . -c
 
-      - name: Scan nix file for dead code with deadnix
-        run: deadnix . -f
+      - name: Lint (statix)
+        run: |
+          nix run nixpkgs#statix -- check .
 
-      # - name: Nix Flake check
-      #   run: nix flake check --all-systems --impure
+      - name: Dead Code Detection (deadnix)
+        run: nix run nixpkgs#deadnix -- . -f
 
-  # CD:
-  #   name: deploy Gecko
-  #   runs-on: self-hosted # ANY COMMAND USED BELOW MUST BE DECLARED IN action-runner/default.nix
-  #   needs: CI
-  #   steps:
-  #     - name: Check out repository
-  #       uses: actions/checkout@v4
-  #     - uses: dorny/paths-filter@v2
-  #       id: changes
-  #       with:
-  #         filters: |
-  #           Gecko:
-  #             - 'Gecko/**'
-  #           Beaver:
-  #             - 'Beaver/**'
-  #
-  #     - name: Deploy Gecko1
-  #       if: steps.changes.outputs.Gecko == 'true'
-  #       run: nixos-rebuild switch --flake ./#GeckoNixos1 --target-host GeckoNixos1
-  #
-  #     - name: Deploy Gecko2
-  #       if: steps.changes.outputs.Gecko == 'true'
-  #       run: nixos-rebuild switch --flake .#GeckoNixos2 --target-host GeckoNixos2
+      - name: SOPS Secrets Validation
+        run: |
+          nix run nixpkgs#sops -- filestatus secrets/secrets.yaml
+
+      - name: Flake Check
+        run: nix flake check
+
+  # ==========================================
+  # Job 2: Build Beaver (Self-hosted)
+  # ==========================================
+  build-beaver:
+    name: Build Beaver Configuration
+    needs: validate
+    runs-on: [self-hosted, beaver]
+    # Only run on main branch, not on PRs
+    if: github.ref == 'refs/heads/main'
+    env:
+      HOME: /tmp
+      XDG_CACHE_HOME: /tmp/.cache
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Beaver System
+        run: |
+          nix build .#nixosConfigurations.beaverNixos.config.system.build.toplevel \
+            --out-link ./result-beaver
+
+          echo "Build completed successfully"
+          ls -la ./result-beaver
+
+      - name: Setup Cachix Authentication
+        run: |
+          export CACHIX_AUTH_TOKEN="${{ secrets.CACHIX_AUTH_TOKEN }}"
+          cachix authtoken "${CACHIX_AUTH_TOKEN}"
+
+      - name: Push to Cachix
+        run: |
+          echo "Pushing beaver configuration to Cachix..."
+          export CACHIX_SIGNING_KEY="${{ secrets.CACHIX_SIGNING_KEY }}"
+          cachix push justalternate-nixcfg ./result-beaver
+
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f ./result-beaver

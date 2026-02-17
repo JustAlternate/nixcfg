@@ -1,8 +1,6 @@
 {
   config,
-  inputs,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -53,6 +51,10 @@
         # "nvidia" #disable nvidia here to save on battery
         "amdgpu"
       ];
+    };
+
+    getty = {
+      autologinUser = "justalternate";
     };
 
     upower.enable = true;

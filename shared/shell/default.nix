@@ -82,6 +82,8 @@
   xdg.configFile."io.datasette.llm/aliases.json".source = ./aliases.json;
   home.file = {
     ".vibe/instructions.md".source = ./vibe/instructions.md;
+    # AGENTS.md for opencode context
+    ".config/opencode/AGENTS.md".source = ../AGENTS.md;
   };
   sops.templates."vibe-env" = {
     path = "${config.home.homeDirectory}/.vibe/.env";
