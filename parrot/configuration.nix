@@ -53,10 +53,6 @@
       ];
     };
 
-    getty = {
-      autologinUser = "justalternate";
-    };
-
     upower.enable = true;
 
     tlp = {
