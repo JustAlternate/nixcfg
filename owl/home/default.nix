@@ -111,12 +111,14 @@
       gcc
       lua
       go
+      go-mockery
       cmake
       gnumake
       awscli2
       devenv
       pre-commit
       gh
+      unstable.nomad
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
       nixfmt-rfc-style # Nix Code Formatter
@@ -134,6 +136,7 @@
       # Text editors
       vim
       master.opencode
+      master.cursor-cli
     ];
 
     # For env var

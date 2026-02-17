@@ -36,6 +36,7 @@
   environment.systemPackages = [
     inputs.justnixvim.packages."aarch64-darwin".default
     pkgs.colima
+    pkgs.docker-credential-helpers
   ];
 
   homebrew.enable = false;
@@ -50,6 +51,15 @@
   users = {
     users.loicweber = {
       home = "/Users/loicweber/";
+    };
+  };
+
+  programs.direnv = {
+    enable = true;
+    settings = {
+      global = {
+        load_dotenv = true;
+      };
     };
   };
 
