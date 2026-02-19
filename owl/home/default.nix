@@ -118,6 +118,7 @@
       devenv
       pre-commit
       gh
+      opentofu
       unstable.nomad
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
@@ -140,15 +141,15 @@
     ];
 
     # For env var
-    # sessionVariables = {
-    #   EDITOR = "nvim";
-    # };
-    #
-    # sessionPath = [
-    #   "/opt/homebrew/opt/php@7.4/bin"
-    #   "/opt/homebrew/opt/openjdk/bin"
-    #   "$HOME/go/bin"
-    # ];
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+
+    sessionPath = [
+      "/opt/homebrew/opt/php@7.4/bin"
+      "/opt/homebrew/opt/openjdk/bin"
+      "$HOME/go/bin"
+    ];
 
     stateVersion = "24.05";
   };
