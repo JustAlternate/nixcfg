@@ -1,12 +1,13 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 {
   imports = [
     ./zsh.nix
+    ./LLM
+    ./fastfetch.nix
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -22,10 +23,6 @@
     eza
     fzf
     lazygit
-    (llm.withPlugins {
-      llm-openrouter = true;
-      llm-cmd = true;
-    })
     # Development
     openssh
     git
@@ -75,21 +72,5 @@
     # Text editors
     vim
     inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
-    master.opencode
   ];
-
-  xdg.configFile."io.datasette.llm/aliases.json".source = ./aliases.json;
-  home.file = {
-    ".vibe/instructions.md".source = ./vibe/instructions.md;
-    # AGENTS.md for opencode context
-    ".config/opencode/AGENTS.md".source = ../AGENTS.md;
-  };
-  sops.templates."vibe-env" = {
-    path = "${config.home.homeDirectory}/.vibe/.env";
-    content = ''
-      			MISTRAL_API_KEY='${config.sops.placeholder.MISTRAL_API_KEY}'
-      			OPENROUTER_API_KEY='${config.sops.placeholder.OPENROUTER_API_KEY}'
-      		'';
-  };
 }

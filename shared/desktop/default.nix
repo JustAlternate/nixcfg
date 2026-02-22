@@ -5,7 +5,6 @@
     ./waybar
     ./pywal
     ./ghostty.nix
-    ../fastfetch.nix
     ./dunst.nix
   ];
 
