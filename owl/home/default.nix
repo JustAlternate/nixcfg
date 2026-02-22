@@ -10,7 +10,7 @@
     ../../shared/desktop/dev/database
     ../../shared/ssh.nix
     ../../shared/git.nix
-    ../../shared/fastfetch.nix
+    ../../shared/shell/fastfetch.nix
     # ../../shared/desktop/dev/python
   ];
 
