@@ -77,7 +77,7 @@
           specialArgs = { inherit inputs; };
           inherit system;
           modules = [
-            ./parrot/configuration.nix
+            ./hosts/parrot/system
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
@@ -87,7 +87,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.justalternate = import ./parrot/home;
+                  users.justalternate = import ./hosts/parrot/home;
                   extraSpecialArgs = {
                     inherit inputs;
                     machineName = config.machineName or "parrot";
@@ -101,7 +101,7 @@
           specialArgs = { inherit inputs; };
           inherit system;
           modules = [
-            ./swordfish/configuration.nix
+            ./hosts/swordfish/system
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
@@ -112,7 +112,7 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "backup";
-                  users.justalternate = import ./swordfish/home;
+                  users.justalternate = import ./hosts/swordfish/home;
                   extraSpecialArgs = {
                     inherit inputs;
                     machineName = config.machineName or "swordfish";
@@ -126,7 +126,7 @@
           specialArgs = { inherit inputs; };
           system = systemArm;
           modules = [
-            ./beaver/configuration.nix
+            ./hosts/beaver/system
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             { nixpkgs.overlays = nixos-overlays; }
@@ -136,7 +136,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.root = import ./beaver/home;
+                  users.root = import ./hosts/beaver/home;
                   extraSpecialArgs = {
                     inherit inputs;
                     machineName = config.machineName or "beaver";
@@ -151,14 +151,14 @@
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./gecko/hardware-configuration-pi3b+.nix ];
+          modules = [ ./hosts/gecko/hardware-pi3b+.nix ];
         };
         geckoNixos2 = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./gecko/hardware-configuration-pi4.nix ];
+          modules = [ ./hosts/gecko/hardware-pi4.nix ];
         };
       };
 
@@ -170,7 +170,7 @@
         };
         modules = [
           home-manager.darwinModules.home-manager
-          ./owl/configuration.nix
+          ./hosts/owl/system
           { nixpkgs.overlays = nixos-overlays; }
           (
             { config, ... }:
@@ -178,7 +178,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.loicweber = import ./owl/home;
+                users.loicweber = import ./hosts/owl/home;
                 extraSpecialArgs = {
                   inherit inputs;
                   machineName = config.machineName or "owl";
