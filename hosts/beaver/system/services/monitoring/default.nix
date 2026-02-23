@@ -162,6 +162,37 @@
             isDefault = false;
           }
         ];
+        alerting.contactPoints.settings = {
+          apiVersion = 1;
+          contactPoints = [
+            {
+              name = "gotify";
+              receivers = [
+                {
+                  uid = "gotify-webhook";
+                  type = "webhook";
+                  settings = {
+                    url = "https://notif.justalternate.com/message?token=$GOTIFY_APP_TOKEN";
+                    httpMethod = "POST";
+                    maxAlerts = 10;
+                  };
+                }
+              ];
+            }
+          ];
+        };
+        alerting.policies.settings = {
+          apiVersion = 1;
+          policies = [
+            {
+              receiver = "gotify";
+              group_by = [
+                "grafana_folder"
+                "alertname"
+              ];
+            }
+          ];
+        };
       };
     };
     prometheus = {
@@ -175,6 +206,11 @@
           ];
           port = 9002;
           listenAddress = "127.0.0.1";
+        };
+        blackbox = {
+          enable = true;
+          port = 9115;
+          configFile = ./prometheus/blackbox.yml;
         };
       };
       globalConfig = {
@@ -201,11 +237,53 @@
             }
           ];
         }
+        {
+          job_name = "blackbox";
+          metrics_path = "/probe";
+          params = {
+            module = [ "http_2xx" ];
+          };
+          static_configs = [
+            {
+              targets = [
+                "https://justalternate.com"
+                "https://notif.justalternate.com"
+                "https://ai.justalternate.com"
+                "https://cloud.justalternate.com"
+                "https://vaultwarden.justalternate.com"
+                "https://auth.justalternate.com"
+                "https://monitoring.justalternate.com"
+                "https://mail.justalternate.com"
+                "https://geo.justalternate.com"
+              ];
+            }
+          ];
+          relabel_configs = [
+            {
+              source_labels = [ "__address__" ];
+              target_label = "__param_target";
+            }
+            {
+              source_labels = [ "__param_target" ];
+              target_label = "instance";
+            }
+            {
+              source_labels = [ "localhost:${toString config.services.prometheus.exporters.blackbox.port}" ];
+              target_label = "__address__";
+              replacement = "127.0.0.1:${toString config.services.prometheus.exporters.blackbox.port}";
+            }
+          ];
+        }
       ];
     };
   };
 
-  systemd.services.grafana.serviceConfig.EnvironmentFile = config.sops.secrets."GRAFANA/ENV".path;
+  systemd.services.grafana.serviceConfig = {
+    EnvironmentFile = [
+      config.sops.secrets."GRAFANA/ENV".path
+      config.sops.secrets."GOTIFY/APP_TOKEN".path
+    ];
+  };
 
   services.nginx.virtualHosts."monitoring.justalternate.com" = {
     enableACME = true;
