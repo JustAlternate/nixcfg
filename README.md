@@ -99,6 +99,7 @@ flowchart LR
 
 ![./assets/node-exporter.png](./assets/node-exporter.png)
 ![./assets/logs.png](./assets/logs.png)
+![./assets/blackbox.png](./assets/blackbox.png)
 
 
 #### Desktop (swordfish and parrot)
