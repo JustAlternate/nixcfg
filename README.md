@@ -16,6 +16,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
 - Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
 - Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
+- Monitoring (Alerts notification): [Gotify](https://github.com/gotify/server)
 - Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
 - LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
@@ -99,6 +100,7 @@ flowchart LR
 
 ![./assets/node-exporter.png](./assets/node-exporter.png)
 ![./assets/logs.png](./assets/logs.png)
+![./assets/blackbox.png](./assets/blackbox.png)
 
 
 #### Desktop (swordfish and parrot)
