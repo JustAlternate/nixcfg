@@ -26,6 +26,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 
 ```mermaid
 flowchart LR
+    Me["🧑‍💼 Me"]
     subgraph Internet["🌐 Internet"]
         Users["Users"]
         GitHub["GitHub"]
@@ -50,6 +51,8 @@ flowchart LR
             Dawarich["Dawarich<br/>(GPS Tracking)"]
 
             subgraph Monitoring["🔍 Monitoring"]
+                Gotify["Gotify (Alerts notifier)"]
+                BlackBox["BlackBox exporter"]
                 Promtail["Promtail (Logs)"]
                 Loki["Loki (Logs)"]
                 Prometheus["Prometheus (Metrics)"]
@@ -71,10 +74,10 @@ flowchart LR
     Firewall -->|"Proxy"| Nginx
 
     %% Monitoring Flow
+    BlackBox --> Prometheus
+    Prometheus --> Grafana
     Promtail --> Loki
     Loki --> Grafana
-
-    Prometheus --> Grafana
 
     Sops -->|"Secret"| Grafana
 
@@ -92,6 +95,9 @@ flowchart LR
     Keycloak -->|"OIDC"| Vaultwarden
 
     Sops -->|"Secret"| Dawarich
+
+    Prometheus --> Gotify
+    Gotify --> Me
 
 ```
 
