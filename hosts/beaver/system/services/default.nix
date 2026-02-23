@@ -7,5 +7,6 @@ _: {
     ./monitoring
     ./dawarich
     ./keycloak
+    ./gotify
   ];
 }
