@@ -38,17 +38,26 @@ Version Managers: Go (nix-managed), Python (nix-managed)
 #### 1. `~/nixcfg` - NixOS Configuration (Multi-Machine)
 ```
 flake.nix          # Entry point for all configurations
-├─ beaver/         # VPS (Hetzner) - self-hosted services
-│  ├─ configuration.nix    # System config
-│  ├─ home/               # Home Manager for root
-│  └─ services/           # Custom services
-├─ swordfish/      # Desktop (NixOS)
-├─ parrot/         # Laptop (NixOS)
-├─ owl/            # Mac M1 (nix-darwin)
-└─ shared/         # Reusable modules
-   ├─ shell/       # Zsh config & aliases
-   ├─ desktop/     # Hyprland, Waybar, etc.
-   └─ git.nix      # Git configuration
+├─ hosts/          # Machine-specific configurations
+│  ├─ beaver/      # VPS (Hetzner) - self-hosted services
+│  │  ├─ system/   # NixOS system configuration
+│  │  └─ home/     # Home Manager for root
+│  ├─ swordfish/   # Desktop (NixOS)
+│  ├─ parrot/      # Laptop (NixOS)
+│  ├─ owl/         # Mac M1 (nix-darwin)
+│  └─ gecko/       # Raspberry Pi (aarch64-linux)
+├─ home/           # Shared home configurations
+│  ├─ shell/       # Zsh config & aliases
+│  ├─ desktop/     # Hyprland, Waybar, etc.
+│  ├─ dev/         # Development tools
+│  └─ packages/    # Package sets
+├─ nixos/          # Shared NixOS modules
+│  ├─ core/        # Core system config
+│  └─ desktop/     # Desktop environment
+└─ modules/        # Shared modules
+   ├─ git.nix      # Git configuration
+   ├─ ssh.nix      # SSH configuration
+   └─ sops.nix     # Secrets management
 
 Common workflow:
 cd ~/nixcfg
@@ -68,8 +77,7 @@ sudo nixos-rebuild switch --flake .#beaverNixos
 
 Workflow:
 cd ~/iac/infra
-opentofu plan
-opentofu apply
+tofu plan
 ```
 
 ## 🔐 Secrets Management
@@ -116,7 +124,7 @@ OS=$(uname -s)
 if [ "$ARCH" = "x86_64" ] && [ "$OS" = "Linux" ]; then
     echo "x86_64-linux machine (swordfish or parrot)"
 elif [ "$ARCH" = "aarch64" ] && [ "$OS" = "Linux" ]; then
-    echo "aarch64-linux machine (beaver)"
+    echo "aarch64-linux machine (beaver or gecko)"
 elif [ "$ARCH" = "aarch64" ] && [ "$OS" = "Darwin" ]; then
     echo "aarch64-darwin machine (owl)"
 else
@@ -125,7 +133,8 @@ fi
 ```
 
 ### Architecture-Specific Notes
-- **beaver** (aarch64-linux): ARM-based VPS, uses `systemArm` in flake, runs as root user
+- **beaver** (aarch64-linux): ARM-based VPS (Hetzner), uses `systemArm` in flake, runs as root user
+- **gecko** (aarch64-linux): Raspberry Pi (Pi 3B+/Pi 4), uses `systemArm` in flake, minimal config
 - **swordfish/parrot** (x86_64-linux): Standard x86_64 desktop/laptop, uses `system` in flake
 - **owl** (aarch64-darwin): Apple Silicon Mac, uses `systemMac` in flake, nix-darwin config
 
