@@ -15,6 +15,8 @@
       "VAULTWARDEN/ENV" = { };
       "OPENCLOUD/ENV" = { };
       "OPENWEBUI/ENV" = { };
+      "GOTIFY/ENV" = { };
+      "GOTIFY/APP_TOKEN" = { };
     };
   };
 
