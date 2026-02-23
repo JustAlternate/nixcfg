@@ -152,3 +152,4 @@ fi
 4. **ALWAYS** test nix config syntax before applying
 6. **ALWAYS** use sops for secrets, never plain text
 7. **NEVER** run long commands autonomously - ask user for confirmation
+8. **NEVER** change git config (user.name, user.email), commit, or push changes autonomously - always ask user first
