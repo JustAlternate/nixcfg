@@ -6,11 +6,16 @@
 }:
 {
   imports = [
+    ../../../modules/ssh.nix
+    ../../../modules/git.nix
     ../../../home/desktop/ghostty.nix
     ../../../home/dev/database.nix
     ../../../home/shell/fastfetch.nix
     # ../../../home/dev/python.nix
   ];
+
+  ssh.work.enable = true;
+  git.work.enable = true;
 
   # Copy custom theme file
   home.file.".config/zsh/themes/edvardm-custom.zsh-theme".source =
