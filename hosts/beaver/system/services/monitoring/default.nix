@@ -1,4 +1,7 @@
 { config, lib, ... }:
+let
+  alerts = import ./alerts.nix;
+in
 {
   services = {
     promtail = {
@@ -154,14 +157,33 @@
       };
       provision = {
         enable = true;
-        datasources.settings.datasources = [
-          {
-            name = "Loki";
-            type = "loki";
-            url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
-            isDefault = false;
-          }
-        ];
+        datasources.settings = {
+          prune = true;
+          deleteDatasources = [
+            {
+              orgId = 1;
+              name = "Loki";
+            }
+            {
+              orgId = 1;
+              name = "Prometheus";
+            }
+          ];
+          datasources = [
+            {
+              name = "Loki";
+              type = "loki";
+              url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
+              isDefault = false;
+            }
+            {
+              name = "Prometheus";
+              type = "prometheus";
+              url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+              isDefault = true;
+            }
+          ];
+        };
         alerting.contactPoints.settings = {
           apiVersion = 1;
           contactPoints = [
@@ -191,6 +213,14 @@
                 "alertname"
               ];
             }
+          ];
+        };
+        alerting.rules.settings = {
+          apiVersion = 1;
+          groups = [
+            alerts.serviceAvailability
+            alerts.systemHealth
+            alerts.logAlerts
           ];
         };
       };
@@ -249,7 +279,6 @@
                 "https://justalternate.com"
                 "https://notif.justalternate.com"
                 "https://ai.justalternate.com"
-                "https://cloud.justalternate.com"
                 "https://vaultwarden.justalternate.com"
                 "https://auth.justalternate.com"
                 "https://monitoring.justalternate.com"
