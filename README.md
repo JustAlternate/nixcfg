@@ -2,11 +2,11 @@
 
 This repository contains the declaration of my systems running [Nix/NixOS](https://nixos.org/)
 
-- beaver: My VPS running NixOS and selfhosting services (login only through yubikey)
-- swordfish: My Desktop running NixOS desktop. (login only through yubikey)
-- parrot: My Laptop running NixOS.
-- owl: My arm processor Mac M1 running [nix-darwin](https://github.com/nix-darwin/nix-darwin).
-- gecko: My raspberry py configs (WIP)
+- 🦫 beaver: My VPS running NixOS and selfhosting services.
+- 🐟 swordfish: My Desktop running NixOS desktop. (login only through yubikey)
+- 🦜 parrot: My Laptop running NixOS. (login only through yubikey)
+- 🦉 owl: My arm processor Mac M1 running [nix-darwin](https://github.com/nix-darwin/nix-darwin).
+- 🦎 gecko: My raspberry py configs (WIP)
 
 ### Features
 
@@ -21,7 +21,9 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
 - LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
+- CI/CD: **Self-hosted GitHub Actions Runner** (aarch64-linux) for building ARM64 NixOS configurations
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
+- Binary cache: [Cachix](https://cachix.org) (`justalternate-nixcfg.cachix.org`)
 
 ##### Infrastructure Overview (Beaver VPS)
 
@@ -102,11 +104,23 @@ flowchart LR
 
 ```
 
-##### Monitoring Dashboards :
+#### Monitoring Dashboards :
+
+##### Node exporter 
 
 ![./assets/node-exporter.png](./assets/node-exporter.png)
+
+##### Logs
+
 ![./assets/logs.png](./assets/logs.png)
+
+##### Status, Probe and TLS certificates
+
 ![./assets/blackbox.png](./assets/blackbox.png)
+
+##### Alerting
+
+![./assets/alerts.png](./assets/alerts.png)
 
 
 #### Desktop (swordfish and parrot)
@@ -124,6 +138,26 @@ flowchart LR
 - Music Visualizer: [cava](https://github.com/karlstav/cava)
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 - Yubikey only login with automatic screen lock when not detected. 
+
+### 🔐 Security & Access Management
+
+Since this repository is fully public, I highly value using **security-by-design** principles, here are what I implemented and my general direction about security :
+
+**Secrets Management (Git friendly)**
+- **[SOPS-Nix](https://github.com/Mic92/sops-nix)**: All sensitive data (API keys, passwords, tokens) is encrypted via `age` using keys derived directly from SSH keys. To avoid plaintext secrets in version control.
+- **[Vaultwarden](https://github.com/dani-garcia/vaultwarden)**: Self-hosted, encrypted credential management for personal and administrative access.
+
+**Identity & Access Management (IAM) & Zero Trust**
+- **Centralized IAM & IdP Architecture**: Deployed **Keycloak** to function as both a comprehensive IAM system and the primary Identity Provider (IdP). It enforces OpenID Connect (OIDC) across all my self-hosted services while unifying Single Sign-On (SSO) through GitHub OAuth and WebAuthn (YubiKey).
+- **Passwordless Multi-Factor Authentication (MFA)**:
+  - Full PAM U2F integration via **YubiKey** for passwordless host access.
+  - Automatic screen locking upon YubiKey removal and hardware touch requirements.
+  - *Architecture Note:* By relying heavily on physical hardware (**Possession factor**) and since I'm looking forward into also adding biometrics (**Inherence factor**), this infrastructure will soon achieves **2FA compliance without relying on vulnerable knowledge factors at all (passwords)**. 
+
+**Network & Infrastructure Hardening**
+- **Firewall**: allowing only ports 443, 8443, 25, 465, 587, 993. 
+- **Automated Mitigation**: **Fail2Ban** Configured to monitor logs and automatically ban IPs that try to brute-force.
+- **SSH Hardening**: Password authentication disabled. Access only using ssh key on non-standard port (8443).
 
 ## Installation
 
