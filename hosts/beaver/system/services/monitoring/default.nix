@@ -184,44 +184,47 @@ in
             }
           ];
         };
-        alerting.contactPoints.settings = {
-          apiVersion = 1;
-          contactPoints = [
-            {
-              name = "gotify";
-              receivers = [
-                {
-                  uid = "gotify-webhook";
-                  type = "webhook";
-                  settings = {
-                    url = "https://notif.justalternate.com/message?token=$GOTIFY_APP_TOKEN";
-                    httpMethod = "POST";
-                    maxAlerts = 10;
-                  };
-                }
-              ];
-            }
-          ];
-        };
-        alerting.policies.settings = {
-          apiVersion = 1;
-          policies = [
-            {
-              receiver = "gotify";
-              group_by = [
-                "grafana_folder"
-                "alertname"
-              ];
-            }
-          ];
-        };
-        alerting.rules.settings = {
-          apiVersion = 1;
-          groups = [
-            alerts.serviceAvailability
-            alerts.systemHealth
-            alerts.logAlerts
-          ];
+        alerting = {
+
+          contactPoints.settings = {
+            apiVersion = 1;
+            contactPoints = [
+              {
+                name = "gotify";
+                receivers = [
+                  {
+                    uid = "gotify-webhook";
+                    type = "webhook";
+                    settings = {
+                      url = "https://notif.justalternate.com/message?token=$GOTIFY_APP_TOKEN";
+                      httpMethod = "POST";
+                      maxAlerts = 10;
+                    };
+                  }
+                ];
+              }
+            ];
+          };
+          policies.settings = {
+            apiVersion = 1;
+            policies = [
+              {
+                receiver = "gotify";
+                group_by = [
+                  "grafana_folder"
+                  "alertname"
+                ];
+              }
+            ];
+          };
+          rules.settings = {
+            apiVersion = 1;
+            groups = [
+              alerts.serviceAvailability
+              alerts.systemHealth
+              alerts.logAlerts
+            ];
+          };
         };
       };
     };
