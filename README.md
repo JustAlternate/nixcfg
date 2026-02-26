@@ -104,11 +104,23 @@ flowchart LR
 
 ```
 
-##### Monitoring Dashboards :
+#### Monitoring Dashboards :
+
+##### Node exporter 
 
 ![./assets/node-exporter.png](./assets/node-exporter.png)
+
+##### Logs
+
 ![./assets/logs.png](./assets/logs.png)
+
+##### Status, Probe and TLS certificates
+
 ![./assets/blackbox.png](./assets/blackbox.png)
+
+##### Alerting
+
+![./assets/alerts.png](./assets/alerts.png)
 
 
 #### Desktop (swordfish and parrot)
@@ -143,9 +155,9 @@ Since this repository is fully public, I highly value using **security-by-design
   - *Architecture Note:* By relying heavily on physical hardware (**Possession factor**) and since I'm looking forward into also adding biometrics (**Inherence factor**), this infrastructure will soon achieves **2FA compliance without relying on vulnerable knowledge factors at all (passwords)**. 
 
 **Network & Infrastructure Hardening**
-- **Attack Surface Minimization**: Strict **UFW Firewall** policies enforcing the principle of least privilege on the VPS (allowing only ports 443, 8443, 25, 465, 587, 993).
-- **Automated Mitigation**: **Fail2Ban** is configured to monitor logs and automatically ban IPs exhibiting malicious behavior or brute-force attempts.
-- **SSH Hardening**: Password authentication is strictly disabled. Access is restricted to Ed25519 key-pairs on obfuscated/non-standard daemon ports (8443).
+- **Firewall**: allowing only ports 443, 8443, 25, 465, 587, 993. 
+- **Automated Mitigation**: **Fail2Ban** Configured to monitor logs and automatically ban IPs that try to brute-force.
+- **SSH Hardening**: Password authentication disabled. Access only using ssh key on non-standard port (8443).
 
 ## Installation
 
