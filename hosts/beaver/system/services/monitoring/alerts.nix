@@ -54,7 +54,7 @@
             };
           }
         ];
-        noDataState = "NoData";
+        noDataState = "OK";
         execErrState = "Error";
         for = "1m";
         annotations = {
@@ -110,6 +110,8 @@
             };
           }
         ];
+        noDataState = "OK";
+        execErrState = "Error";
         for = "1m";
         annotations = {
           summary = "Service {{ $labels.instance }} is responding slowly (>5s)";
@@ -163,6 +165,8 @@
             };
           }
         ];
+        noDataState = "OK";
+        execErrState = "Error";
         for = "1m";
         annotations = {
           summary = "SSL certificate for {{ $labels.instance }} expires in less than 7 days";
@@ -194,7 +198,7 @@
             };
             datasourceUid = "PBFA97CFB590B2093";
             model = {
-              expr = ''100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80'';
+              expr = "100 - (avg by (instance) (irate(node_cpu_seconds_total{mode='idle'}[5m])) * 100)";
               refId = "A";
             };
           }
@@ -219,16 +223,18 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 0 ];
+                    params = [ 80 ];
                   };
                 }
               ];
             };
           }
         ];
-        for = "1m";
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "5m";
         annotations = {
-          summary = "CPU usage is above 80%";
+          summary = "CPU usage is above 80% on {{ $labels.instance }}";
         };
         labels = {
           severity = "warning";
@@ -247,7 +253,7 @@
             };
             datasourceUid = "PBFA97CFB590B2093";
             model = {
-              expr = "(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85";
+              expr = "(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100";
               refId = "A";
             };
           }
@@ -272,16 +278,18 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 0 ];
+                    params = [ 85 ];
                   };
                 }
               ];
             };
           }
         ];
-        for = "1m";
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "5m";
         annotations = {
-          summary = "Memory usage is above 85%";
+          summary = "Memory usage is above 85% on {{ $labels.instance }}";
         };
         labels = {
           severity = "warning";
@@ -300,7 +308,7 @@
             };
             datasourceUid = "PBFA97CFB590B2093";
             model = {
-              expr = ''(node_filesystem_size_bytes{mountpoint="/"} - node_filesystem_avail_bytes{mountpoint="/"}) / node_filesystem_size_bytes{mountpoint="/"} * 100 > 90'';
+              expr = ''(node_filesystem_size_bytes{mountpoint="/"} - node_filesystem_avail_bytes{mountpoint="/"}) / node_filesystem_size_bytes{mountpoint="/"} * 100'';
               refId = "A";
             };
           }
@@ -325,16 +333,18 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 0 ];
+                    params = [ 90 ];
                   };
                 }
               ];
             };
           }
         ];
-        for = "1m";
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "5m";
         annotations = {
-          summary = "Root filesystem usage is above 90%";
+          summary = "Root filesystem usage is above 90% on {{ $labels.instance }}";
         };
         labels = {
           severity = "critical";
@@ -353,7 +363,7 @@
             };
             datasourceUid = "PBFA97CFB590B2093";
             model = {
-              expr = ''(node_filesystem_size_bytes{mountpoint="/var"} - node_filesystem_avail_bytes{mountpoint="/var"}) / node_filesystem_size_bytes{mountpoint="/var"} * 100 > 90'';
+              expr = ''(node_filesystem_size_bytes{mountpoint="/var"} - node_filesystem_avail_bytes{mountpoint="/var"}) / node_filesystem_size_bytes{mountpoint="/var"} * 100'';
               refId = "A";
             };
           }
@@ -378,16 +388,18 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 0 ];
+                    params = [ 90 ];
                   };
                 }
               ];
             };
           }
         ];
-        for = "1m";
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "5m";
         annotations = {
-          summary = "/var filesystem usage is above 90%";
+          summary = "/var filesystem usage is above 90% on {{ $labels.instance }}";
         };
         labels = {
           severity = "critical";
@@ -406,7 +418,7 @@
             };
             datasourceUid = "PBFA97CFB590B2093";
             model = {
-              expr = "min by (mountpoint) (node_filesystem_files_free / node_filesystem_files) < 0.1";
+              expr = "1 - (node_filesystem_files_free{mountpoint=\"/\"} / node_filesystem_files{mountpoint=\"/\"})";
               refId = "A";
             };
           }
@@ -431,16 +443,18 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 0 ];
+                    params = [ 90 ];
                   };
                 }
               ];
             };
           }
         ];
-        for = "1m";
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "5m";
         annotations = {
-          summary = "Less than 10% inodes available on {{ $labels.mountpoint }}";
+          summary = "Less than 10% inodes available on {{ $labels.instance }}";
         };
         labels = {
           severity = "critical";
@@ -501,6 +515,8 @@
             };
           }
         ];
+        noDataState = "OK";
+        execErrState = "Error";
         for = "1m";
         annotations = {
           summary = "Error rate is above 20 errors per second";
@@ -554,6 +570,8 @@
             };
           }
         ];
+        noDataState = "OK";
+        execErrState = "Error";
         for = "1m";
         annotations = {
           summary = "A systemd service has crashed or failed to start";
