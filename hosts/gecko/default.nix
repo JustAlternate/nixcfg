@@ -2,7 +2,22 @@
 {
   imports = [
     ../../nixos/core/nix.nix
+    ./services/default.nix
   ];
+
+  networking = {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22
+        80
+        443
+        8080
+      ];
+      allowedUDPPorts = [
+      ];
+    };
+  };
 
   time.timeZone = "Europe/Paris";
 
@@ -23,6 +38,7 @@
     htop
     nmon
     cmatrix
+    ghostty.terminfo
   ];
 
   # Enable the OpenSSH daemon.
