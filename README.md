@@ -139,25 +139,30 @@ flowchart LR
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 - Yubikey only login with automatic screen lock when not detected. 
 
+![./assets/desktop.png](./assets/desktop.png)
+
 ### 🔐 Security & Access Management
 
-Since this repository is fully public, I highly value using **security-by-design** principles, here are what I implemented and my general direction about security :
+Since this repository is fully public, I highly value security principles, here are what I implemented and my general direction about it :
 
-**Secrets Management (Git friendly)**
-- **[SOPS-Nix](https://github.com/Mic92/sops-nix)**: All sensitive data (API keys, passwords, tokens) is encrypted via `age` using keys derived directly from SSH keys. To avoid plaintext secrets in version control.
-- **[Vaultwarden](https://github.com/dani-garcia/vaultwarden)**: Self-hosted, encrypted credential management for personal and administrative access.
+**Secrets Management**
+- **SOPS-Nix**: Encrypted via `age` using keys derived from SSH keys
+- **Vaultwarden**: Self-hosted credential management
 
-**Identity & Access Management (IAM) & Zero Trust**
-- **Centralized IAM & IdP Architecture**: Deployed **Keycloak** to function as both a comprehensive IAM system and the primary Identity Provider (IdP). It enforces OpenID Connect (OIDC) across all my self-hosted services while unifying Single Sign-On (SSO) through GitHub OAuth and WebAuthn (YubiKey).
-- **Passwordless Multi-Factor Authentication (MFA)**:
-  - Full PAM U2F integration via **YubiKey** for passwordless host access.
-  - Automatic screen locking upon YubiKey removal and hardware touch requirements.
-  - *Architecture Note:* By relying heavily on physical hardware (**Possession factor**) and since I'm looking forward into also adding biometrics (**Inherence factor**), this infrastructure will soon achieves **2FA compliance without relying on vulnerable knowledge factors at all (passwords)**. 
+**Identity & Access Management**
+- **Keycloak**: Centralized IdP enforcing OIDC across services
+- **SSO Providers**: GitHub OAuth, WebAuthn (YubiKey)
 
-**Network & Infrastructure Hardening**
-- **Firewall**: allowing only ports 443, 8443, 25, 465, 587, 993. 
-- **Automated Mitigation**: **Fail2Ban** Configured to monitor logs and automatically ban IPs that try to brute-force.
-- **SSH Hardening**: Password authentication disabled. Access only using ssh key on non-standard port (8443).
+**Authentication Architecture**
+- **Host Access (Desktops)**: Single-factor hardware authentication via PAM U2F (YubiKey) with automatic screen lock on removal
+- **Remote Access (VPS)**: SSH with Ed25519 keys (password authentication disabled)
+- **Service Access**: OIDC via Keycloak
+
+**Note on MFA**: Currently relying on possession-factor authentication (YubiKey for local, SSH keys for remote). Planning to add biometrics (inherence factor) to achieve true 2FA for local access.
+
+**Network Hardening**
+- Firewall: UFW with minimal port exposure (443, 8443, mail ports)
+- Fail2Ban: Automated intrusion prevention
 
 ## Installation
 
