@@ -17,6 +17,8 @@
       "OPENWEBUI/ENV" = { };
       "GOTIFY/ENV" = { };
       "GOTIFY/APP_TOKEN" = { };
+      "MAIL_MONITOR/HASHED_PASSWORD" = { };
+      "MAIL_MONITOR/ENV" = { };
     };
   };
 

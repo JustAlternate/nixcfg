@@ -220,6 +220,7 @@ in
           rules.settings = {
             apiVersion = 1;
             groups = [
+              alerts.mailProbe
               alerts.serviceAvailability
               alerts.systemHealth
               alerts.logAlerts
@@ -267,6 +268,14 @@ in
               labels = {
                 server_name = "polytech";
               };
+            }
+          ];
+        }
+        {
+          job_name = "mail-monitor";
+          static_configs = [
+            {
+              targets = [ "localhost:9116" ];
             }
           ];
         }
