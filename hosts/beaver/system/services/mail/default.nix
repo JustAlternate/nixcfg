@@ -31,6 +31,10 @@
           "postmaster@justalternate.com"
         ];
       };
+      "monitor@justalternate.com" = {
+        hashedPasswordFile = config.sops.secrets."MAIL_MONITOR/HASHED_PASSWORD".path;
+        # No aliases needed — this account is only for automated probes
+      };
     };
     certificateScheme = "acme-nginx";
   };

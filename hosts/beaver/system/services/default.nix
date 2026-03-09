@@ -8,5 +8,6 @@ _: {
     ./dawarich
     ./keycloak
     ./gotify
+    ./mail-monitor
   ];
 }
