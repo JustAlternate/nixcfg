@@ -2,6 +2,72 @@
 # Each group contains related alerts with their conditions, queries, and metadata
 
 {
+  # Mail end-to-end probe — detects SMTP/IMAP failures
+  mailProbe = {
+    orgId = 1;
+    name = "mail_probe";
+    folder = "Alerts";
+    interval = "60s";
+    rules = [
+      {
+        uid = "mail-probe-down";
+        title = "Mail Server Probe Failed";
+        condition = "C";
+        data = [
+          {
+            refId = "A";
+            relativeTimeRange = {
+              from = 300;
+              to = 0;
+            };
+            datasourceUid = "PBFA97CFB590B2093";
+            model = {
+              expr = "mail_probe_success";
+              refId = "A";
+            };
+          }
+          {
+            refId = "B";
+            datasourceUid = "__expr__";
+            model = {
+              type = "reduce";
+              expression = "A";
+              reducer = "last";
+              refId = "B";
+            };
+          }
+          {
+            refId = "C";
+            datasourceUid = "__expr__";
+            model = {
+              type = "threshold";
+              expression = "B";
+              refId = "C";
+              conditions = [
+                {
+                  evaluator = {
+                    type = "lt";
+                    params = [ 1 ];
+                  };
+                }
+              ];
+            };
+          }
+        ];
+        noDataState = "Alerting";
+        execErrState = "Error";
+        for = "2m";
+        annotations = {
+          summary = "Mail server end-to-end probe failed";
+          description = "The mail-monitor service could not send and/or receive a test email within the timeout. Check Postfix and Dovecot on beaver.";
+        };
+        labels = {
+          severity = "critical";
+        };
+      }
+    ];
+  };
+
   # Service availability monitoring - uptime, response time, SSL expiry
   serviceAvailability = {
     orgId = 1;
