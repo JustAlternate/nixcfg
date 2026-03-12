@@ -2,24 +2,10 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  pkgs,
   lib,
-  modulesPath,
   ...
 }:
 {
-  imports = [
-    ./default.nix
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
-  networking.hostName = "geckoNixos1";
-
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-    raspberrypi-eeprom
-  ];
-
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" ];
     initrd.kernelModules = [ ];

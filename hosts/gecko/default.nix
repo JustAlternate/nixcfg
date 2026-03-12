@@ -32,6 +32,9 @@
   services.xserver.xkb.layout = "fr";
 
   environment.systemPackages = with pkgs; [
+    libraspberrypi
+    raspberrypi-eeprom
+
     vim
     git
     wget

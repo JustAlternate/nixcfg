@@ -1,22 +1,8 @@
 {
-  pkgs,
   lib,
-  modulesPath,
   ...
 }:
 {
-  imports = [
-    ./default.nix
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
-  networking.hostName = "geckoNixos2";
-
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-    raspberrypi-eeprom
-  ];
-
   boot = {
     initrd.availableKernelModules = [ "xhci_pci" ];
     initrd.kernelModules = [ ];
