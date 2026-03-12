@@ -151,14 +151,35 @@
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/hardware-pi3b+.nix ];
+          modules = [ ./hosts/gecko/geckoNixos1.nix ];
         };
         geckoNixos2 = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/hardware-pi4.nix ];
+          modules = [ ./hosts/gecko/geckoNixos2.nix ];
+        };
+        geckoNixos3 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./hosts/gecko/geckoNixos3.nix ];
+        };
+        geckoNixosRPI3SdImage = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./hosts/gecko/geckoNixosRPI3-sd-image.nix ];
+        };
+        geckoNixos4 = nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [ ./hosts/gecko/geckoNixos4.nix ];
         };
       };
 
