@@ -6,6 +6,7 @@
     ./pywal.nix
     ./ghostty.nix
     ./dunst.nix
+    ./activitywatch
   ];
 
   home.packages = with pkgs; [
