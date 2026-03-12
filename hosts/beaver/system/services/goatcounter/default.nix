@@ -1,7 +1,7 @@
 _: {
   services.goatcounter = {
     enable = true;
-    proxy = true;
+    proxy = false;
     port = 3041;
   };
   services.nginx.virtualHosts = {
