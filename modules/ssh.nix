@@ -16,7 +16,7 @@ with lib;
           };
           "geckoNixos1" = {
             # RPI3b+
-            hostname = "192.168.1.248";
+            hostname = "192.168.1.11";
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
@@ -24,7 +24,23 @@ with lib;
           };
           "geckoNixos2" = {
             # RPI4B
-            hostname = "192.168.1.247";
+            hostname = "192.168.1.12";
+            user = "root";
+            port = 22;
+            identityFile = "~/.ssh/id_ed25519";
+            addKeysToAgent = "yes";
+          };
+          "geckoNixos3" = {
+            # RPI4B
+            hostname = "192.168.1.13";
+            user = "root";
+            port = 22;
+            identityFile = "~/.ssh/id_ed25519";
+            addKeysToAgent = "yes";
+          };
+          "geckoNixos4" = {
+            # RPI4B
+            hostname = "192.168.1.14";
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
