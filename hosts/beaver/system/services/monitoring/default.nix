@@ -296,6 +296,7 @@ in
                 "https://monitoring.justalternate.com"
                 "https://mail.justalternate.com"
                 "https://geo.justalternate.com"
+                "https://analytics.justalternate.com"
               ];
             }
           ];
