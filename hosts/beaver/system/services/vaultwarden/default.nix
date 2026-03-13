@@ -17,7 +17,8 @@
         ssoPkce = true;
         ssoClientId = "vaultwarden";
         ssoSignupsMatchEmail = true;
-        ssoOnly = true;
+        ssoOnly = false;
+        ssoKeyFilePath = config.sops.secrets."VAULTWARDEN/SSO_KEY".path;
       };
       environmentFile = config.sops.secrets."VAULTWARDEN/ENV".path;
     };

@@ -13,6 +13,7 @@
       "SSO/DAWARICH_CLIENT_SECRET" = { };
       "GRAFANA/ENV" = { };
       "VAULTWARDEN/ENV" = { };
+      "VAULTWARDEN/SSO_KEY" = { };
       "OPENCLOUD/ENV" = { };
       "OPENWEBUI/ENV" = { };
       "GOTIFY/ENV" = { };
