@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   alerts = import ./alerts.nix;
 in
@@ -184,6 +189,22 @@ in
             }
           ];
         };
+        dashboards = {
+          settings = {
+            apiVersion = 1;
+            providers = [
+              {
+                name = "Dashboards";
+                folder = "";
+                type = "file";
+                allowUiUpdates = false;
+                options = {
+                  path = "/var/lib/grafana/dashboards";
+                };
+              }
+            ];
+          };
+        };
         alerting = {
 
           contactPoints.settings = {
@@ -325,6 +346,22 @@ in
       config.sops.secrets."GRAFANA/ENV".path
       config.sops.secrets."GOTIFY/APP_TOKEN".path
     ];
+  };
+
+  systemd.services.grafana-dashboards = {
+    requiredBy = [ "grafana.service" ];
+    before = [ "grafana.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+      ExecStart = pkgs.writeShellScript "grafana-dashboards" ''
+        mkdir -p /var/lib/grafana/dashboards
+        cp ${./dashboard/logs.json} /var/lib/grafana/dashboards/logs.json
+        cp ${./dashboard/node.json} /var/lib/grafana/dashboards/node.json
+        cp ${./dashboard/blackbox.json} /var/lib/grafana/dashboards/blackbox.json
+        chown -R grafana:grafana /var/lib/grafana/dashboards
+      '';
+    };
   };
 
   services.nginx.virtualHosts."monitoring.justalternate.com" = {
