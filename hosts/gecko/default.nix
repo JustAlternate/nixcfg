@@ -5,6 +5,8 @@
     ./services/default.nix
   ];
 
+  users.users.root.password = "";
+
   networking = {
     firewall = {
       enable = true;

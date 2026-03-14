@@ -167,12 +167,12 @@
           };
           modules = [ ./hosts/gecko/geckoNixos3.nix ];
         };
-        geckoNixosRPI3SdImage = nixpkgs.lib.nixosSystem {
+        geckoNixosRPISdImage = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/geckoNixosRPI3-sd-image.nix ];
+          modules = [ ./hosts/gecko/geckoNixosRPI-sd-image.nix ];
         };
         geckoNixos4 = nixpkgs.lib.nixosSystem {
           system = systemArm;
