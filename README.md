@@ -6,7 +6,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - 🐟 swordfish: My Desktop running NixOS desktop. (login only through yubikey)
 - 🦜 parrot: My Laptop running NixOS. (login only through yubikey)
 - 🦉 owl: My arm processor Mac M1 running [nix-darwin](https://github.com/nix-darwin/nix-darwin).
-- 🦎 gecko: My raspberry py configs (WIP)
+- 🦎 gecko: My NixOS Raspberry Pi cluster (3x pi3b+ and 1x pi4)
 
 ### Features
 

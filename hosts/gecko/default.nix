@@ -5,8 +5,6 @@
     ./services/default.nix
   ];
 
-  users.users.root.password = "";
-
   networking = {
     firewall = {
       enable = true;
@@ -51,9 +49,12 @@
   users = {
     # set Zsh as the default user shell for all users
     defaultUserShell = pkgs.zsh;
-    users.root.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21"
-    ];
+    users.root = {
+      password = "";
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21"
+      ];
+    };
   };
 
   programs.zsh = {
