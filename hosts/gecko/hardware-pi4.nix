@@ -12,9 +12,16 @@
     loader.generic-extlinux-compatible.enable = true;
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
-    fsType = "ext4";
+  fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-label/NIXOS_BOOT";
+      fsType = "vfat";
+      options = [ "nofail" ];
+    };
+    "/" = {
+      device = "/dev/disk/by-label/NIXOS_SD";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [ ];

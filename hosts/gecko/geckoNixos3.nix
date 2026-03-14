@@ -1,4 +1,9 @@
-{ modulesPath, pkgs, ... }:
+{
+  modulesPath,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ./default.nix
@@ -6,53 +11,68 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  networking.hostName = "geckoNixos3";
-
   # Static IP configuration
-  networking.useDHCP = false;
-  networking.interfaces.end0 = {
-    ipv4.addresses = [
-      {
-        address = "192.168.1.13";
-        prefixLength = 24;
-      }
-    ];
-    ipv4.routes = [
-      {
-        address = "0.0.0.0";
-        prefixLength = 0;
-        via = "192.168.1.1";
-      }
-    ];
+  networking = {
+    hostName = "geckoNixos3";
+    useDHCP = lib.mkForce false;
+    nameservers = [ "192.168.1.1" ];
+    interfaces.enu1u1 = {
+      ipv4.addresses = [
+        {
+          address = "192.168.1.13";
+          prefixLength = 24;
+        }
+      ];
+      ipv4.routes = [
+        {
+          address = "0.0.0.0";
+          prefixLength = 0;
+          via = "192.168.1.1";
+        }
+      ];
+    };
   };
 
-  # X11 + Openbox with LightDM display manager
+  # X11 + Openbox with startx (simple auto-login)
   services.xserver = {
     enable = true;
     windowManager.openbox.enable = true;
-    displayManager.lightdm.enable = true;
-    displayManager.lightdm.greeter.enable = true;
-    displayManager.lightdm.greeter.package = pkgs.lightdm-gtk-greeter;
+    displayManager = {
+      lightdm.enable = lib.mkForce false;
+      startx.enable = true;
+    };
   };
 
-  # Autologin as root via LightDM
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "root";
-  };
+  # Auto-start X on tty1 login
+  programs.zsh.loginShellInit = ''
+    if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+      exec startx
+    fi
+  '';
 
-  # Root user with no password
-  users.users.root.password = "";
+  services.getty.autologinUser = "root";
 
-  # Packages for kiosk: Chromium, Openbox, and xrandr for display debugging
+  # Create /root/.xinitrc for startx - launches openbox + firefox
+  system.activationScripts.rootXinitrc = ''
+    mkdir -p /root
+    cat > /root/.xinitrc << 'EOF'
+    # Start openbox in background
+    openbox-session &
+
+    # Wait for openbox to start
+    sleep 2
+
+    # Launch Firefox in kiosk mode
+    exec firefox --kiosk https://justalternate.com
+    EOF
+    chmod 644 /root/.xinitrc
+  '';
+
+  # Packages for kiosk
   environment.systemPackages = with pkgs; [
-    chromium
+    firefox
     openbox
     xorg.xrandr
+    xorg.xinit
   ];
-
-  # Openbox autostart: launch Chromium in kiosk mode
-  environment.etc."xdg/openbox/autostart".text = ''
-    chromium --kiosk --no-sandbox --disable-infobars https://justalternate.com &
-  '';
 }
