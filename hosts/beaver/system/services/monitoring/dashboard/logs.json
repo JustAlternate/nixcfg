@@ -30,7 +30,133 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "beoxt83dr1l34c"
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 15
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "values": false,
+          "calcs": ["lastNotNull"],
+          "fields": ""
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "12.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "(\n  sum(count_over_time({host=\"beaver\", job=\"systemd-journal\", unit=~\"$unit\"}\n  | logfmt\n  | detected_level=~\"(?i)error|err|crit|critical|fatal\"[5m]))\n)\n/\n(\n  sum(count_over_time({host=\"beaver\", job=\"systemd-journal\", unit=~\"$unit\"}[5m]))\n)\n* 100",
+          "legendFormat": "Error Rate",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Error Rate %",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "values": false,
+          "calcs": ["lastNotNull"],
+          "fields": ""
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "12.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum(count_over_time({host=\"beaver\", job=\"systemd-journal\", unit=~\"$unit\"}[5m])) / 5",
+          "legendFormat": "Logs/min",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Logs/min",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
       },
       "fieldConfig": {
         "defaults": {
@@ -114,38 +240,15 @@
                 }
               }
             ]
-          },
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "error"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": true,
-                  "viz": true
-                }
-              }
-            ]
           }
+
         ]
       },
       "gridPos": {
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 8,
       "options": {
@@ -178,12 +281,12 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "beoxt83dr1l34c"
+            "uid": "P8E80F9AEF21F6940"
           },
           "direction": "backward",
           "editorMode": "code",
           "expr": "sum(\n  count_over_time({host=\"beaver\", job=\"systemd-journal\", service_name=\"systemd-journal\", unit=~\"$unit\"}\n  | logfmt\n  | detected_level=~\"(?i)info|information|notice\"\n  |~ `(?i).*${search}.*` [$__interval])\n)",
-          "hide": true,
+          "hide": false,
           "legendFormat": "info",
           "queryType": "range",
           "refId": "B"
@@ -191,7 +294,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "beoxt83dr1l34c"
+            "uid": "P8E80F9AEF21F6940"
           },
           "direction": "backward",
           "editorMode": "code",
@@ -203,7 +306,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "beoxt83dr1l34c"
+            "uid": "P8E80F9AEF21F6940"
           },
           "direction": "backward",
           "editorMode": "code",
@@ -220,7 +323,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "beoxt83dr1l34c"
+        "uid": "P8E80F9AEF21F6940"
       },
       "fieldConfig": {
         "defaults": {},
@@ -230,7 +333,7 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 20
       },
       "id": 7,
       "maxPerRow": 2,
@@ -252,7 +355,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "beoxt83dr1l34c"
+            "uid": "P8E80F9AEF21F6940"
           },
           "direction": "backward",
           "editorMode": "code",
@@ -267,7 +370,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "beoxt83dr1l34c"
+        "uid": "P8E80F9AEF21F6940"
       },
       "fieldConfig": {
         "defaults": {},
@@ -277,7 +380,7 @@
         "h": 21,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 33
       },
       "id": 6,
       "maxPerRow": 2,
@@ -299,7 +402,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "beoxt83dr1l34c"
+            "uid": "P8E80F9AEF21F6940"
           },
           "direction": "backward",
           "editorMode": "code",
@@ -327,7 +430,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": "beoxt83dr1l34c"
+          "uid": "P8E80F9AEF21F6940"
         },
         "definition": "",
         "includeAll": true,
@@ -372,5 +475,5 @@
   "timezone": "browser",
   "title": "Logs",
   "uid": "67a6fe34-4d38-4b92-af13-55505fd00323",
-  "version": 56
+  "version": 57
 }
