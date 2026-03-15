@@ -29,6 +29,7 @@
     gcc
     lua
     go
+    unstable.golangci-lint
     cmake
     gnumake
     opentofu
@@ -45,6 +46,7 @@
     k9s
     # Monitoring
     htop
+    tree
     # Cli tools
     direnv
     ## Utility
