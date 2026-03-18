@@ -19,7 +19,11 @@
       quick-terminal-autohide = true;
       window-decoration = "none";
       theme = "Catppuccin Frappe";
-      keybind = "super+a=unbind";
+      keybind = [
+        "super+a=unbind"
+        "ctrl+shift++=increase_font_size:1"
+        "ctrl+shift+-=decrease_font_size:1"
+      ];
     };
     enableZshIntegration = true;
     clearDefaultKeybinds = false;
