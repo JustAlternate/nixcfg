@@ -49,6 +49,8 @@
     tree
     # Cli tools
     direnv
+    asciinema
+    asciinema-agg
     ## Utility
     xdg-utils
     unzip
