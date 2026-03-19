@@ -130,13 +130,16 @@
       # Monitoring
       htop
       # Cli tools, Utility -- mac safe subset
+      ripgrep
+      gh-dash
+      asciinema
+      asciinema-agg
       unzip
       jq
       sshfs
       sops
       # Text editors
       vim
-      master.opencode
       master.cursor-cli
     ];
 
