@@ -608,11 +608,11 @@
         "unstable-nixpkgs": "unstable-nixpkgs"
       },
       "locked": {
-        "lastModified": 1771278917,
-        "narHash": "sha256-77YyoOHB9IyUqZFKbjIkO2TUnW5VM0sUgqPev/mpdFQ=",
+        "lastModified": 1774015646,
+        "narHash": "sha256-3J/XeJIrScgQJiaAlIhrtOqXN9vuWzMntju3SEiy44k=",
         "owner": "JustAlternate",
         "repo": "justnixvim",
-        "rev": "282d43329b70697c5b356a8624f32f4a65c83a6d",
+        "rev": "63351a297c13a70bd1314624b67baaed775e10bb",
         "type": "github"
       },
       "original": {
