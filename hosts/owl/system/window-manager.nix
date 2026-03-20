@@ -21,6 +21,7 @@
 
       # Focus changes on monitor switch
       "on-focused-monitor-changed" = [ "move-mouse monitor-lazy-center" ];
+      "on-focus-changed" = [ "move-mouse window-lazy-center" ];
 
       "workspace-to-monitor-force-assignment" = {
         "1" = "secondary";
@@ -46,8 +47,8 @@
       # Gaps configuration: inner (between windows) and outer (between monitor edge and windows)
       gaps = {
         inner = {
-          horizontal = 0;
-          vertical = 0;
+          horizontal = 5;
+          vertical = 5;
         };
         outer = {
           left = 5;
@@ -57,6 +58,10 @@
         };
       };
       on-window-detected = [
+        {
+          "if".app-id = "com.mitchellh.ghostty";
+          run = "layout tiling";
+        }
         {
           "if".app-name-regex-substring = "Finder";
           run = "layout floating";
