@@ -10,6 +10,10 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 
 ### Features
 
+#### CI/CD
+
+- **GitHub Actions**: `nix flake check`, nixfmt, statix, deadnix, and SOPS validation on every push and PR
+
 #### VPS (beaver)
 - Identity management : [keycloak](https://keycloak.org) (with SSO using github provider or yubikey)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
@@ -21,7 +25,6 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
 - LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
-- CI/CD: **Self-hosted GitHub Actions Runner** (aarch64-linux) for building ARM64 NixOS configurations
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
 - Binary cache: [Cachix](https://cachix.org) (`justalternate-nixcfg.cachix.org`)
 
@@ -59,7 +62,7 @@ flowchart LR
                 Promtail["Promtail (Logs)"]
                 Loki["Loki (Logs)"]
                 Prometheus["Prometheus (Metrics)"]
-                Grafana["Grafana<br/>"]
+                Grafana["Grafana<br/>Dasbboards and Alerts"]
             end
 
             subgraph Auth["🔐 Identity Layer"]
@@ -99,7 +102,7 @@ flowchart LR
 
     Sops -->|"Secret"| Dawarich
 
-    Prometheus --> Gotify
+    Grafana --> Gotify
     Gotify --> Me
 
 ```
@@ -122,7 +125,6 @@ flowchart LR
 
 ![./assets/alerts.png](./assets/alerts.png)
 
-
 #### Desktop (swordfish and parrot)
 - DE: [Hyprland](https://hyprland.org/)
 - Terminal: [Ghostty](https://ghostty.org/)
@@ -140,6 +142,14 @@ flowchart LR
 - Yubikey only login with automatic screen lock when not detected. 
 
 ![./assets/desktop.png](./assets/desktop.png)
+
+#### NixOS Raspberry Pi cluster
+
+- 4 Pi (3x Pi 3B+, 1x Pi 4B) on static IPs (192.168.1.11-14)
+- **Management**: SSH access from main machine, SD image builder for initial deployment
+- **Network**: connected via Tailscale client mesh network with a VPS running Headscale as the coordination server (WIP)
+
+![./assets/cluster.jpg](./assets/cluster2.jpg)
 
 ### 🔐 Security & Access Management
 

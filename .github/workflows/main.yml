@@ -7,9 +7,6 @@ on:
     branches: [main]
 
 jobs:
-  # ==========================================
-  # Job 1: Validation (GitHub-hosted)
-  # ==========================================
   validate:
     name: Validate Configuration
     runs-on: ubuntu-latest

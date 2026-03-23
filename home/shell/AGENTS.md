@@ -28,7 +28,7 @@ nixfmt-rfc-style *.nix
 ## 🛠️ Available Tools & Languages
 
 ### Development Environment
-Languages:        Go 1.23, Python 3.x, Java, JavaScript/TypeScript, Lua, C/C++
+Languages:        Go 1.25, Python 3.x, Java, JavaScript/TypeScript, Lua, C/C++
 Version Managers: Go (nix-managed), Python (nix-managed)
 
 ## 📁 Project Structure & Workflows

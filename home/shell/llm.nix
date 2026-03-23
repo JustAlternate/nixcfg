@@ -14,9 +14,11 @@
 
     inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
     master.opencode
+    unstable.rtk
   ];
 
   xdg.configFile."io.datasette.llm/aliases.json".source = ./llm-aliases.json;
+  xdg.configFile."opencode/plugins/rkt.ts".source = ./rtk.ts;
 
   home.file = {
     ".vibe/instructions.md".source = ./AGENTS.md;
