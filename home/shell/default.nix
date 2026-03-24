@@ -77,5 +77,6 @@
     # Text editors
     vim
     inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.fleettui.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
