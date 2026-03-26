@@ -10,6 +10,8 @@
 
     justnixvim.url = "github:JustAlternate/justnixvim";
 
+    fleettui.url = "github:JustAlternate/fleettui";
+
     # home-manager
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
