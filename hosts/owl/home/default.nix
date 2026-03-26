@@ -71,6 +71,16 @@
               source "${config.home.homeDirectory}/.config/zsh/themes/edvardm-custom.zsh-theme"
               # Add machine name to prompt
               PROMPT="%{$fg[green]%}[${machineName}]%{$reset_color%} $PROMPT"
+              # Right prompt: k8s context with dev=blue prod=red
+              _rps1_info() {
+                local k8s_ctx k8s_color
+                k8s_ctx="$(kubectl config current-context 2>/dev/null || echo none)"
+                if [[ "$k8s_ctx" == *dev* ]]; then k8s_color=blue
+                elif [[ "$k8s_ctx" == *prod* ]]; then k8s_color=red
+                else k8s_color=cyan; fi
+                echo "%F{''${k8s_color}}k8s:''${k8s_ctx}%f"
+              }
+              RPS1='$(_rps1_info)'
     '';
   };
 
@@ -144,6 +154,7 @@
       # Text editors
       vim
       master.cursor-cli
+      unstable.opencode
     ];
 
     # For env var
