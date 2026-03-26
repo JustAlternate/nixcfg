@@ -36,6 +36,8 @@
 
       db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
       tdm_secret = "vault read postgresql/creds/shared-main-system-postgresql-db-dev-technical-debt -format=json | jq .data";
+      k9s-prod = "aws sts get-caller-identity --profile prod >/dev/null 2>&1 || aws sso login --profile prod || exit 1; kubectl config use-context prod && k9s";
+      k9s-dev = "aws sts get-caller-identity --profile dev >/dev/null 2>&1 || aws sso login --profile dev || exit 1; kubectl config use-context dev && k9s";
     };
     history = {
       size = 10000;
@@ -80,7 +82,7 @@
       grpcurl
       unstable.golangci-lint
       goreleaser
-      docker
+      unstable.docker
       docker-compose
 
       posting
@@ -131,6 +133,7 @@
       htop
       # Cli tools, Utility -- mac safe subset
       ripgrep
+      master.rtk
       gh-dash
       asciinema
       asciinema-agg
