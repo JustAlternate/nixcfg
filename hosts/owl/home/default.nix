@@ -99,12 +99,6 @@
 
       mysql80
 
-      jdk17
-
-      sbt-extras
-      scala_2_13
-      scalafmt
-
       graphqurl
 
       bemoji
@@ -165,7 +159,6 @@
     sessionPath = [
       "/opt/homebrew/bin/"
       "/opt/homebrew/opt/php@7.4/bin"
-      "/opt/homebrew/opt/openjdk/bin"
       "$HOME/go/bin"
     ];
 
