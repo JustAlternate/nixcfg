@@ -10,5 +10,6 @@ _: {
     ./goatcounter
     ./gotify
     ./mail-monitor
+    ./headscale
   ];
 }
