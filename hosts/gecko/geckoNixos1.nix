@@ -1,6 +1,7 @@
 {
   modulesPath,
   lib,
+  config,
   ...
 }:
 {
@@ -8,9 +9,9 @@
     ./default.nix
     ./hardware-pi3b+.nix
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../../modules/sops.nix
   ];
 
-  # Static IP configuration
   networking = {
     hostName = "geckoNixos1";
     useDHCP = lib.mkForce false;
@@ -35,5 +36,18 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
+    extraUpFlags = [
+      "--login-server=https://headscale.justalternate.com"
+    ];
+    authKeyFile = config.sops.secrets."HEADSCALE/PREAUTH_KEY".path;
+  };
+
+  systemd.services.tailscaled-autoconnect = {
+    after = [
+      "sops-install-secrets.service"
+      "tailscaled.service"
+    ];
+    requires = [ "sops-install-secrets.service" ];
+    wants = [ "tailscaled.service" ];
   };
 }
