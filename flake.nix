@@ -153,7 +153,10 @@
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/geckoNixos1.nix ];
+          modules = [
+            ./hosts/gecko/geckoNixos1.nix
+            inputs.sops-nix.nixosModules.sops
+          ];
         };
         geckoNixos2 = nixpkgs.lib.nixosSystem {
           system = systemArm;
