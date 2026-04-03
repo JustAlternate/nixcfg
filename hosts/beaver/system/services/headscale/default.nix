@@ -7,6 +7,10 @@
     settings = {
       server_url = "https://headscale.justalternate.com";
       dns.base_domain = "headscale.justalternate.com";
+      dns.nameservers.global = [
+        "1.1.1.1"
+        "86.54.11.13"
+      ];
       log.level = "info";
     };
   };
