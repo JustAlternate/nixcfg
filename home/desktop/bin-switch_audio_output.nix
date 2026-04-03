@@ -19,15 +19,15 @@ pkgs.writeShellScriptBin "switch_audio_output" ''
   # Convert sink numbers to array
   SINK_ARRAY=($SINKS)
 
-  if [ ${#SINK_ARRAY[@]} -eq 0 ]; then
+  if [ ''${#SINK_ARRAY[@]} -eq 0 ]; then
       notify-send "Audio Error" "No audio sinks found"
       exit 1
   fi
 
   # Find current sink index
   CURRENT_INDEX=-1
-  for i in "${!SINK_ARRAY[@]}"; do
-      SINK_NAME=$(pactl list sinks short | grep "^${SINK_ARRAY[$i]}\s" | awk '{print $2}')
+  for i in "''${!SINK_ARRAY[@]}"; do
+      SINK_NAME=$(pactl list sinks short | grep "^''${SINK_ARRAY[$i]}\s" | awk '{print $2}')
       if [ "$SINK_NAME" = "$CURRENT_SINK" ]; then
           CURRENT_INDEX=$i
           break
@@ -39,13 +39,13 @@ pkgs.writeShellScriptBin "switch_audio_output" ''
       NEXT_INDEX=0
   else
       # Get next sink
-      NEXT_INDEX=$(( (CURRENT_INDEX + 1) % ${#SINK_ARRAY[@]} ))
+      NEXT_INDEX=$(( (CURRENT_INDEX + 1) % ''${#SINK_ARRAY[@]} ))
   fi
 
-  NEXT_SINK=${SINK_ARRAY[$NEXT_INDEX]}
+  NEXT_SINK=''${SINK_ARRAY[$NEXT_INDEX]}
 
   # Get sink name for pactl
-  NEXT_SINK_NAME=$(pactl list sinks short | grep "^${NEXT_SINK}\s" | awk '{print $2}')
+  NEXT_SINK_NAME=$(pactl list sinks short | grep "^''${NEXT_SINK}\s" | awk '{print $2}')
 
   # Switch to next sink
   pactl set-default-sink "$NEXT_SINK_NAME"
@@ -60,5 +60,5 @@ pkgs.writeShellScriptBin "switch_audio_output" ''
   SINK_FRIENDLY=$(pactl list sinks | grep -A 1 "Name: $NEXT_SINK_NAME$" | grep "Description:" | cut -d: -f2 | xargs)
 
   # Send notification
-  notify-send "Audio Output" "Switched to: ${SINK_FRIENDLY:-$NEXT_SINK_NAME}"
+  notify-send "Audio Output" "Switched to: ''${SINK_FRIENDLY:-$NEXT_SINK_NAME}"
 ''
