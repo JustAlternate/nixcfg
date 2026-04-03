@@ -9,7 +9,6 @@
     ./default.nix
     ./hardware-pi3b+.nix
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../../modules/sops.nix
   ];
 
   networking = {
