@@ -46,15 +46,6 @@ with lib;
             identityFile = "~/.ssh/id_ed25519";
             addKeysToAgent = "yes";
           };
-          "geckoNixosRemote1" = {
-            # RPI3b+ via beaver (tailscale)
-            hostname = "100.64.0.0";
-            user = "root";
-            port = 22;
-            identityFile = "~/.ssh/id_ed25519";
-            addKeysToAgent = "yes";
-            proxyJump = "beaver";
-          };
           "ocelot" = {
             #batocera
             hostname = "192.168.1.242";
