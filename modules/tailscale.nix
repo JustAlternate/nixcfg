@@ -8,10 +8,15 @@
 
   services.tailscale = {
     enable = true;
+    authKeyFile = config.sops.secrets."HEADSCALE/PREAUTH_KEY".path;
     extraUpFlags = [
       "--login-server=https://headscale.justalternate.com"
+      "--reset"
     ];
-    authKeyFile = config.sops.secrets."HEADSCALE/PREAUTH_KEY".path;
-    authKeyParameters.preauthorized = true;
+  };
+
+  systemd.services.tailscaled-autoconnect = {
+    after = [ "sops-install-secrets.service" ];
+    wants = [ "sops-install-secrets.service" ];
   };
 }
