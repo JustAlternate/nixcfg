@@ -20,6 +20,7 @@
       "GOTIFY/APP_TOKEN" = { };
       "MAIL_MONITOR/HASHED_PASSWORD" = { };
       "MAIL_MONITOR/ENV" = { };
+      "HEADSCALE/PREAUTH_KEY" = { };
     };
   };
 

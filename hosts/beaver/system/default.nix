@@ -38,7 +38,21 @@
       Port = 8443;
       PasswordAuthentication = false;
     };
+    headscale = {
+      enable = true;
+      address = "0.0.0.0";
+      port = 9111;
+      serverUrl = "https://headscale.justalternate.com";
+      settings = {
+        dns = {
+          base_domain = "headscale.justalternate.com";
+        };
+        log.level = "info";
+      };
+    };
   };
+
+  sops.secrets."HEADSCALE/PREAUTH_KEY" = { };
   users = {
     # set Zsh as the default user shell for all users
     defaultUserShell = pkgs.zsh;
