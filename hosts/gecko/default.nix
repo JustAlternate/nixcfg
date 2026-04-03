@@ -4,6 +4,7 @@
     ../../nixos/core/nix.nix
     ./services/default.nix
     ../../modules/tailscale.nix
+    ../../modules/sops.nix
   ];
 
   networking = {

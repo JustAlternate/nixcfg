@@ -163,14 +163,20 @@
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/geckoNixos2.nix ];
+          modules = [
+            ./hosts/gecko/geckoNixos2.nix
+            inputs.sops-nix.nixosModules.sops
+          ];
         };
         geckoNixos3 = nixpkgs.lib.nixosSystem {
           system = systemArm;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/geckoNixos3.nix ];
+          modules = [
+            ./hosts/gecko/geckoNixos3.nix
+            inputs.sops-nix.nixosModules.sops
+          ];
         };
         geckoNixosRPISdImage = nixpkgs.lib.nixosSystem {
           system = systemArm;
@@ -184,7 +190,10 @@
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/geckoNixos4.nix ];
+          modules = [
+            ./hosts/gecko/geckoNixos4.nix
+            inputs.sops-nix.nixosModules.sops
+          ];
         };
       };
 
