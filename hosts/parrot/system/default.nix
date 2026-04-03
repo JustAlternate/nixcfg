@@ -7,6 +7,7 @@
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     ./hardware.nix
+    ../../../modules/tailscale.nix
     ../../../nixos/desktop
     ../../../nixos/core/machine-name.nix
   ];

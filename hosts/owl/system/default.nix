@@ -8,6 +8,7 @@
 {
   imports = [
     ../../../nixos/core/machine-name.nix
+    ../../../modules/tailscale.nix
     ./window-manager.nix
   ];
 

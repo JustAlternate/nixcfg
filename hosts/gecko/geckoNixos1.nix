@@ -32,13 +32,4 @@
       ];
     };
   };
-
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "client";
-    extraUpFlags = [
-      "--login-server=https://headscale.justalternate.com"
-    ];
-    authKeyFile = config.sops.secrets."HEADSCALE/PREAUTH_KEY".path;
-  };
 }

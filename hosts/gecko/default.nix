@@ -3,6 +3,7 @@
   imports = [
     ../../nixos/core/nix.nix
     ./services/default.nix
+    ../../modules/tailscale.nix
   ];
 
   networking = {
