@@ -11,6 +11,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware.nix
+    ../../../modules/tailscale.nix
     ../../../nixos/desktop
     ../../../nixos/core/machine-name.nix
   ];
