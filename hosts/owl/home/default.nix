@@ -8,6 +8,7 @@
   imports = [
     ../../../modules/ssh.nix
     ../../../modules/git.nix
+    ../../../modules/tmux.nix
     ../../../home/desktop/ghostty.nix
     ../../../home/dev/database.nix
     ../../../home/shell/fastfetch.nix
@@ -51,48 +52,54 @@
       ];
     };
     initContent = ''
-      			DISABLE_AUTO_UPDATE="true"
-      			DISABLE_MAGIC_FUNCTIONS="true"
-      			DISABLE_COMPFIX="true"
-              source <(kubectl completion zsh)
-              # Skip if file doesn't exist
-              [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
-                cat "${config.home.homeDirectory}/.cache/wal/sequences"
-              while IFS='=' read -r name value; do
-                [[ $name != \#* ]] && export "$name=$value"
-              done < ~/env-var/.env
-              # Initialize zoxide (fast)
-              eval "$(zoxide init zsh)"
-              # Keybindings (minimal)
-              bindkey '^J' history-incremental-search-backward
-              bindkey '^K' history-incremental-search-forward
-              bindkey '^O' autosuggest-accept
-              # Load custom theme with single spaces
-              source "${config.home.homeDirectory}/.config/zsh/themes/edvardm-custom.zsh-theme"
-              # Add machine name to prompt
-              PROMPT="%{$fg[green]%}[${machineName}]%{$reset_color%} $PROMPT"
-              # Right prompt: k8s context with dev=blue prod=red
-              _rps1_info() {
-                local k8s_ctx k8s_color
-                k8s_ctx="$(kubectl config current-context 2>/dev/null || echo none)"
-                if [[ "$k8s_ctx" == *dev* ]]; then k8s_color=blue
-                elif [[ "$k8s_ctx" == *prod* ]]; then k8s_color=red
-                else k8s_color=cyan; fi
-                echo "%F{''${k8s_color}}k8s:''${k8s_ctx}%f"
-              }
-              RPS1='$(_rps1_info)'
+      DISABLE_AUTO_UPDATE="true"
+      DISABLE_MAGIC_FUNCTIONS="true"
+      DISABLE_COMPFIX="true"
+
+      source <(kubectl completion zsh)
+
+      # Skip if file doesn't exist
+      [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
+      	cat "${config.home.homeDirectory}/.cache/wal/sequences"
+
+      while IFS='=' read -r name value; do
+      	[[ $name != \#* ]] && export "$name=$value"
+      done < ~/env-var/.env
+
+      # Initialize zoxide (fast)
+      eval "$(zoxide init zsh)"
+
+      # Keybindings (minimal)
+      bindkey '^J' history-incremental-search-backward
+      bindkey '^K' history-incremental-search-forward
+      bindkey '^O' autosuggest-accept
+      # Load custom theme with single spaces
+      source "${config.home.homeDirectory}/.config/zsh/themes/edvardm-custom.zsh-theme"
+      # Add machine name to prompt
+      PROMPT="%{$fg[green]%}[${machineName}]%{$reset_color%} $PROMPT"
+      # Right prompt: k8s context with dev=blue prod=red
+      _rps1_info() {
+      	local k8s_ctx k8s_color
+      	k8s_ctx="$(kubectl config current-context 2>/dev/null || echo none)"
+      	if [[ "$k8s_ctx" == *dev* ]]; then k8s_color=blue
+      	elif [[ "$k8s_ctx" == *prod* ]]; then k8s_color=red
+      	else k8s_color=cyan; fi
+      	echo "%F{''${k8s_color}}k8s:''${k8s_ctx}%f"
+      }
+      RPS1='$(_rps1_info)'
     '';
   };
 
   home = {
     packages = with pkgs; [
       postgresql
-      go
+      unstable.go
       btop
       grpcurl
       unstable.golangci-lint
       goreleaser
       unstable.docker
+      unstable.cntr
       docker-compose
 
       posting
@@ -116,7 +123,6 @@
       git
       gcc
       lua
-      go
       go-mockery
       cmake
       gnumake
@@ -148,18 +154,25 @@
       # Text editors
       vim
       master.cursor-cli
+      unstable.claude-code
+      unstable.claude-monitor
+      unstable.claude-code-acp
       unstable.opencode
     ];
 
     # For env var
     sessionVariables = {
       EDITOR = "nvim";
+      JABBA_VERSION = "0.11.2";
     };
 
     sessionPath = [
       "/opt/homebrew/bin/"
       "/opt/homebrew/opt/php@7.4/bin"
       "$HOME/go/bin"
+      "$HOME/Library/Application Support/Coursier/bin"
+      "$HOME/.jabba/bin"
+      "$HOME/.jabba/jdk/openjdk@17.0.2/Contents/Home/bin/"
     ];
 
     stateVersion = "24.05";
