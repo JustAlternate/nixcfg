@@ -99,7 +99,7 @@
       unstable.golangci-lint
       goreleaser
       unstable.docker
-      unstable.cntr
+      # unstable.cntr
       docker-compose
 
       posting
@@ -154,9 +154,8 @@
       # Text editors
       vim
       master.cursor-cli
-      unstable.claude-code
+      unstable.claude-code-bin
       unstable.claude-monitor
-      unstable.claude-code-acp
       unstable.opencode
     ];
 
