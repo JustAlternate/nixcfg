@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+_: {
   services = {
     headscale = {
       enable = true;
@@ -7,12 +6,14 @@
       address = "0.0.0.0";
       settings = {
         server_url = "https://headscale.justalternate.com";
-        dns.base_domain = "dns.justalternate.com";
-        dns.magic_dns = true;
-        dns.nameservers.global = [
-          "86.54.11.13" # dns4eu
-          "1.1.1.1" # cloudflare fallback
-        ];
+        dns = {
+          base_domain = "dns.justalternate.com";
+          magic_dns = true;
+          nameservers.global = [
+            "86.54.11.13" # dns4eu
+            "1.1.1.1" # cloudflare fallback
+          ];
+        };
       };
     };
 
