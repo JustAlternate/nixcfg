@@ -1,22 +1,34 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  cfg = config.services.tailscale;
+in
 {
-  networking.firewall = {
-    checkReversePath = "loose";
-    trustedInterfaces = [ config.services.tailscale.interfaceName ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
-  };
+  options.services.tailscale.advertiseExitNode = lib.mkEnableOption "advertise as exit node";
 
-  services.tailscale = {
-    enable = true;
-    authKeyFile = config.sops.secrets."HEADSCALE/PREAUTH_KEY".path;
-    extraUpFlags = [
-      "--login-server=https://headscale.justalternate.com"
-      "--reset"
-    ];
-  };
+  config = lib.mkIf cfg.enable {
+    networking.firewall = {
+      checkReversePath = "loose";
+      trustedInterfaces = [ cfg.interfaceName ];
+      allowedUDPPorts = [ cfg.port ];
+    };
 
-  systemd.services.tailscaled-autoconnect = {
-    after = [ "sops-install-secrets.service" ];
-    wants = [ "sops-install-secrets.service" ];
+    boot.kernel.sysctl = lib.mkIf cfg.advertiseExitNode {
+      "net.ipv4.ip_forward" = 1;
+      "net.ipv6.conf.all.forwarding" = 1;
+    };
+
+    services.tailscale = {
+      authKeyFile = config.sops.secrets."HEADSCALE/PREAUTH_KEY".path;
+      extraUpFlags = [
+        "--login-server=https://headscale.justalternate.com"
+        "--reset"
+      ]
+      ++ lib.optional cfg.advertiseExitNode "--advertise-exit-node";
+    };
+
+    systemd.services.tailscaled-autoconnect = {
+      after = [ "sops-install-secrets.service" ];
+      wants = [ "sops-install-secrets.service" ];
+    };
   };
 }
