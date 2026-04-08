@@ -154,9 +154,12 @@
       # Text editors
       vim
       master.cursor-cli
-      unstable.claude-code-bin
+      # unstable.claude-code-bin
       unstable.claude-monitor
       unstable.opencode
+
+      pandoc
+      texliveFull
     ];
 
     # For env var
