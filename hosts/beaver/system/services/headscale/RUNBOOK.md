@@ -13,7 +13,7 @@ Hosted on: beaver (`nixos-beaver-8gb-nbg1-3`)
 2. Rebuild: `sudo nixos-rebuild switch --flake .#<hostname>`
 3. Approve on headscale (see below)
 
-## Add a non-NixOS node (e.g. Armbian, phone)
+## Add a non-NixOS node
 
 1. Install Tailscale:
    ```bash
@@ -62,10 +62,3 @@ headscale preauthkeys create                      # Create auth key
 
 - Preauth key stored in SOPS: `secrets/secrets.yaml` under `HEADSCALE/PREAUTH_KEY`
 - Decrypt: `sops -d secrets/secrets.yaml | grep PREAUTH`
-
-## Current exit nodes
-
-| Node    | IP          | Hostname               |
-|---------|-------------|------------------------|
-| beaver  | 100.64.0.6  | nixos-beaver-8gb-nbg1-3 |
-| gecko   | 100.64.0.7  | bananapim5             |
