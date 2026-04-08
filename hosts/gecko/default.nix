@@ -47,7 +47,10 @@
   ];
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services = {
+    tailscale.advertiseExitNode = true;
+    openssh.enable = true;
+  };
   users = {
     # set Zsh as the default user shell for all users
     defaultUserShell = pkgs.zsh;
