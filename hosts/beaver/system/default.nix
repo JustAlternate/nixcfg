@@ -6,6 +6,7 @@
     ./networking.nix # generated at runtime by nixos-infect
     ../../../modules/sops.nix # Secrets management using ssh key
     ../../../nixos/core/nix.nix
+    ../../../modules/tailscale.nix
     ./services
   ];
 
