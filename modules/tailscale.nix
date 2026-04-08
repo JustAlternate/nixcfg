@@ -5,7 +5,7 @@ in
 {
   options.services.tailscale.advertiseExitNode = lib.mkEnableOption "advertise as exit node";
 
-  config = lib.mkIf cfg.enable {
+  config = {
     networking.firewall = {
       checkReversePath = "loose";
       trustedInterfaces = [ cfg.interfaceName ];
@@ -18,10 +18,10 @@ in
     };
 
     services.tailscale = {
+      enable = true;
       authKeyFile = config.sops.secrets."HEADSCALE/PREAUTH_KEY".path;
       extraUpFlags = [
         "--login-server=https://headscale.justalternate.com"
-        "--reset"
       ]
       ++ lib.optional cfg.advertiseExitNode "--advertise-exit-node";
     };
