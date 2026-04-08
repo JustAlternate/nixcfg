@@ -147,7 +147,7 @@ flowchart LR
 
 - 4 Pi (3x Pi 3B+, 1x Pi 4B) on static IPs (192.168.1.11-14)
 - **Management**: SSH access from main machine, SD image builder for initial deployment
-- **Network**: connected via Tailscale client mesh network with a VPS running Headscale as the coordination server (WIP)
+- **Network**: connected via Tailscale client mesh network with a VPS running Headscale as the coordination server
 
 ![./assets/cluster.jpg](./assets/cluster2.jpg)
 
