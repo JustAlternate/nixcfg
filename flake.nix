@@ -183,7 +183,10 @@
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./hosts/gecko/geckoNixosRPI-sd-image.nix ];
+          modules = [
+            ./hosts/gecko/geckoNixosRPI-sd-image.nix
+            inputs.sops-nix.nixosModules.sops
+          ];
         };
         geckoNixos4 = nixpkgs.lib.nixosSystem {
           system = systemArm;

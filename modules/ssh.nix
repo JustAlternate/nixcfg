@@ -15,32 +15,32 @@ with lib;
             addKeysToAgent = "yes";
           };
           "geckoNixos1" = {
-            # RPI3b+
-            hostname = "192.168.1.11";
+            # RPI3b+ (tailscale: 100.64.0.1)
+            hostname = "100.64.0.1";
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
             addKeysToAgent = "yes";
           };
           "geckoNixos2" = {
-            # RPI4B
-            hostname = "192.168.1.12";
+            # RPI4B (tailscale: 100.64.0.3)
+            hostname = "100.64.0.3";
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
             addKeysToAgent = "yes";
           };
           "geckoNixos3" = {
-            # RPI4B
-            hostname = "192.168.1.13";
+            # RPI4B (tailscale: 100.64.0.4)
+            hostname = "100.64.0.4";
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
             addKeysToAgent = "yes";
           };
           "geckoNixos4" = {
-            # RPI4B
-            hostname = "192.168.1.14";
+            # RPI4B (tailscale: 100.64.0.5)
+            hostname = "100.64.0.5";
             user = "root";
             port = 22;
             identityFile = "~/.ssh/id_ed25519";
