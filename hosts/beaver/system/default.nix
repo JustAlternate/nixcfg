@@ -35,11 +35,31 @@
       SystemMaxUse=800M
       MaxRetentionSec=1month
     '';
-    fail2ban.enable = true;
-    openssh.enable = true;
-    openssh.settings = {
-      Port = 8443;
-      PasswordAuthentication = false;
+    fail2ban = {
+      enable = true;
+      bantime = "1h";
+      maxretry = 3;
+      ignoreIP = [
+        "127.0.0.1/8"
+        "::1"
+      ];
+    };
+    fail2ban.config.sshd = {
+      enable = true;
+      port = "22,8443";
+      maxretry = 3;
+      bantime = "1h";
+    };
+    openssh = {
+      enable = true;
+      settings = {
+        Ports = [ 8443 ];
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "prohibit-password";
+        MaxAuthTries = 3;
+        LoginGraceTime = 30;
+      };
     };
   };
   users = {

@@ -9,7 +9,6 @@
         80
         443
         8443
-        9111
       ];
       allowedUDPPorts = [
       ];
