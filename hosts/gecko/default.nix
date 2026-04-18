@@ -1,10 +1,10 @@
 { lib, pkgs, ... }:
 {
   imports = [
-    ../../nixos/core/nix.nix
+    ../../profiles/nixos/core/nix.nix
     ./services/default.nix
-    ../../modules/tailscale.nix
-    ../../modules/sops.nix
+    ../../modules/nixos/tailscale.nix
+    ../../modules/nixos/sops.nix
   ];
 
   networking = {

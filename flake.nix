@@ -7,6 +7,7 @@
 
     unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     master-nixpkgs.url = "github:nixos/nixpkgs/master";
+    my-nixpkgs.url = "github:JustAlternate/nixpkgs/master";
 
     justnixvim.url = "github:JustAlternate/justnixvim";
 
@@ -49,6 +50,7 @@
       nixpkgs,
       unstable-nixpkgs,
       master-nixpkgs,
+      my-nixpkgs,
       home-manager,
       nix-darwin,
       ...
@@ -66,6 +68,10 @@
             config.allowUnfree = true;
           };
           master = import master-nixpkgs {
+            inherit (prev) system;
+            config.allowUnfree = true;
+          };
+          my = import my-nixpkgs {
             inherit (prev) system;
             config.allowUnfree = true;
           };

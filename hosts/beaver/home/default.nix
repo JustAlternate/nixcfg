@@ -2,8 +2,8 @@
 {
   imports = [
     ../../../home/shell
-    ../../../modules/ssh.nix
-    ../../../modules/git.nix
+    ../../../modules/home/ssh.nix
+    ../../../modules/home/git.nix
   ];
 
   home = {

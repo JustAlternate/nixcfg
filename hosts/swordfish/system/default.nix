@@ -9,11 +9,13 @@
   # GPU: AMD Radeon RX 6800
   # RAM: 32G
   imports = [
-    # Include the results of the hardware scan.
     ./hardware.nix
-    ../../../modules/tailscale.nix
-    ../../../nixos/desktop
-    ../../../nixos/core/machine-name.nix
+    ../../../modules/nixos/tailscale.nix
+    ../../../profiles/nixos/desktop
+    ../../../profiles/nixos/desktop/yubikey.nix
+    ../../../profiles/nixos/core/identity.nix
+    ../../../profiles/nixos/core/nix.nix
+    ../../../modules/nixos/sops.nix
   ];
 
   machineName = "swordfish";

@@ -6,13 +6,12 @@
 }:
 {
   imports = [
-    ../../../modules/ssh.nix
-    ../../../modules/git.nix
-    ../../../modules/tmux.nix
+    ../../../modules/home/ssh.nix
+    ../../../modules/home/git.nix
+    ../../../modules/home/tmux.nix
     ../../../home/desktop/ghostty.nix
     ../../../home/dev/database.nix
     ../../../home/shell/fastfetch.nix
-    # ../../../home/dev/python.nix
   ];
 
   ssh.work.enable = true;

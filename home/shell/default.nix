@@ -14,18 +14,10 @@
   home.packages = with pkgs; [
     ffmpeg
     bemoji
-    yazi
     marp-cli
-    zip
-    sshpass
     compose2nix
-    zoxide
-    eza
-    fzf
     lazygit
-    # Development
     openssh
-    git
     gcc
     lua
     go
@@ -38,43 +30,13 @@
     pre-commit
     gh
     gh-dash
-    statix # Lints and suggestions for the nix programming language
-    deadnix # Find and remove unused code in .nix source files
-    nixfmt-rfc-style # Nix Code Formatter
+    statix
+    deadnix
+    nixfmt-rfc-style
     kubectl
     kubernetes-helm
     k9s
-    # Monitoring
-    htop
-    tree
-    # Cli tools
-    direnv
-    asciinema
-    asciinema-agg
-    ## Utility
-    xdg-utils
-    unzip
-    wget
-    wl-clipboard
-    wl-clipboard-x11
-    cliphist
-    ripgrep
-    pamixer
-    fzf
-    socat
-    jq
     ani-cli
-    sshfs
-    sops
-    pandoc
-    mermaid-filter
-    pandoc-katex
-    asciiquarium
-    ## Show-off
-    cmatrix
-    cava
-    cbonsai
-    # Text editors
     vim
     inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.fleettui.packages.${pkgs.stdenv.hostPlatform.system}.default

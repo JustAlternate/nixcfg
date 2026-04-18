@@ -4,11 +4,8 @@ with pkgs;
   steam
   mgba
   prismlauncher
-  master.osu-lazer-bin
-
-  meson
+  my.osu-lazer-bin
   wine
   winetricks
   wine-wayland
-  zlib
 ]
