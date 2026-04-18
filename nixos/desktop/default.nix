@@ -14,6 +14,7 @@
       coreutils-full
       git
       vim
+      vllm
     ];
 
     sessionVariables = {
