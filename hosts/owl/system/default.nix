@@ -7,7 +7,7 @@
 }:
 {
   imports = [
-    ../../../nixos/core/machine-name.nix
+    ../../../profiles/nixos/core/identity.nix
     ./window-manager.nix
   ];
 
