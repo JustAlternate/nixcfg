@@ -130,6 +130,7 @@
       devenv
       pre-commit
       gh
+      circleci-cli
       opentofu
       unstable.nomad
       statix # Lints and suggestions for the nix programming language
@@ -154,7 +155,7 @@
       # Text editors
       vim
       master.cursor-cli
-      # unstable.claude-code-bin
+      master.claude-code-bin
       unstable.claude-monitor
       unstable.opencode
 
