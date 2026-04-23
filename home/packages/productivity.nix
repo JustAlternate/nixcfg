@@ -1,12 +1,14 @@
 { pkgs }:
 with pkgs;
 [
-  thunderbird
   bitwarden-desktop
   eduvpn-client
   libreoffice-qt-fresh
   texliveFull
-  unstable.vesktop
-  librewolf
-  chromium
+  wireguard-ui
+  wg-netmanager
+  wireguard-tools
+  yubioath-flutter
+  yubikey-manager
+  yubikey-agent
 ]

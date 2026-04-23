@@ -1,0 +1,35 @@
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    fzf
+    zoxide
+    eza
+    ripgrep
+    yazi
+    htop
+    tree
+    direnv
+    asciinema
+    asciinema-agg
+    xdg-utils
+    unzip
+    wget
+    wl-clipboard
+    wl-clipboard-x11
+    cliphist
+    pamixer
+    socat
+    jq
+    sshfs
+    pandoc
+    mermaid-filter
+    pandoc-katex
+    asciiquarium
+    cmatrix
+    cava
+    cbonsai
+    zip
+    sshpass
+    sops
+  ];
+}
