@@ -20,6 +20,7 @@ with lib;
       nixcfg = "cd ~/nixcfg";
       ls = "eza --color=auto --icons=always";
       cd = "z";
+      cat = "bat --paging=never";
       nvimf = "nvim $(fzf)";
     };
     history = {
