@@ -29,6 +29,7 @@
     devenv
     pre-commit
     gh
+    bat
     gh-dash
     statix
     deadnix
