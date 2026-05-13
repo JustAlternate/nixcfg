@@ -43,17 +43,24 @@
         "127.0.0.1/8"
         "::1"
       ];
-    };
-    fail2ban.config.sshd = {
-      enable = true;
-      port = "22,8443";
-      maxretry = 3;
-      bantime = "1h";
+      jails = {
+        sshd = {
+          settings = {
+            enabled = true;
+            port = "22,8443";
+            maxretry = 3;
+            bantime = "1h";
+          };
+        };
+      };
     };
     openssh = {
       enable = true;
+      ports = [
+        22
+        8443
+      ];
       settings = {
-        Ports = [ 8443 ];
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "prohibit-password";
