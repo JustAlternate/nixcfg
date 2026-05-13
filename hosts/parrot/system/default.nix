@@ -7,9 +7,12 @@
   # CONFIGURATION FOR A ASUS TUF Gaming A15 FA506ICB_FA506ICB
   imports = [
     ./hardware.nix
-    ../../../modules/tailscale.nix
-    ../../../nixos/desktop
-    ../../../nixos/core/machine-name.nix
+    ../../../modules/nixos/tailscale.nix
+    ../../../profiles/nixos/desktop
+    ../../../profiles/nixos/desktop/yubikey.nix
+    ../../../profiles/nixos/core/identity.nix
+    ../../../profiles/nixos/core/nix.nix
+    ../../../modules/nixos/sops.nix
   ];
 
   machineName = "parrot";

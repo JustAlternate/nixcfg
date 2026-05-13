@@ -1,31 +1,17 @@
 { pkgs, ... }:
 {
   imports = [
-    ./rofi.nix
-    ./waybar.nix
-    ./pywal.nix
+    ./compositor
     ./ghostty.nix
-    ./dunst.nix
     ./activitywatch
+    ./scripts
   ];
 
   home.packages = with pkgs; [
-    birdtray
-    patray
-    fractal
-    wireguard-ui
-    wg-netmanager
-    wireguard-tools
-
-    # Theming
     numix-icon-theme-circle
     colloid-icon-theme
     catppuccin-gtk
     catppuccin-kvantum
-
-    yubioath-flutter
-    yubikey-manager
-    yubikey-agent
   ];
 
   home.pointerCursor = {
@@ -76,5 +62,4 @@
       text-wrong-color = "eba0ac";
     };
   };
-
 }

@@ -694,11 +694,11 @@
     },
     "master-nixpkgs": {
       "locked": {
-        "lastModified": 1774253681,
-        "narHash": "sha256-U3LMRHov4wQ4olZq/zvf94Qf7oL6W11fjvZGvWg3gZc=",
+        "lastModified": 1778613423,
+        "narHash": "sha256-F9rqwGYE641H+rQVBWJ4q2VWyXveedQSdaf8ZAtbUbA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "16b430b0e3a5233df0444f14928af915555308ac",
+        "rev": "9ab64e2beeea8703898eec2596d1b28dc95163df",
         "type": "github"
       },
       "original": {
@@ -727,6 +727,22 @@
       "original": {
         "owner": "mistralai",
         "repo": "mistral-vibe",
+        "type": "github"
+      }
+    },
+    "my-nixpkgs": {
+      "locked": {
+        "lastModified": 1776516722,
+        "narHash": "sha256-zM+TzVC27bqzJa6dOLbafWn3vGcD+Ax/KYRT20N2/NI=",
+        "owner": "JustAlternate",
+        "repo": "nixpkgs",
+        "rev": "d261b3251c0925ea4775bf732d383b8a06944280",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JustAlternate",
+        "ref": "master",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -1045,6 +1061,7 @@
         "justnixvim": "justnixvim",
         "master-nixpkgs": "master-nixpkgs",
         "mistral-vibe": "mistral-vibe",
+        "my-nixpkgs": "my-nixpkgs",
         "nix-darwin": "nix-darwin",
         "nixos-cli": "nixos-cli",
         "nixos-mailserver": "nixos-mailserver",

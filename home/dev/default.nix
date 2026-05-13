@@ -1,11 +1,11 @@
 { ... }:
 {
   imports = [
-    # ./R.nix
     ./python.nix
-    # ./ocaml.nix
-    ./java.nix
+    # ./java.nix
     ./database.nix
     ./js.nix
+    # ./R.nix
+    # ./ocaml.nix
   ];
 }

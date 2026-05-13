@@ -3,9 +3,6 @@
   imports = [
     ./hyprland.nix
     ./docker.nix
-    ../../modules/sops.nix
-    ../core/nix.nix
-    ../core/security.nix
   ];
 
   environment = {
@@ -14,6 +11,7 @@
       coreutils-full
       git
       vim
+      vllm
     ];
 
     sessionVariables = {

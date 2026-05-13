@@ -1,13 +1,12 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../../nixos/core/machine-name.nix
+    ../../../profiles/nixos/core/identity.nix
     ./hardware.nix
-    ./networking.nix # generated at runtime by nixos-infect
-    ../../../modules/sops.nix # Secrets management using ssh key
-    ../../../modules/tailscale.nix
-    ../../../nixos/core/nix.nix
-    ../../../modules/tailscale.nix
+    ./networking.nix
+    ../../../modules/nixos/sops.nix
+    ../../../modules/nixos/tailscale.nix
+    ../../../profiles/nixos/core/nix.nix
     ./services
   ];
 

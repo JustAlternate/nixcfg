@@ -24,19 +24,8 @@ Nix packages are architecture-specific. `nix shell` commands must match the syst
 
 ### Primary Languages
 - **Go** — primary backend language (nix-managed)
-- **Python** — scripting, automation (nix-managed)
+- **vanilla js/html/css** — frontend application 
 - **Bash** — shell scripting, system tasks
-
-### Other Languages
-- Lua, C/C++, JavaScript/TypeScript, Java
-
-### Key Tools
-- **git** + lazygit — version control
-- **vim** / neovim — text editing
-- **opencode** — AI assistant (this tool)
-- **rtk** — file management
-- **fzf**, **ripgrep**, **zoxide** — navigation & search
-- **sops** — secrets management (age encryption)
 
 ## 💬 Response Style
 
@@ -61,6 +50,7 @@ Nix packages are architecture-specific. `nix shell` commands must match the syst
 2. **NEVER** change git config (user.name, user.email) autonomously
 3. **NEVER** commit or push changes autonomously — always ask first
 4. **NEVER** run long commands autonomously — ask for confirmation
+
 5. **ALWAYS** use sops for secrets, never plain text
 6. **ALWAYS** check existing packages before installing
 7. **ALWAYS** test config syntax before applying changes
