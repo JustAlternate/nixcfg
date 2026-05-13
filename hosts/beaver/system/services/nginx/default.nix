@@ -18,11 +18,11 @@ _: {
             root = "/var/www/";
           };
         };
-        "polynovel.justalternate.com" = {
+        "planka.justalternate.com" = {
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            proxyPass = "http://127.0.0.1:3333";
+            proxyPass = "http://127.0.0.1:3242";
             proxyWebsockets = true;
             extraConfig = ''
               							proxy_set_header Host $host;
