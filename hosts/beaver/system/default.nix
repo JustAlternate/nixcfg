@@ -51,6 +51,31 @@
             bantime = "1h";
           };
         };
+        postfix-sasl = {
+          settings = {
+            enabled = true;
+            port = "smtp,465,submission";
+            maxretry = 3;
+            bantime = "1h";
+          };
+        };
+        dovecot = {
+          settings = {
+            enabled = true;
+            port = "imap,imaps,pop3,pop3s,submission";
+            maxretry = 3;
+            bantime = "1h";
+          };
+        };
+        nginx-botsearch = {
+          settings = {
+            enabled = true;
+            port = "http,https";
+            maxretry = 5;
+            bantime = "1h";
+            findtime = "10m";
+          };
+        };
       };
     };
     openssh = {
