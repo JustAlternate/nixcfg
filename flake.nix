@@ -42,6 +42,11 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-cli = {
+      url = "github:nix-community/nixos-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -53,6 +58,7 @@
       my-nixpkgs,
       home-manager,
       nix-darwin,
+      nixos-cli,
       ...
     }@inputs:
     let
@@ -85,6 +91,7 @@
           specialArgs = { inherit inputs; };
           inherit system;
           modules = [
+            nixos-cli.nixosModules.nixos-cli
             ./hosts/parrot/system
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
@@ -109,6 +116,7 @@
           specialArgs = { inherit inputs; };
           inherit system;
           modules = [
+            nixos-cli.nixosModules.nixos-cli
             ./hosts/swordfish/system
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
@@ -134,6 +142,7 @@
           specialArgs = { inherit inputs; };
           system = systemArm;
           modules = [
+            nixos-cli.nixosModules.nixos-cli
             ./hosts/beaver/system
             home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
