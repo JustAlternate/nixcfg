@@ -55,6 +55,16 @@
       monitor=DP-3, 2560x1440@165, 1920x0, 1
       monitor=DP-1, 2560x1440@165, 1920x0, 1
       monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
+
+      # Workspace-to-monitor bindings
+      workspace = 1, monitor:DP-1
+      workspace = 2, monitor:DP-1
+      workspace = 5, monitor:HDMI-A-1
+
+      # Auto-start applications on specific workspaces
+      exec-once = [workspace 1 silent] ghostty --config-file=/home/justalternate/.config/ghostty/config
+      exec-once = [workspace 2 silent] librewolf
+      exec-once = [workspace 5 silent] vesktop
     '';
   };
 
