@@ -54,7 +54,7 @@ with lib;
                 PROMPT="%{$fg[green]%}[${machineName}]%{$reset_color%} $PROMPT"
                 # Auto-start Hyprland on TTY login
                 if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-                  exec Hyprland
+                  exec start-hyprland
                 fi
     '';
   };
