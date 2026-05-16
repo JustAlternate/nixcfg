@@ -34,11 +34,63 @@
       SystemMaxUse=800M
       MaxRetentionSec=1month
     '';
-    fail2ban.enable = true;
-    openssh.enable = true;
-    openssh.settings = {
-      Port = 8443;
-      PasswordAuthentication = false;
+    fail2ban = {
+      enable = true;
+      bantime = "1h";
+      maxretry = 3;
+      ignoreIP = [
+        "127.0.0.1/8"
+        "::1"
+      ];
+      jails = {
+        sshd = {
+          settings = {
+            enabled = true;
+            port = "22,8443";
+            maxretry = 3;
+            bantime = "1h";
+          };
+        };
+        postfix-sasl = {
+          settings = {
+            enabled = true;
+            port = "smtp,465,submission";
+            maxretry = 3;
+            bantime = "1h";
+          };
+        };
+        dovecot = {
+          settings = {
+            enabled = true;
+            port = "imap,imaps,pop3,pop3s,submission";
+            maxretry = 3;
+            bantime = "1h";
+          };
+        };
+        nginx-botsearch = {
+          settings = {
+            enabled = true;
+            port = "http,https";
+            maxretry = 5;
+            bantime = "1h";
+            findtime = "10m";
+          };
+        };
+      };
+    };
+    openssh = {
+      enable = true;
+      ports = [
+        22
+        8443
+      ];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "prohibit-password";
+        MaxAuthTries = 3;
+        LoginGraceTime = 30;
+      };
     };
   };
   users = {

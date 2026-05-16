@@ -66,3 +66,37 @@ nix flake check
 - Location: `~/env-var/.env`
 - Auto-loaded in Zsh via `~/.config/zsh/init.zsh`
 - Contains API keys for LLMs, cloud services, etc.
+
+## 🔍 Finding NixOS Options & Packages
+
+**ALWAYS** use `nixos option` to verify option names and types before editing configs.
+
+### Finding NixOS module options
+```bash
+# Get details for a specific option (non-interactive)
+nixos option services.openssh.ports -n -f '/root/nixcfg#beaverNixos'
+
+# Search for options matching a pattern (TUI)
+nixos option services.fail2ban -f '/root/nixcfg#beaverNixos'
+
+# Machine-specific flake refs:
+#   beaver:    /root/nixcfg#beaverNixos
+#   swordfish: /root/nixcfg#swordfishNixos
+#   parrot:    /root/nixcfg#parrotNixos
+```
+
+### Finding available packages
+```bash
+# Search for a package in nixpkgs
+nix search nixpkgs#<package-name>
+
+# Get package info
+nix eval nixpkgs#<package-name>.meta.description
+```
+
+### Rules
+1. **NEVER** guess NixOS option names — always verify with `nixos option -f '/root/nixcfg#<configName>'`
+2. **NEVER** assume package names exist — always verify with `nix search`
+3. Check the option **type** before setting values (string vs list vs attrset)
+4. Module-level options (e.g. `services.openssh.ports`) differ from `settings.*` keys (which map to sshd_config directives)
+4. Module-level options (e.g. `services.openssh.ports`) differ from `settings.*` keys (which map to sshd_config directives)
