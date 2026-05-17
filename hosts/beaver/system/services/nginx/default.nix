@@ -18,6 +18,16 @@ _: {
             root = "/var/www/";
           };
         };
+        "loicw.com" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            root = "/var/www/justalternate.com/";
+          };
+          locations."/homepage" = {
+            root = "/var/www/";
+          };
+        };
         "planka.justalternate.com" = {
           enableACME = true;
           forceSSL = true;
