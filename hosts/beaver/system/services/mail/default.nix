@@ -18,6 +18,7 @@
     fqdn = "mail.justalternate.com";
     domains = [
       "justalternate.com"
+      "mail.justalternate.com"
     ];
 
     # Nouvelle clé DKIM 2048 bits (changement de sélecteur obligatoire)
@@ -29,6 +30,7 @@
         hashedPasswordFile = config.sops.secrets."HASHED_PASSWORD".path;
         aliases = [
           "postmaster@justalternate.com"
+          "loicw@mail.justalternate.com"
         ];
       };
       "monitor@justalternate.com" = {

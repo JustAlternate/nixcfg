@@ -30,6 +30,8 @@
     pre-commit
     gh
     bat
+    eza
+    zoxide
     gh-dash
     statix
     deadnix
