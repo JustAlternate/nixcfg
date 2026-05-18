@@ -125,7 +125,6 @@
       git
       gcc
       lua
-      go-mockery
       cmake
       gnumake
       awscli2
