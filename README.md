@@ -17,6 +17,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 #### VPS (beaver)
 - Identity management : [keycloak](https://keycloak.org) (with SSO using github provider or yubikey)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
+- Anti-bot/scraper protection: [Anubis](https://anubis.techaro.lol) (proof-of-work challenge)
 - Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
 - Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
 - Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
@@ -44,6 +45,10 @@ flowchart LR
         subgraph Network["🕸️ Network Layer"]
             Firewall["🔥 UFW Firewall<br/>TCP: 443, 8443, 9111<br/>Mail: 25, 465, 587, 993"]
             Nginx["🌐 Nginx<br/>Reverse Proxy + SSL"]
+        end
+
+        subgraph AntiBot["🛡️ Bot Protection"]
+            Anubis["Anubis<br/>(Proof-of-Work)"]
         end
 
         subgraph Security["🔒 Security Layer"]
@@ -78,6 +83,7 @@ flowchart LR
 
     %% Internal Routing
     Firewall -->|"Proxy"| Nginx
+    Nginx -->|"Challenge"| Anubis
 
     %% Monitoring Flow
     BlackBox --> Prometheus

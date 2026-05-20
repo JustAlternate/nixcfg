@@ -12,20 +12,14 @@ _: {
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            root = "/var/www/justalternate.com/";
-          };
-          locations."/homepage" = {
-            root = "/var/www/";
+            proxyPass = "http://127.0.0.1:8923";
           };
         };
         "loicw.com" = {
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            root = "/var/www/justalternate.com/";
-          };
-          locations."/homepage" = {
-            root = "/var/www/";
+            proxyPass = "http://127.0.0.1:8923";
           };
         };
         "planka.justalternate.com" = {
