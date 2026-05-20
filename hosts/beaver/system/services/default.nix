@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./nginx # Web server, reverse proxy
+    ./anubis # Anti-bot challenge
     ./vaultwarden
     ./openwebui
     ./mail
