@@ -68,6 +68,7 @@ with lib;
         matchBlocks = {
           "github.com" = {
             identityFile = mkForce "~/.ssh/mac_id_ed25519";
+            extraOptions = { IdentitiesOnly = "yes"; };
           };
           "*.iadvize.net" = {
             user = "iadvize";
