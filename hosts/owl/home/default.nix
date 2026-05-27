@@ -101,7 +101,6 @@
       unstable.golangci-lint
       goreleaser
       unstable.docker
-      # unstable.cntr
       docker-compose
 
       posting
@@ -127,6 +126,7 @@
       lua
       cmake
       gnumake
+      uv
       awscli2
       devenv
       pre-commit
@@ -156,9 +156,7 @@
       sops
       # Text editors
       vim
-      master.cursor-cli
       master.claude-code-bin
-      unstable.claude-monitor
       unstable.opencode
 
       pandoc
