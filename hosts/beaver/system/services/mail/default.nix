@@ -40,4 +40,8 @@
     };
     certificateScheme = "acme-nginx";
   };
+
+  services.rspamd.locals.greylist.text = ''
+    timeout = 90;
+  '';
 }
