@@ -15,8 +15,10 @@
       gparted
       appimage-run
       opentabletdriver
+      openlinkhub
       lego
       nvtopPackages.amd
+      headsetcontrol
     ];
   };
 }
