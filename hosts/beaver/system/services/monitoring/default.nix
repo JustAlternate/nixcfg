@@ -348,6 +348,11 @@ in
     ];
   };
 
+  services.loki.extraFlags = [
+    "-log.level=warn"
+    "-log.format=logfmt"
+  ];
+
   systemd.services.grafana-dashboards = {
     requiredBy = [ "grafana.service" ];
     before = [ "grafana.service" ];
