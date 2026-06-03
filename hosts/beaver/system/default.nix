@@ -118,27 +118,7 @@
   };
 
   boot.tmp.cleanOnBoot = true;
-
-  # Mount 40GB Hetzner volume at /var
-  fileSystems."/var" = {
-    device = "/dev/sdb";
-    fsType = "ext4";
-    options = [
-      "defaults"
-      "noatime"
-    ];
-  };
-
-  # Ensure standard /var directories exist on fresh mount
-  systemd.tmpfiles.rules = [
-    "d /var/lib 0755 root root -"
-    "d /var/log 0755 root root -"
-    "d /var/cache 0755 root root -"
-    "d /var/tmp 1777 root root -"
-    "d /var/run 0755 root root -"
-    "d /var/spool 0755 root root -"
-    "d /var/mail 0755 root root -"
-  ];
+  boot.kernelParams = [ "console=tty1" ];
 
   zramSwap.enable = true;
   swapDevices = [
