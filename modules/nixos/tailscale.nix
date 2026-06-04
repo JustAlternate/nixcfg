@@ -7,7 +7,7 @@ in
 
   config = {
     networking.firewall = {
-      checkReversePath = "loose";
+      checkReversePath = false;
       trustedInterfaces = [ cfg.interfaceName ];
       allowedUDPPorts = [ cfg.port ];
     };
