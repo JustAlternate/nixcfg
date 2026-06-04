@@ -9,55 +9,9 @@ let
 in
 {
   services = {
-    promtail = {
+    alloy = {
       enable = true;
-      configuration = {
-        server = {
-          log_level = "warn";
-          http_listen_port = 9003;
-          grpc_listen_port = 0;
-        };
-        positions = {
-          filename = "/tmp/positions.yaml";
-        };
-        clients = [
-          {
-            url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
-          }
-        ];
-        scrape_configs = [
-          {
-            job_name = "journal";
-            journal = {
-              max_age = "12h";
-              labels = {
-                job = "systemd-journal";
-                host = "beaver";
-              };
-            };
-            relabel_configs = [
-              {
-                source_labels = [ "__journal__systemd_unit" ];
-                target_label = "unit";
-              }
-            ];
-            pipeline_stages = [
-              {
-                drop = {
-                  source = "message";
-                  expression = ".*(open\\(\\).*).*";
-                };
-              }
-              {
-                drop = {
-                  source = "message";
-                  expression = ".*SSL_read\\(\\) failed.*";
-                };
-              }
-            ];
-          }
-        ];
-      };
+      configPath = ./alloy.river;
     };
 
     loki = {
@@ -158,7 +112,10 @@ in
         users = {
           allow_sign_up = false;
         };
-        security.disable_initial_admin_creation = true;
+        security = {
+          disable_initial_admin_creation = true;
+          secret_key = "$__file{${config.sops.secrets."GRAFANA/SECRET_KEY".path}}";
+        };
       };
       provision = {
         enable = true;
