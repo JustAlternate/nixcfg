@@ -1,0 +1,34 @@
+loki.source.journal "systemd" {
+  max_age = "12h"
+  labels  = {
+    job  = "systemd-journal",
+    host = "beaver",
+  }
+  relabel_rules = loki.relabel.journal.rules
+  forward_to    = [loki.process.filter.receiver]
+}
+
+loki.relabel "journal" {
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+}
+
+loki.process "filter" {
+  stage.drop {
+    source     = "message"
+    expression = ".*(open\\(\\).*).*"
+  }
+  stage.drop {
+    source     = "message"
+    expression = ".*SSL_read\\(\\) failed.*"
+  }
+  forward_to = [loki.write.local.receiver]
+}
+
+loki.write "local" {
+  endpoint {
+    url = "http://127.0.0.1:9004/loki/api/v1/push"
+  }
+}
