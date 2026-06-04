@@ -10,8 +10,6 @@
     forceSSL = true;
   };
 
-  services.dovecot2.sieve.extensions = [ "fileinto" ];
-
   mailserver = {
     stateVersion = 3;
     enable = true;
@@ -21,11 +19,12 @@
       "mail.justalternate.com"
     ];
 
-    # Nouvelle clé DKIM 2048 bits (changement de sélecteur obligatoire)
-    dkimKeyBits = 2048;
-    dkimSelector = "mail2024";
+    dkim.defaults = {
+      keyLength = 2048;
+      selector = "mail2024";
+    };
 
-    loginAccounts = {
+    accounts = {
       "loicw@justalternate.com" = {
         hashedPasswordFile = config.sops.secrets."HASHED_PASSWORD".path;
         aliases = [
@@ -35,10 +34,9 @@
       };
       "monitor@justalternate.com" = {
         hashedPasswordFile = config.sops.secrets."MAIL_MONITOR/HASHED_PASSWORD".path;
-        # No aliases needed — this account is only for automated probes
       };
     };
-    certificateScheme = "acme-nginx";
+    x509.useACMEHost = "mail.justalternate.com";
   };
 
   services.rspamd.locals.greylist.text = ''

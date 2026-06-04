@@ -1,3 +1,4 @@
+.opencode
 # Compiled files
 .terraform/
 secrets.tfvars
