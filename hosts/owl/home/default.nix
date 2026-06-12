@@ -156,7 +156,6 @@
       sops
       # Text editors
       vim
-      master.claude-code-bin
       unstable.opencode
 
       pandoc
