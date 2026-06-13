@@ -19,11 +19,6 @@
       "86.54.11.13" # dns4eu
       "1.1.1.1" # cloudflare fallback
     ];
-    defaultGateway = "172.31.1.1";
-    defaultGateway6 = {
-      address = "fe80::1";
-      interface = "eth0";
-    };
     dhcpcd.enable = false;
     usePredictableInterfaceNames = lib.mkForce false;
     interfaces = {
@@ -49,11 +44,21 @@
             address = "172.31.1.1";
             prefixLength = 32;
           }
+          {
+            address = "0.0.0.0";
+            prefixLength = 0;
+            via = "172.31.1.1";
+          }
         ];
         ipv6.routes = [
           {
             address = "fe80::1";
             prefixLength = 128;
+          }
+          {
+            address = "::";
+            prefixLength = 0;
+            via = "fe80::1";
           }
         ];
       };
