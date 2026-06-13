@@ -11,7 +11,7 @@
   };
 
   mailserver = {
-    stateVersion = 3;
+    stateVersion = "5";
     enable = true;
     fqdn = "mail.justalternate.com";
     domains = [
