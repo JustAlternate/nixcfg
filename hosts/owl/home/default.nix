@@ -105,7 +105,7 @@
 
       posting
 
-      mysql80
+      mysql84
 
       graphqurl
 
@@ -140,7 +140,6 @@
       nixfmt-rfc-style # Nix Code Formatter
       kubectl
       eksctl
-      k9s
       kubernetes-helm
       # Monitoring
       htop
