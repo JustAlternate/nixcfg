@@ -17,11 +17,11 @@ _: {
         port = 8081;
       }
     ];
+    locations."/homepage/" = {
+      alias = "/var/www/homepage/";
+    };
     locations."/" = {
       root = "/var/www/justalternate.com/";
-    };
-    locations."/homepage" = {
-      root = "/var/www/";
     };
   };
 }
