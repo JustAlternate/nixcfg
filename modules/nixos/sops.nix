@@ -12,10 +12,7 @@
       "EMAIL" = { };
       "SSO/DAWARICH_CLIENT_SECRET" = { };
       "GRAFANA/ENV" = { };
-      "GRAFANA/SECRET_KEY" = {
-        owner = "grafana";
-        mode = "0400";
-      };
+      "GRAFANA/SECRET_KEY" = { };
       "VAULTWARDEN/ENV" = { };
       "VAULTWARDEN/SSO_KEY" = { };
       "OPENCLOUD/ENV" = { };
