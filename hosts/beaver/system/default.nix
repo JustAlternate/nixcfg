@@ -132,5 +132,10 @@
 
   machineName = "beaver";
 
+  sops.secrets."GRAFANA/SECRET_KEY" = {
+    owner = "grafana";
+    mode = "0400";
+  };
+
   system.stateVersion = "23.11";
 }
