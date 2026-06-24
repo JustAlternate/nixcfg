@@ -41,6 +41,13 @@
     };
   };
 
+  security.wrappers.bwrap = {
+    source = "${pkgs.bubblewrap}/bin/bwrap";
+    owner = "root";
+    group = "root";
+    setuid = true;
+  };
+
   hardware = {
     ckb-next = {
       enable = true;

@@ -19,6 +19,7 @@
       lego
       nvtopPackages.amd
       headsetcontrol
+      openlinkhub
     ];
   };
 }
