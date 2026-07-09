@@ -2,6 +2,72 @@
 # Each group contains related alerts with their conditions, queries, and metadata
 
 {
+  # Systemd unit failures — pages when units enter failed state
+  systemdAlerts = {
+    orgId = 1;
+    name = "systemd_failed_units";
+    folder = "Alerts";
+    interval = "60s";
+    rules = [
+      {
+        uid = "systemd-failed-units";
+        title = "Systemd Failed Units";
+        condition = "C";
+        data = [
+          {
+            refId = "A";
+            relativeTimeRange = {
+              from = 300;
+              to = 0;
+            };
+            datasourceUid = "PBFA97CFB590B2093";
+            model = {
+              expr = "node_systemd_units{job=\"scraper\",state=\"failed\"}";
+              refId = "A";
+            };
+          }
+          {
+            refId = "B";
+            datasourceUid = "__expr__";
+            model = {
+              type = "reduce";
+              expression = "A";
+              reducer = "last";
+              refId = "B";
+            };
+          }
+          {
+            refId = "C";
+            datasourceUid = "__expr__";
+            model = {
+              type = "threshold";
+              expression = "B";
+              refId = "C";
+              conditions = [
+                {
+                  evaluator = {
+                    type = "gt";
+                    params = [ 0 ];
+                  };
+                }
+              ];
+            };
+          }
+        ];
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "5m";
+        annotations = {
+          summary = "Systemd units in failed state on beaver";
+          description = "One or more systemd units are in failed state for more than 5 minutes. Check `systemctl --failed` on beaver.";
+        };
+        labels = {
+          severity = "critical";
+        };
+      }
+    ];
+  };
+
   # Mail end-to-end probe — detects SMTP/IMAP failures
   mailProbe = {
     orgId = 1;
