@@ -32,7 +32,6 @@
       nixcfg = "cd ~/nixcfg";
       ls = "eza --color=auto --icons=always";
       cd = "z";
-      cat = "bat --paging=never";
       nvimf = "nvim $(fzf)";
 
       db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
