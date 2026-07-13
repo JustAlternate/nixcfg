@@ -11,7 +11,6 @@
       coreutils-full
       git
       vim
-      vllm
     ];
 
     sessionVariables = {
@@ -19,7 +18,12 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-39.8.10"
+    ];
+  };
 
   fonts.packages = with pkgs; [ nerd-fonts.hack ];
 

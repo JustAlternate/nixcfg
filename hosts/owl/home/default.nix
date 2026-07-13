@@ -32,7 +32,6 @@
       nixcfg = "cd ~/nixcfg";
       ls = "eza --color=auto --icons=always";
       cd = "z";
-      cat = "bat --paging=never";
       nvimf = "nvim $(fzf)";
 
       db_connect = "${config.home.homeDirectory}/github/system-toolbox/databases/connect.sh";
@@ -105,7 +104,7 @@
 
       posting
 
-      mysql80
+      mysql84
 
       graphqurl
 
@@ -140,7 +139,6 @@
       nixfmt-rfc-style # Nix Code Formatter
       kubectl
       eksctl
-      k9s
       kubernetes-helm
       # Monitoring
       htop

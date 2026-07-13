@@ -202,6 +202,7 @@ in
               alerts.serviceAvailability
               alerts.systemHealth
               alerts.logAlerts
+              alerts.systemdAlerts
             ];
           };
         };
@@ -321,6 +322,7 @@ in
         cp ${./dashboard/logs.json} /var/lib/grafana/dashboards/logs.json
         cp ${./dashboard/node.json} /var/lib/grafana/dashboards/node.json
         cp ${./dashboard/blackbox.json} /var/lib/grafana/dashboards/blackbox.json
+        cp ${./dashboard/systemd.json} /var/lib/grafana/dashboards/systemd.json
         chown -R grafana:grafana /var/lib/grafana/dashboards
       '';
     };

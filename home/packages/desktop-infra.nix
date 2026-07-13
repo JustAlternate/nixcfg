@@ -1,7 +1,7 @@
 { pkgs, ... }:
 with pkgs;
 [
-  swww
+  awww
   libnotify
   brightnessctl
   grim
@@ -16,4 +16,5 @@ with pkgs;
   xfce.thunar-volman
   bluez
   blueman
+  playerctl
 ]

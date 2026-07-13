@@ -140,10 +140,13 @@ flowchart LR
 - Fetcher: [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - Font: [nerdfonts](https://www.nerdfonts.com/)
 - Launcher: [rofi](https://github.com/A417ya/rofi-wayland)
-- Browser: [firefox](https://www.mozilla.org/en-US/firefox/)
+- Browser: [librewolf](https://librewolf.net/)
 - Discord: [Vesktop](https://github.com/Vencord/Vesktop)
 - Emoji wheel: rofi + [bemoji](https://github.com/marty-oehme/bemoji)
 - Music Visualizer: [cava](https://github.com/karlstav/cava)
+- Dynamic theming: wallpaper-driven colors via [pywal](https://github.com/dylanaraps/pywal) + [swww](https://github.com/LGFae/swww)
+- Notifications: [dunst](https://dunst-project.org/)
+- Screenshots: [grim](https://github.com/emersion/grim) + [slurp](https://github.com/emersion/slurp) + [satty](https://github.com/gabm/satty)
 - Secrets: [sops-nix](https://github.com/Mic92/sops-nix)
 - Yubikey only login with automatic screen lock when not detected. 
 
