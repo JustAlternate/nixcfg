@@ -19,6 +19,7 @@
           "hyprland/workspaces"
         ];
         modules-right = [
+          "custom/media"
           "tray"
           "pulseaudio"
           "cpu"
@@ -46,6 +47,16 @@
           format = "  {:L%H:%M}";
           tooltip = true;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
+        };
+        "custom/media" = {
+          exec = "playerctl metadata --format '{{ title }}' 2>/dev/null";
+          exec-on-event = true;
+          interval = 5;
+          format = "{}";
+          max-length = 40;
+          tooltip = true;
+          escape = false;
+          on-click = "playerctl play-pause";
         };
         "hyprland/window" = {
           max-length = 22;

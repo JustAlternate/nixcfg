@@ -2,7 +2,7 @@
 let
   change_wallpaper = pkgs.writeShellScriptBin "change_wallpaper" ''
     file=$(ls ~/nixcfg/assets/wallpaper/ | shuf -n 1)
-    swww img ~/nixcfg/assets/wallpaper/$file --transition-step 10 --transition-fps 30 --transition-type center &
+    awww img ~/nixcfg/assets/wallpaper/$file --transition-step 10 --transition-fps 30 --transition-type center &
     wal -i ~/nixcfg/assets/wallpaper/$file &
     sleep 0.2
     cp ~/.cache/wal/cava_conf ~/.config/cava/config &
@@ -35,7 +35,7 @@ let
     wall_selection=$(find "$wall_dir" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) -exec basename {} \; | shuf | while read -r A; do echo -en "$A\x00icon\x1f""$cacheDir"/"$A\n"; done | $rofi_command)
 
     [[ -n "$wall_selection" ]] || exit 1
-    swww img $wall_dir/$wall_selection --transition-step 10 --transition-fps 30 --transition-type center &
+    awww img $wall_dir/$wall_selection --transition-step 10 --transition-fps 30 --transition-type center &
     wal -i $wall_dir/$wall_selection &
     sleep 0.2
     pkill waybar
@@ -47,7 +47,7 @@ let
 
   startup = pkgs.writeShellScriptBin "startup" ''
     dunst &
-    swww-daemon &
+    awww-daemon &
 
     sudo chmod a+rw /sys/class/backlight/amdgpu_bl1/brightness &
 
