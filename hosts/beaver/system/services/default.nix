@@ -12,5 +12,6 @@ _: {
     ./gotify
     ./mail-monitor
     ./headscale
+    ./opencode
   ];
 }

@@ -9,4 +9,7 @@ secrets.auto.tfvars
 *.tfstate.backup
 *.tfstate.lock.info
 terraform.tfvars
-.env
+
+# Go build artifacts
+/mcp-opencode-bridge
+packages/mcp-opencode-bridge/mcp-opencode-bridge
