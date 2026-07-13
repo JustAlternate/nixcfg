@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   services = {
     open-webui = {
@@ -7,6 +7,7 @@
       host = "127.0.0.1";
       openFirewall = false;
       environmentFile = config.sops.secrets."OPENWEBUI/ENV".path;
+      package = pkgs.unstable.open-webui;
     };
 
     nginx.virtualHosts."ai.justalternate.com" = {
