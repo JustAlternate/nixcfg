@@ -1,7 +1,6 @@
 {
   lib,
   buildGoModule,
-  fetchFromGitHub ? null,
 }:
 buildGoModule {
   pname = "mcp-opencode-bridge";
