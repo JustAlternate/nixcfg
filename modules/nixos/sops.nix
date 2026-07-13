@@ -22,6 +22,7 @@
       "MAIL_MONITOR/HASHED_PASSWORD" = { };
       "MAIL_MONITOR/ENV" = { };
       "HEADSCALE/PREAUTH_KEY" = { };
+      "OPENCODE_SERVER_PASSWORD" = { };
     };
   };
 
