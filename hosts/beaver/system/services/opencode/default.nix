@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   mcpBridge = pkgs.callPackage ../../../../../packages/mcp-opencode-bridge { };
 in
@@ -29,7 +34,10 @@ in
   systemd.services.mcp-opencode-bridge = {
     description = "MCP bridge to OpenCode server";
     wantedBy = [ "multi-user.target" ];
-    after = [ "opencode-server.service" "network.target" ];
+    after = [
+      "opencode-server.service"
+      "network.target"
+    ];
     wants = [ "opencode-server.service" ];
 
     serviceConfig = {
