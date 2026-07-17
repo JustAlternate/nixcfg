@@ -70,19 +70,20 @@
         # Allow configurations to use pkgs.unstable.<package-name>.
         (_: prev: {
           unstable = import unstable-nixpkgs {
-            inherit (prev) system;
+            system = prev.stdenv.hostPlatform.system;
             config.allowUnfree = true;
           };
           master = import master-nixpkgs {
-            inherit (prev) system;
+            system = prev.stdenv.hostPlatform.system;
             config.allowUnfree = true;
           };
           my = import my-nixpkgs {
-            inherit (prev) system;
+            system = prev.stdenv.hostPlatform.system;
             config.allowUnfree = true;
           };
         })
       ];
+
     in
     {
       # NixOS configurations

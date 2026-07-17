@@ -13,7 +13,7 @@ with lib;
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     shellAliases = {
       lg = "lazygit";
       ll = "ls -la";

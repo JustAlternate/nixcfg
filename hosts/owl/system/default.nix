@@ -34,7 +34,7 @@
 
   environment.systemPackages = [
     inputs.justnixvim.packages."aarch64-darwin".default
-    pkgs.unstable.colima
+    pkgs.colima
     pkgs.docker-credential-helpers
   ];
 

@@ -35,7 +35,7 @@
     gh-dash
     statix
     deadnix
-    nixfmt-rfc-style
+    nixfmt
     kubectl
     kubernetes-helm
     k9s
