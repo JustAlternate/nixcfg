@@ -6,81 +6,71 @@ with lib;
     {
       programs.ssh = {
         enable = true;
-        matchBlocks = {
+        enableDefaultConfig = false;
+        settings = {
           "beaver" = {
-            # justalternate.com
-            hostname = "195.201.116.51";
-            user = "root";
-            identityFile = "~/.ssh/id_ed25519";
-            addKeysToAgent = "yes";
+            Hostname = "195.201.116.51";
+            User = "root";
+            IdentityFile = "~/.ssh/id_ed25519";
+            AddKeysToAgent = "yes";
           };
           "geckoNixos1" = {
-            # RPI3b+ (tailscale: 100.64.0.1)
-            hostname = "100.64.0.1";
-            user = "root";
-            port = 22;
-            identityFile = "~/.ssh/id_ed25519";
-            addKeysToAgent = "yes";
+            Hostname = "100.64.0.1";
+            User = "root";
+            Port = 22;
+            IdentityFile = "~/.ssh/id_ed25519";
+            AddKeysToAgent = "yes";
           };
           "geckoNixos2" = {
-            # RPI4B (tailscale: 100.64.0.3)
-            hostname = "100.64.0.3";
-            user = "root";
-            port = 22;
-            identityFile = "~/.ssh/id_ed25519";
-            addKeysToAgent = "yes";
+            Hostname = "100.64.0.3";
+            User = "root";
+            Port = 22;
+            IdentityFile = "~/.ssh/id_ed25519";
+            AddKeysToAgent = "yes";
           };
           "geckoNixos3" = {
-            # RPI4B (tailscale: 100.64.0.4)
-            hostname = "100.64.0.4";
-            user = "root";
-            port = 22;
-            identityFile = "~/.ssh/id_ed25519";
-            addKeysToAgent = "yes";
+            Hostname = "100.64.0.4";
+            User = "root";
+            Port = 22;
+            IdentityFile = "~/.ssh/id_ed25519";
+            AddKeysToAgent = "yes";
           };
           "geckoNixos4" = {
-            # RPI4B (tailscale: 100.64.0.5)
-            hostname = "100.64.0.5";
-            user = "root";
-            port = 22;
-            identityFile = "~/.ssh/id_ed25519";
-            addKeysToAgent = "yes";
+            Hostname = "100.64.0.5";
+            User = "root";
+            Port = 22;
+            IdentityFile = "~/.ssh/id_ed25519";
+            AddKeysToAgent = "yes";
           };
           "ocelot" = {
-            #batocera
-            hostname = "192.168.1.242";
-            user = "root";
-            identityFile = "~/.ssh/id_ed25519";
-            port = 22;
-            addKeysToAgent = "yes";
+            Hostname = "192.168.1.242";
+            User = "root";
+            IdentityFile = "~/.ssh/id_ed25519";
+            Port = 22;
+            AddKeysToAgent = "yes";
           };
           "github.com" = {
-            user = "git";
-            identityFile = "~/.ssh/id_ed25519";
-            forwardAgent = true;
-            addKeysToAgent = "yes";
+            User = "git";
+            IdentityFile = "~/.ssh/id_ed25519";
+            ForwardAgent = "yes";
+            AddKeysToAgent = "yes";
           };
         };
       };
     }
     (mkIf config.ssh.work.enable {
-      programs.ssh = {
-        matchBlocks = {
-          "github.com" = {
-            identityFile = mkForce "~/.ssh/mac_id_ed25519";
-            extraOptions = {
-              IdentitiesOnly = "yes";
-            };
-          };
-          "*.iadvize.net" = {
-            user = "iadvize";
-          };
+      programs.ssh.settings = {
+        "github.com" = {
+          IdentityFile = mkForce "~/.ssh/mac_id_ed25519";
+          IdentitiesOnly = "yes";
         };
-        extraConfig = ''
-          Host 10.62.*.*
-          StrictHostKeyChecking no
-          IdentityFile ~/.ssh/mac_id_ed25519
-        '';
+        "*.iadvize.net" = {
+          User = "iadvize";
+        };
+        "10.62.*.*" = {
+          StrictHostKeyChecking = "no";
+          IdentityFile = "~/.ssh/mac_id_ed25519";
+        };
       };
     })
   ];

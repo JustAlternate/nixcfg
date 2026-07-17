@@ -25,7 +25,7 @@
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     shellAliases = {
       lg = "lazygit";
       ll = "ls -la";
@@ -136,7 +136,7 @@
       unstable.nomad
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
-      nixfmt-rfc-style # Nix Code Formatter
+      nixfmt # Nix Code Formatter
       kubectl
       eksctl
       kubernetes-helm
