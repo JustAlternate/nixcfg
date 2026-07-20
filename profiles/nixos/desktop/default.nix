@@ -20,6 +20,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
+    # Required by bitwarden-desktop (pins EOL electron_39, even in unstable)
     permittedInsecurePackages = [
       "electron-39.8.10"
     ];
@@ -30,7 +31,6 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking = {
-    hostName = "nixos";
     networkmanager.enable = true;
     networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
     firewall = {
