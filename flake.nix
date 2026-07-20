@@ -20,7 +20,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/87cd2a5f6697a5923c4f427e9b399d79a354a7b8";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "unstable-nixpkgs";
     };
 
@@ -84,136 +84,76 @@
         })
       ];
 
+      # Standard host: NixOS + home-manager + sops + overlays.
+      mkHost =
+        {
+          system,
+          hostname,
+          hmUser ? "justalternate",
+          hmExtraConfig ? { },
+        }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          inherit system;
+          modules = [
+            nixos-cli.nixosModules.nixos-cli
+            ./hosts/${hostname}/system
+            home-manager.nixosModules.home-manager
+            inputs.sops-nix.nixosModules.sops
+            { nixpkgs.overlays = nixos-overlays; }
+            (
+              { config, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.${hmUser} = import ./hosts/${hostname}/home;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    machineName = config.machineName or hostname;
+                  };
+                }
+                // hmExtraConfig;
+              }
+            )
+          ];
+        };
+
+      # Lightweight gecko (Raspberry Pi) nodes: no home-manager/overlays.
+      mkGecko =
+        hostFile:
+        nixpkgs.lib.nixosSystem {
+          system = systemArm;
+          specialArgs = { inherit inputs; };
+          modules = [
+            hostFile
+            inputs.sops-nix.nixosModules.sops
+          ];
+        };
     in
     {
       # NixOS configurations
       nixosConfigurations = {
-        parrotNixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+        parrotNixos = mkHost {
           inherit system;
-          modules = [
-            nixos-cli.nixosModules.nixos-cli
-            ./hosts/parrot/system
-            home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays; }
-            (
-              { config, ... }:
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.justalternate = import ./hosts/parrot/home;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    machineName = config.machineName or "parrot";
-                  };
-                };
-              }
-            )
-          ];
+          hostname = "parrot";
         };
-        swordfishNixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+        swordfishNixos = mkHost {
           inherit system;
-          modules = [
-            nixos-cli.nixosModules.nixos-cli
-            ./hosts/swordfish/system
-            home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays; }
-            (
-              { config, ... }:
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "backup";
-                  users.justalternate = import ./hosts/swordfish/home;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    machineName = config.machineName or "swordfish";
-                  };
-                };
-              }
-            )
-          ];
+          hostname = "swordfish";
+          hmExtraConfig.backupFileExtension = "backup";
         };
-        beaverNixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+        beaverNixos = mkHost {
           system = systemArm;
-          modules = [
-            nixos-cli.nixosModules.nixos-cli
-            ./hosts/beaver/system
-            home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-            { nixpkgs.overlays = nixos-overlays; }
-            (
-              { config, ... }:
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.root = import ./hosts/beaver/home;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    machineName = config.machineName or "beaver";
-                  };
-                };
-              }
-            )
-          ];
+          hostname = "beaver";
+          hmUser = "root";
         };
-        geckoNixos1 = nixpkgs.lib.nixosSystem {
-          system = systemArm;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/gecko/geckoNixos1.nix
-            inputs.sops-nix.nixosModules.sops
-          ];
-        };
-        geckoNixos2 = nixpkgs.lib.nixosSystem {
-          system = systemArm;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/gecko/geckoNixos2.nix
-            inputs.sops-nix.nixosModules.sops
-          ];
-        };
-        geckoNixos3 = nixpkgs.lib.nixosSystem {
-          system = systemArm;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/gecko/geckoNixos3.nix
-            inputs.sops-nix.nixosModules.sops
-          ];
-        };
-        geckoNixosRPISdImage = nixpkgs.lib.nixosSystem {
-          system = systemArm;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/gecko/geckoNixosRPI-sd-image.nix
-            inputs.sops-nix.nixosModules.sops
-          ];
-        };
-        geckoNixos4 = nixpkgs.lib.nixosSystem {
-          system = systemArm;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/gecko/geckoNixos4.nix
-            inputs.sops-nix.nixosModules.sops
-          ];
-        };
+
+        geckoNixos1 = mkGecko ./hosts/gecko/geckoNixos1.nix;
+        geckoNixos2 = mkGecko ./hosts/gecko/geckoNixos2.nix;
+        geckoNixos3 = mkGecko ./hosts/gecko/geckoNixos3.nix;
+        geckoNixos4 = mkGecko ./hosts/gecko/geckoNixos4.nix;
+        geckoNixosRPISdImage = mkGecko ./hosts/gecko/geckoNixosRPI-sd-image.nix;
       };
 
       # Nix-darwin configurations
