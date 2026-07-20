@@ -49,13 +49,19 @@
   # Enable the OpenSSH daemon.
   services = {
     tailscale.advertiseExitNode = true;
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "prohibit-password";
+      };
+    };
   };
   users = {
     # set Zsh as the default user shell for all users
     defaultUserShell = pkgs.zsh;
     users.root = {
-      password = "";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSO4cOiA8s9hVyPtdhUXdshxDXXPU15qM8xE0Ixfc21"
       ];

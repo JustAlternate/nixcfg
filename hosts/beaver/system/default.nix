@@ -5,6 +5,7 @@
     ./hardware.nix
     ./networking.nix
     ../../../modules/nixos/sops.nix
+    ./secrets.nix
     ../../../modules/nixos/tailscale.nix
     ../../../profiles/nixos/core/nix.nix
     ./services
@@ -131,11 +132,6 @@
   networking.domain = "";
 
   machineName = "beaver";
-
-  sops.secrets."GRAFANA/SECRET_KEY" = {
-    owner = "grafana";
-    mode = "0400";
-  };
 
   system.stateVersion = "23.11";
 }

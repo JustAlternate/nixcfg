@@ -57,7 +57,9 @@ nix flake check
 - Secrets file: `secrets/secrets.yaml`
 
 ### Adding a new secret
-1. Add reference in `sops.nix`
+1. Add reference in the right sops file:
+   - Shared secret (all hosts, e.g. tailscale key) → `modules/nixos/sops.nix`
+   - Beaver-only server secret → `hosts/beaver/system/secrets.nix`
 2. Reference in nix config via `config.sops.secrets.<name>.path`
 3. User enters the secret interactively: `sops secrets/secrets.yaml`
 

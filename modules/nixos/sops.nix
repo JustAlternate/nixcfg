@@ -5,24 +5,10 @@
     defaultSopsFormat = "yaml";
     age.keyFile = "/root/.config/sops/age/keys.txt";
     secrets = {
+      # Shared across all hosts
+      "HEADSCALE/PREAUTH_KEY" = { }; # tailscale auth (modules/nixos/tailscale.nix)
       "MISTRAL_API_KEY" = { };
       "OPENROUTER_API_KEY" = { };
-      "HASHED_PASSWORD" = { };
-      "PASSWORD" = { };
-      "EMAIL" = { };
-      "SSO/DAWARICH_CLIENT_SECRET" = { };
-      "GRAFANA/ENV" = { };
-      "GRAFANA/SECRET_KEY" = { };
-      "VAULTWARDEN/ENV" = { };
-      "VAULTWARDEN/SSO_KEY" = { };
-      "OPENCLOUD/ENV" = { };
-      "OPENWEBUI/ENV" = { };
-      "GOTIFY/ENV" = { };
-      "GOTIFY/APP_TOKEN" = { };
-      "MAIL_MONITOR/HASHED_PASSWORD" = { };
-      "MAIL_MONITOR/ENV" = { };
-      "HEADSCALE/PREAUTH_KEY" = { };
-      "OPENCODE_SERVER_PASSWORD" = { };
     };
   };
 
