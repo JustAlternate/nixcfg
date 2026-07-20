@@ -5,6 +5,7 @@
   ];
 
   dconf.enable = true;
+  zsh.hyprlandAutostart.enable = true;
 
   home = {
     sessionPath = [

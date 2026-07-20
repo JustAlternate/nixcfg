@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ./zsh.nix
+    ../../modules/home/zsh.nix
     ./llm.nix
     ./fastfetch.nix
     inputs.sops-nix.homeManagerModules.sops
@@ -27,7 +27,6 @@
     opentofu
     awscli2
     devenv
-    pre-commit
     gh
     bat
     eza

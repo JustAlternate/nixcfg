@@ -4,6 +4,8 @@
     ../../../home
   ];
 
+  zsh.hyprlandAutostart.enable = true;
+
   home = {
     sessionPath = [
       "$HOME/go/bin"
@@ -19,7 +21,6 @@
       lego
       nvtopPackages.amd
       headsetcontrol
-      openlinkhub
     ];
   };
 }
