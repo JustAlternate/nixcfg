@@ -239,17 +239,18 @@ in
             }
           ];
         }
-        {
-          job_name = "minecraft";
-          static_configs = [
-            {
-              targets = [ "localhost:9940" ];
-              labels = {
-                server_name = "polytech";
-              };
-            }
-          ];
-        }
+        # Archived 2026-07: minecraft server "polytech" (decommissioned).
+        # {
+        #   job_name = "minecraft";
+        #   static_configs = [
+        #     {
+        #       targets = [ "localhost:9940" ];
+        #       labels = {
+        #         server_name = "polytech";
+        #       };
+        #     }
+        #   ];
+        # }
         {
           job_name = "mail-monitor";
           static_configs = [
