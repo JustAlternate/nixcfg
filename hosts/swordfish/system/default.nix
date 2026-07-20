@@ -19,6 +19,7 @@
   ];
 
   machineName = "swordfish";
+  networking.hostName = "swordfish";
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -57,9 +58,9 @@
   programs.hyprland = {
     extraConfig = ''
       # Monitor settings
-      monitor=DP-3, 2560x1440@165, 1920x0, 1
-      monitor=DP-1, 2560x1440@165, 1920x0, 1
       monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
+      monitor=DP-1, 2560x1440@165, 1920x0, 1
+      monitor=DP-3, 2560x1440@165, 4480x0, 1
 
       # Workspace-to-monitor bindings
       workspace = 1, monitor:DP-1
