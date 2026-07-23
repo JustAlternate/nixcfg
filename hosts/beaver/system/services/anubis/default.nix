@@ -20,6 +20,9 @@ _: {
     locations."/homepage/" = {
       alias = "/var/www/homepage/";
     };
+    locations."/darts/" = {
+      alias = "/var/www/darts/";
+    };
     locations."/" = {
       root = "/var/www/justalternate.com/";
     };
