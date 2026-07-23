@@ -6,6 +6,7 @@
 {
   imports = [
     ../../modules/home/zsh.nix
+    ../../modules/home/tmux.nix
     ./llm.nix
     ./fastfetch.nix
     ./k9s.nix
