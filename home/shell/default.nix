@@ -8,6 +8,7 @@
     ../../modules/home/zsh.nix
     ./llm.nix
     ./fastfetch.nix
+    ./k9s.nix
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -37,7 +38,6 @@
     nixfmt
     kubectl
     kubernetes-helm
-    k9s
     ani-cli
     vim
     inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
