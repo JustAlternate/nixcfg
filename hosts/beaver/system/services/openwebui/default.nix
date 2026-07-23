@@ -7,7 +7,7 @@
       host = "127.0.0.1";
       openFirewall = false;
       environmentFile = config.sops.secrets."OPENWEBUI/ENV".path;
-      package = pkgs.unstable.open-webui;
+      package = pkgs.unstable.open-webui; # unstable: stable 0.9.6 < running 0.10.2, downgrade breaks alembic;
     };
 
     nginx.virtualHosts."ai.justalternate.com" = {

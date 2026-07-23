@@ -5,6 +5,7 @@
   ...
 }:
 let
+  adminEmail = "loicw@justalternate.com";
   alerts = import ./alerts.nix;
 in
 {
@@ -74,6 +75,7 @@ in
         };
 
         compactor = {
+          retention_enabled = true;
           working_directory = "/var/lib/loki";
           compactor_ring = {
             kvstore = {
@@ -106,7 +108,7 @@ in
           client_secret = "";
           auth_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/auth";
           token_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/token";
-          role_attribute_path = "\"'Admin'\"";
+          role_attribute_path = "email == '${adminEmail}' && 'Admin' || 'Viewer'";
           scopes = "openid email profile";
         };
         users = {

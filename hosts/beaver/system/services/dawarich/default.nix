@@ -2,7 +2,7 @@
 {
   services.dawarich = {
     enable = true;
-    package = pkgs.master.dawarich;
+    package = pkgs.unstable.dawarich;
     localDomain = "geo.justalternate.com";
     webPort = 3001;
     environment = {
