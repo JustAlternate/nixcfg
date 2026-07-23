@@ -55,6 +55,16 @@ in
         ];
       };
       initContent = ''
+        # Auto-start tmux in interactive terminals: reattach to the newest
+        # session if one exists, otherwise start fresh. $TMUX guard avoids nesting.
+        if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
+          if tmux has-session 2>/dev/null; then
+            exec tmux attach
+          else
+            exec tmux new-session
+          fi
+        fi
+
         ${optionalString cfg.work.enable ''
           DISABLE_AUTO_UPDATE="true"
           DISABLE_MAGIC_FUNCTIONS="true"
