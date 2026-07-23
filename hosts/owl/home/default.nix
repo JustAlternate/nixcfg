@@ -11,6 +11,7 @@
     ../../../home/desktop/ghostty.nix
     ../../../home/dev/database.nix
     ../../../home/shell/fastfetch.nix
+    ../../../home/shell/k9s.nix
   ];
 
   ssh.work.enable = true;
