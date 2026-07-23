@@ -70,7 +70,7 @@
       htop
       # Cli tools, Utility -- mac safe subset
       ripgrep
-      master.rtk
+      unstable.rtk
       gh-dash
       asciinema
       asciinema-agg

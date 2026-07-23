@@ -10,8 +10,9 @@ import (
 )
 
 func main() {
+	hostname := flag.String("hostname", "127.0.0.1", "bind address")
 	port := flag.Int("port", 4200, "port to listen on")
-	opencodeURL := flag.String("opencode-url", "http://localhost:4096", "opencode server URL")
+	opencodeURL := flag.String("opencode-url", "http://localhost:4097", "opencode server URL")
 	flag.Parse()
 
 	oc := newOpenCodeClient(*opencodeURL, os.Getenv("OPENCODE_SERVER_PASSWORD"))
@@ -43,7 +44,7 @@ connected:
 		fmt.Fprintf(w, "ok")
 	})
 
-	addr := fmt.Sprintf(":%d", *port)
+	addr := fmt.Sprintf("%s:%d", *hostname, *port)
 	log.Printf("MCP bridge listening on %s", addr)
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		fmt.Fprintf(os.Stderr, "server error: %v\n", err)

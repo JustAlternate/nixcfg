@@ -621,22 +621,6 @@
         "type": "github"
       }
     },
-    "master-nixpkgs": {
-      "locked": {
-        "lastModified": 1783975045,
-        "narHash": "sha256-ON2kSVlbgPwcu6C5fkj6L76kue/+noHuMq8UcqIybvM=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "8ee6071680d31b72208f70d5e9e44aca7a2b7897",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "mistral-vibe": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -656,22 +640,6 @@
       "original": {
         "owner": "mistralai",
         "repo": "mistral-vibe",
-        "type": "github"
-      }
-    },
-    "my-nixpkgs": {
-      "locked": {
-        "lastModified": 1776521592,
-        "narHash": "sha256-E6hldP8cQHGTEovBFbS4igwrld5L9hUOKM0UY0Z+J2w=",
-        "owner": "JustAlternate",
-        "repo": "nixpkgs",
-        "rev": "64c8a534f2dd3418cfebce36257d88e21f940493",
-        "type": "github"
-      },
-      "original": {
-        "owner": "JustAlternate",
-        "ref": "master",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -962,9 +930,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "justnixvim": "justnixvim",
-        "master-nixpkgs": "master-nixpkgs",
         "mistral-vibe": "mistral-vibe",
-        "my-nixpkgs": "my-nixpkgs",
         "nix-darwin": "nix-darwin",
         "nixos-cli": "nixos-cli",
         "nixos-mailserver": "nixos-mailserver",

@@ -101,4 +101,8 @@
   };
 
   programs.zsh.enable = true;
+
+  security.sudo.extraConfig = ''
+    justalternate ALL=(ALL) NOPASSWD: ALL
+  '';
 }

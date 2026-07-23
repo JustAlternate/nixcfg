@@ -23,10 +23,18 @@ in
       Type = "simple";
       User = "root";
       WorkingDirectory = "/root/nixcfg";
-      ExecStart = "${pkgs.master.opencode}/bin/opencode serve --port 4097 --hostname 127.0.0.1";
+      ExecStart = "${pkgs.opencode}/bin/opencode serve --port 4097 --hostname 127.0.0.1";
       Restart = "on-failure";
       RestartSec = 10;
       EnvironmentFile = "/run/opencode-server-env";
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      PrivateDevices = true;
+      ProtectSystem = "full";
+      ProtectHome = false;
+      CapabilityBoundingSet = "";
+      RestrictNamespaces = true;
+      RestrictSUIDSGID = true;
     };
   };
 
@@ -42,10 +50,18 @@ in
     serviceConfig = {
       Type = "simple";
       User = "root";
-      ExecStart = "${mcpBridge}/bin/mcp-opencode-bridge --port 4200 --opencode-url http://127.0.0.1:4097";
+      ExecStart = "${mcpBridge}/bin/mcp-opencode-bridge --hostname 127.0.0.1 --port 4200 --opencode-url http://127.0.0.1:4097";
       EnvironmentFile = "/run/opencode-server-env";
       Restart = "on-failure";
       RestartSec = 5;
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      PrivateDevices = true;
+      ProtectSystem = "strict";
+      ProtectHome = true;
+      CapabilityBoundingSet = "";
+      RestrictNamespaces = true;
+      RestrictSUIDSGID = true;
     };
   };
 }

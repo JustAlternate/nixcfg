@@ -26,13 +26,7 @@
     };
 
     security = {
-      sudo = {
-        enable = true;
-        extraConfig = ''
-          justalternate ALL=(ALL) NOPASSWD: ALL
-        '';
-      };
-
+      sudo.enable = true;
       polkit.enable = true;
     };
 
