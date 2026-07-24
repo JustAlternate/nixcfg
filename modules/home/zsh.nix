@@ -55,6 +55,10 @@ in
         ];
       };
       initContent = ''
+        # Home Manager PATH setup runs after initContent; ensure nix profile
+        # packages (tmux, etc.) are findable early.
+        export PATH="$HOME/.nix-profile/bin:$PATH"
+
         # Auto-start tmux in interactive terminals: reattach to the newest
         # session if one exists, otherwise start fresh. $TMUX guard avoids nesting.
         if command -v tmux >/dev/null && [ -z "$TMUX" ]; then

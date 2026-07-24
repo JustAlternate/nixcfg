@@ -24,7 +24,7 @@
       set -sa terminal-features ",xterm-ghostty:RGB:extkeys"
       set -s extended-keys always
 
-      # Windows = workspaces: Alt+N jumps to window N, creating it if missing
+      # Windows = workspaces: Ctrl+N (Linux) / Alt+N (macOS via ghostty esc:N)
       bind -n M-1 if-shell 'tmux select-window -t :1' "" 'new-window -t :1'
       bind -n M-2 if-shell 'tmux select-window -t :2' "" 'new-window -t :2'
       bind -n M-3 if-shell 'tmux select-window -t :3' "" 'new-window -t :3'
@@ -34,6 +34,15 @@
       bind -n M-7 if-shell 'tmux select-window -t :7' "" 'new-window -t :7'
       bind -n M-8 if-shell 'tmux select-window -t :8' "" 'new-window -t :8'
       bind -n M-9 if-shell 'tmux select-window -t :9' "" 'new-window -t :9'
+      bind -n C-1 if-shell 'tmux select-window -t :1' "" 'new-window -t :1'
+      bind -n C-2 if-shell 'tmux select-window -t :2' "" 'new-window -t :2'
+      bind -n C-3 if-shell 'tmux select-window -t :3' "" 'new-window -t :3'
+      bind -n C-4 if-shell 'tmux select-window -t :4' "" 'new-window -t :4'
+      bind -n C-5 if-shell 'tmux select-window -t :5' "" 'new-window -t :5'
+      bind -n C-6 if-shell 'tmux select-window -t :6' "" 'new-window -t :6'
+      bind -n C-7 if-shell 'tmux select-window -t :7' "" 'new-window -t :7'
+      bind -n C-8 if-shell 'tmux select-window -t :8' "" 'new-window -t :8'
+      bind -n C-9 if-shell 'tmux select-window -t :9' "" 'new-window -t :9'
       bind -n M-t new-window -c "#{pane_current_path}"
       bind -n M-Tab last-window
 
