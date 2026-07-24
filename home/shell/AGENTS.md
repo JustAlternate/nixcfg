@@ -20,6 +20,18 @@ OS=$(uname -s)
 
 Nix packages are architecture-specific. `nix shell` commands must match the system architecture.
 
+### Machine Identity
+
+**ALWAYS** determine the current machine at session start via `hostname` — never assume.
+```bash
+hostname && uname -m
+```
+- **`nixos` + x86_64** → swordfish (desktop)
+- **`parrot` + x86_64** → parrot (laptop)
+- **`beaver` + aarch64** → beaver (VPS)
+- **`gecko` + aarch64** → gecko (Raspberry Pi)
+- **`owl` + aarch64** → owl (Mac, nix-darwin)
+
 ## 🛠️ Preferred Tools & Languages
 
 ### Primary Languages
