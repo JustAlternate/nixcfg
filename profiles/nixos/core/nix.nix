@@ -1,4 +1,6 @@
 _: {
+  boot.zfs.forceImportRoot = false;
+
   nix = {
     settings = {
       experimental-features = [

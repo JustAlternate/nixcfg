@@ -17,14 +17,16 @@ _: {
         port = 8081;
       }
     ];
-    locations."/homepage/" = {
-      alias = "/var/www/homepage/";
-    };
-    locations."/darts/" = {
-      alias = "/var/www/darts/";
-    };
-    locations."/" = {
-      root = "/var/www/justalternate.com/";
+    locations = {
+      "/homepage/" = {
+        alias = "/var/www/homepage/";
+      };
+      "/darts/" = {
+        alias = "/var/www/darts/";
+      };
+      "/" = {
+        root = "/var/www/justalternate.com/";
+      };
     };
   };
 }
