@@ -37,6 +37,17 @@
         "alt+digit_7=esc:7"
         "alt+digit_8=esc:8"
         "alt+digit_9=esc:9"
+        # Ctrl+digit_N for window switching on non-macOS (no Option key).
+        # Same physical-keycode trick: escapes layout issues on AZERTY.
+        "ctrl+digit_1=esc:1"
+        "ctrl+digit_2=esc:2"
+        "ctrl+digit_3=esc:3"
+        "ctrl+digit_4=esc:4"
+        "ctrl+digit_5=esc:5"
+        "ctrl+digit_6=esc:6"
+        "ctrl+digit_7=esc:7"
+        "ctrl+digit_8=esc:8"
+        "ctrl+digit_9=esc:9"
       ];
     };
     enableZshIntegration = true;
