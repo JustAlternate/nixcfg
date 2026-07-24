@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   security = {
     rtkit.enable = true;
@@ -9,17 +9,22 @@
         yubicoAuth = true;
         unixAuth = false;
       };
-      services.login.u2fAuth = true;
+      services.login = {
+        u2fAuth = true;
+        rules.auth.u2f.settings = {
+          origin = lib.mkForce "pam://nixos";
+          appid = lib.mkForce "pam://nixos";
+        };
+        rules.auth.yubico.settings.id = lib.mkForce "25802329:25440300";
+      };
 
       yubico = {
         control = "sufficient";
         enable = true;
         debug = true;
         mode = "challenge-response";
-        id = [
-          "25802329"
-          "25440300"
-        ];
+        challengeResponsePath = "${pkgs.yubikey-personalization}/bin/ykchalresp";
+        id = "25802329:25440300";
       };
     };
   };
