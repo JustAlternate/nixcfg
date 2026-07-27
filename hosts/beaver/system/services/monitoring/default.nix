@@ -77,6 +77,7 @@ in
         compactor = {
           retention_enabled = true;
           working_directory = "/var/lib/loki";
+          delete_request_store = "filesystem";
           compactor_ring = {
             kvstore = {
               store = "inmemory";

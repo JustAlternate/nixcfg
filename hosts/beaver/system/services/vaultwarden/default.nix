@@ -2,8 +2,8 @@
 {
   services = {
     vaultwarden = {
-      package = pkgs.vaultwarden;
-      webVaultPackage = pkgs.vaultwarden.webvault;
+      package = pkgs.unstable.vaultwarden; # pin reason: 1.37.0 required for client 2026.7.0+ compat + 8 CVEs, stable is 1.36.0
+      webVaultPackage = pkgs.unstable.vaultwarden.webvault;
       enable = true;
       # backupDir = "/root/backup/vaultwarden";
       config = {
