@@ -714,4 +714,70 @@
       }
     ];
   };
+
+  # Backup freshness — alerts if last backup is older than 26 hours
+  backupAge = {
+    orgId = 1;
+    name = "backup_age";
+    folder = "Alerts";
+    interval = "60s";
+    rules = [
+      {
+        uid = "backup-overdue";
+        title = "Backup Overdue (>26h)";
+        condition = "C";
+        data = [
+          {
+            refId = "A";
+            relativeTimeRange = {
+              from = 3600;
+              to = 0;
+            };
+            datasourceUid = "PBFA97CFB590B2093";
+            model = {
+              expr = "clamp_min(time() - max(node_systemd_timer_last_trigger_seconds{job=\"scraper\",timer=\"restic-backups-beaver.timer\"}), 0)";
+              refId = "A";
+            };
+          }
+          {
+            refId = "B";
+            datasourceUid = "__expr__";
+            model = {
+              type = "reduce";
+              expression = "A";
+              reducer = "last";
+              refId = "B";
+            };
+          }
+          {
+            refId = "C";
+            datasourceUid = "__expr__";
+            model = {
+              type = "threshold";
+              expression = "B";
+              refId = "C";
+              conditions = [
+                {
+                  evaluator = {
+                    type = "gt";
+                    params = [ 93600 ];
+                  };
+                }
+              ];
+            };
+          }
+        ];
+        noDataState = "Alerting";
+        execErrState = "Error";
+        for = "26h";
+        annotations = {
+          summary = "No restic backup has run in over 26 hours on beaver";
+          description = "The restic backup timer (restic-backups-beaver.timer) last triggered more than 26 hours ago. Check `systemctl status restic-backups-beaver.service` on beaver.";
+        };
+        labels = {
+          severity = "critical";
+        };
+      }
+    ];
+  };
 }

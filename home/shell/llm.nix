@@ -1,11 +1,9 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 {
-
   home.packages = with pkgs; [
     (llm.withPlugins {
       llm-openrouter = true;
@@ -23,13 +21,5 @@
   home.file = {
     ".vibe/instructions.md".source = ./AGENTS.md;
     ".config/opencode/AGENTS.md".source = ./AGENTS.md;
-  };
-
-  sops.templates."vibe-env" = {
-    path = "${config.home.homeDirectory}/.vibe/.env";
-    content = ''
-      			MISTRAL_API_KEY='${config.sops.placeholder.MISTRAL_API_KEY}'
-      			OPENROUTER_API_KEY='${config.sops.placeholder.OPENROUTER_API_KEY}'
-      		'';
   };
 }

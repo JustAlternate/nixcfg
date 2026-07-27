@@ -12,6 +12,7 @@ in
   options.zsh = {
     work.enable = mkEnableOption "work shell profile (kubectl prompt, work aliases)";
     hyprlandAutostart.enable = mkEnableOption "auto-start Hyprland on tty1 login";
+    envVar.enable = mkEnableOption "legacy ~/env-var/.env loading" // { default = true; };
   };
 
   config = {
@@ -81,13 +82,14 @@ in
         [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
           cat "${config.home.homeDirectory}/.cache/wal/sequences"
 
-        # env vars
+        ${optionalString cfg.envVar.enable ''
+        # env vars (non-sensitive tool config)
         if [ -f ~/env-var/.env ]; then
           while IFS='=' read -r name value; do
             [[ $name != \#* ]] && export "$name=$value"
           done < ~/env-var/.env
         fi
-
+        ''}
         # zoxide
         command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 

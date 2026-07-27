@@ -71,7 +71,7 @@ If a service legitimately can't use one of these, document why with a comment (e
 
 **NEVER expose an unauthenticated executor endpoint** (shell command, file write/edit) on any network interface. Loopback-only + auth, or don't build it.
 
-**Secrets always via sops.** Only these mechanisms: `config.sops.secrets.<name>.path`, `environmentFile`, `sops.templates`, `$__file{}`. Never interpolate secrets into the nix store (store paths are world-readable). Never create new plaintext env files — `~/env-var/.env` is legacy being phased out, tracked in `IMPROVEMENTS.md`. Do not extend it.
+**Secrets always via sops.** Only these mechanisms: `config.sops.secrets.<name>.path`, `environmentFile`, `sops.templates`, `$__file{}`. Never interpolate secrets into the nix store (store paths are world-readable). Never create plaintext env files.
 
 **Stateful services.** When adding retention/limits: verify the *enforcement* flag, not just the limit value. Loki `retention_period` did nothing until `compactor.retention_enabled = true`. Alert thresholds must match expression units — a fraction 0–1 needs `gt 0.9`, not `gt 90`.
 
@@ -106,13 +106,11 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 ### Rules
 - Always use `sops.templates` or `environmentFile` to inject secrets into services — never interpolate into store paths.
-- `~/env-var/.env` plaintext keys are legacy and being removed (tracked in `IMPROVEMENTS.md`). New secrets go to sops only.
 
 ## 🌍 Environment Variables
 
-- `~/env-var/.env` is auto-loaded by zsh and contains legacy plaintext API keys.
-- **Do not add new keys here.** The file is being phased out. Use sops instead.
-- `home/shell/llm.nix` has a broken `sops.templates."vibe-env"` for the same keys — fix it in the planned `~/env-var` removal.
+- `~/env-var/.env` is auto-loaded by zsh on all machines (non-sensitive tool config). Do not put API keys or secrets here — use sops for those.
+- API keys (MISTRAL, OpenRouter) are provisioned via sops templates on a per-machine basis (e.g. `hosts/beaver/system/vibe-env.nix` renders `/root/.vibe/.env`).
 
 ## ✅ Before Every Rebuild on Beaver
 

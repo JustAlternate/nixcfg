@@ -4,37 +4,46 @@ Prioritized list of known gaps, from the 2026-07 audit. Check items off when the
 
 ---
 
-## 1. Backups (highest priority)
+## 1. Backups (highest priority) — in progress
 
 **There are zero backups on beaver.** Every stateful service is one disk failure away from permanent data loss:
 vaultwarden (passwords), `/var/vmail` (email), dawarich (GPS history), Keycloak + shared postgres,
-headscale DB (tailnet control plane), grafana, goatcounter sqlite.
+headscale DB (tailnet control plane), grafana, goatcounter sqlite, `/var/www` (web roots).
 
 **Plan:** restic with a sops-managed repository password. Target: Hetzner Storage Box (same DC, native SFTP, ~€3/month).
 Alternative: Backblaze B2. Do not self-host the backup target (tailscale to a home machine — home uptime ≠ server resilience).
 
 **Coverage:** `services.postgresqlBackup` dumps for all databases, `/var/vmail`, `/var/lib/bitwarden_rs`,
-`/var/lib/headscale`, `/var/lib/dawarich`, `/var/lib/grafana`, goatcounter sqlite.
+`/var/lib/headscale`, `/var/lib/dawarich`, `/var/lib/grafana`, goatcounter sqlite, `/var/www`, `/var/dkim`,
+`/var/lib/acme`, `/var/lib/tailscale`.
 
 **Schedule:** daily + `restic forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6`.
 
 **Monitoring:** Prometheus alert if last backup age > 26h. A backup never restored is a rumor — quarterly restore drill to `/tmp/restore-test/`.
 
+**Pre-rebuild tasks:**
+- `tofu apply` in `~/iac/hetzner/` to provision the Storage Box (needs Hetzner API token — on swordfish)
+- Add `RESTIC/PASSWORD` and `RESTIC/SFTP_USER` to sops after Storage Box exists
+
 ---
 
-## 2. Kill `~/env-var` plaintext API keys
+## 2. Kill `~/env-var` plaintext API keys — beaver done, 3 hosts remain
 
-`modules/home/zsh.nix:81-85` auto-loads plaintext API keys from `~/env-var/.env` into every shell, on every machine.
+`modules/home/zsh.nix` auto-loads plaintext API keys from `~/env-var/.env` into every shell, on every machine.
 The project AGENTS.md rule 5 ("ALWAYS use sops, never plain text") is violated by the repo itself.
-Meanwhile `home/shell/llm.nix:28-34` has a broken `sops.templates."vibe-env"` that never renders
-(`config.sops.placeholder.MISTRAL_API_KEY` doesn't exist in the HM namespace because the corresponding
-`home.sops.secrets` declarations are missing).
 
-**Plan:**
-1. Declare `MISTRAL_API_KEY` and `OPENROUTER_API_KEY` as HM-level sops secrets (or reuse the NixOS-level ones via a shared template).
-2. Fix the `vibe-env` template so it actually renders `/root/.vibe/.env`.
-3. Delete the `source ~/env-var/.env` block from `modules/home/zsh.nix`.
-4. Remove `~/env-var/.env` as a concept from AGENTS.md and README.md.
+The `~/env-var/.env` mechanism itself is valid for non-sensitive tool config — it provides env vars to **all** machines.
+The issue is API keys (MISTRAL_API_KEY, OPENROUTER_API_KEY) stored in plaintext there.
+
+**Per-machine migration plan:**
+- [x] **beaver:** `zsh.envVar.enable = false`. API keys via sops template (`hosts/beaver/system/vibe-env.nix` → `/root/.vibe/.env`).
+- [ ] **swordfish:** disable env-var, add sops template for API keys
+- [ ] **parrot:** disable env-var, add sops template for API keys
+- [ ] **owl:** disable env-var, add sops template for API keys (nix-darwin, sops works differently)
+
+Also done:
+- Broken `sops.templates."vibe-env"` in `home/shell/llm.nix` cleaned up.
+- AGENTS.md docs updated with the env-var/sops split.
 
 ---
 

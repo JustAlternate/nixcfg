@@ -205,6 +205,7 @@ in
               alerts.systemHealth
               alerts.logAlerts
               alerts.systemdAlerts
+              alerts.backupAge
             ];
           };
         };
