@@ -8,6 +8,7 @@
       clipboard-write = "allow";
       macos-non-native-fullscreen = true;
       macos-option-as-alt = "right";
+      window-save-state = "never";
       desktop-notifications = false;
       app-notifications = "no-clipboard-copy";
       font-family = "Hack Nerd Font";
@@ -21,33 +22,24 @@
       window-decoration = "none";
       theme = "Catppuccin Frappe";
       keybind = [
+        # Disable native splits and tabs — tmux owns layout
+        "super+d=unbind"
+        "super+shift+d=unbind"
+        "super+t=unbind"
         "super+a=unbind"
         "ctrl+shift++=increase_font_size:1"
         "ctrl+shift+-=decrease_font_size:1"
-        # AZERTY: digits need Shift, so alt+1 sends M-& not M-1.
-        # Use physical key codes (W3C digit_N) to match the key position
-        # regardless of layout. Works with left Alt on all platforms,
-        # and with right Option on macOS via macos-option-as-alt=right.
-        "alt+digit_1=esc:1"
-        "alt+digit_2=esc:2"
-        "alt+digit_3=esc:3"
-        "alt+digit_4=esc:4"
-        "alt+digit_5=esc:5"
-        "alt+digit_6=esc:6"
-        "alt+digit_7=esc:7"
-        "alt+digit_8=esc:8"
-        "alt+digit_9=esc:9"
-        # Ctrl+digit_N for window switching on non-macOS (no Option key).
-        # Same physical-keycode trick: escapes layout issues on AZERTY.
-        "ctrl+digit_1=esc:1"
-        "ctrl+digit_2=esc:2"
-        "ctrl+digit_3=esc:3"
-        "ctrl+digit_4=esc:4"
-        "ctrl+digit_5=esc:5"
-        "ctrl+digit_6=esc:6"
-        "ctrl+digit_7=esc:7"
-        "ctrl+digit_8=esc:8"
-        "ctrl+digit_9=esc:9"
+
+        # Option+N → tmux jump-to-window (M-1..M-9, AZERTY-safe via physical key)
+        "alt+physical:one=esc:1"
+        "alt+physical:two=esc:2"
+        "alt+physical:three=esc:3"
+        "alt+physical:four=esc:4"
+        "alt+physical:five=esc:5"
+        "alt+physical:six=esc:6"
+        "alt+physical:seven=esc:7"
+        "alt+physical:eight=esc:8"
+        "alt+physical:nine=esc:9"
       ];
     };
     enableZshIntegration = true;
