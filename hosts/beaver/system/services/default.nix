@@ -13,5 +13,6 @@ _: {
     ./mail-monitor
     ./headscale
     ./opencode
+    ./backups
   ];
 }

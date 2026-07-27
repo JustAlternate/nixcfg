@@ -12,12 +12,12 @@
 
     stateVersion = "24.05";
 
-    # For env var
     sessionVariables = {
       EDITOR = "nvim";
     };
   };
 
-  # Let Home Manager install and manage itself.
+  zsh.envVar.enable = false;
+
   programs.home-manager.enable = true;
 }

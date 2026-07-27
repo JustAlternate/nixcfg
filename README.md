@@ -33,35 +33,35 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 
 ```mermaid
 flowchart LR
-    Me["🧑‍💼 Me"]
-    subgraph Internet["🌐 Internet"]
+    Me["Me"]
+    subgraph Internet["Internet"]
         Users["Users"]
         GitHub["GitHub"]
         Cloudflare["Cloudflare<br/>(DNS)"]
     end
 
-    subgraph Beaver["🖥️ Beaver VPS"]
+    subgraph Beaver["Beaver VPS"]
         
-        subgraph Network["🕸️ Network Layer"]
-            Firewall["🔥 UFW Firewall<br/>TCP: 443, 8443, 9111<br/>Mail: 25, 465, 587, 993"]
-            Nginx["🌐 Nginx<br/>Reverse Proxy + SSL"]
+        subgraph Network["Network Layer"]
+            Firewall["UFW Firewall<br/>TCP: 443, 8443, 9111<br/>Mail: 25, 465, 587, 993"]
+            Nginx["Nginx<br/>Reverse Proxy + SSL"]
         end
 
-        subgraph AntiBot["🛡️ Bot Protection"]
+        subgraph AntiBot["Bot Protection"]
             Anubis["Anubis<br/>(Proof-of-Work)"]
         end
 
-        subgraph Security["🔒 Security Layer"]
+        subgraph Security["Security Layer"]
             Sops["SOPS<br/>(Secrets Management)"]
         end
 
-        subgraph Services["🚀 Self-Hosted Services"]
+        subgraph Services["Self-Hosted Services"]
             Vaultwarden["Vaultwarden<br/>(Passwords)"]
             OpenWebUI["OpenWebUI<br/>(LLM Frontend)"]
             Mail["Simple NixOS Mail<br/>(Postfix/Dovecot)"]
             Dawarich["Dawarich<br/>(GPS Tracking)"]
 
-            subgraph Monitoring["🔍 Monitoring"]
+            subgraph Monitoring["Monitoring"]
                 Gotify["Gotify (Alerts notifier)"]
                 BlackBox["BlackBox exporter"]
                 Promtail["Promtail (Logs)"]
@@ -70,7 +70,7 @@ flowchart LR
                 Grafana["Grafana<br/>Dasbboards and Alerts"]
             end
 
-            subgraph Auth["🔐 Identity Layer"]
+            subgraph Auth["Identity Layer"]
                 Keycloak["Keycloak SSO<br/>"]
             end
         end

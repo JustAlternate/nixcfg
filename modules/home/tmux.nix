@@ -57,7 +57,6 @@
       bind -n M-7 if-shell 'tmux select-window -t :7' "" 'new-window -t :7'
       bind -n M-8 if-shell 'tmux select-window -t :8' "" 'new-window -t :8'
       bind -n M-9 if-shell 'tmux select-window -t :9' "" 'new-window -t :9'
-
       bind -n M-t new-window -c "#{pane_current_path}"
       bind -n M-Tab last-window
 
