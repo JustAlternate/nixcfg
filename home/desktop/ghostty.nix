@@ -8,6 +8,7 @@
       clipboard-write = "allow";
       macos-non-native-fullscreen = true;
       macos-option-as-alt = "right";
+      window-save-state = "never";
       desktop-notifications = false;
       app-notifications = "no-clipboard-copy";
       font-family = "Hack Nerd Font";
@@ -21,11 +22,15 @@
       window-decoration = "none";
       theme = "Catppuccin Frappe";
       keybind = [
+        # Disable native splits and tabs — tmux owns layout
+        "super+d=unbind"
+        "super+shift+d=unbind"
+        "super+t=unbind"
         "super+a=unbind"
         "ctrl+shift++=increase_font_size:1"
         "ctrl+shift+-=decrease_font_size:1"
-        # AZERTY: digits need Shift, so option+1 sends M-& not M-1.
-        # Map the physical number keys to send M-1..M-9 for tmux window switching.
+
+        # Option+N → tmux jump-to-window (M-1..M-9, AZERTY-safe via physical key)
         "alt+physical:one=esc:1"
         "alt+physical:two=esc:2"
         "alt+physical:three=esc:3"

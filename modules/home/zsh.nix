@@ -55,14 +55,9 @@ in
         ];
       };
       initContent = ''
-        # Auto-start tmux in interactive terminals: reattach to the newest
-        # session if one exists, otherwise start fresh. $TMUX guard avoids nesting.
+        # Auto-start tmux: attach to session "main" if it exists, otherwise create it.
         if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
-          if tmux has-session 2>/dev/null; then
-            exec tmux attach
-          else
-            exec tmux new-session
-          fi
+          exec tmux new-session -A -s main
         fi
 
         ${optionalString cfg.work.enable ''
@@ -97,16 +92,11 @@ in
         # Add machine name to prompt
         PROMPT="%{$fg[green]%}[${machineName}]%{$reset_color%} $PROMPT"
         ${optionalString cfg.work.enable ''
-          # Right prompt: k8s context with dev=blue prod=red
-          _rps1_info() {
-            local k8s_ctx k8s_color
-            k8s_ctx="$(kubectl config current-context 2>/dev/null || echo none)"
-            if [[ "$k8s_ctx" == *dev* ]]; then k8s_color=blue
-            elif [[ "$k8s_ctx" == *prod* ]]; then k8s_color=red
-            else k8s_color=cyan; fi
-            echo "%F{$k8s_color}k8s:$k8s_ctx%f"
+          # Write k8s context to cache for tmux status bar (RPS1 handled there now)
+          _k8s_cache() {
+            kubectl config current-context 2>/dev/null > "/tmp/tmux-kube-context-$UID"
           }
-          RPS1='$(_rps1_info)'
+          precmd_functions+=_k8s_cache
         ''}
         ${optionalString cfg.hyprlandAutostart.enable ''
           # Auto-start Hyprland on TTY login
