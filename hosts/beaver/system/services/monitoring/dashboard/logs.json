@@ -180,6 +180,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
+            "skipZoom": false,
             "thresholdsStyle": {
               "mode": "off"
             }

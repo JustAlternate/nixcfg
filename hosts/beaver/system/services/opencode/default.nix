@@ -26,7 +26,10 @@ in
       ExecStart = "${pkgs.opencode}/bin/opencode serve --port 4097 --hostname 127.0.0.1";
       Restart = "on-failure";
       RestartSec = 10;
-      EnvironmentFile = "/run/opencode-server-env";
+      EnvironmentFile = [
+        "/run/opencode-server-env"
+        "/run/secrets/llm-env"
+      ];
       NoNewPrivileges = true;
       PrivateTmp = true;
       PrivateDevices = true;

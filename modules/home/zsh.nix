@@ -85,6 +85,8 @@ in
           done < ~/env-var/.env
         fi
         ''}
+        # API keys (sops-managed)
+        [ -f /run/secrets/llm-env ] && source /run/secrets/llm-env
         # zoxide
         command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 

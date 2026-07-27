@@ -31,6 +31,12 @@
   };
 
   services = {
+    nginx = {
+      appendHttpConfig = ''
+        proxy_headers_hash_max_size 512;
+        proxy_headers_hash_bucket_size 128;
+      '';
+    };
     tailscale.advertiseExitNode = true;
     journald.extraConfig = ''
       SystemMaxUse=800M

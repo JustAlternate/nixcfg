@@ -7,5 +7,6 @@ modules:
       preferred_ip_protocol: ipv4
       tls_config:
         insecure_skip_verify: false
+      valid_status_codes: [200, 301, 302]
       fail_if_ssl: false
       fail_if_not_ssl: false
