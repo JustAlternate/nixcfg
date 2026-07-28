@@ -4,6 +4,16 @@ NixOS multi-machine configuration managed with flakes and Home Manager.
 
 **Docs-sync rule:** when you change behavior that README.md, this file, or any RUNBOOK.md describes, update the docs in the same commit. Stale docs are worse than no docs.
 
+## 📋 IMPROVEMENTS.md
+
+`IMPROVEMENTS.md` is the living backlog of **user-approved** work items. Nothing goes in it without the user's agreement.
+
+**When you fix an item:** delete its line entirely. No checkboxes, no strikethroughs — just remove it.
+
+**When you spot something worth improving** during conversation, propose it to the user. If they agree, add a concise bullet under the appropriate section. If they decline, drop it.
+
+**Do not read this file proactively.** Only consult it when the user explicitly asks you to work from it.
+
 ## 📁 Project Structure & Architecture
 
 This project strictly separates system-level configuration (NixOS/nix-darwin) from user-level configuration (Home Manager), and heavily utilizes shared profiles and modules to keep hosts DRY (Don't Repeat Yourself).

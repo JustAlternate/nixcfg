@@ -17,10 +17,8 @@ loki.relabel "journal" {
 }
 
 loki.process "filter" {
-  stage.drop {
-    source     = "message"
-    expression = ".*(open\\(\\).*).*"
-  }
+  # Note: previously dropped any line containing "open(" — too broad, masked
+  # real "Permission denied" errors. Removed until a targeted replacement is needed.
   stage.drop {
     source     = "message"
     expression = ".*SSL_read\\(\\) failed.*"

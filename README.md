@@ -28,6 +28,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
 - Binary cache: [Cachix](https://cachix.org) (`justalternate-nixcfg.cachix.org`)
+- Backups: [Restic](https://restic.net/) daily snapshots to Hetzner Storage Box (SFTP), with PostgreSQL dumps, pruning (7d/4w/6m), and integrity checks. See [RUNBOOK](hosts/beaver/system/services/backups/RUNBOOK.md) for recovery.
 
 ##### Infrastructure Overview (Beaver VPS)
 
@@ -43,7 +44,7 @@ flowchart LR
     subgraph Beaver["Beaver VPS"]
         
         subgraph Network["Network Layer"]
-            Firewall["UFW Firewall<br/>TCP: 443, 8443, 9111<br/>Mail: 25, 465, 587, 993"]
+            Firewall["Firewall (nftables)<br/>TCP: 443, 8443<br/>Mail: 25, 465, 993"]
             Nginx["Nginx<br/>Reverse Proxy + SSL"]
         end
 
@@ -180,7 +181,7 @@ Since this repository is fully public, I highly value security principles, here 
 **Note on MFA**: Currently relying on possession-factor authentication (YubiKey for local, SSH keys for remote). Planning to add biometrics (inherence factor) to achieve true 2FA for local access.
 
 **Network Hardening**
-- Firewall: UFW with minimal port exposure (443, 8443, mail ports)
+- Firewall: nftables with minimal port exposure (443, 8443, 25, 465, 993)
 - Fail2Ban: Automated intrusion prevention
 
 ## Installation
@@ -232,6 +233,6 @@ ssh-keygen -t ed25519 -C "email@email.com"
 
 Create your sops age private key
 ```
-sudo mkdir -p /nix/sops/age
-sudo nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > /nix/sops/age/keys.txt"
+sudo mkdir -p /root/.config/sops/age
+sudo nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > /root/.config/sops/age/keys.txt"
 ```

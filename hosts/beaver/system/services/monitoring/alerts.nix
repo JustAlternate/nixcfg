@@ -483,61 +483,6 @@
         };
       }
       {
-        uid = "var-disk-full";
-        title = "Var Filesystem Full";
-        condition = "C";
-        data = [
-          {
-            refId = "A";
-            relativeTimeRange = {
-              from = 300;
-              to = 0;
-            };
-            datasourceUid = "PBFA97CFB590B2093";
-            model = {
-              expr = ''(node_filesystem_size_bytes{mountpoint="/var"} - node_filesystem_avail_bytes{mountpoint="/var"}) / node_filesystem_size_bytes{mountpoint="/var"} * 100'';
-              refId = "A";
-            };
-          }
-          {
-            refId = "B";
-            datasourceUid = "__expr__";
-            model = {
-              type = "reduce";
-              expression = "A";
-              reducer = "last";
-              refId = "B";
-            };
-          }
-          {
-            refId = "C";
-            datasourceUid = "__expr__";
-            model = {
-              type = "threshold";
-              expression = "B";
-              refId = "C";
-              conditions = [
-                {
-                  evaluator = {
-                    type = "gt";
-                    params = [ 90 ];
-                  };
-                }
-              ];
-            };
-          }
-        ];
-        noDataState = "OK";
-        execErrState = "Error";
-        for = "5m";
-        annotations = {
-          summary = "/var filesystem usage is above 90% on {{ $labels.instance }}";
-        };
-        labels = {
-          severity = "critical";
-        };
-      }
-      {
         uid = "disk-inodes";
         title = "Low Inodes Available";
         condition = "C";
@@ -575,7 +520,7 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 90 ];
+                    params = [ 0.9 ];
                   };
                 }
               ];
@@ -651,7 +596,7 @@
         execErrState = "Error";
         for = "1m";
         annotations = {
-          summary = "Error rate is above 20 errors per second";
+          summary = "Error rate is above 10 errors per second";
         };
         labels = {
           severity = "warning";
@@ -715,7 +660,7 @@
     ];
   };
 
-  # Backup freshness — alerts if last backup is older than 26 hours
+  # Backup freshness — alerts if last backup is older than 96 hours (4 days)
   backupAge = {
     orgId = 1;
     name = "backup_age";
@@ -724,7 +669,7 @@
     rules = [
       {
         uid = "backup-overdue";
-        title = "Backup Overdue (>26h)";
+        title = "Backup Overdue (>96h)";
         condition = "C";
         data = [
           {
@@ -760,7 +705,7 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 93600 ];
+                    params = [ 345600 ];
                   };
                 }
               ];
@@ -769,10 +714,10 @@
         ];
         noDataState = "Alerting";
         execErrState = "Error";
-        for = "26h";
+        for = "96h";
         annotations = {
-          summary = "No restic backup has run in over 26 hours on beaver";
-          description = "The restic backup timer (restic-backups-beaver.timer) last triggered more than 26 hours ago. Check `systemctl status restic-backups-beaver.service` on beaver.";
+          summary = "No restic backup has run in over 96 hours on beaver";
+          description = "The restic backup timer (restic-backups-beaver.timer) last triggered more than 96 hours ago. Check `systemctl status restic-backups-beaver.service` on beaver.";
         };
         labels = {
           severity = "critical";

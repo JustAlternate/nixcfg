@@ -4,26 +4,20 @@ Prioritized list of known gaps, from the 2026-07 audit. Check items off when the
 
 ---
 
-## 1. Backups (highest priority) — in progress
+## 1. Backups (highest priority) — done
 
-**There are zero backups on beaver.** Every stateful service is one disk failure away from permanent data loss:
-vaultwarden (passwords), `/var/vmail` (email), dawarich (GPS history), Keycloak + shared postgres,
-headscale DB (tailnet control plane), grafana, goatcounter sqlite, `/var/www` (web roots).
+Backups are live via restic to Hetzner Storage Box (SFTP, `u641107.your-storagebox.de:23`).
 
-**Plan:** restic with a sops-managed repository password. Target: Hetzner Storage Box (same DC, native SFTP, ~€3/month).
-Alternative: Backblaze B2. Do not self-host the backup target (tailscale to a home machine — home uptime ≠ server resilience).
+**Landed config:**
+- restic daily → 2×/week (Mon, Thu 03:00), randomized 2h delay
+- `services.postgresqlBackup`: keycloak + dawarich dumps before restic runs
+- Prune: `--keep-daily 7 --keep-weekly 4 --keep-monthly 6`
+- Check: `--read-data-subset=1%` after each backup
+- Monitoring: Prometheus alert if last backup > 96h
+- Auth: `RESTIC/SFTP_PASSWORD` via `SSHPASS` env (sshpass), host key pinned in `/etc/ssh/ssh_known_hosts`
+- Docs: README.md entry + `hosts/beaver/system/services/backups/RUNBOOK.md`
 
-**Coverage:** `services.postgresqlBackup` dumps for all databases, `/var/vmail`, `/var/lib/bitwarden_rs`,
-`/var/lib/headscale`, `/var/lib/dawarich`, `/var/lib/grafana`, goatcounter sqlite, `/var/www`, `/var/dkim`,
-`/var/lib/acme`, `/var/lib/tailscale`.
-
-**Schedule:** daily + `restic forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6`.
-
-**Monitoring:** Prometheus alert if last backup age > 26h. A backup never restored is a rumor — quarterly restore drill to `/tmp/restore-test/`.
-
-**Pre-rebuild tasks:**
-- `tofu apply` in `~/iac/hetzner/` to provision the Storage Box (needs Hetzner API token — on swordfish)
-- Add `RESTIC/PASSWORD` and `RESTIC/SFTP_USER` to sops after Storage Box exists
+**Still manual:** quarterly restore drill to `/tmp/restore-test/`.
 
 ---
 
@@ -59,12 +53,7 @@ Also done:
 
 ### Monitoring / alerts
 
-- **alert bugs:**
-  - Inode alert can never fire (0–1 fraction vs `gt 90` threshold) — needs `× 100` or `gt 0.9`.
-  - `/var` filesystem alert is permanently NO_DATA (beaver has single `/`).
-  - One annotation claims "20 errors/s" while the query threshold is `> 10`.
-- **`mkThresholdAlert` helper** in `alerts.nix` — 13 rules × ~55 lines of identical boilerplate → ~150 lines with a helper. Eliminates the bugs above by construction.
-- **alloy.river:20** drops any journal line containing `open(` — masks real "permission denied" errors. Narrow the drop rule.
+- **`mkThresholdAlert` helper** in `alerts.nix` — 13 rules × ~55 lines of identical boilerplate → ~150 lines with a helper. Reduces chance of annotation/unit mismatches.
 - **anubis metrics** on `127.0.0.1:9090` not scraped by prometheus.
 
 ### Code quality
@@ -84,7 +73,3 @@ Also done:
 ### CI
 
 - **`nix flake check` evaluates but never builds.** Endgame: CI builds `beaverNixos` toplevel on push to main and pushes closures to `justalternate-nixcfg.cachix.org`. Hosts pull instead of compiling.
-
-### Docs
-
-- **README.md**: firewall diagram says UFW (it's nixos nftables); lists ports 9111 and mail 587 (neither exist on the real system); sops key path is `/nix/sops/age/keys.txt` but the module reads `/root/.config/sops/age/keys.txt`. Sync with reality.
