@@ -16,6 +16,7 @@
     ../../../profiles/nixos/core/identity.nix
     ../../../profiles/nixos/core/nix.nix
     ../../../modules/nixos/sops.nix
+    ./llm-env.nix
   ];
 
   machineName = "swordfish";
@@ -69,7 +70,7 @@
 
       # Auto-start applications on specific workspaces
       exec-once = [workspace 1 silent] ghostty --config-file=/home/justalternate/.config/ghostty/config
-      exec-once = [workspace 2 silent] librewolf
+      exec-once = [workspace 2 silent] MOZ_ENABLE_WAYLAND=0 librewolf
       exec-once = [workspace 5 silent] vesktop
     '';
   };

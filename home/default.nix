@@ -22,6 +22,10 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     NIX_AUTO_RUN = 1;
+    # Workaround: LW 153.0 Vulkan compositing broken on Wayland/AMD —
+    # white text, blank panels, unclickable UI. Fall back to XWayland.
+    # Remove after upstream fix (>153.0).
+    MOZ_ENABLE_WAYLAND = "0";
   };
 
   programs.home-manager.enable = true;
