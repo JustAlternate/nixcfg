@@ -215,6 +215,7 @@ in
     prometheus = {
       enable = true;
       port = 9001;
+      listenAddress = "127.0.0.1";
       exporters = {
         node = {
           enable = true;
@@ -227,6 +228,7 @@ in
         blackbox = {
           enable = true;
           port = 9115;
+          listenAddress = "127.0.0.1";
           configFile = ./prometheus/blackbox.yml;
         };
       };

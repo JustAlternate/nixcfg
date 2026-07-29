@@ -12,8 +12,8 @@ with pkgs;
   pulseaudio
   networkmanagerapplet
   networkmanager
-  xfce.thunar
-  xfce.thunar-volman
+  pkgs.thunar
+  pkgs.thunar-volman
   bluez
   blueman
   playerctl

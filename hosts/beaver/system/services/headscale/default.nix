@@ -3,7 +3,7 @@ _: {
     headscale = {
       enable = true;
       port = 4004;
-      address = "0.0.0.0";
+      address = "127.0.0.1";
       settings = {
         server_url = "https://headscale.justalternate.com";
         dns = {

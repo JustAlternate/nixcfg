@@ -15,7 +15,7 @@
       path = "/run/secrets/llm-env";
       mode = "0444";
       content = ''
-        OPENROUTER_API_KEY='${config.sops.placeholder.OPENROUTER_API_KEY}'
+        export OPENROUTER_API_KEY='${config.sops.placeholder.OPENROUTER_API_KEY}'
       '';
     };
   };

@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs, lib, config, ... }:
 
 {
   imports = [
@@ -38,6 +38,8 @@
     };
     x509.useACMEHost = "mail.justalternate.com";
   };
+
+  services.postfix.settings.main.smtpd_banner = lib.mkForce "ESMTP";
 
   services.rspamd.locals.greylist.text = ''
     timeout = 90;

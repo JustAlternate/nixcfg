@@ -13,6 +13,7 @@ in
     work.enable = mkEnableOption "work shell profile (kubectl prompt, work aliases)";
     hyprlandAutostart.enable = mkEnableOption "auto-start Hyprland on tty1 login";
     envVar.enable = mkEnableOption "legacy ~/env-var/.env loading" // { default = true; };
+    tmuxAutoStart.enable = mkEnableOption "auto-start tmux on shell login" // { default = true; };
   };
 
   config = {
@@ -60,10 +61,12 @@ in
         # packages (tmux, etc.) are findable early.
         export PATH="$HOME/.nix-profile/bin:$PATH"
 
+        ${optionalString cfg.tmuxAutoStart.enable ''
         # Auto-start tmux: attach to session "main" if it exists, otherwise create it.
         if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
           exec tmux new-session -A -s main
         fi
+        ''}
 
         ${optionalString cfg.work.enable ''
           DISABLE_AUTO_UPDATE="true"
