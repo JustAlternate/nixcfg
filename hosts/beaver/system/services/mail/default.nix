@@ -5,9 +5,15 @@
     inputs.nixos-mailserver.nixosModule
   ];
 
-  services.nginx.virtualHosts."mail.justalternate.com" = {
-    enableACME = true;
-    forceSSL = true;
+  services = {
+    nginx.virtualHosts."mail.justalternate.com" = {
+      enableACME = true;
+      forceSSL = true;
+    };
+    postfix.settings.main.smtpd_banner = lib.mkForce "ESMTP";
+    rspamd.locals.greylist.text = ''
+      timeout = 90;
+    '';
   };
 
   mailserver = {
@@ -38,10 +44,4 @@
     };
     x509.useACMEHost = "mail.justalternate.com";
   };
-
-  services.postfix.settings.main.smtpd_banner = lib.mkForce "ESMTP";
-
-  services.rspamd.locals.greylist.text = ''
-    timeout = 90;
-  '';
 }

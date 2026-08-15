@@ -11,17 +11,19 @@
   };
 
   sops = {
-    secrets."RESTIC/PASSWORD" = {
-      owner = "root";
-      mode = "0400";
-    };
-    secrets."RESTIC/SFTP_USER" = {
-      owner = "root";
-      mode = "0400";
-    };
-    secrets."RESTIC/SFTP_PASSWORD" = {
-      owner = "root";
-      mode = "0400";
+    secrets = {
+      "RESTIC/PASSWORD" = {
+        owner = "root";
+        mode = "0400";
+      };
+      "RESTIC/SFTP_USER" = {
+        owner = "root";
+        mode = "0400";
+      };
+      "RESTIC/SFTP_PASSWORD" = {
+        owner = "root";
+        mode = "0400";
+      };
     };
     templates."restic-beaver-env" = {
       path = "/run/restic-beaver-env";
