@@ -17,6 +17,8 @@
       settings = {
         env = [
           "ELECTRON_OZONE_PLATFORM_HINT, auto"
+          # Fix: LW 153 Vulkan compositing broken on Wayland/AMD
+          "MOZ_ENABLE_WAYLAND, 0"
         ];
         cursor = {
           enable_hyprcursor = true;

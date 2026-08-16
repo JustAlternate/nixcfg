@@ -61,9 +61,20 @@ in
         # packages (tmux, etc.) are findable early.
         export PATH="$HOME/.nix-profile/bin:$PATH"
 
+        ${optionalString cfg.hyprlandAutostart.enable ''
+        # Auto-start Hyprland on TTY login — MUST run before the tmux autostart:
+        # if tmux execs first, tty becomes /dev/pts/N and the /dev/tty1 check
+        # below could never pass, so Hyprland would never launch.
+        if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && command -v start-hyprland >/dev/null; then
+          exec start-hyprland
+        fi
+        ''}
+
         ${optionalString cfg.tmuxAutoStart.enable ''
         # Auto-start tmux: attach to session "main" if it exists, otherwise create it.
-        if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
+        # Skipped on the Linux VT (where Hyprland owns login) — only fire inside a
+        # real terminal emulator once a Wayland session is up.
+        if command -v tmux >/dev/null && [ -z "$TMUX" ] && [ -n "$WAYLAND_DISPLAY" ]; then
           exec tmux new-session -A -s main
         fi
         ''}
@@ -108,12 +119,6 @@ in
             kubectl config current-context 2>/dev/null > "/tmp/tmux-kube-context-$UID"
           }
           precmd_functions+=_k8s_cache
-        ''}
-        ${optionalString cfg.hyprlandAutostart.enable ''
-          # Auto-start Hyprland on TTY login
-          if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && command -v start-hyprland >/dev/null; then
-            exec start-hyprland
-          fi
         ''}
       '';
     };
