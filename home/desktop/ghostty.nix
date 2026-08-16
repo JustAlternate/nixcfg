@@ -30,16 +30,26 @@
         "ctrl+shift++=increase_font_size:1"
         "ctrl+shift+-=decrease_font_size:1"
 
-        # Option+N → tmux jump-to-window (M-1..M-9, AZERTY-safe via physical key)
-        "alt+physical:one=esc:1"
-        "alt+physical:two=esc:2"
-        "alt+physical:three=esc:3"
-        "alt+physical:four=esc:4"
-        "alt+physical:five=esc:5"
-        "alt+physical:six=esc:6"
-        "alt+physical:seven=esc:7"
-        "alt+physical:eight=esc:8"
-        "alt+physical:nine=esc:9"
+        # Ctrl/Super + top-row → tmux jump-to-window (M-1..M-9, AZERTY-safe via physical key).
+        # Alt is unusable here: Hyprland mainMod is ALT_R and right-Alt is AltGr on fr layout.
+        "super+physical:one=esc:1"
+        "super+physical:two=esc:2"
+        "super+physical:three=esc:3"
+        "super+physical:four=esc:4"
+        "super+physical:five=esc:5"
+        "super+physical:six=esc:6"
+        "super+physical:seven=esc:7"
+        "super+physical:eight=esc:8"
+        "super+physical:nine=esc:9"
+        "ctrl+physical:one=esc:1"
+        "ctrl+physical:two=esc:2"
+        "ctrl+physical:three=esc:3"
+        "ctrl+physical:four=esc:4"
+        "ctrl+physical:five=esc:5"
+        "ctrl+physical:six=esc:6"
+        "ctrl+physical:seven=esc:7"
+        "ctrl+physical:eight=esc:8"
+        "ctrl+physical:nine=esc:9"
       ];
     };
     enableZshIntegration = true;
