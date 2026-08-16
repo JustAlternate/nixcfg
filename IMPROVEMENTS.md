@@ -10,7 +10,7 @@ Backups are live via restic to Hetzner Storage Box (SFTP, `u641107.your-storageb
 
 **Landed config:**
 - restic daily → 2×/week (Mon, Thu 03:00), randomized 2h delay
-- `services.postgresqlBackup`: keycloak + dawarich dumps before restic runs
+- `services.postgresqlBackup`: dawarich dumps before restic runs
 - Prune: `--keep-daily 7 --keep-weekly 4 --keep-monthly 6`
 - Check: `--read-data-subset=1%` after each backup
 - Monitoring: Prometheus alert if last backup > 96h
@@ -48,7 +48,7 @@ Also done:
 - **dovecot cert reload** (`nginx/default.nix:35`): `reloadServices` includes `"dovecot2.service"` — unit is `dovecot.service`. ACME renewals never reload dovecot → stale certs until manual restart.
 - **gotify X-Forwarded-Proto** (`gotify/default.nix:17`): hardcoded `http` on a forceSSL vhost — gotify thinks everything is plain HTTP. Drop the line; `recommendedProxySettings` already sets `$scheme`.
 - **drop `bindsTo nginx`** on vaultwarden and open-webui — nginx restart/crash kills your password manager. Use `after` + `wants` only.
-- **pin dawarich and gotify to loopback** — they listen on `0.0.0.0` while nginx proxies to 127.0.0.1. Defense in depth. (prometheus/blackbox/keycloak/headscale already done.)
+- **pin dawarich and gotify to loopback** — they listen on `0.0.0.0` while nginx proxies to 127.0.0.1. Defense in depth. (prometheus/blackbox/headscale already done.)
 - **loki disk headroom**: after retention kicks in, verify `/var/lib/loki` shrinks. If not, manual compaction or delete old chunks.
 
 ### Monitoring / alerts
