@@ -93,6 +93,7 @@ in
         analytics.reporting_enabled = false;
         auth = {
           disable_login_form = true;
+          oauth_allow_insecure_email_lookup = true;
         };
         server = {
           http_addr = "127.0.0.1";
@@ -103,12 +104,13 @@ in
         };
         "auth.generic_oauth" = lib.mkForce {
           enabled = true;
-          name = "Keycloak-OAuth";
+          name = "Rauthy-OAuth";
           allow_sign_up = true;
           client_id = "grafana";
           client_secret = "";
-          auth_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/auth";
-          token_url = "https://auth.justalternate.com/realms/sso/protocol/openid-connect/token";
+          auth_url = "https://auth.justalternate.com/auth/v1/oidc/authorize";
+          token_url = "https://auth.justalternate.com/auth/v1/oidc/token";
+          api_url = "https://auth.justalternate.com/auth/v1/oidc/userinfo";
           role_attribute_path = "email == '${adminEmail}' && 'Admin' || 'Viewer'";
           scopes = "openid email profile";
         };
@@ -262,6 +264,14 @@ in
           static_configs = [
             {
               targets = [ "localhost:9116" ];
+            }
+          ];
+        }
+        {
+          job_name = "rauthy";
+          static_configs = [
+            {
+              targets = [ "127.0.0.1:3128" ];
             }
           ];
         }

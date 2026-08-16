@@ -3,7 +3,6 @@ _: {
   # modules/nixos/sops.nix) keeps them off the desktop/laptop machines.
   sops.secrets = {
     "HASHED_PASSWORD" = { };
-    "PASSWORD" = { };
     "SSO/DAWARICH_CLIENT_SECRET" = { };
     "GRAFANA/ENV" = { };
     "GRAFANA/SECRET_KEY" = {

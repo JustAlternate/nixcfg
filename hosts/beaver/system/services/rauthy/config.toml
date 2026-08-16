@@ -1,0 +1,41 @@
+[server]
+listen_address = "127.0.0.1"
+port_http = 3127
+scheme = "http"
+pub_url = "auth.justalternate.com"
+proxy_mode = true
+trusted_proxies = ["127.0.0.1/32"]
+http_workers = 1
+metrics_enable = true
+metrics_addr = "127.0.0.1"
+metrics_port = 3128
+swagger_ui_enable = false
+
+[cluster]
+node_id = 1
+nodes = ["1 localhost:8100 localhost:8200"]
+data_dir = "/var/lib/rauthy"
+secret_raft = "$SECRETS"
+secret_api = "$SECRETS"
+
+[encryption]
+keys = ["$SECRETS"]
+key_active = "$SECRETS"
+
+[webauthn]
+rp_id = "auth.justalternate.com"
+rp_origin = "https://auth.justalternate.com:443"
+
+[bootstrap]
+admin_email = "loicw@justalternate.com"
+bootstrap_dir = "/run/secrets/RAUTHY/bootstrap"
+
+[email]
+rauthy_admin_email = "loicw@justalternate.com"
+smtp_url = "127.0.0.1"
+smtp_port = 25
+smtp_from = "Rauthy <rauthy@justalternate.com>"
+danger_insecure = true
+
+[events]
+email = "loicw@justalternate.com"

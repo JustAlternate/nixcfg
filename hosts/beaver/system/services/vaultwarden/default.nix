@@ -12,7 +12,7 @@
         rocketPort = 8222;
         signupsAllowed = false; # Never put this to true
         ssoEnabled = true;
-        ssoAuthority = "https://auth.justalternate.com/realms/sso";
+        ssoAuthority = "https://auth.justalternate.com/auth/v1";
         ssoScopes = "email profile";
         ssoPkce = true;
         ssoClientId = "vaultwarden";

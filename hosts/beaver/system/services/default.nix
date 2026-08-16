@@ -7,7 +7,7 @@ _: {
     ./mail
     ./monitoring
     ./dawarich
-    ./keycloak
+    ./rauthy
     ./goatcounter
     ./gotify
     ./mail-monitor

@@ -7,8 +7,8 @@
     webPort = 3001;
     environment = {
       OIDC_ENABLED = "true";
-      OIDC_NAME = "Keycloak";
-      OIDC_ISSUER = "https://auth.justalternate.com/realms/sso";
+      OIDC_NAME = "Rauthy";
+      OIDC_ISSUER = "https://auth.justalternate.com/auth/v1/";
       OIDC_CLIENT_ID = "dawarich";
       OIDC_REDIRECT_URI = "https://geo.justalternate.com/users/auth/openid_connect/callback";
     };

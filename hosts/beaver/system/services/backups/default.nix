@@ -38,7 +38,6 @@
   services.postgresqlBackup = {
     enable = true;
     databases = [
-      "keycloak"
       "dawarich"
     ];
     location = "/var/backup/postgresql";
@@ -57,6 +56,7 @@
         "/var/www"
         "/var/lib/headscale"
         "/var/lib/dawarich"
+        "/var/lib/rauthy"
         "/var/lib/grafana"
         "/var/lib/postgresql"
         "/var/backup/postgresql"
@@ -97,7 +97,6 @@
   systemd.services.restic-backups-beaver = {
     after = [
       "postgresqlBackup-dawarich.service"
-      "postgresqlBackup-keycloak.service"
     ];
   };
 }
