@@ -15,16 +15,16 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - **GitHub Actions**: `nix flake check`, nixfmt, statix, deadnix, and SOPS validation on every push and PR
 
 #### VPS (beaver)
-- Identity management : [keycloak](https://keycloak.org) (with SSO using github provider or yubikey)
+- Identity management : [Rauthy](https://github.com/sebadob/rauthy) (with SSO using github provider or passkey/yubikey)
 - Reverse proxy & web server: [nginx](https://nginx.org/en/)
 - Anti-bot/scraper protection: [Anubis](https://anubis.techaro.lol) (proof-of-work challenge)
-- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Keycloak)
+- Monitoring (observability) : [Grafana](https://github.com/grafana/grafana) (only accessible through Rauthy)
 - Monitoring (metric collector): [Prometheus](https://github.com/prometheus/prometheus)
 - Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
 - Monitoring (Alerts notification): [Gotify](https://github.com/gotify/server)
 - Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
-- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Keycloak)
-- LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Keycloak)
+- Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Rauthy)
+- LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Rauthy)
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
 - Binary cache: [Cachix](https://cachix.org) (`justalternate-nixcfg.cachix.org`)
@@ -72,7 +72,7 @@ flowchart LR
             end
 
             subgraph Auth["Identity Layer"]
-                Keycloak["Keycloak SSO<br/>"]
+                Rauthy["Rauthy SSO<br/>"]
             end
         end
     end
@@ -94,18 +94,18 @@ flowchart LR
 
     Sops -->|"Secret"| Grafana
 
-    Keycloak -->|"OIDC"| Grafana
+    Rauthy -->|"OIDC"| Grafana
 
     Sops -->|"Secret"| Vaultwarden
     Sops -->|"Secret"| Mail
-    Sops -->|"Secret"| Keycloak
+    Sops -->|"Secret"| Rauthy
 
-    GitHub -->|"IdP"| Keycloak
+    GitHub -->|"IdP"| Rauthy
 
     %% Auth Flow
-    Keycloak -->|"OIDC"| OpenWebUI
-    Keycloak -->|"OIDC"| Dawarich
-    Keycloak -->|"OIDC"| Vaultwarden
+    Rauthy -->|"OIDC"| OpenWebUI
+    Rauthy -->|"OIDC"| Dawarich
+    Rauthy -->|"OIDC"| Vaultwarden
 
     Sops -->|"Secret"| Dawarich
 
@@ -170,13 +170,13 @@ Since this repository is fully public, I highly value security principles, here 
 - **Vaultwarden**: Self-hosted credential management
 
 **Identity & Access Management**
-- **Keycloak**: Centralized IdP enforcing OIDC across services
+- **Rauthy**: Centralized IdP enforcing OIDC across services
 - **SSO Providers**: GitHub OAuth, WebAuthn (YubiKey)
 
 **Authentication Architecture**
 - **Host Access (Desktops)**: Single-factor hardware authentication via PAM U2F (YubiKey) with automatic screen lock on removal
 - **Remote Access (VPS)**: SSH with Ed25519 keys (password authentication disabled)
-- **Service Access**: OIDC via Keycloak
+- **Service Access**: OIDC via Rauthy
 
 **Note on MFA**: Currently relying on possession-factor authentication (YubiKey for local, SSH keys for remote). Planning to add biometrics (inherence factor) to achieve true 2FA for local access.
 

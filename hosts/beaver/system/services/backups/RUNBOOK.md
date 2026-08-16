@@ -8,8 +8,8 @@ Restic daily snapshots to a Hetzner Storage Box via SFTP (password auth).
 beaver                                     Hetzner Storage Box (hel1)
 ┌──────────────────────────────┐           ┌──────────────────────┐
 │ postgresqlBackup  (daily)    │           │ u641107.your-        │
-│   ├─ keycloak → /var/backup/ │  sftp:23  │   storagebox.de:23   │
-│   └─ dawarich  →  postgresql/│──────────▶│   /backups/beaver/   │
+│   └─ dawarich → /var/backup/ │  sftp:23  │   storagebox.de:23   │
+│                 postgresql/  │──────────▶│   /backups/beaver/   │
 │                              │           │                      │
 │ restic-backups-beaver (after)│   sshpass │                      │
 │   /var/lib/bitwarden_rs      │   + ssh   │                      │
@@ -18,6 +18,7 @@ beaver                                     Hetzner Storage Box (hel1)
 │   /var/www                   │           └──────────────────────┘
 │   /var/lib/headscale         │
 │   /var/lib/dawarich          │
+│   /var/lib/rauthy            │
 │   /var/lib/grafana           │
 │   /var/lib/postgresql        │
 │   /var/backup/postgresql     │
