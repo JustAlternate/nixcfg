@@ -77,7 +77,7 @@ Before changing any stateful service's channel: compare the running version (`sy
 - `PrivateDevices = true`
 - `CapabilityBoundingSet = ""`
 
-If a service legitimately can't use one of these, document why with a comment (e.g. `opencode-server` needs `ProtectHome = false` to write `/root/nixcfg`).
+If a service legitimately can't use one of these, document why with a comment (e.g. `cptr` is an interactive executor — it spawns shells, runs sudo, and needs the real filesystem, so most of the template is off; the security boundary is unprivileged user + loopback bind + SSO instead).
 
 **NEVER expose an unauthenticated executor endpoint** (shell command, file write/edit) on any network interface. Loopback-only + auth, or don't build it.
 
@@ -116,6 +116,7 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 ### Rules
 - Always use `sops.templates` or `environmentFile` to inject secrets into services — never interpolate into store paths.
+- `sops --encrypt` requires the input file path to match `.sops.yaml`'s `path_regex` (`secrets.yaml$`); copy the temp file to a `*-secrets.yaml` path before re-encrypting. Newly created nix files must be `git add`ed before `nix flake check`/`nix build` can see them.
 
 ## 🌍 Environment Variables
 

@@ -27,6 +27,11 @@
       podman-compose
       lego
       ghostty.terminfo
+      openssl
+      sqlite
+      jq
+      dig
+      unzip
     ];
   };
 

@@ -13,3 +13,6 @@ terraform.tfvars
 # Go build artifacts
 /mcp-opencode-bridge
 packages/mcp-opencode-bridge/mcp-opencode-bridge
+
+# cptr runtime data (chat history, task logs)
+.cptr/
