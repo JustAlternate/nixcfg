@@ -12,8 +12,12 @@ in
   options.zsh = {
     work.enable = mkEnableOption "work shell profile (kubectl prompt, work aliases)";
     hyprlandAutostart.enable = mkEnableOption "auto-start Hyprland on tty1 login";
-    envVar.enable = mkEnableOption "legacy ~/env-var/.env loading" // { default = true; };
-    tmuxAutoStart.enable = mkEnableOption "auto-start tmux on shell login" // { default = true; };
+    envVar.enable = mkEnableOption "legacy ~/env-var/.env loading" // {
+      default = true;
+    };
+    tmuxAutoStart.enable = mkEnableOption "auto-start tmux on shell login" // {
+      default = true;
+    };
   };
 
   config = {
@@ -62,21 +66,21 @@ in
         export PATH="$HOME/.nix-profile/bin:$PATH"
 
         ${optionalString cfg.hyprlandAutostart.enable ''
-        # Auto-start Hyprland on TTY login — MUST run before the tmux autostart:
-        # if tmux execs first, tty becomes /dev/pts/N and the /dev/tty1 check
-        # below could never pass, so Hyprland would never launch.
-        if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && command -v start-hyprland >/dev/null; then
-          exec start-hyprland
-        fi
+          # Auto-start Hyprland on TTY login — MUST run before the tmux autostart:
+          # if tmux execs first, tty becomes /dev/pts/N and the /dev/tty1 check
+          # below could never pass, so Hyprland would never launch.
+          if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && command -v start-hyprland >/dev/null; then
+            exec start-hyprland
+          fi
         ''}
 
         ${optionalString cfg.tmuxAutoStart.enable ''
-        # Auto-start tmux: attach to session "main" if it exists, otherwise create it.
-        # Skipped on the Linux VT (where Hyprland owns login) — only fire inside a
-        # real terminal emulator once a Wayland session is up.
-        if command -v tmux >/dev/null && [ -z "$TMUX" ] && [ -n "$WAYLAND_DISPLAY" ]; then
-          exec tmux new-session -A -s main
-        fi
+          # Auto-start tmux: attach to session "main" if it exists, otherwise create it.
+          # Skipped on the Linux VT (where Hyprland owns login) — only fire inside a
+          # real terminal emulator once a Wayland session is up.
+          if command -v tmux >/dev/null && [ -z "$TMUX" ] && [ -n "$WAYLAND_DISPLAY" ]; then
+            exec tmux new-session -A -s main
+          fi
         ''}
 
         ${optionalString cfg.work.enable ''
@@ -92,12 +96,12 @@ in
           cat "${config.home.homeDirectory}/.cache/wal/sequences"
 
         ${optionalString cfg.envVar.enable ''
-        # env vars (non-sensitive tool config)
-        if [ -f ~/env-var/.env ]; then
-          while IFS='=' read -r name value; do
-            [[ $name != \#* ]] && export "$name=$value"
-          done < ~/env-var/.env
-        fi
+          # env vars (non-sensitive tool config)
+          if [ -f ~/env-var/.env ]; then
+            while IFS='=' read -r name value; do
+              [[ $name != \#* ]] && export "$name=$value"
+            done < ~/env-var/.env
+          fi
         ''}
         # API keys (sops-managed)
         [ -f /run/secrets/llm-env ] && source /run/secrets/llm-env

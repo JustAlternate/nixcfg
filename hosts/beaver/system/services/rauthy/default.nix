@@ -48,7 +48,9 @@
     ];
 
     serviceConfig = {
-      ExecStart = "${pkgs.rauthy}/bin/rauthy serve --config-file ${./config.toml} --secrets-file ${config.sops.secrets."RAUTHY/secrets.toml".path}";
+      ExecStart = "${pkgs.rauthy}/bin/rauthy serve --config-file ${./config.toml} --secrets-file ${
+        config.sops.secrets."RAUTHY/secrets.toml".path
+      }";
       Restart = "on-failure";
       RestartSec = "30s";
 

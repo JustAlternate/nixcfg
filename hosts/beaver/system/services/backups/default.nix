@@ -28,7 +28,9 @@
     templates."restic-beaver-env" = {
       path = "/run/restic-beaver-env";
       content = ''
-        RESTIC_REPOSITORY=sftp:${config.sops.placeholder."RESTIC/SFTP_USER"}@${config.sops.placeholder."RESTIC/SFTP_USER"}.your-storagebox.de:23/backups/beaver
+        RESTIC_REPOSITORY=sftp:${config.sops.placeholder."RESTIC/SFTP_USER"}@${
+          config.sops.placeholder."RESTIC/SFTP_USER"
+        }.your-storagebox.de:23/backups/beaver
         RESTIC_PASSWORD=${config.sops.placeholder."RESTIC/PASSWORD"}
         SSHPASS='${config.sops.placeholder."RESTIC/SFTP_PASSWORD"}'
       '';

@@ -36,14 +36,20 @@ in
 
     stateVersion = "24.11";
 
-    packages = with pkgs; [
-      gparted
-      appimage-run
-      opentabletdriver
-      openlinkhub
-      lego
-      nvtopPackages.amd
-      headsetcontrol
-    ] ++ [ llama-cpp qwen38 ];
+    packages =
+      with pkgs;
+      [
+        gparted
+        appimage-run
+        opentabletdriver
+        openlinkhub
+        lego
+        nvtopPackages.amd
+        headsetcontrol
+      ]
+      ++ [
+        llama-cpp
+        qwen38
+      ];
   };
 }
