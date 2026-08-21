@@ -89,13 +89,15 @@ in
   # content (a plain "a+" would only touch the top dir). cptr already has
   # passwordless sudo for all commands, so this does not widen the security boundary.
   #
-  # The A+ rule also recurses into /root/.ssh and clobbers the mode on the private
-  # key (ACL mask->rwx means group-writable), which makes OpenSSH refuse it. The
-  # `z` lines below pin /root/.ssh back down afterwards so git/ssh keep working.
-  # Non-recursive `z` (not `Z`): a recursive `Z /root/.ssh` would re-clobber the
-  # per-key modes below it. Order within the file: A+ first, then z lines.
+  # /root's base mode is 0700, which makes setfacl lock the access ACL mask
+  # to --- even after appending u:cptr:rwx. That kills cptr's effective perms
+  # on the top-level entry. The `a+ m::rwx` line after the A+ fixes this.
+  # The A+ rule also recurses into /root/.ssh and clobbers the mode on the
+  # private key (ACL mask->rwx means group-writable), which makes OpenSSH
+  # refuse it. The `z` lines below pin /root/.ssh back down.
   systemd.tmpfiles.rules = [
     "A+ /root - - - - u:cptr:rwx,d:u:cptr:rwx"
+    "a+ /root - - - - m::rwx"
     "z /root/.ssh 0700 root root -"
     "z /root/.ssh/id_ed25519 0600 root root -"
     "z /root/.ssh/id_ed25519.pub 0644 root root -"
