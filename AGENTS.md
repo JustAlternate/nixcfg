@@ -89,6 +89,7 @@ If a service legitimately can't use one of these, document why with a comment (e
 
 ```bash
 # Before every change (run from ~/nixcfg)
+nixfmt . -c
 deadnix . -f && statix check .
 nix flake check
 
@@ -127,11 +128,12 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 Each step must pass before `switch`:
 
-1. `deadnix . -f` — zero output means clean.
-2. `statix check .` — no warnings introduced by the change.
-3. `nix flake check` — all configurations evaluate.
-4. `nixos-rebuild dry-activate --flake .#beaverNixos` — check which units restart, no errors.
-5. Ask for explicit user confirmation before `switch`.
+1. `nixfmt . -c` — zero "not formatted" files (CI enforces this).
+2. `deadnix . -f` — zero output means clean.
+3. `statix check .` — no warnings introduced by the change.
+4. `nix flake check` — all configurations evaluate.
+5. `nixos-rebuild dry-activate --flake .#beaverNixos` — check which units restart, no errors.
+6. Ask for explicit user confirmation before `switch`.
 
 The dry-activate is mandatory: beaver is a production VPS running mail and password manager. Blast-radius matters.
 
