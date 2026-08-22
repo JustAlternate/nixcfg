@@ -16,3 +16,4 @@ packages/mcp-opencode-bridge/mcp-opencode-bridge
 
 # cptr runtime data (chat history, task logs)
 .cptr/
+result

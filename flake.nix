@@ -136,6 +136,10 @@
           hostname = "beaver";
           hmUser = "root";
         };
+        eagleNixos = mkHost {
+          inherit system;
+          hostname = "eagle";
+        };
 
         geckoNixos1 = mkGecko ./hosts/gecko/geckoNixos1.nix;
         geckoNixos2 = mkGecko ./hosts/gecko/geckoNixos2.nix;
