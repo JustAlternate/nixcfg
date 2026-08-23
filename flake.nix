@@ -34,8 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mistral-vibe.url = "github:mistralai/mistral-vibe";
-
     nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";

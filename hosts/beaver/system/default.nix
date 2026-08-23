@@ -6,7 +6,6 @@
     ./networking.nix
     ../../../modules/nixos/sops.nix
     ./secrets.nix
-    ./vibe-env.nix
     ../../../modules/nixos/tailscale.nix
     ../../../profiles/nixos/core/nix.nix
     ./services
