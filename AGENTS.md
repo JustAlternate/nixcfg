@@ -77,7 +77,7 @@ Before changing any stateful service's channel: compare the running version (`sy
 - `PrivateDevices = true`
 - `CapabilityBoundingSet = ""`
 
-If a service legitimately can't use one of these, document why with a comment (e.g. `opencode-server` needs `ProtectHome = false` to write `/root/nixcfg`).
+If a service legitimately can't use one of these, document why with a comment (e.g. `cptr` is an interactive executor — it spawns shells, runs sudo, and needs the real filesystem, so most of the template is off; the security boundary is unprivileged user + loopback bind + SSO instead).
 
 **NEVER expose an unauthenticated executor endpoint** (shell command, file write/edit) on any network interface. Loopback-only + auth, or don't build it.
 
@@ -89,6 +89,7 @@ If a service legitimately can't use one of these, document why with a comment (e
 
 ```bash
 # Before every change (run from ~/nixcfg)
+nixfmt . -c
 deadnix . -f && statix check .
 nix flake check
 
@@ -116,21 +117,23 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 ### Rules
 - Always use `sops.templates` or `environmentFile` to inject secrets into services — never interpolate into store paths.
+- `sops --encrypt` requires the input file path to match `.sops.yaml`'s `path_regex` (`secrets.yaml$`); copy the temp file to a `*-secrets.yaml` path before re-encrypting. Newly created nix files must be `git add`ed before `nix flake check`/`nix build` can see them.
 
 ## 🌍 Environment Variables
 
 - `~/env-var/.env` is auto-loaded by zsh on all machines (non-sensitive tool config). Do not put API keys or secrets here — use sops for those.
-- API keys (MISTRAL, OpenRouter) are provisioned via sops templates on a per-machine basis (e.g. `hosts/beaver/system/vibe-env.nix` renders `/root/.vibe/.env`).
+- API keys (OpenRouter) are provisioned via sops templates on a per-machine basis (e.g. `modules/nixos/sops.nix` renders `/run/secrets/llm-env`).
 
 ## ✅ Before Every Rebuild on Beaver
 
 Each step must pass before `switch`:
 
-1. `deadnix . -f` — zero output means clean.
-2. `statix check .` — no warnings introduced by the change.
-3. `nix flake check` — all configurations evaluate.
-4. `nixos-rebuild dry-activate --flake .#beaverNixos` — check which units restart, no errors.
-5. Ask for explicit user confirmation before `switch`.
+1. `nixfmt . -c` — zero "not formatted" files (CI enforces this).
+2. `deadnix . -f` — zero output means clean.
+3. `statix check .` — no warnings introduced by the change.
+4. `nix flake check` — all configurations evaluate.
+5. `nixos-rebuild dry-activate --flake .#beaverNixos` — check which units restart, no errors.
+6. Ask for explicit user confirmation before `switch`.
 
 The dry-activate is mandatory: beaver is a production VPS running mail and password manager. Blast-radius matters.
 

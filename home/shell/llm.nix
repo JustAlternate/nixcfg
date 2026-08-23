@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -10,7 +9,6 @@
       llm-cmd = true;
     })
 
-    inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
     unstable.opencode
     unstable.rtk
   ];

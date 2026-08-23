@@ -59,15 +59,22 @@ in
 
     stateVersion = "24.11";
 
-    packages = with pkgs; [
-      gparted
-      appimage-run
-      bubblewrap
-      opentabletdriver
-      openlinkhub
-      lego
-      nvtopPackages.amd
-      headsetcontrol
-    ] ++ [ llama-cpp qwen38 qwen36 ];
+    packages =
+      with pkgs;
+      [
+        gparted
+        appimage-run
+        bubblewrap
+        opentabletdriver
+        openlinkhub
+        lego
+        nvtopPackages.amd
+        headsetcontrol
+      ]
+      ++ [
+        llama-cpp
+        qwen38
+        qwen36
+      ];
   };
 }

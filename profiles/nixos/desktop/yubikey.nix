@@ -8,6 +8,10 @@
         u2fAuth = true;
         yubicoAuth = true;
         unixAuth = false;
+        rules.auth.u2f.settings = {
+          origin = lib.mkForce "pam://nixos";
+          appid = lib.mkForce "pam://nixos";
+        };
       };
       services.login = {
         u2fAuth = true;
@@ -39,6 +43,9 @@
   };
 
   services.udev.extraRules = ''
+    # Never autosuspend the YubiKey (global USB autosuspend is on by default)
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="1050", ATTR{power/control}="on"
+
     ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", RUN+="${pkgs.systemd}/bin/systemctl --user --machine=justalternate@.host start swaylock-on-yubikey-remove.service"
   '';
 

@@ -25,6 +25,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Rauthy)
 - LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Rauthy)
+- AI workstation : [Open WebUI Computer (cptr)](https://github.com/open-webui/computer) (only accessible through Rauthy) — see [RUNBOOK](hosts/beaver/system/services/cptr/RUNBOOK.md)
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
 - Binary cache: [Cachix](https://cachix.org) (`justalternate-nixcfg.cachix.org`)

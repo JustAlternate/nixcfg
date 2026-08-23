@@ -13,3 +13,21 @@ terraform.tfvars
 # Go build artifacts
 /mcp-opencode-bridge
 packages/mcp-opencode-bridge/mcp-opencode-bridge
+
+# cptr runtime data (chat history, task logs)
+.cptr/
+result
+result-*
+
+# Secrets / keys — never commit
+.env
+.env.*
+*.pem
+*.key
+**/keys.txt
+**/age-*.txt
+age-key*.txt
+id_ed25519
+id_rsa
+*.sops.key
+.direnv/

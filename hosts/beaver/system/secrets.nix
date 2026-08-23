@@ -16,6 +16,8 @@ _: {
     "GOTIFY/APP_TOKEN" = { };
     "MAIL_MONITOR/HASHED_PASSWORD" = { };
     "MAIL_MONITOR/ENV" = { };
-    "OPENCODE_SERVER_PASSWORD" = { };
+    "CPTR/COOKIE_SECRET" = { };
+    "CPTR/OAUTH_CLIENT_SECRET" = { };
+    "CPTR/GITHUB_SSH_KEY" = { };
   };
 }

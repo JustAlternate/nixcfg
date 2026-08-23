@@ -5089,7 +5089,7 @@
               "expr": "irate(node_vmstat_compact_success{job=~\"$job\"}[5m])",
               "format": "time_series",
               "intervalFactor": 2,
-              "legendFormat": "Compact_sucess - Successful compactions for high order allocations",
+              "legendFormat": "Compact_success - Successful compactions for high order allocations",
               "refId": "F",
               "step": 4
             }
