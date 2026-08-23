@@ -26,7 +26,20 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    initrd.kernelModules = [ "amdgpu" ];
+    initrd = {
+      kernelModules = [ "amdgpu" ];
+      systemd.enable = true;
+      # FIDO2 YubiKey unlock: touch-only (user-presence=yes, no PIN)
+      # Enroll with: sudo systemd-cryptenroll --fido2-device=auto --fido2-with-client-pin=no --fido2-with-user-presence=yes --fido2-with-user-verification=no /dev/disk/by-uuid/46c64a55-12ec-4dca-a2cb-9be9687559ee
+      # --fido2-with-user-verification=no for now (no biometric). If you buy a YubiKey Bio later, re-enroll with =yes to require fingerprint.
+      luks.devices."luks-46c64a55-12ec-4dca-a2cb-9be9687559ee" = {
+        device = "/dev/disk/by-uuid/46c64a55-12ec-4dca-a2cb-9be9687559ee";
+        crypttabExtraOpts = [
+          "fido2-device=auto"
+          "token-timeout=30"
+        ];
+      };
+    };
   };
 
   services = {
