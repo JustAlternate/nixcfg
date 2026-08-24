@@ -56,24 +56,7 @@
     };
   };
 
-  programs.hyprland = {
-    extraConfig = ''
-      # Monitor settings
-      monitor=DP-3, 2560x1440@165, 1920x0, 1
-      monitor=DP-1, 2560x1440@165, 1920x0, 1
-      monitor=HDMI-A-1, 1920x1080@60, 0x0, 1
-
-      # Workspace-to-monitor bindings
-      workspace = 1, monitor:DP-1
-      workspace = 2, monitor:DP-1
-      workspace = 5, monitor:HDMI-A-1
-
-      # Auto-start applications on specific workspaces
-      exec-once = [workspace 1 silent] ghostty --config-file=/home/justalternate/.config/ghostty/config
-      exec-once = [workspace 2 silent] MOZ_ENABLE_WAYLAND=0 librewolf
-      exec-once = [workspace 5 silent] vesktop
-    '';
-  };
+  # Monitor/workspace/exec-once settings live in profiles/nixos/desktop/hyprland.conf
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

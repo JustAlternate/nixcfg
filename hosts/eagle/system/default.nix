@@ -76,15 +76,10 @@
     graphics.enable = true;
   };
 
-  programs.hyprland = {
-    settings.env = [
-      "WLR_DRM_DEVICES,/dev/dri/card1"
-    ];
-    extraConfig = ''
-      # Monitor settings
-      monitor=eDP-1,2880x1800@60,0x0,2
-    '';
-  };
+  environment.etc."xdg/hypr/hyprland.conf".text = ''
+    env = WLR_DRM_DEVICES,/dev/dri/card1
+    monitor=eDP-1,2880x1800@60,0x0,2
+  '';
 
   system.stateVersion = "26.05";
 }

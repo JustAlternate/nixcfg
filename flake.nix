@@ -17,11 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "unstable-nixpkgs";
-    };
-
     # sops
     sops-nix = {
       url = "github:Mic92/sops-nix";

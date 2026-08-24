@@ -127,22 +127,13 @@
     };
   };
 
-  programs = {
-    dconf.enable = true;
+  programs.dconf.enable = true;
 
-    hyprland = {
-      settings = {
-        env = [
-          "WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"
-        ];
-      };
-      extraConfig = ''
-        # Monitor settings
-        monitor=eDP-1,1920x1080,0x1080,1
-        monitor=HDMI-A-1,1920x1080,0x0,1
-      '';
-    };
-  };
+  environment.etc."xdg/hypr/hyprland.conf".text = ''
+    env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+    monitor=eDP-1,1920x1080,0x1080,1
+    monitor=HDMI-A-1,1920x1080,0x0,1
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

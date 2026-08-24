@@ -37,7 +37,8 @@ let
       cpumoe="''${QWEN36_CPU_MOE:-40}"
       threads="''${QWEN36_THREADS:-6}"
 
-      exec llama-server \
+      # patched b10408: supports per-layer expert counts (PaperSafe prune)
+      exec /home/justalternate/Projects/llamacpp-b10408/build/bin/llama-server \
         --model "$model" \
         --host 127.0.0.1 --port "$port" \
         --n-gpu-layers "$ngl" \
