@@ -6,7 +6,7 @@ let
     name = "qwen38";
     runtimeInputs = [ llama-cpp ];
     text = ''
-      model="''${QWEN38_MODEL:-$HOME/models/qwen3.8/Qwen3.8-27B-UD-Q2_K_XL.gguf}"
+      model="''${QWEN38_MODEL:-$HOME/Projects/local-llm-inference/models/qwen3.8/Qwen3.8-27B-UD-Q2_K_XL.gguf}"
       ctx="''${QWEN38_CTX:-200000}"
       port="''${QWEN38_PORT:-8080}"
       ngl="''${QWEN38_NGLS:-99}"
@@ -30,7 +30,7 @@ let
     name = "qwen36";
     runtimeInputs = [ llama-cpp ];
     text = ''
-      model="''${QWEN36_MODEL:-$HOME/models/qwen3.6/Qwen3.6-35B-A3B-PaperSafe-Q4_K_XL.gguf}"
+      model="''${QWEN36_MODEL:-$HOME/Projects/local-llm-inference/models/qwen3.6/Qwen3.6-35B-A3B-PaperSafe-Q4_K_XL.gguf}"
       ctx="''${QWEN36_CTX:-100000}"
       port="''${QWEN36_PORT:-8080}"
       ngl="''${QWEN36_NGLS:-25}"
@@ -38,7 +38,7 @@ let
       threads="''${QWEN36_THREADS:-6}"
 
       # patched b10408: supports per-layer expert counts (PaperSafe prune)
-      exec /home/justalternate/Projects/llamacpp-b10408/build/bin/llama-server \
+      exec /home/justalternate/Projects/local-llm-inference/llamacpp-b10408/build/bin/llama-server \
         --model "$model" \
         --host 127.0.0.1 --port "$port" \
         --n-gpu-layers "$ngl" \
