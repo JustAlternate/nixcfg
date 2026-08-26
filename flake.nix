@@ -115,6 +115,7 @@
     {
       packages = {
         x86_64-linux.recall = nixpkgs.legacyPackages.x86_64-linux.callPackage ./packages/recall { };
+        x86_64-linux.deepseek-harness = nixpkgs.legacyPackages.x86_64-linux.callPackage ./packages/dsh { };
         aarch64-linux.recall = nixpkgs.legacyPackages.aarch64-linux.callPackage ./packages/recall { };
         aarch64-darwin.recall = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./packages/recall { };
       };
