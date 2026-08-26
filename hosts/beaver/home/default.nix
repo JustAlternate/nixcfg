@@ -6,7 +6,7 @@
 {
   imports = [
     ../../../modules/home/zsh.nix
-    ../../../home/shell/llm.nix
+    ../../../home/shell/llm
     ../../../home/shell/fastfetch.nix
     ../../../home/shell/k9s.nix
     ../../../modules/home/ssh.nix

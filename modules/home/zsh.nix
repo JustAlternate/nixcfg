@@ -103,8 +103,9 @@ in
             done < ~/env-var/.env
           fi
         ''}
-        # API keys (sops-managed)
-        [ -f /run/secrets/llm-env ] && source /run/secrets/llm-env
+        # API keys (sops-managed) — check -r to avoid "permission denied" when file is root-only (see 03130c9)
+        [ -r /run/secrets/llm-env ] && source /run/secrets/llm-env
+        [ -r ~/.config/secrets/llm.env ] && set -a && source ~/.config/secrets/llm.env && set +a
         # zoxide
         command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 

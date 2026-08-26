@@ -28,8 +28,18 @@ let
 
   qwen36 = pkgs.writeShellApplication {
     name = "qwen36";
-    runtimeInputs = [ llama-cpp ];
+    runtimeInputs = [
+      llama-cpp
+      pkgs.rocmPackages.clr
+      pkgs.rocmPackages.hipblas
+      pkgs.rocmPackages.rocblas
+      pkgs.rocmPackages.hipblaslt
+    ];
     text = ''
+      # Durable ROCm fix: custom b10408 binary is outside nix store -> its RUNPATH
+      # can go stale after GC. Pin libs from the current nixpkgs closure via wrapper.
+      export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:${pkgs.rocmPackages.hipblas}/lib:${pkgs.rocmPackages.rocblas}/lib:${pkgs.rocmPackages.hipblaslt}/lib:''${LD_LIBRARY_PATH:-}"
+
       model="''${QWEN36_MODEL:-$HOME/Projects/local-llm-inference/models/qwen3.6/Qwen3.6-35B-A3B-PaperSafe-Q4_K_XL.gguf}"
       ctx="''${QWEN36_CTX:-100000}"
       port="''${QWEN36_PORT:-8080}"

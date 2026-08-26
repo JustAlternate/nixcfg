@@ -7,7 +7,7 @@
   imports = [
     ../../modules/home/zsh.nix
     ../../modules/home/tmux.nix
-    ./llm.nix
+    ./llm
     ./fastfetch.nix
     ./k9s.nix
     inputs.sops-nix.homeManagerModules.sops
