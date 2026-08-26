@@ -26,6 +26,38 @@ let
     '';
   };
 
+  ornith15 = pkgs.writeShellApplication {
+    name = "ornith15";
+    runtimeInputs = [
+      llama-cpp
+      pkgs.rocmPackages.clr
+      pkgs.rocmPackages.hipblas
+      pkgs.rocmPackages.rocblas
+      pkgs.rocmPackages.hipblaslt
+    ];
+    text = ''
+      export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:${pkgs.rocmPackages.hipblas}/lib:${pkgs.rocmPackages.rocblas}/lib:${pkgs.rocmPackages.hipblaslt}/lib:''${LD_LIBRARY_PATH:-}"
+
+      model="''${ORNITH15_MODEL:-$HOME/Projects/local-llm-inference/models/ornith-1.5/Ornith-1.5-35B-IQ3_S.gguf}"
+      ctx="''${ORNITH15_CTX:-200000}"
+      port="''${ORNITH15_PORT:-8080}"
+      ngl="''${ORNITH15_NGLS:-99}"
+      threads="''${ORNITH15_THREADS:-6}"
+
+      exec /home/justalternate/Projects/local-llm-inference/llamacpp-b10408/build/bin/llama-server \
+        --model "$model" \
+        --host 127.0.0.1 --port "$port" \
+        --n-gpu-layers "$ngl" \
+        --threads "$threads" \
+        --parallel 1 \
+        --ctx-size "$ctx" \
+        --n-predict -1 \
+        --flash-attn on \
+        --cache-type-k q4_0 --cache-type-v q4_0 \
+        --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --presence-penalty 1.5
+    '';
+  };
+
   qwen36 = pkgs.writeShellApplication {
     name = "qwen36";
     runtimeInputs = [
@@ -92,6 +124,7 @@ in
       ++ [
         llama-cpp
         qwen38
+        ornith15
         qwen36
       ];
   };
