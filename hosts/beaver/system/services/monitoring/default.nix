@@ -126,25 +126,18 @@ in
         enable = true;
         datasources.settings = {
           prune = true;
-          deleteDatasources = [
-            {
-              orgId = 1;
-              name = "Loki";
-            }
-            {
-              orgId = 1;
-              name = "Prometheus";
-            }
-          ];
           datasources = [
             {
               name = "Loki";
+              # uid pinned to match alert-rule datasourceUid references
+              uid = "P8E80F9AEF21F6940";
               type = "loki";
               url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
               isDefault = false;
             }
             {
               name = "Prometheus";
+              uid = "PBFA97CFB590B2093";
               type = "prometheus";
               url = "http://127.0.0.1:${toString config.services.prometheus.port}";
               isDefault = true;
@@ -293,6 +286,8 @@ in
                 "https://mail.justalternate.com"
                 "https://geo.justalternate.com"
                 "https://analytics.justalternate.com"
+                "https://computer.justalternate.com"
+                "https://headscale.justalternate.com"
               ];
             }
           ];
@@ -306,7 +301,6 @@ in
               target_label = "instance";
             }
             {
-              source_labels = [ "localhost:${toString config.services.prometheus.exporters.blackbox.port}" ];
               target_label = "__address__";
               replacement = "127.0.0.1:${toString config.services.prometheus.exporters.blackbox.port}";
             }

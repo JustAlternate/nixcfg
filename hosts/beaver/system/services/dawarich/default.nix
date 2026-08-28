@@ -2,7 +2,7 @@
 {
   services.dawarich = {
     enable = true;
-    package = pkgs.unstable.dawarich;
+    package = pkgs.unstable.dawarich; # pin reason: stable 1.7.5 << running 1.10.3, Rails DB migrations do not roll back
     localDomain = "geo.justalternate.com";
     webPort = 3001;
     environment = {

@@ -11,19 +11,11 @@
     ./services
   ];
 
-  virtualisation.podman = {
-    enable = true;
-    autoPrune.enable = true;
-    dockerCompat = true;
-  };
-
   environment = {
     systemPackages = with pkgs; [
       coreutils-full
       git
       home-manager
-      podman
-      podman-compose
       lego
       ghostty.terminfo
       openssl
@@ -53,6 +45,7 @@
       ignoreIP = [
         "127.0.0.1/8"
         "::1"
+        "100.64.0.0/10" # tailscale CGNAT — never ban mesh-sourced SSH
       ];
       jails = {
         sshd = {
@@ -129,8 +122,18 @@
     ];
   };
 
-  boot.tmp.cleanOnBoot = true;
-  boot.kernelParams = [ "console=tty1" ];
+  boot = {
+    tmp.cleanOnBoot = true;
+    kernelParams = [ "console=tty1" ];
+
+    # 256M ESP (sdb15, wedged between sdb14/sdb1, cannot grow without rescue).
+    # Each kernel pair is ~86M; GRUB keeps current + 1 previous generation
+    # (2 entries = ~186M peak). 3 entries (limit=2) overflows the ESP during
+    # the copy phase, which happens *before* old files are pruned -> switch
+    # fails like it did on 2026-08-28. If /boot has <95M free before a
+    # rebuild, delete the oldest pair in /boot/kernels manually first.
+    loader.grub.configurationLimit = 1;
+  };
 
   zramSwap.enable = true;
   swapDevices = [
