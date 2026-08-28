@@ -43,7 +43,7 @@
     };
     tailscale.advertiseExitNode = true;
     journald.extraConfig = ''
-      SystemMaxUse=800M
+      SystemMaxUse=300M
       MaxRetentionSec=1month
     '';
     fail2ban = {

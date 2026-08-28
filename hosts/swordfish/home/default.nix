@@ -74,7 +74,7 @@ let
         --flash-attn on \
         --cache-type-k q4_0 --cache-type-v q4_0 \
         --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --presence-penalty 1.5
-     '';
+    '';
   };
 
   qwen36agent = pkgs.writeShellApplication {
