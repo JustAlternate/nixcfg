@@ -35,48 +35,6 @@ let
     '';
   };
 
-  ornith15 = pkgs.writeShellApplication {
-    name = "ornith15";
-    runtimeInputs = [
-      llama-cpp
-      pkgs.rocmPackages.clr
-      pkgs.rocmPackages.hipblas
-      pkgs.rocmPackages.rocblas
-      pkgs.rocmPackages.hipblaslt
-    ];
-    text = ''
-      # Ornith-1.5-35B-A3B IQ3_S (16.15 GB weights) on patched b10408 llama.cpp,
-      # RX 6800 16GB (17.16 GiB total). Measured swordfish stats at these
-      # defaults (-c 200000 -ngl 99 -ncmoe 4 -fa on -ctk/-ctv q4_0 -t 6):
-      #   VRAM   : 15.4 GiB / 16.4 GiB after load+first gen (max seen 16.62)
-      #   RAM    : ~2.6 GB process RSS (model loaded via mmap)
-      #   prefill: ~150 tok/s warm (20-21 t/s cold first run); prompt t/s @32k: 50-61
-      #   decode : ~30-32 tok/s @200k (150-token greedy runs: 32.33/30.12/30.39/30.98)
-      #            @32k full-offload reference was 67.6 tok/s
-      export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:${pkgs.rocmPackages.hipblas}/lib:${pkgs.rocmPackages.rocblas}/lib:${pkgs.rocmPackages.hipblaslt}/lib:''${LD_LIBRARY_PATH:-}"
-
-      model="''${ORNITH15_MODEL:-$HOME/Projects/local-llm-inference/models/ornith-1.5/Ornith-1.5-35B-IQ3_S.gguf}"
-      ctx="''${ORNITH15_CTX:-200000}"
-      port="''${ORNITH15_PORT:-8080}"
-      ngl="''${ORNITH15_NGLS:-99}"
-      cpumoe="''${ORNITH15_CPU_MOE:-4}"
-      threads="''${ORNITH15_THREADS:-6}"
-
-      exec /home/justalternate/Projects/local-llm-inference/llamacpp-b10408/build/bin/llama-server \
-        --model "$model" \
-        --host 127.0.0.1 --port "$port" \
-        --n-gpu-layers "$ngl" \
-        --n-cpu-moe "$cpumoe" \
-        --threads "$threads" \
-        --parallel 1 \
-        --ctx-size "$ctx" \
-        --n-predict -1 \
-        --flash-attn on \
-        --cache-type-k q4_0 --cache-type-v q4_0 \
-        --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --presence-penalty 1.5
-     '';
-  };
-
   qwen36agent = pkgs.writeShellApplication {
     name = "qwen36agent";
     runtimeInputs = [
@@ -149,7 +107,6 @@ in
       ++ [
         llama-cpp
         qwen38
-        ornith15
         qwen36agent
       ];
   };
