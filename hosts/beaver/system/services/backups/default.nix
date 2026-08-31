@@ -41,6 +41,7 @@
     enable = true;
     databases = [
       "dawarich"
+      "sharry"
     ];
     location = "/var/backup/postgresql";
     startAt = "daily";
@@ -99,6 +100,7 @@
   systemd.services.restic-backups-beaver = {
     after = [
       "postgresqlBackup-dawarich.service"
+      "postgresqlBackup-sharry.service"
     ];
   };
 }

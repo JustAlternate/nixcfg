@@ -38,6 +38,11 @@
       url = "github:nix-community/nixos-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sharry = {
+      url = "github:eikek/sharry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

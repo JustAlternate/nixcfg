@@ -10,6 +10,7 @@ _: {
     ./rauthy
     ./goatcounter
     ./gotify
+    ./sharry
     ./mail-monitor
     ./headscale
     ./cptr
