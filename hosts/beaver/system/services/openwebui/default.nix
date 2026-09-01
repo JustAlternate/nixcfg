@@ -9,9 +9,8 @@
       environmentFile = config.sops.secrets."OPENWEBUI/ENV".path;
       environment = {
         WEBUI_CORS_ALLOW_ORIGIN = "https://ai.justalternate.com";
-        USER_AGENT = "open-webui/0.10.2 (beaver; justalternate.com)";
+        USER_AGENT = "open-webui (beaver; justalternate.com)";
       };
-      package = pkgs.unstable.open-webui; # unstable: stable 0.9.6 < running 0.10.2, downgrade breaks alembic;
     };
 
     nginx.virtualHosts."ai.justalternate.com" = {

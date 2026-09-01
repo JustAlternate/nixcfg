@@ -14,6 +14,11 @@ _: {
     "OPENWEBUI/ENV" = { };
     "GOTIFY/ENV" = { };
     "GOTIFY/APP_TOKEN" = { };
+    "SHARRY/ENV" = { };
+    "SHARRY/DB_PASSWORD" = {
+      owner = "postgres";
+      mode = "0400";
+    };
     "MAIL_MONITOR/HASHED_PASSWORD" = { };
     "MAIL_MONITOR/ENV" = { };
     "CPTR/COOKIE_SECRET" = { };

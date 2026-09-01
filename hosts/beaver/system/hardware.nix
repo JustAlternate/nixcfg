@@ -35,15 +35,14 @@
     ];
   };
 
-  # Ensure standard /var directories exist on fresh mount
+  # Ensure standard /var directories exist on fresh mount.
+  # (/var/run and /var/mail are symlinks owned by the base system — never mkdir them.)
   systemd.tmpfiles.rules = [
     "d /var/lib 0755 root root -"
     "d /var/log 0755 root root -"
     "d /var/cache 0755 root root -"
     "d /var/tmp 1777 root root -"
-    "d /var/run 0755 root root -"
     "d /var/spool 0755 root root -"
-    "d /var/mail 0755 root root -"
   ];
   nixpkgs.hostPlatform = "aarch64-linux";
 }

@@ -537,6 +537,120 @@
           severity = "critical";
         };
       }
+      {
+        # ESP is 256M and cannot be grown without Hetzner rescue. A kernel
+        # image pair is ~86M; a rebuild with <95M free fails during the copy
+        # phase (before old kernels are pruned). See hosts/beaver/system/default.nix.
+        uid = "low-boot-space";
+        title = "Boot ESP Almost Full";
+        condition = "C";
+        data = [
+          {
+            refId = "A";
+            relativeTimeRange = {
+              from = 300;
+              to = 0;
+            };
+            datasourceUid = "PBFA97CFB590B2093";
+            model = {
+              expr = "node_filesystem_avail_bytes{mountpoint=\"/boot\",fstype=\"vfat\"}";
+              refId = "A";
+            };
+          }
+          {
+            refId = "B";
+            datasourceUid = "__expr__";
+            model = {
+              type = "reduce";
+              expression = "A";
+              reducer = "last";
+              refId = "B";
+            };
+          }
+          {
+            refId = "C";
+            datasourceUid = "__expr__";
+            model = {
+              type = "threshold";
+              expression = "B";
+              refId = "C";
+              conditions = [
+                {
+                  evaluator = {
+                    type = "lt";
+                    params = [ 100000000 ];
+                  };
+                }
+              ];
+            };
+          }
+        ];
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "30m";
+        annotations = {
+          summary = "/boot has less than 100M free on {{ $labels.instance }}";
+          description = "The ESP cannot fit a new kernel pair (~86M). Delete the oldest pair in /boot/kernels before the next nixos-rebuild, or the switch will fail mid-copy.";
+        };
+        labels = {
+          severity = "warning";
+        };
+      }
+      {
+        uid = "var-disk-full";
+        title = "Var Filesystem Full";
+        condition = "C";
+        data = [
+          {
+            refId = "A";
+            relativeTimeRange = {
+              from = 300;
+              to = 0;
+            };
+            datasourceUid = "PBFA97CFB590B2093";
+            model = {
+              expr = ''(node_filesystem_size_bytes{mountpoint="/var"} - node_filesystem_avail_bytes{mountpoint="/var"}) / node_filesystem_size_bytes{mountpoint="/var"} * 100'';
+              refId = "A";
+            };
+          }
+          {
+            refId = "B";
+            datasourceUid = "__expr__";
+            model = {
+              type = "reduce";
+              expression = "A";
+              reducer = "last";
+              refId = "B";
+            };
+          }
+          {
+            refId = "C";
+            datasourceUid = "__expr__";
+            model = {
+              type = "threshold";
+              expression = "B";
+              refId = "C";
+              conditions = [
+                {
+                  evaluator = {
+                    type = "gt";
+                    params = [ 90 ];
+                  };
+                }
+              ];
+            };
+          }
+        ];
+        noDataState = "OK";
+        execErrState = "Error";
+        for = "5m";
+        annotations = {
+          summary = "Var filesystem usage is above 90% on {{ $labels.instance }}";
+        };
+        labels = {
+          severity = "critical";
+        };
+      }
     ];
   };
 
@@ -660,7 +774,10 @@
     ];
   };
 
-  # Backup freshness — alerts if last backup is older than 96 hours (4 days)
+  # Backup freshness — alerts if last backup is older than 100 hours.
+  # Worst-case normal gap is Mon,Thu 03:00 (+2h randomization) = 96h, so the
+  # threshold sits just above it; `for` is short (30m) so the alert actually
+  # fires soon after, not 4 more days later.
   backupAge = {
     orgId = 1;
     name = "backup_age";
@@ -669,7 +786,7 @@
     rules = [
       {
         uid = "backup-overdue";
-        title = "Backup Overdue (>96h)";
+        title = "Backup Overdue (>100h)";
         condition = "C";
         data = [
           {
@@ -705,7 +822,7 @@
                 {
                   evaluator = {
                     type = "gt";
-                    params = [ 345600 ];
+                    params = [ 360000 ];
                   };
                 }
               ];
@@ -714,10 +831,10 @@
         ];
         noDataState = "Alerting";
         execErrState = "Error";
-        for = "96h";
+        for = "30m";
         annotations = {
-          summary = "No restic backup has run in over 96 hours on beaver";
-          description = "The restic backup timer (restic-backups-beaver.timer) last triggered more than 96 hours ago. Check `systemctl status restic-backups-beaver.service` on beaver.";
+          summary = "No restic backup has run in over 100 hours on beaver";
+          description = "The restic backup timer (restic-backups-beaver.timer) last triggered more than 100 hours ago. Check `systemctl status restic-backups-beaver.service` on beaver.";
         };
         labels = {
           severity = "critical";

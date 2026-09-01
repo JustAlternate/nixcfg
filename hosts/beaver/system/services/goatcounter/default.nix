@@ -1,7 +1,9 @@
 _: {
   services.goatcounter = {
     enable = true;
-    proxy = false;
+    # behind nginx: -tls proxy makes goatcounter trust X-Forwarded-For
+    # (recommendedProxySettings provides it) so visitor IPs are recorded.
+    proxy = true;
     port = 3041;
   };
   services.nginx.virtualHosts = {

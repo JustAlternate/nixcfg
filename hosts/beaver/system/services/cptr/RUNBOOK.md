@@ -10,10 +10,10 @@ Browser ──HTTPS──▶ nginx (computer.justalternate.com)
                      │ auth_request /oauth2/auth
                      ▼
                 oauth2-proxy (127.0.0.1:4180) ──OIDC──▶ Rauthy (auth.justalternate.com)
-                     │ sets X-Auth-Request-User
+                     │ sets X-Auth-Request-Email
                      ▼
-                nginx proxy_set_header X-User → cptr (127.0.0.1:8000)
-                     │ trusted_header auth mode (trusts X-User only from 127.0.0.1)
+                nginx proxy_set_header X-Email → cptr (127.0.0.1:8000)
+                     │ trusted_header auth mode (trusts X-Email only from 127.0.0.1)
                      ▼
                 cptr (unprivileged `cptr` user, passwordless sudo for all commands)
 ```
@@ -26,7 +26,7 @@ model picker as `cptr/<workspace>`.
 ## Security model
 
 - **Loopback only**: cptr binds `127.0.0.1:8000`; only nginx reaches it.
-- **Rauthy SSO**: oauth2-proxy validates the OIDC session; nginx *owns* the `X-User`
+- **Rauthy SSO**: oauth2-proxy validates the OIDC session; nginx *owns* the `X-Email`
   header (cptr `trusted_sources = ["127.0.0.1"]`). A signed-in user = full machine
   access, equivalent to SSH. Only `@justalternate.com` emails are allowed.
 - **Unprivileged**: the service runs as the `cptr` user (not root).

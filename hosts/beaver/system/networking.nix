@@ -13,7 +13,6 @@
       ];
       allowedUDPPorts = [
       ];
-      trustedInterfaces = [ "podman1" ];
     };
     nameservers = [
       "86.54.11.13" # dns4eu

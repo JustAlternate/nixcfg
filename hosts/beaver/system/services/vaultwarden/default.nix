@@ -1,9 +1,7 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   services = {
     vaultwarden = {
-      package = pkgs.unstable.vaultwarden; # pin reason: 1.37.0 required for client 2026.7.0+ compat + 8 CVEs, stable is 1.36.0
-      webVaultPackage = pkgs.unstable.vaultwarden.webvault;
       enable = true;
       # backupDir = "/root/backup/vaultwarden";
       config = {
@@ -12,7 +10,9 @@
         rocketPort = 8222;
         signupsAllowed = false; # Never put this to true
         ssoEnabled = true;
-        ssoAuthority = "https://auth.justalternate.com/auth/v1";
+        # Must match Rauthy's published issuer byte-for-byte, including the
+        # trailing slash (openidconnect crate rejects any difference).
+        ssoAuthority = "https://auth.justalternate.com/auth/v1/";
         ssoScopes = "email profile";
         ssoPkce = true;
         ssoClientId = "vaultwarden";

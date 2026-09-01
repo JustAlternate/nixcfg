@@ -89,21 +89,27 @@ in
   # content (a plain "a+" would only touch the top dir). cptr already has
   # passwordless sudo for all commands, so this does not widen the security boundary.
   #
+  # These rules MUST live in a file sorting after `ssh-root-provision.conf`
+  # (hence zz-): the OpenSSH module ships `d- /root :700` there, which chmods
+  # /root on every tmpfiles run and resets the access-ACL mask to ---. When
+  # these rules were in systemd.tmpfiles.rules (00-nixos.conf, sorts first),
+  # the mask ended up --- and cptr's /root access silently broke on every boot.
+  #
   # /root's base mode is 0700, which makes setfacl lock the access ACL mask
   # to --- even after appending u:cptr:rwx. That kills cptr's effective perms
   # on the top-level entry. The `a+ m::rwx` line after the A+ fixes this.
   # The A+ rule also recurses into /root/.ssh and clobbers the mode on the
   # private key (ACL mask->rwx means group-writable), which makes OpenSSH
   # refuse it. The `z` lines below pin /root/.ssh back down.
-  systemd.tmpfiles.rules = [
-    "A+ /root - - - - u:cptr:rwx,d:u:cptr:rwx"
-    "a+ /root - - - - m::rwx"
-    "z /root/.ssh 0700 root root -"
-    "z /root/.ssh/id_ed25519 0600 root root -"
-    "z /root/.ssh/id_ed25519.pub 0644 root root -"
+  environment.etc."tmpfiles.d/zz-cptr-acl.conf".text = ''
     # cptr's SSH home (sops renders CPTR/GITHUB_SSH_KEY here).
-    "d /var/lib/cptr/.ssh 0700 cptr cptr -"
-  ];
+    d /var/lib/cptr/.ssh 0700 cptr cptr -
+    A+ /root - - - - u:cptr:rwx,d:u:cptr:rwx
+    a+ /root - - - - m::rwx
+    z /root/.ssh 0700 root root -
+    z /root/.ssh/id_ed25519 0600 root root -
+    z /root/.ssh/id_ed25519.pub 0644 root root -
+  '';
 
   # Full passwordless sudo: cptr may manage services, /var, and run nixos-rebuild.
   security.sudo.extraRules = [
@@ -117,6 +123,19 @@ in
       ];
     }
   ];
+
+  # oauth2-proxy performs OIDC discovery against Rauthy (via nginx) at startup;
+  # without ordering it fails in a restart loop on every boot until they are up.
+  systemd.services.oauth2-proxy = {
+    after = [
+      "nginx.service"
+      "rauthy.service"
+    ];
+    wants = [
+      "nginx.service"
+      "rauthy.service"
+    ];
+  };
 
   # SSO: oauth2-proxy validates the Rauthy OIDC session, then nginx sets the
   # X-User header that cptr trusts (trusted_header mode).
