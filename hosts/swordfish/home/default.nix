@@ -20,6 +20,14 @@ let
       #            UD-Q2 config was 21.5 tok/s at Q2 quality
       #   ctx    : 73728 covers bench task 011 (~64k peak input). 200k does
       #            NOT fit with these weights.
+      #   --no-mmap: REQUIRED for desktop responsiveness. mlock is unusable
+      #            (user RLIMIT_MEMLOCK=8MB, would need root PAM/systemd
+      #            change); no-mmap copies weights into anonymous memory
+      #            which page-cache eviction cannot touch (slower load,
+      #            same effect). Without it the 14 GB mmap'd weights get
+      #            evicted by opencode's nix eval storms -> model faults
+      #            re-read from disk -> 26-28% io pressure, decode collapses
+      #            34->3 tok/s, whole desktop lags (load avg stays ~6).
       model="''${QWEN38_MODEL:-$HOME/Projects/local-llm-inference/models/qwen3.8/Qwen3.8-27B-IQ4-MIX.gguf}"
       ctx="''${QWEN38_CTX:-73728}"
       port="''${QWEN38_PORT:-8080}"
@@ -41,6 +49,7 @@ let
         --parallel 1 \
         --ctx-size "$ctx" \
         --fit off \
+        --no-mmap \
         --ctx-checkpoints 0 \
         --batch-size 1024 --ubatch-size 512 \
         "''${spec_flags[@]}" \
