@@ -28,6 +28,15 @@ let
       #            evicted by opencode's nix eval storms -> model faults
       #            re-read from disk -> 26-28% io pressure, decode collapses
       #            34->3 tok/s, whole desktop lags (load avg stays ~6).
+      #   sampling: OFFICIAL Qwen thinking-mode profile (agentic default) —
+      #            temp 1.0, top_p 0.95, top_k 20, min_p 0.0, presence 0.0.
+      #            (temp 0.7 / penalty 1.5 is the INSTRUCT profile; opencode
+      #            runs the model in thinking mode, so it was the wrong one.)
+      #            + reasoning_effort medium (official default xhigh
+      #            overthinks on agentic work; low can cause retry loops)
+      #            + reasoning-budget 5000 as a hard ceiling.
+      #            MTP bonus: presence-penalty 0 removes the target-side
+      #            logit distortion the draft head can't predict.
       model="''${QWEN38_MODEL:-$HOME/Projects/local-llm-inference/models/qwen3.8/Qwen3.8-27B-IQ4-MIX.gguf}"
       ctx="''${QWEN38_CTX:-73728}"
       port="''${QWEN38_PORT:-8080}"
@@ -56,7 +65,9 @@ let
         --n-predict -1 \
         --flash-attn on \
         --cache-type-k q4_0 --cache-type-v q4_0 \
-        --temp 0.7 --top-p 0.8 --top-k 20 --min-p 0.0 --presence-penalty 1.5
+        --chat-template-kwargs '{"preserve_thinking":true,"reasoning_effort":"medium"}' \
+        --reasoning-budget 5000 \
+        --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 0.0
     '';
   };
 
