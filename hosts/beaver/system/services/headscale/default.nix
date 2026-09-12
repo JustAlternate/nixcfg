@@ -1,7 +1,11 @@
-_: {
+{ pkgs, ... }: {
   services = {
     headscale = {
       enable = true;
+      # 0.28 crashes Tailscale Android clients (self node in peers ->
+      # duplicate LazyColumn key, tailscale/tailscale#20725) and rejects
+      # valid hostnames like "Pixel 7a". 0.29+ fixes both.
+      package = pkgs.unstable.headscale;
       port = 4004;
       address = "127.0.0.1";
       settings = {

@@ -6,6 +6,12 @@
     localDomain = "geo.justalternate.com";
     webPort = 3001;
     environment = {
+      DOMAIN = "geo.justalternate.com";
+      SMTP_SERVER = "localhost";
+      SMTP_PORT = "25";
+      SMTP_DOMAIN = "justalternate.com";
+      SMTP_FROM = "dawarich@justalternate.com";
+      SMTP_STARTTLS = "false";
       OIDC_ENABLED = "true";
       OIDC_NAME = "Rauthy";
       OIDC_ISSUER = "https://auth.justalternate.com/auth/v1/";

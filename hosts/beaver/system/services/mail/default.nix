@@ -41,6 +41,7 @@
         aliases = [
           "postmaster@justalternate.com"
           "loicw@mail.justalternate.com"
+          "dawarich@justalternate.com"
         ];
       };
       "monitor@justalternate.com" = {
