@@ -35,6 +35,7 @@ let
       # Rofi launches bypass zsh, so the API key (sourced in zsh.nix for
       # interactive shells) must be provided here. SOPS-rendered, root-owned.
       if [ -r /run/secrets/llm-env ]; then
+        # shellcheck source=/dev/null
         . /run/secrets/llm-env
       fi
 
