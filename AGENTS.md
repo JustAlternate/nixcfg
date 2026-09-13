@@ -16,7 +16,7 @@ NixOS multi-machine configuration managed with flakes and Home Manager.
 
 ## 📁 Project Structure & Architecture
 
-This project strictly separates system-level configuration (NixOS/nix-darwin) from user-level configuration (Home Manager), and heavily utilizes shared profiles and modules to keep hosts DRY (Don't Repeat Yourself).
+This project strictly separates system-level configuration (NixOS) from user-level configuration (Home Manager), and heavily utilizes shared profiles and modules to keep hosts DRY (Don't Repeat Yourself).
 
 ### 🏗️ Directory Layout
 
@@ -50,7 +50,6 @@ When writing new Nix files or adding features, follow these rules strictly to re
 4. **Architecture Awareness:**
    - `x86_64-linux` (parrot, swordfish): Full desktop/laptop environments. Safe to import heavy graphical profiles.
    - `aarch64-linux` (beaver, gecko): Headless/server/SBC environments. Keep configs lightweight.
-   - `aarch64-darwin` (owl): Mac environment. Avoid Linux-only systemd services or NixOS-specific hardware configs.
 
 ## 📦 Channel Policy (nixpkgs)
 

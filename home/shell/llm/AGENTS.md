@@ -14,9 +14,8 @@ You are running on NixOS. These constraints apply to ALL projects on ALL machine
 ARCH=$(uname -m)
 OS=$(uname -s)
 ```
-- **x86_64-linux**: swordfish (desktop), parrot (laptop)
+- **x86_64-linux**: swordfish (desktop), parrot (laptop), eagle (desktop)
 - **aarch64-linux**: beaver (VPS Hetzner), gecko (Raspberry Pi)
-- **aarch64-darwin**: owl (Mac M1, nix-darwin)
 
 Nix packages are architecture-specific. `nix shell` commands must match the system architecture.
 
@@ -30,7 +29,6 @@ hostname && uname -m
 - **`parrot` + x86_64** → parrot (laptop)
 - **`beaver` + aarch64** → beaver (VPS)
 - **`gecko` + aarch64** → gecko (Raspberry Pi)
-- **`owl` + aarch64** → owl (Mac, nix-darwin)
 
 ## 🛠️ Preferred Tools & Languages
 

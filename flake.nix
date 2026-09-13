@@ -23,12 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # For nix-darwin for owl
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,17 +41,14 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       unstable-nixpkgs,
       home-manager,
-      nix-darwin,
       nixos-cli,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      systemMac = "aarch64-darwin";
       systemArm = "aarch64-linux";
 
       nixos-overlays = [
@@ -122,7 +113,6 @@
         x86_64-linux.recall = nixpkgs.legacyPackages.x86_64-linux.callPackage ./packages/recall { };
         x86_64-linux.deepseek-harness = nixpkgs.legacyPackages.x86_64-linux.callPackage ./packages/dsh { };
         aarch64-linux.recall = nixpkgs.legacyPackages.aarch64-linux.callPackage ./packages/recall { };
-        aarch64-darwin.recall = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./packages/recall { };
       };
 
       # NixOS configurations
@@ -152,33 +142,5 @@
         geckoNixos4 = mkGecko ./hosts/gecko/geckoNixos4.nix;
         geckoNixosRPISdImage = mkGecko ./hosts/gecko/geckoNixosRPI-sd-image.nix;
       };
-
-      # Nix-darwin configurations
-      darwinConfigurations."owl" = nix-darwin.lib.darwinSystem {
-        system = systemMac;
-        specialArgs = {
-          inherit inputs self;
-        };
-        modules = [
-          home-manager.darwinModules.home-manager
-          ./hosts/owl/system
-          { nixpkgs.overlays = nixos-overlays; }
-          (
-            { config, ... }:
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.loicweber = import ./hosts/owl/home;
-                extraSpecialArgs = {
-                  inherit inputs;
-                  machineName = config.machineName or "owl";
-                };
-              };
-            }
-          )
-        ];
-      };
     };
-
 }
