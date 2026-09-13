@@ -58,7 +58,6 @@
   };
 
   zsh = {
-    envVar.enable = false;
     tmuxAutoStart.enable = false;
   };
 

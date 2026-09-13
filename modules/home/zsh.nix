@@ -12,9 +12,6 @@ in
   options.zsh = {
     work.enable = mkEnableOption "work shell profile (kubectl prompt, work aliases)";
     hyprlandAutostart.enable = mkEnableOption "auto-start Hyprland on tty1 login";
-    envVar.enable = mkEnableOption "legacy ~/env-var/.env loading" // {
-      default = true;
-    };
     tmuxAutoStart.enable = mkEnableOption "auto-start tmux on shell login" // {
       default = true;
     };
@@ -95,14 +92,6 @@ in
         [ -f "${config.home.homeDirectory}/.cache/wal/sequences" ] &&
           cat "${config.home.homeDirectory}/.cache/wal/sequences"
 
-        ${optionalString cfg.envVar.enable ''
-          # env vars (non-sensitive tool config)
-          if [ -f ~/env-var/.env ]; then
-            while IFS='=' read -r name value; do
-              [[ $name != \#* ]] && export "$name=$value"
-            done < ~/env-var/.env
-          fi
-        ''}
         # API keys (sops-managed) — check -r to avoid "permission denied" when file is root-only (see 03130c9)
         [ -r /run/secrets/llm-env ] && source /run/secrets/llm-env
         [ -r ~/.config/secrets/llm.env ] && set -a && source ~/.config/secrets/llm.env && set +a

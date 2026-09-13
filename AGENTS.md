@@ -120,7 +120,6 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 ## 🌍 Environment Variables
 
-- `~/env-var/.env` is auto-loaded by zsh on all machines (non-sensitive tool config). Do not put API keys or secrets here — use sops for those.
 - API keys (OpenRouter) are provisioned via sops templates on a per-machine basis (e.g. `modules/nixos/sops.nix` renders `/run/secrets/llm-env`).
 
 ## ✅ Before Every Rebuild on Beaver
