@@ -53,11 +53,18 @@
     tlp = {
       enable = true;
       settings = {
+        # Portable (battery)
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
         PLATFORM_PROFILE_ON_BAT = "low-power";
         CPU_BOOST_ON_BAT = 0;
         CPU_HWP_DYN_BOOST_ON_BAT = 0;
         AMDGPU_ABM_LEVEL_ON_BAT = 3;
+        # Plugged-in (AC)
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        PLATFORM_PROFILE_ON_AC = "performance";
+        CPU_BOOST_ON_AC = 1;
+        CPU_HWP_DYN_BOOST_ON_AC = 1;
+        AMDGPU_ABM_LEVEL_ON_AC = 0;
         # Helps long-term battery health
         START_CHARGE_THRESH_BAT0 = 75;
         STOP_CHARGE_THRESH_BAT0 = 90;
@@ -77,8 +84,7 @@
   };
 
   environment.etc."xdg/hypr/hyprland.conf".text = ''
-    env = WLR_DRM_DEVICES,/dev/dri/card1
-    monitor=eDP-1,2880x1800@60,0x0,2
+    monitor = eDP-1, 2880x1800@120, 0x0, 1.5, vrr, 2, bitdepth, 10, cm, srgb
   '';
 
   system.stateVersion = "26.05";

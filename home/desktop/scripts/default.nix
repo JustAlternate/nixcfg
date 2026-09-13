@@ -58,6 +58,10 @@ let
 
     change_wallpaper &
 
+    if command -v power_profile >/dev/null 2>&1; then
+      power_profile &
+    fi
+
     sleep 0.1
     waybar &
   '';
