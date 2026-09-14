@@ -21,8 +21,6 @@
   # Hyprland picks up /etc/xdg/hypr/hyprland.conf when no user config exists.
   environment.etc."xdg/hypr/hyprland.conf".text = ''
     env = ELECTRON_OZONE_PLATFORM_HINT, auto
-    # Fix: LW 153 Vulkan compositing broken on Wayland/AMD
-    env = MOZ_ENABLE_WAYLAND, 0
 
     cursor:enable_hyprcursor = true
     cursor:no_hardware_cursors = true

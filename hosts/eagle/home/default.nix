@@ -1,12 +1,16 @@
 { pkgs, ... }:
 let
-  # Switches the internal panel + compositor effects between the plugged-in and
+  # Switches the internal panel refresh rate between the plugged-in and
   # portable profile. Invoked by the shared `startup` script if present, and
   # driven by power_supply udev events. No-op on machines without a battery.
   power_profile = pkgs.writeShellScriptBin "power_profile" ''
     set -euo pipefail
 
     ls /sys/class/power_supply/BAT* >/dev/null 2>&1 || exit 0
+
+    # single instance
+    exec 9>''${XDG_RUNTIME_DIR:-/tmp}/eagle-power-profile.lock
+    flock -n 9 || exit 0
 
     MON=eDP-1
     NATIVE_W=2880
@@ -32,14 +36,8 @@ let
 
       if ac_online; then
         rr=$RR_AC
-        hyprctl keyword animations:enabled true
-        hyprctl keyword decoration:blur:enabled true
-        hyprctl keyword decoration:shadow:enabled true
       else
         rr=$RR_BAT
-        hyprctl keyword animations:enabled false
-        hyprctl keyword decoration:blur:enabled false
-        hyprctl keyword decoration:shadow:enabled false
       fi
 
       hyprctl keyword monitor "$MON,''${NATIVE_W}x''${NATIVE_H}@''${rr},''${pos},''${scale},vrr,2,bitdepth,10,cm,srgb"
