@@ -37,4 +37,19 @@ jobs:
           nix run nixpkgs#sops -- filestatus secrets/secrets.yaml
 
       - name: Flake Check
-        run: nix flake check
+        run: |
+          set -euo pipefail
+          # `nix flake check` forces every nixosConfigurations.*.toplevel in a
+          # single Nix process. On the 7 GB private-repo runner that OOMs and
+          # kills the runner. Evaluate each output in its own invocation so peak
+          # memory stays bounded; any evaluation error still fails the job.
+          for p in recall deepseek-harness; do
+            echo "::group::packages.x86_64-linux.$p"
+            nix eval --raw ".#packages.x86_64-linux.$p.drvPath" >/dev/null
+            echo "::endgroup::"
+          done
+          for h in $(nix eval --raw .#nixosConfigurations --apply 'a: builtins.concatStringsSep " " (builtins.attrNames a)'); do
+            echo "::group::nixosConfigurations.$h"
+            nix eval --raw ".#nixosConfigurations.$h.config.system.build.toplevel.drvPath" >/dev/null
+            echo "::endgroup::"
+          done
