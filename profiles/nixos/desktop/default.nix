@@ -46,7 +46,7 @@
         68
         51820 # WireGuard default
         1194 # OpenVPN default
-        443 # Some eduVPN setups use 443/UDP or 443/TCP
+        443
       ];
       checkReversePath = "loose";
     };

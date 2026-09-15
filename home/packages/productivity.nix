@@ -2,7 +2,6 @@
 with pkgs;
 [
   bitwarden-desktop
-  eduvpn-client
   libreoffice-qt-fresh
   texliveFull
   wireguard-ui
