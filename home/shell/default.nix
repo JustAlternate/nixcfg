@@ -10,6 +10,7 @@
     ./llm
     ./fastfetch.nix
     ./k9s.nix
+    ../../modules/home/aws.nix
     inputs.sops-nix.homeManagerModules.sops
   ];
 
