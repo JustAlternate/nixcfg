@@ -134,6 +134,7 @@
         eagleNixos = mkHost {
           inherit system;
           hostname = "eagle";
+          hmExtraConfig.backupFileExtension = "backup";
         };
 
         geckoNixos1 = mkGecko ./hosts/gecko/geckoNixos1.nix;

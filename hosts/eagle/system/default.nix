@@ -79,7 +79,9 @@
   };
 
   hardware = {
-    bluetooth.enable = true;
+    # Bluetooth disabled on eagle (unused, and it only produced hci0/bluez
+    # warnings at boot). Re-enable with `bluetooth.enable = true` if needed.
+    bluetooth.enable = false;
     graphics.enable = true;
   };
 
