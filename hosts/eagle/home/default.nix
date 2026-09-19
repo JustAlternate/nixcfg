@@ -70,6 +70,7 @@ in
       upower
       brightnessctl
       pwvucontrol
+      opentabletdriver
       power_profile
     ];
   };

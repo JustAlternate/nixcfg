@@ -45,7 +45,10 @@
   services = {
     openssh.enable = true;
 
-    xserver.videoDrivers = [ "amdgpu" ];
+    xserver = {
+      videoDrivers = [ "amdgpu" ];
+      wacom.enable = true;
+    };
 
     # Low-power laptop: battery-aware power management
     upower.enable = true;
@@ -83,6 +86,11 @@
     # warnings at boot). Re-enable with `bluetooth.enable = true` if needed.
     bluetooth.enable = false;
     graphics.enable = true;
+
+    opentabletdriver = {
+      enable = true;
+      daemon.enable = true;
+    };
   };
 
   environment.etc."xdg/hypr/hyprland.conf".text = ''
