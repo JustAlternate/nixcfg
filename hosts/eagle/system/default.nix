@@ -14,6 +14,10 @@
   machineName = "eagle";
   networking.hostName = "eagle";
 
+  # 24px console font (default is 16px, so ~1.5x); early so the LUKS prompt uses it too
+  console.earlySetup = true;
+  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-124n.psf.gz";
+
   # Podman instead of Docker (desktop profile enables docker; override here)
   virtualisation.docker.enable = lib.mkForce false;
   virtualisation.podman = {
@@ -26,6 +30,9 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    # Mute firmware ACPI noise (AMI bug: AE_ALREADY_EXISTS / AE_NOT_FOUND at table load)
+    consoleLogLevel = 3;
+    kernelParams = [ "quiet" ];
     initrd = {
       kernelModules = [ "amdgpu" ];
       systemd.enable = true;
