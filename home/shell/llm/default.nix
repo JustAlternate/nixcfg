@@ -19,7 +19,6 @@ in
 
   xdg.configFile = {
     "io.datasette.llm/aliases.json".source = ./llm-aliases.json;
-    "opencode/plugins/rtk.ts".source = ./rtk.ts;
     "opencode/skills/recall/SKILL.md".source = ./SKILL.md;
   };
 
