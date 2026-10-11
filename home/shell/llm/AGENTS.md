@@ -64,3 +64,4 @@ hostname && uname -m
 5. **ALWAYS** use sops for secrets, never plain text
 6. **ALWAYS** check existing packages before installing
 7. **ALWAYS** test config syntax before applying changes
+8. **NEVER** use `pkill`/`killall` with `-f` and a pattern that matches its own command line — it kills the shell running it. Kill by PID or port instead (e.g. `ss -ltnp | grep :PORT`, `fuser -k PORT/tcp`). When you do use `pkill`/`killall`, always wrap it in `timeout 10` so it cannot hang. Also remember Nix wrappers rename the process: the `comm` is often different from the command you typed (e.g. `mgba` → `.mgba-wrapped`), so `pkill -x mgba` silently matches nothing — check `pgrep -a` first and match the real `comm` (or kill by PID).
