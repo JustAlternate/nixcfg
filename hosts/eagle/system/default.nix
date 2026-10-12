@@ -70,7 +70,9 @@
         CPU_HWP_DYN_BOOST_ON_BAT = 0;
         AMDGPU_ABM_LEVEL_ON_BAT = 3;
         # Plugged-in (AC)
-        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        RADEON_DPM_PERF_LEVEL_ON_AC = "high";
         PLATFORM_PROFILE_ON_AC = "performance";
         CPU_BOOST_ON_AC = 1;
         CPU_HWP_DYN_BOOST_ON_AC = 1;
@@ -85,13 +87,13 @@
   environment = {
     systemPackages = with pkgs; [
       powertop
+      lm_sensors
+      vulkan-tools
     ];
   };
 
   hardware = {
-    # Bluetooth disabled on eagle (unused, and it only produced hci0/bluez
-    # warnings at boot). Re-enable with `bluetooth.enable = true` if needed.
-    bluetooth.enable = false;
+    bluetooth.enable = true;
     graphics.enable = true;
 
     opentabletdriver = {

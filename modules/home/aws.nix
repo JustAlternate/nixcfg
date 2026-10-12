@@ -14,6 +14,8 @@
     secrets = {
       "AWS/ACCESS_KEY_ID" = { };
       "AWS/SECRET_ACCESS_KEY" = { };
+      "AWS/EUSC_ACCESS_KEY_ID" = { };
+      "AWS/EUSC_SECRET_ACCESS_KEY" = { };
     };
 
     templates."aws-credentials" = {
@@ -23,6 +25,10 @@
         [default]
         aws_access_key_id = ${config.sops.placeholder."AWS/ACCESS_KEY_ID"}
         aws_secret_access_key = ${config.sops.placeholder."AWS/SECRET_ACCESS_KEY"}
+
+        [eusc]
+        aws_access_key_id = ${config.sops.placeholder."AWS/EUSC_ACCESS_KEY_ID"}
+        aws_secret_access_key = ${config.sops.placeholder."AWS/EUSC_SECRET_ACCESS_KEY"}
       '';
     };
 
@@ -32,6 +38,9 @@
       content = ''
         [default]
         region = eu-west-3
+
+        [profile eusc]
+        region = eusc-de-east-1
       '';
     };
   };
