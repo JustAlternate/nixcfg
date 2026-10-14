@@ -38,88 +38,61 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 
 ```mermaid
 flowchart LR
-    Me["Me"]
-    subgraph Internet["Internet"]
-        Users["Users"]
-        GitHub["GitHub"]
-        Cloudflare["Cloudflare<br/>(DNS)"]
+    subgraph Net["Internet"]
+        direction TB
+        User(["User"])
+        GH["GitHub"]
+        CF["Cloudflare<br/>(DNS)"]
     end
 
-    subgraph Beaver["Beaver VPS"]
-        
-        subgraph Network["Network Layer"]
-            Firewall["Firewall (nftables)<br/>TCP: 443, 8443<br/>Mail: 25, 465, 993"]
-            Nginx["Nginx<br/>Reverse Proxy + SSL"]
-        end
-
-        subgraph AntiBot["Bot Protection"]
-            Anubis["Anubis<br/>(Proof-of-Work)"]
-        end
-
-        subgraph Security["Security Layer"]
-            Sops["SOPS<br/>(Secrets Management)"]
-        end
-
-        subgraph Services["Self-Hosted Services"]
-            Vaultwarden["Vaultwarden<br/>(Passwords)"]
-            OpenWebUI["OpenWebUI<br/>(LLM Frontend)"]
-            Mail["Simple NixOS Mail<br/>(Postfix/Dovecot)"]
-            MailMonitor["mail-monitor<br/>(SMTP/IMAP probe)"]
-            Dawarich["Dawarich<br/>(GPS Tracking)"]
-            Sharry["Sharry<br/>(File Sharing)"]
-            GoatCounter["GoatCounter<br/>(Web Analytics)"]
-            Headscale["Headscale<br/>(Tailscale control)"]
-
-            subgraph Monitoring["Monitoring"]
-                Gotify["Gotify (Alerts notifier)"]
-                BlackBox["BlackBox exporter"]
-                Alloy["Alloy (Logs)"]
-                Loki["Loki (Logs)"]
-                Prometheus["Prometheus (Metrics)"]
-                Grafana["Grafana<br/>Dasbboards and Alerts"]
-            end
-
-            subgraph Auth["Identity Layer"]
-                Rauthy["Rauthy SSO<br/>"]
-            end
-        end
+    subgraph Edge["Edge"]
+        direction TB
+        FW["Firewall (nftables)<br/>443 · 8443 · 25/465/993"]
+        NGINX["nginx<br/>reverse proxy + TLS"]
+        ANUBIS["Anubis<br/>proof-of-work"]
     end
 
-    %% External Traffic
-    Users --> Cloudflare
-    Cloudflare -->|"HTTPS (443)"| Firewall
-    Users -->|"SSH (8443)"| Firewall
+    subgraph Id["Identity & secrets"]
+        direction TB
+        RAUTHY["Rauthy<br/>SSO / OIDC"]
+        SOPS["SOPS<br/>secrets"]
+    end
 
-    %% Internal Routing
-    Firewall -->|"Proxy"| Nginx
-    Nginx -->|"Challenge"| Anubis
+    subgraph Apps["Applications"]
+        direction TB
+        VW["Vaultwarden"]
+        OWUI["Open WebUI"]
+        MAIL["Mail<br/>Postfix / Dovecot"]
+        SHARRY["Sharry"]
+        DAW["Dawarich"]
+        GC["GoatCounter"]
+        HS["Headscale"]
+    end
 
-    %% Monitoring Flow
-    BlackBox --> Prometheus
-    Prometheus --> Grafana
-    Alloy --> Loki
-    Loki --> Grafana
+    subgraph Mon["Monitoring"]
+        direction TB
+        ALLOY["Alloy<br/>logs"]
+        LOKI["Loki"]
+        BB["Blackbox"]
+        PROM["Prometheus"]
+        GRAF["Grafana<br/>dashboards + alerts"]
+        MM["mail-monitor<br/>SMTP/IMAP probe"]
+        GOT["Gotify<br/>alerts to me"]
+    end
 
-    Sops -->|"Secret"| Grafana
+    User -->|HTTPS| CF
+    User -->|"SSH 8443"| FW
+    CF --> FW
+    FW --> NGINX --> ANUBIS
+    ANUBIS --> VW
+    GH -->|IdP| RAUTHY
+    RAUTHY -->|OIDC| VW & OWUI & DAW
+    SOPS -.-> VW & MAIL & RAUTHY
 
-    Rauthy -->|"OIDC"| Grafana
-
-    Sops -->|"Secret"| Vaultwarden
-    Sops -->|"Secret"| Mail
-    Sops -->|"Secret"| Rauthy
-
-    GitHub -->|"IdP"| Rauthy
-
-    %% Auth Flow
-    Rauthy -->|"OIDC"| OpenWebUI
-    Rauthy -->|"OIDC"| Dawarich
-    Rauthy -->|"OIDC"| Vaultwarden
-
-    Sops -->|"Secret"| Dawarich
-
-    Grafana --> Gotify
-    Gotify --> Me
-
+    ALLOY --> LOKI --> GRAF
+    BB --> PROM --> GRAF
+    MM --> PROM
+    GRAF --> GOT
 ```
 
 #### Monitoring Dashboards :
