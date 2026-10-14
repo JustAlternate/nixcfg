@@ -13,7 +13,6 @@ _: {
     ./sharry
     ./mail-monitor
     ./headscale
-    ./cptr
     ./backups
   ];
 }

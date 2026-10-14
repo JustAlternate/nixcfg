@@ -286,7 +286,6 @@ in
                 "https://mail.justalternate.com"
                 "https://geo.justalternate.com"
                 "https://analytics.justalternate.com"
-                "https://computer.justalternate.com"
                 "https://headscale.justalternate.com"
               ];
             }

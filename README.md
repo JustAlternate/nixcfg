@@ -5,6 +5,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - 🦫 beaver: My VPS running NixOS and selfhosting services.
 - 🐟 swordfish: My Desktop running NixOS desktop. (login only through yubikey)
 - 🦜 parrot: My Laptop running NixOS. (login only through yubikey)
+- 🦅 eagle: My TUXEDO InfinityBook Pro 14 laptop running NixOS. (FIDO2 LUKS unlock + yubikey login)
 - 🦎 gecko: My NixOS Raspberry Pi cluster (3x pi3b+ and 1x pi4)
 
 ### Features
@@ -22,13 +23,16 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - Monitoring (logs aggregator): [Loki](https://github.com/grafana/loki)
 - Monitoring (Alerts notification): [Gotify](https://github.com/gotify/server)
 - Mail server: [Simple nixos mail server](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
+- Mail end-to-end probe: [mail-monitor](hosts/beaver/system/services/mail-monitor) (SMTP/IMAP round-trip health check)
 - Password management: [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (only accessible through Rauthy)
 - LLM frontend : [openwebui](https://github.com/open-webui/open-webui) (only accessible through Rauthy)
-- AI workstation : [Open WebUI Computer (cptr)](https://github.com/open-webui/computer) (only accessible through Rauthy) — see [RUNBOOK](hosts/beaver/system/services/cptr/RUNBOOK.md)
 - Sharing gps location service: [Dawarich](https://github.com/Freika/dawarich)
+- File sharing: [Sharry](https://github.com/eikek/sharry)
+- Web analytics: [GoatCounter](https://www.goatcounter.com/)
+- VPN mesh coordination: [Headscale](https://github.com/juanfont/headscale) (self-hosted Tailscale control server)
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
 - Binary cache: [Cachix](https://cachix.org) (`justalternate-nixcfg.cachix.org`)
-- Backups: [Restic](https://restic.net/) daily snapshots to Hetzner Storage Box (SFTP), with PostgreSQL dumps, pruning (7d/4w/6m), and integrity checks. See [RUNBOOK](hosts/beaver/system/services/backups/RUNBOOK.md) for recovery.
+- Backups: [Restic](https://restic.net/) twice-weekly snapshots (Mon, Thu) to Hetzner Storage Box (SFTP), with PostgreSQL dumps, pruning (7d/4w/6m), and integrity checks. See [RUNBOOK](hosts/beaver/system/services/backups/RUNBOOK.md) for recovery.
 
 ##### Infrastructure Overview (Beaver VPS)
 
@@ -60,12 +64,16 @@ flowchart LR
             Vaultwarden["Vaultwarden<br/>(Passwords)"]
             OpenWebUI["OpenWebUI<br/>(LLM Frontend)"]
             Mail["Simple NixOS Mail<br/>(Postfix/Dovecot)"]
+            MailMonitor["mail-monitor<br/>(SMTP/IMAP probe)"]
             Dawarich["Dawarich<br/>(GPS Tracking)"]
+            Sharry["Sharry<br/>(File Sharing)"]
+            GoatCounter["GoatCounter<br/>(Web Analytics)"]
+            Headscale["Headscale<br/>(Tailscale control)"]
 
             subgraph Monitoring["Monitoring"]
                 Gotify["Gotify (Alerts notifier)"]
                 BlackBox["BlackBox exporter"]
-                Promtail["Promtail (Logs)"]
+                Alloy["Alloy (Logs)"]
                 Loki["Loki (Logs)"]
                 Prometheus["Prometheus (Metrics)"]
                 Grafana["Grafana<br/>Dasbboards and Alerts"]
@@ -89,7 +97,7 @@ flowchart LR
     %% Monitoring Flow
     BlackBox --> Prometheus
     Prometheus --> Grafana
-    Promtail --> Loki
+    Alloy --> Loki
     Loki --> Grafana
 
     Sops -->|"Secret"| Grafana
@@ -132,7 +140,7 @@ flowchart LR
 
 ![./assets/alerts.png](./assets/alerts.png)
 
-#### Desktop (swordfish and parrot)
+#### Desktop (swordfish, parrot and eagle)
 - DE: [Hyprland](https://hyprland.org/)
 - Terminal: [Ghostty](https://ghostty.org/)
 - Bar: [Waybar](https://github.com/Alexays/Waybar)
@@ -197,22 +205,28 @@ git clone https://github.com/JustAlternate/nixcfg
 cd nixcfg
 ```
 
-Create your very own host folder
+Create your host directory with a `system/` (OS-level) and `home/` (Home Manager) entry
+point, following the layout of the existing hosts (see `AGENTS.md`):
 ```
-mkdir <myMachineName>
+mkdir -p hosts/<myMachineName>/{system,home}
 ```
 
 Create your hardware config
 ```
-nixos-generate-config --show-hardware-config > <myMachineName>/hardware-configuration.nix
+nixos-generate-config --show-hardware-config > hosts/<myMachineName>/system/hardware.nix
 ```
 
-Modify your host configuration by importing different modules
+Write the system configuration (import the shared profiles/modules plus `./hardware.nix`)
 ```
-vim <myMachineName>/configuration.nix
+vim hosts/<myMachineName>/system/default.nix
 ```
 
-Modify the flake.nix to add your machine
+Write the home configuration (import the shared `../../../home` bundle)
+```
+vim hosts/<myMachineName>/home/default.nix
+```
+
+Modify the flake.nix to add your machine with the `mkHost` helper
 ```
 vim flake.nix
 ```

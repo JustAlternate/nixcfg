@@ -1,5 +1,4 @@
 {
-  pkgs,
   inputs,
   ...
 }:
@@ -10,39 +9,8 @@
     ./llm
     ./fastfetch.nix
     ./k9s.nix
+    ./packages.nix
     ../../modules/home/aws.nix
     inputs.sops-nix.homeManagerModules.sops
-  ];
-
-  home.packages = with pkgs; [
-    ffmpeg
-    bemoji
-    marp-cli
-    compose2nix
-    lazygit
-    openssh
-    gcc
-    lua
-    go
-    unstable.golangci-lint
-    cmake
-    gnumake
-    opentofu
-    awscli2
-    devenv
-    gh
-    bat
-    eza
-    zoxide
-    gh-dash
-    statix
-    deadnix
-    nixfmt
-    kubectl
-    kubernetes-helm
-    ani-cli
-    vim
-    inputs.justnixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.fleettui.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

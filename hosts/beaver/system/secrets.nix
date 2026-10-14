@@ -21,8 +21,5 @@ _: {
     };
     "MAIL_MONITOR/HASHED_PASSWORD" = { };
     "MAIL_MONITOR/ENV" = { };
-    "CPTR/COOKIE_SECRET" = { };
-    "CPTR/OAUTH_CLIENT_SECRET" = { };
-    "CPTR/GITHUB_SSH_KEY" = { };
   };
 }

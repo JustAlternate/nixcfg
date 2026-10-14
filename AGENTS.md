@@ -48,7 +48,7 @@ When writing new Nix files or adding features, follow these rules strictly to re
    - Use **`modules/`** ONLY when you need to declare entirely new Nix options (`options = { ... }`) that don't exist in standard nixpkgs or home-manager.
 
 4. **Architecture Awareness:**
-   - `x86_64-linux` (parrot, swordfish): Full desktop/laptop environments. Safe to import heavy graphical profiles.
+   - `x86_64-linux` (parrot, swordfish, eagle): Full desktop/laptop environments. Safe to import heavy graphical profiles.
    - `aarch64-linux` (beaver, gecko): Headless/server/SBC environments. Keep configs lightweight.
 
 ## 📦 Channel Policy (nixpkgs)
@@ -76,7 +76,7 @@ Before changing any stateful service's channel: compare the running version (`sy
 - `PrivateDevices = true`
 - `CapabilityBoundingSet = ""`
 
-If a service legitimately can't use one of these, document why with a comment (e.g. `cptr` is an interactive executor — it spawns shells, runs sudo, and needs the real filesystem, so most of the template is off; the security boundary is unprivileged user + loopback bind + SSO instead).
+If a service legitimately can't use one of these, document why with a comment (e.g. a JVM service needs `MemoryDenyWriteExecute` off so the JIT works, or an interactive shell service needs the real filesystem — then the security boundary is unprivileged user + loopback bind + auth instead).
 
 **NEVER expose an unauthenticated executor endpoint** (shell command, file write/edit) on any network interface. Loopback-only + auth, or don't build it.
 
@@ -151,6 +151,7 @@ nixos option services.fail2ban -f '/root/nixcfg#beaverNixos'
 #   beaver:    /root/nixcfg#beaverNixos
 #   swordfish: /root/nixcfg#swordfishNixos
 #   parrot:    /root/nixcfg#parrotNixos
+#   eagle:     /root/nixcfg#eagleNixos
 ```
 
 ### Finding available packages

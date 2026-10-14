@@ -27,6 +27,7 @@ hostname && uname -m
 ```
 - **`nixos` + x86_64** → swordfish (desktop)
 - **`parrot` + x86_64** → parrot (laptop)
+- **`eagle` + x86_64** → eagle (laptop)
 - **`beaver` + aarch64** → beaver (VPS)
 - **`gecko` + aarch64** → gecko (Raspberry Pi)
 
