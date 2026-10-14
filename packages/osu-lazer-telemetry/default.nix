@@ -23,7 +23,9 @@ let
     name = "osu-lazer-telemetry-unwrapped";
     src = contents;
     extraPkgs = p: [ p.icu ];
-    extraBwrapArgs = [ "--ro-bind-try /etc/egl/egl_external_platform.d /etc/egl/egl_external_platform.d" ];
+    extraBwrapArgs = [
+      "--ro-bind-try /etc/egl/egl_external_platform.d /etc/egl/egl_external_platform.d"
+    ];
   };
 
   harmony = pkgs.fetchurl {
@@ -61,20 +63,20 @@ let
   };
 in
 pkgs.runCommand "osu-lazer-telemetry"
-{
-  nativeBuildInputs = [ pkgs.makeWrapper ];
-  meta.mainProgram = "osu!";
-}
-''
-  mkdir -p $out/bin $out/share
-  makeWrapper ${app}/bin/osu-lazer-telemetry-unwrapped $out/bin/osu! \
-    --set OSU_EXTERNAL_UPDATE_PROVIDER 1 \
-    --set DOTNET_STARTUP_HOOKS ${hook}/lib/osu-telemetry/OsuTelemetryHook.dll \
-    --set mesa_glthread true
+  {
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    meta.mainProgram = "osu!";
+  }
+  ''
+    mkdir -p $out/bin $out/share
+    makeWrapper ${app}/bin/osu-lazer-telemetry-unwrapped $out/bin/osu! \
+      --set OSU_EXTERNAL_UPDATE_PROVIDER 1 \
+      --set DOTNET_STARTUP_HOOKS ${hook}/lib/osu-telemetry/OsuTelemetryHook.dll \
+      --set mesa_glthread true
 
-  cp -r ${app}/share/. $out/share/ 2>/dev/null || true
-  install -m 444 -D ${contents}/osu!.desktop -t $out/share/applications
-  for i in 16 32 48 64 96 128 256 512 1024; do
-    install -D ${contents}/osu.png $out/share/icons/hicolor/''${i}x$i/apps/osu.png
-  done
-''
+    cp -r ${app}/share/. $out/share/ 2>/dev/null || true
+    install -m 444 -D ${contents}/osu!.desktop -t $out/share/applications
+    for i in 16 32 48 64 96 128 256 512 1024; do
+      install -D ${contents}/osu.png $out/share/icons/hicolor/''${i}x$i/apps/osu.png
+    done
+  ''
