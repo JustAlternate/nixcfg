@@ -57,6 +57,12 @@ secrets in nix), and is safe to re-run.
 visible model is usable by any signed-in user. This is a 2-person instance; there
 are no per-model access grants.
 
+**Live catalog**: `models.base_models_cache=false` in the DB config, so the
+provider list is re-fetched from OpenRouter on every model-list load. Newly added
+OpenRouter models appear automatically (no restart, no timer). To trade freshness
+for fewer upstream calls, flip it back to `true` and a restart/`refresh=true`
+becomes necessary again.
+
 ## Ops
 
 ```bash
@@ -91,5 +97,9 @@ Manage providers in **Admin Settings → Connections**:
   `SELECT COUNT(*) FROM model WHERE base_model_id IS NULL AND is_active = 0;`
   then `sudo owui-models --apply` and hard-refresh.
 - **Model still not visible after fixing the DB**: browser cache — hard refresh
-  (Ctrl-Shift-R). `models.base_models_cache` is on, so the provider list is also
-  cached in-process; a service restart forces a refetch.
+  (Ctrl-Shift-R). The provider catalog is re-fetched on every model-list load
+  (`models.base_models_cache=false`), so new OpenRouter models show up on the
+  next page load without a restart.
+- **Catalog goes stale after adding models on OpenRouter**: it shouldn't anymore
+  (cache is off). If it does, `models.base_models_cache` was turned back on —
+  restart the service or hit `/api/models?refresh=true`.
