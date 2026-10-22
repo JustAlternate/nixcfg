@@ -63,6 +63,14 @@ in
             proxyPass = "http://127.0.0.1:8923";
           };
         };
+        "polynovel.justalternate.com" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:48590";
+            proxyWebsockets = true;
+          };
+        };
       };
     };
   };
