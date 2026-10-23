@@ -21,5 +21,6 @@ _: {
     };
     "MAIL_MONITOR/HASHED_PASSWORD" = { };
     "MAIL_MONITOR/ENV" = { };
+    "OPENCODE/SERVER_PASSWORD" = { };
   };
 }

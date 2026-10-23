@@ -30,6 +30,7 @@ This repository contains the declaration of my systems running [Nix/NixOS](https
 - File sharing: [Sharry](https://github.com/eikek/sharry)
 - Web analytics: [GoatCounter](https://www.goatcounter.com/)
 - VPN mesh coordination: [Headscale](https://github.com/juanfont/headscale) (self-hosted Tailscale control server)
+- Remote coding agent: [opencode](https://github.com/sst/opencode) server (root, tailnet-only, Basic auth) — chat from the phone app, see [RUNBOOK](hosts/beaver/system/services/opencode/RUNBOOK.md)
 - Security: sops-nix (secrets management), Fail2Ban (intrusion prevention)
 - Binary cache: [Cachix](https://cachix.org) (`justalternate-nixcfg.cachix.org`)
 - Backups: [Restic](https://restic.net/) twice-weekly snapshots (Mon, Thu) to Hetzner Storage Box (SFTP), with PostgreSQL dumps, pruning (7d/4w/6m), and integrity checks. See [RUNBOOK](hosts/beaver/system/services/backups/RUNBOOK.md) for recovery.

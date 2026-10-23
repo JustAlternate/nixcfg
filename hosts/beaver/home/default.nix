@@ -12,6 +12,7 @@
     ../../../modules/home/ssh.nix
     ../../../modules/home/git.nix
     inputs.sops-nix.homeManagerModules.sops
+    ./agent.nix
   ];
 
   home = {
