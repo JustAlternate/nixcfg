@@ -98,7 +98,10 @@ sudo nixos-rebuild dry-activate --flake .#beaverNixos
 sudo nixos-rebuild switch --flake .#beaverNixos
 
 # Rebuild desktops
-sudo nixos-rebuild switch --flake .#<hostname>
+# Initial switch (or after changing the Cachix wrapper/secret):
+sudo nixos-rebuild switch --flake .#<hostname>Nixos
+# Day-to-day (pushes newly built paths to Cachix):
+rebuild
 ```
 
 ## 🔐 Secrets Management (SOPS-Nix)
