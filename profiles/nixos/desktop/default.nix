@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./cachix.nix
     ./hyprland.nix
     ./docker.nix
   ];

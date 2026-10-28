@@ -4,6 +4,7 @@
     ./compositor
     ./ghostty.nix
     ./activitywatch
+    ./rebuild.nix
     ./scripts
   ];
 

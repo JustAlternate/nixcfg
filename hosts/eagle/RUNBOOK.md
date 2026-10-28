@@ -82,6 +82,18 @@ sudo nixos-rebuild dry-activate --flake .#eagleNixos
 sudo nixos-rebuild switch --flake .#eagleNixos
 ```
 
+### Cachix push
+
+`CACHIX_AUTH_TOKEN` is shared by all desktop hosts via `secrets/secrets.yaml`. Rotate it with `sops secrets/secrets.yaml`, then switch once so `/run/secrets/cachix-env` is re-rendered.
+
+After that, use the `rebuild` wrapper instead of `nixos-rebuild`. It runs the rebuild as root under `cachix watch-exec`, which pushes every path built locally (substituted paths are skipped):
+
+```bash
+rebuild              # switch
+rebuild dry-activate
+rebuild boot
+```
+
 If boot fails: systemd will fall back to passphrase prompt after 30s. Enter slot 0 password. If header corrupted, restore from backup: `sudo cryptsetup luksHeaderRestore /dev/disk/by-uuid/46c64a55-12ec-4dca-a2cb-9be9687559ee --header-backup-file /path/to/backup`
 
 ## Troubleshooting
