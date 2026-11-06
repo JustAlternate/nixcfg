@@ -41,10 +41,13 @@ tailnet. Everything you write is read on a small screen.
 
 1. Read the relevant files and `/root/nixcfg/AGENTS.md`.
 2. Edit the repo.
-3. Run from `/root/nixcfg`: `nixfmt . -c`, `deadnix . -f`, `statix check .`,
-   `nix flake check`. New nix files must be `git add`ed before the last step.
-4. For system changes: `sudo nixos-rebuild dry-activate --flake /root/nixcfg#beaverNixos`
-   and report which units restart.
+3. Batch edits and use focused checks while iterating. Once on the final Nix
+   changes, run from `/root/nixcfg`: `nixfmt . -c`, `deadnix . -f`,
+   `statix check .`, `nix flake check`. New nix files must be `git add`ed before
+   the last step. Repeat affected checks if changes follow.
+4. Before a system switch, run once on the final configuration:
+   `sudo nixos-rebuild dry-activate --flake /root/nixcfg#beaverNixos` and report
+   which units restart. `dry-build` does not replace this step.
 5. Ask the user before `switch`. Mail, passwords, and VPN are production.
 6. Verify services with `systemctl status` / `journalctl -u <unit>` afterwards.
 

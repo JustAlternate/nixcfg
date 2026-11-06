@@ -19,6 +19,13 @@ OS=$(uname -s)
 
 Nix packages are architecture-specific. `nix shell` commands must match the system architecture.
 
+### Efficient Nix Validation
+
+- Batch related edits and use focused, non-building checks while iterating. Do not repeat a full flake check or `dry-activate` after each edit.
+- Run the checks required by the project once on the final changes. Repeat them when subsequent edits affect their results.
+- `nixos-rebuild dry-build` can preview builds and downloads, but it does not replace `dry-activate` or show service restarts.
+- Run a required `dry-activate` once on the final configuration before switching; keep all project-specific production safeguards and confirmation requirements.
+
 ### Machine Identity
 
 **ALWAYS** determine the current machine at session start via `hostname` — never assume.

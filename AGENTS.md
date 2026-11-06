@@ -86,13 +86,15 @@ If a service legitimately can't use one of these, document why with a comment (e
 
 ## ⚡ Build Commands
 
+Batch edits and use focused checks while iterating. Run the full checks once on the final Nix changes, not before every edit; rerun affected checks if the configuration changes afterward. A `dry-build` can preview builds and downloads, but cannot preview service restarts and does not replace `dry-activate`.
+
 ```bash
-# Before every change (run from ~/nixcfg)
+# Once after the final Nix changes (run from the repository root)
 nixfmt . -c
 deadnix . -f && statix check .
 nix flake check
 
-# Rebuild beaver (mandatory dry-activate first)
+# Before switching beaver (mandatory dry-activate on the final configuration)
 sudo nixos-rebuild dry-activate --flake .#beaverNixos
 # Then, with explicit user confirmation:
 sudo nixos-rebuild switch --flake .#beaverNixos
@@ -127,7 +129,7 @@ rebuild
 
 ## ✅ Before Every Rebuild on Beaver
 
-Each step must pass before `switch`:
+Each step must pass on the final configuration before `switch`. Run them once per batch of changes, not after each edit; repeat affected checks if changes follow.
 
 1. `nixfmt . -c` — zero "not formatted" files (CI enforces this).
 2. `deadnix . -f` — zero output means clean.
