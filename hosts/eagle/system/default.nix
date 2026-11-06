@@ -104,6 +104,7 @@
 
   environment.etc."xdg/hypr/hyprland.conf".text = ''
     monitor = eDP-1, 2880x1800@120, 0x0, 1.5, vrr, 2, bitdepth, 10, cm, srgb
+    monitor = HDMI-A-1, 2560x1440@74.92, 1920x0, 1
   '';
 
   system.stateVersion = "26.05";

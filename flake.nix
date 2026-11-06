@@ -5,7 +5,11 @@
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
-    unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Pinned to the last revision whose opencode 2.1.4 still builds: nixpkgs
+    # after this ships opencode 2.2.5 with a stale node_modules FOD hash
+    # (specified xfOVcw1…, built prx9dX7…), so `nixos-rebuild switch` dies.
+    # Unpin once nixpkgs fixes the hash; deepseek-harness 0.2.1-rc.3 is here.
+    unstable-nixpkgs.url = "github:nixos/nixpkgs/31ecbaca1bdefa45dffc409f0250bd8039ea0010";
 
     justnixvim.url = "github:JustAlternate/justnixvim";
 
@@ -111,7 +115,6 @@
     {
       packages = {
         x86_64-linux.recall = nixpkgs.legacyPackages.x86_64-linux.callPackage ./packages/recall { };
-        x86_64-linux.deepseek-harness = nixpkgs.legacyPackages.x86_64-linux.callPackage ./packages/dsh { };
         aarch64-linux.recall = nixpkgs.legacyPackages.aarch64-linux.callPackage ./packages/recall { };
       };
 
