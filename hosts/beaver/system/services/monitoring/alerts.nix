@@ -797,7 +797,7 @@
             };
             datasourceUid = "PBFA97CFB590B2093";
             model = {
-              expr = "clamp_min(time() - max(node_systemd_timer_last_trigger_seconds{job=\"scraper\",timer=\"restic-backups-beaver.timer\"}), 0)";
+              expr = "clamp_min(time() - max(node_systemd_timer_last_trigger_seconds{job=\"scraper\",name=\"restic-backups-beaver.timer\"}), 0)";
               refId = "A";
             };
           }

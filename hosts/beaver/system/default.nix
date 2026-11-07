@@ -120,6 +120,13 @@
     trusted-public-keys = [
       "justalternate-nixcfg.cachix.org-1:Bzqq/ByZOKxWH3ByZ0EWs2e+U7sP15yC0/15auvsR2k="
     ];
+
+    # Root is a single 75G disk and fills during large rebuilds. Keep build
+    # scratch on /var (separate 40G disk) and let Nix collect garbage instead
+    # of failing with ENOSPC when the store drops below 2G free.
+    build-dir = "/var/tmp/nix-builds";
+    min-free = "2G";
+    max-free = "6G";
   };
 
   boot = {

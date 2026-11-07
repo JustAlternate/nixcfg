@@ -42,6 +42,7 @@
     "d /var/log 0755 root root -"
     "d /var/cache 0755 root root -"
     "d /var/tmp 1777 root root -"
+    "d /var/tmp/nix-builds 0755 root root -"
     "d /var/spool 0755 root root -"
   ];
   nixpkgs.hostPlatform = "aarch64-linux";
