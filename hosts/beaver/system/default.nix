@@ -28,6 +28,15 @@
 
   services = {
     nginx = {
+      # Remove once nixos-26.05 includes the NGINX2Root security update.
+      package = pkgs.nginx.overrideAttrs (_: {
+        version = "1.30.7";
+        nginxVersion = "1.30.7";
+        src = pkgs.fetchurl {
+          url = "https://nginx.org/download/nginx-1.30.7.tar.gz";
+          hash = "sha256-JWW1yDcFDpWPcPsPc8SOK8pFQq00n9NW9G+wxyYQvG4=";
+        };
+      });
       appendHttpConfig = ''
         proxy_headers_hash_max_size 512;
         proxy_headers_hash_bucket_size 128;
